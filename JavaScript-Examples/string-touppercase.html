@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Document</title>
+
+    <script>
+
+        function ChangeCase(){
+
+            var username = document.getElementById("txtName").value;
+
+            document.getElementById("txtName").value = username.toUpperCase();
+
+        }
+
+    </script>
+
+</head>
+
+<body>
+
+    <fieldset>
+
+        <legend>Your Name</legend>
+
+        <input type="text" onblur="ChangeCase()" id="txtName" placeholder="Name in Block Letters">
+
+    </fieldset>
+
+</body>
+
+</html>

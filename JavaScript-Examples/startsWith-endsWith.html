@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Document</title>
+
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+
+    <script>
+
+        function VerifyCard(){
+
+            var card = document.getElementById("Card").value;
+
+            var pic = document.querySelector("img");
+
+            if(card.startsWith("44")){
+
+                pic.src = "../public/images/visa.jpg";
+
+            } else {
+
+                pic.src = "../public/images/master.jpg";
+
+            }
+
+        }
+
+        function VerifySkype(){
+
+            var skype = document.getElementById("Skype").value;
+
+            var skypeError= document.getElementById("skypeError");
+
+            if(skype.endsWith("outlook.com")) {
+
+                skypeError.innerHTML = "Your account verified".fontcolor('green');
+
+            } else {
+
+                skypeError.innerHTML = "Invalid Skype ID".fontcolor('red');
+
+            }
+
+        }
+
+    </script>
+
+</head>
+
+<body class="container-fluid">
+
+    <div class="mt-4 w-25">
+
+        <dl>
+
+            <dt>Your Card Number</dt>
+
+            <dd class="input-group">
+
+                <input type="text" onblur="VerifyCard()" maxlength="16" id="Card" class="form-control"><img class="input-group-text" width="80">
+
+            </dd>
+
+            <dt>Your Skype Id</dt>
+
+            <dd>
+
+                <input type="text" onblur="VerifySkype()" id="Skype" class="form-control">
+
+            </dd>
+
+            <dd id="skypeError"></dd>
+
+        </dl>
+
+    </div>
+
+</body>
+
+</html>

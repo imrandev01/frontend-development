@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Document</title>
+
+    <script>
+
+        function SubmitClick(){
+
+            var opt = document.getElementById("OTP").value;
+
+            var error = document.getElementById("Error");
+
+            if(opt.charAt(0)=="6") {
+
+                document.write("Verified Successfully..");
+
+            } else {
+
+                error.innerHTML = "Invalid OTP".fontcolor('red');
+
+            }
+
+        }
+
+        function VerifyName(){
+
+            var username = document.getElementById("UserName").value;
+
+            var nameError = document.getElementById("nameError");
+
+            if(username.charCodeAt(0)>=65 && username.charCodeAt(0)<=90)
+
+            {
+
+                nameError.innerHTML = "";
+
+            } else {
+
+                nameError.innerHTML = "Name must start with uppercase letter".fontcolor('red');
+
+            }
+
+        }
+
+    </script>
+
+</head>
+
+<body>
+
+    <dl>
+
+        <dt>Name</dt>
+
+        <dd><input type="text" placeholder="Name must start with Uppercase letter" onblur="VerifyName()" id="UserName"></dd>
+
+        <dd id="nameError"></dd>
+
+        <dt>OTP</dt>
+
+        <dd><input type="text" id="OTP"></dd>
+
+        <dd id="Error"></dd>
+
+    </dl>
+
+    <button onclick="SubmitClick()">Submit</button>
+
+</body>
+
+</html>

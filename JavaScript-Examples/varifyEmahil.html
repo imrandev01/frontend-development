@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Document</title>
+
+    <script>
+
+        function VerifyEmail(){
+
+            var email  = document.getElementById("Email").value;
+
+            var EmailError = document.getElementById("EmailError");
+
+
+
+            if(email.indexOf("@")<3)
+
+            {
+
+                EmailError.innerHTML = "Invalid Email Please include @ min after 2 chars".fontcolor('red');
+
+            } else {
+
+                EmailError.innerHTML = "Email Verfified".fontcolor('green');
+
+            }
+
+        }
+
+    </script>
+
+</head>
+
+<body>
+
+    <dl>
+
+        <dt>Your email</dt>
+
+        <dd>
+
+            <input type="text" onblur="VerifyEmail()" id="Email">
+
+        </dd>
+
+        <dd id="EmailError"></dd>
+
+    </dl>
+
+</body>
+
+</html>

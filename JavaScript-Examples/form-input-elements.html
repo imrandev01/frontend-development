@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Document</title>
+
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+
+    <script type="text/javascript">
+
+        function SubmitClick(){
+
+            document.getElementById("lblId").innerHTML = document.getElementById("txtId").value;
+
+            document.getElementById("lblName").innerHTML = document.getElementById("txtName").value;
+
+            document.getElementById("lblPrice").innerHTML = document.getElementById("txtPrice").value;
+
+            document.getElementById("lblCity").innerHTML = document.getElementById("lstCities").value;
+
+
+
+            stock = "";
+
+            stockCheckBox = document.getElementById("optStock");
+
+
+
+            if(stockCheckBox.checked)
+
+            {
+
+                stock = "Available";
+
+            }
+
+            else
+
+            {
+
+                stock = "Out of Stock";
+
+            }
+
+            document.getElementById("lblStock").innerHTML = stock;
+
+           
+
+        }
+
+    </script>
+
+</head>
+
+<body class="container-fluid">
+
+    <div id="registerContainer">
+
+        <h2>Register Product</h2>
+
+        <dl class="w-25">
+
+            <dt>Product Id</dt>
+
+            <dd><input type="number" id="txtId" class="form-control"></dd>
+
+            <dt>Name</dt>
+
+            <dd><input type="text" id="txtName" class="form-control"></dd>
+
+            <dt>Price</dt>
+
+            <dd><input type="number" id="txtPrice" class="form-control"></dd>
+
+            <dt>Shipped To</dt>
+
+            <dd>
+
+                <select id="lstCities" class="form-select">
+
+                    <option>Select City</option>
+
+                    <option>Delhi</option>
+
+                    <option>Hyd</option>
+
+                </select>
+
+            </dd>
+
+            <dt>Stock</dt>
+
+            <dd class="form-switch">
+
+                <input type="checkbox" id="optStock" class="form-check-input"> <label> Available </label>
+
+            </dd>
+
+            <button onclick="SubmitClick()" data-bs-toggle="modal" data-bs-target="#details" class="btn btn-primary w-100">Submit</button>
+
+        </dl>
+
+    </div>
+
+    <div class="modal fade" id="details">
+
+        <div class="modal-dialog">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+
+                    <h2>Product Details</h2>
+
+                </div>
+
+                <div class="modal-body">
+
+                    <dl>
+
+                        <dt>Product Id</dt>
+
+                        <dd id="lblId"></dd>
+
+                        <dt>Name</dt>
+
+                        <dd id="lblName"></dd>
+
+                        <dt>Price</dt>
+
+                        <dd id="lblPrice"></dd>
+
+                        <dt>Shipping City</dt>
+
+                        <dd id="lblCity"></dd>
+
+                        <dt>Stock</dt>
+
+                        <dd id="lblStock"></dd>
+
+                    </dl>
+
+                </div>
+
+                <div class="modal-footer">
+
+                    <button class="btn btn-primary" data-bs-dismiss="modal"> OK </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

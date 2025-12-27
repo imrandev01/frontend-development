@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Document</title>
+
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+
+    <script>
+
+        function CalculateClick(){
+
+            var n = parseInt(prompt("Enter Weight"));
+
+            var status = document.getElementById("status");
+
+            if(n<40){
+
+                status.style.marginLeft = "100px";
+
+            } else if (n>40 && n<60) {
+
+                status.style.marginLeft = "250px";
+
+            }
+
+        }
+
+    </script>
+
+</head>
+
+<body class="container-fluid">
+
+    <button onclick="CalculateClick()" class="btn btn-primary mt-4">Calculate</button>
+
+    <div class="mt-4 progress">
+
+        <div class="progress-bar bg-dark me-1" style="width:25%">Under Weight</div>
+
+        <div class="progress-bar bg-success me-1" style="width:25%">Normal Weight</div>
+
+        <div class="progress-bar bg-warning me-1" style="width:25%">Over Weight</div>
+
+        <div class="progress-bar bg-danger me-1" style="width:25%">Obese</div>
+
+    </div>
+
+    <div class="bi bi-triangle-fill" id="status">You</div>
+
+</body>
+
+</html>

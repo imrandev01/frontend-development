@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+     <meta charset="UTF-8">
+
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+     <title>Document</title>
+
+     <script>
+
+          function SubmitClick(){
+
+              var n = parseInt(document.getElementById("txtNumber").value);
+
+              if(n % 2 == 0)
+
+              {
+
+                  document.write("Verified..");
+
+              }
+
+              else {
+
+                  alert("Not an even number");
+
+              }
+
+          }
+
+     </script>
+
+</head>
+
+<body>
+
+     Enter an Even number : <input type="text" id="txtNumber"> <button onclick="SubmitClick()">Submit</button>
+
+</body>
+
+</html>
