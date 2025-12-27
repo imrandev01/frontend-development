@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Nav Tabs</title>
+
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+
+</head>
+
+<body class="container-fluid">
+
+    <h2>Tabs Demo</h2>
+
+    <ul class="nav nav-tabs">
+
+        <li class="nav-item"> <a href="#basic" data-bs-toggle="tab" class="nav-link active"> <span class="nav-text"> Basic Details </span> </a> </li>
+
+        <li class="nav-item"> <a href="#preview" data-bs-toggle="tab" class="nav-link"> <span class="nav-text"> Preview </span> </a </li>
+
+        <li class="nav-item"> <a href="#features" data-bs-toggle="tab" class="nav-link"> <span class="nav-text"> Features </span> </a </li>
+
+        <li class="nav-item"> <a href="#ratings" data-bs-toggle="tab" class="nav-link"> <span class="nav-text"> Ratings </span> </a </li>
+
+    </ul>  
+
+    <div class="mt-4 tab-content">
+
+        <div class="tab-pane active" id="basic">
+
+            <dl>
+
+                <dt>iPhone 15 [Black]</dt>
+
+                <dd> &#8377; 70,000/- </dd>
+
+            </dl>
+
+        </div>
+
+        <div class="tab-pane" id="preview">
+
+            <img src="../public/images/iphone-black.jpg" width="200" height="300">
+
+        </div>
+
+        <div class="tab-pane" id="features">
+
+            <ul>
+
+                <li>Feature-1</li>
+
+                <li>Feature-2</li>
+
+                <li>Feature-3</li>
+
+                <li>Feature-4</li>
+
+            </ul>
+
+        </div>
+
+        <div class="tab-pane" id="ratings">
+
+            <div class="fs-3">4.3 <span class="bi bi-star-fill text-success">  Ratings  & 5600 Reviews</span></div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

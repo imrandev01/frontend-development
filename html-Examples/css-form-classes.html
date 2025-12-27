@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Document</title>
+
+    <style>
+
+       .UserName+div {
+
+          display: none;
+
+       }
+
+       .UserName:focus+div {
+
+         display: block;
+
+         color:red;
+
+         font-size: 14px;
+
+       }
+
+       .UserName:focus {
+
+          box-shadow: 3px 3px 2px red;
+
+          border:1px solid red;
+
+          outline: none;
+
+       }
+
+       input:read-only {
+
+          cursor: not-allowed;
+
+       }
+
+       button:disabled {
+
+         cursor: not-allowed;
+
+         background-color: gray;
+
+         color:white;
+
+       }
+
+    </style>
+
+</head>
+
+<body>
+
+   <dl>
+
+      <dt>User Id</dt>
+
+      <dd><input type="text" class="UserId" value="david_nit" readonly></dd>
+
+      <dt>User Name</dt>
+
+      <dd>
+
+         <input type="text" class="UserName" readonly placeholder="Name in Block Letters" value="DAVID">
+
+         <div>Name in Block Letters</div>
+
+      </dd>
+
+   </dl>
+
+   <button disabled> Login</button>
+
+</body>
+
+</html>

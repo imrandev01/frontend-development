@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Portfolio</title>
+
+    <style>
+
+        header {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            padding: 20px;
+
+            font-family: Arial;
+
+            font-size: 20px;
+
+            background-color: black;
+
+            color:white;
+
+        }
+
+        .title {
+
+            font-size: 25px;
+
+            font-weight: bold;
+
+        }
+
+        section {
+
+            display:  grid;
+
+            grid-template-columns: 2fr 10fr;
+
+        }
+
+        iframe {
+
+            width: 100%;
+
+            height: 100vh;
+
+            border:none;
+
+        }
+
+        ul {
+
+            list-style: none;
+
+            margin-left: -40px;
+
+        }
+
+        li {
+
+            background-color: black;
+
+            color:white;
+
+            padding: 5px;
+
+            margin-bottom: 20px;
+
+            width: 100px;
+
+        }
+
+        a{
+
+            color:white;
+
+            font-size: 16px;
+
+            font-family: Arial;
+
+            text-decoration: none;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <header>
+
+        <div class="title">John</div>
+
+        <div>I am UI & UX Designer</div>
+
+        <div>
+
+            <span><a href="john@gmail.com">john@gmail.com</a></span>
+
+            <span><a href="tel:9876543210">+919876543212</a></span>
+
+        </div>
+
+    </header>
+
+    <section>
+
+        <nav>
+
+            <h3>My Projects</h3>
+
+            <ul>
+
+                <li><a href="./shopper-template.html" target="frameMain">Shopper</a></li>
+
+                <li><a href="./landkit.html" target="frameMain">Landkit</a></li>
+
+                <li><a href="./amazon-cards.html" target="frameMain">Amazon</a></li>
+
+                <li><a href="./docs/kerala.pdf" target="frameMain">My Resume</a></li>
+
+            </ul>
+
+        </nav>
+
+        <main>
+
+            <iframe name="frameMain"></iframe>
+
+        </main>
+
+    </section>
+
+</body>
+
+</html>

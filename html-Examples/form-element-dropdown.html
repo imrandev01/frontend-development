@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Selection Form</title>
+    <!-- Use a reliable CDN for Bootstrap Icons if local node_modules are not present -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+</head>
+<body>
+    <form>
+        <dl>
+            <dt><label for="product">Select Product</label></dt>
+            <dd>
+                <select name="product" id="product">
+                    <option value="">Choose Product</option>
+                    <optgroup label="Electronics">
+                        <option value="tv">Televisions</option>
+                        <!-- 'selected' attribute makes this the default choice -->
+                        <option value="PRELEMOB1102" selected>Mobiles</option>
+                        <option value="watch">Watches</option>
+                    </optgroup>
+                    <optgroup label="Footwear">
+                        <!-- 'disabled' attribute prevents selection -->
+                        <option value="casual" disabled>Casuals</option>
+                        <option value="sneakers">Sneakers</option>
+                    </optgroup>
+                </select>
+            </dd>
+
+            <dt><label for="language">Language</label></dt>
+            <dd>
+                <select name="language" id="language">
+                    <option value="">Your Language</option>
+                    <option value="en">English</option>
+                    <option value="hi">हिंदी</option>
+                </select>
+            </dd>
+        </dl>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form 2025</title>
+    <!-- Modern 2025 CDN for Bootstrap Icons -->
+    <link rel="stylesheet" href="cdn.jsdelivr.net">
+    <style>
+        dd { margin-top: 20px; }
+        .btn-icon { vertical-align: middle; margin-right: 5px; }
+    </style>
+</head>
+<body>
+    <form action="/register" method="POST">
+        <dl>
+            <dt><label for="username">User Name</label></dt>
+            <dd><input type="text" name="UserName" id="username" required></dd>
+
+            <dt><label for="city">City</label></dt>
+            <dd>
+                <select name="City" id="city">
+                    <option value="">Choose City</option>
+                    <option value="delhi">Delhi</option>
+                    <option value="hyd">Hyd</option>
+                </select>
+            </dd>
+
+            <!-- HTML5 Buttons with flexible content -->
+            <dd>
+                <button type="submit">
+                    <span class="bi bi-person-fill btn-icon"></span> Register
+                </button>
+                <button type="reset">
+                    <img src="cancel.jpg" width="16" height="16" alt="" class="btn-icon"> Cancel
+                </button>
+                <button type="button" onclick="window.print()">
+                    <span class="bi bi-printer-fill btn-icon"></span> Print
+                </button>
+            </dd>
+        </dl>
+    </form>
+</body>
+</html>

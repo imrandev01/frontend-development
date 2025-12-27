@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Form</title>
+    <style>
+        /* Modern 2025 touch: allow vertical resizing only */
+        textarea {
+            resize: vertical;
+            padding: 10px;
+            font-family: sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <form action="/submit-comments" method="POST">
+        <fieldset>
+            <legend>Your Comments</legend>
+            <dl>
+                <dt><label for="user-comment">Enter Feedback:</label></dt>
+                <dd>
+                    <textarea id="user-comment" name="comment" rows="4" cols="40" placeholder="Write here..."></textarea>
+                </dd>
+
+                <dt>Terms of Service</dt>
+                <dd>
+                    <!-- 'readonly' is often better than 'disabled' for TOS so users can still scroll/highlight -->
+                    <textarea rows="4" cols="40" readonly>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vos autem cum perspicuis dubia debeatis illustrare...</textarea>
+                </dd>
+            </dl>
+            <button type="submit">Post Comment</button>
+        </fieldset>
+    </form>
+</body>
+</html>

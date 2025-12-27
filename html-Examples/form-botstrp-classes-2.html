@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Document</title>
+
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+
+</head>
+
+<body>
+
+    <form class="w-25 p-4 m-4 border border-2 bg-dark text-white border-dark rounded">
+
+        <div class="bi fs-5 fw-bold bi-person-fill"> Register User</div>
+
+        <div class="my-3">
+
+            <label for="UserName" class="form-label fw-bold">User Name</label>
+
+            <div>
+
+                <input type="text" class="form-control" name="UserName">
+
+                <div class="text-warning">User Name Required</div>
+
+            </div>
+
+        </div>
+
+        <div class="my-3">
+
+            <label for="Password"  class="form-label fw-bold">Password</label>
+
+            <div>
+
+                <input type="password" class="form-control" name="Password">
+
+            </div>
+
+        </div>
+
+        <div class="my-3">
+
+            <label for="City"  class="form-label fw-bold">Your City</label>
+
+            <div>
+
+                <select name="City" class="form-select">
+
+                    <option>Select City</option>
+
+                    <option>Delhi</option>
+
+                    <option>Hyd</option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+        <div class="my-3">
+
+            <label for="Subscribe" class="form-label fw-bold">Subscribe</label>
+
+            <div class="form-switch">
+
+                <input type="checkbox" checked class="form-check-input" name="Subscribe"> <label class="form-check-label"> Yes </label>
+
+            </div>
+
+        </div>
+
+        <div class="my-3">
+
+            <button class="btn btn-light w-100">Register</button>
+
+        </div>
+
+    </form>
+
+</body>
+
+</html>

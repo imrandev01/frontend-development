@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Ratings 2025</title>
+    <link rel="stylesheet" href="cdn.jsdelivr.net">
+    <style>
+        meter {
+            width: 200px;  
+            height: 20px;
+            vertical-align: middle; /* Aligns bar with text/icons */
+        }
+        dd { margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <form>
+        <dl>
+            <!-- High Rating (Green) -->
+            <dd>
+                <span>5</span> <span class="bi bi-star-fill"></span> 
+                <meter min="1" max="5" value="5"></meter> 
+                <span>23,450</span>
+            </dd>
+            
+            <!-- Mid Rating (Green/Yellow) -->
+            <dd>
+                <span>3</span> <span class="bi bi-star-fill"></span> 
+                <meter min="1" max="5" value="3"></meter> 
+                <span>5,450</span>
+            </dd>
+
+            <!-- Warning Threshold (Gold) -->
+            <dd>
+                <span>Critical Range</span> 
+                <meter min="0" max="100" low="30" high="70" value="80"></meter> 
+                <span>Above High</span>
+            </dd>
+        </dl>
+    </form>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Document</title>
+
+    <style>
+
+        .terms~button {
+
+           display: none;
+
+        }
+
+        .terms:checked~button {
+
+           display: block;
+
+        }
+
+        .terms+label {
+
+          color:red;
+
+        }
+
+        .terms:checked+label {
+
+          color:green;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+   <fieldset>
+
+       <legend>Terms of Service</legend>
+
+       <textarea rows="4" cols="40" disabled>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste ab, unde a neque ut rerum quae fugit dolorum vitae sapiente laudantium ea maxime eos adipisci sunt id, distinctio quasi. Aliquid? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ducimus hic facere sit laborum iusto commodi tempora, dolor recusandae voluptatum rerum autem doloremque consectetur cum? Inventore harum at maiores quo accusantium.</textarea>
+
+       <div>
+
+         <input type="checkbox" class="terms"> <label>I Accept</label>
+
+         <br><br>
+
+         <button>Submit</button>
+
+       </div>
+
+   </fieldset>
+
+</body>
+
+</html>

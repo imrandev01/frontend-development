@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form Elements Demo</title>
+    <link rel="stylesheet" href="bootstrap-icons.css">
+</head>
+<body>
+    <form>
+        <dl>
+            <!-- Dropdown with Groups -->
+            <dt>Product</dt>
+            <dd>
+                <select name="product">
+                    <optgroup label="Electronics">
+                        <option value="PRELEMOB1102" selected>Mobiles</option>
+                        <option>Watches</option>
+                    </optgroup>
+                </select>
+            </dd>
+
+            <!-- Listbox (Multiple) -->
+            <dt>City</dt>
+            <dd>
+                <select name="City" size="2" multiple>
+                    <option>Delhi</option>
+                    <option>Hyd</option>
+                </select>
+            </dd>
+
+            <!-- Textarea -->
+            <dt>Comments</dt>
+            <dd><textarea rows="4" cols="40"></textarea></dd>
+
+            <!-- Meter and Progress -->
+            <dt>Rating</dt>
+            <dd><meter min="1" max="5" value="4"></meter></dd>
+            <dt>Upload Status</dt>
+            <dd><progress min="0" max="100" value="70"></progress></dd>
+        </dl>
+
+        <!-- Buttons -->
+        <button type="submit">Submit</button>
+        <button type="button"><span class="bi bi-printer"></span> Print</button>
+    </form>
+</body>
+</html>
