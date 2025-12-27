@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+     <meta charset="UTF-8">
+
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+     <title>Document</title>
+
+     <script>
+
+          function VerifyPassword(){
+
+               var password = document.getElementById("Password").value;
+
+               var regExp = /(?=.*[A-Z])\w{4,15}/;
+
+               var error = document.getElementById("error");
+
+               var Grade = document.getElementById("Grade");
+
+
+
+               if(password.match(regExp))
+
+               {
+
+                    error.innerHTML = "Strong Password".fontcolor('green');
+
+                    Grade.value=100;
+
+               }
+
+               else {
+
+                    if(password.length<4)
+
+                    {
+
+                         error.innerHTML = "Poor Password min 4 chars required".fontcolor('red');
+
+                         Grade.value = 20;
+
+                    } else {
+
+                         error.innerHTML = "Weak Password at least 1 must be uppercase letter".fontcolor('goldenrod');
+
+                         Grade.value = 60;
+
+                    }
+
+               }
+
+          }
+
+     </script>
+
+</head>
+
+<body>
+
+     <fieldset>
+
+          <legend>Verify Password</legend>
+
+          <input type="password" id="Password" onkeyup="VerifyPassword()">
+
+          <div><meter id="Grade" style="width:170px" min="1" max="100"></meter></div>
+
+          <div id="error"></div>
+
+     </fieldset>
+
+</body>
+
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+     <meta charset="UTF-8">
+
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+     <title>Document</title>
+
+     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+
+     <script>
+
+          function VerifyPassword(){
+
+               var password = document.getElementById("Password").value;
+
+               var regExp = /(?=.*[A-Z])\w{4,15}/;
+
+               var error = document.getElementById("error");
+
+               var Progress = document.getElementById("Progress");
+
+
+
+               if(password.match(regExp))
+
+               {
+
+                    error.innerHTML = "Strong Password".fontcolor('green');
+
+                    Progress.className = "progress-bar progress-bar-animated progress-bar-striped bg-success";
+
+                    Progress.style.width = "100%";
+
+               }
+
+               else {
+
+                    if(password.length<4)
+
+                    {
+
+                         error.innerHTML = "Poor Password min 4 chars required".fontcolor('red');
+
+                         Progress.className = "progress-bar progress-bar-animated progress-bar-striped bg-danger";
+
+                         Progress.style.width = "30%";
+
+                    } else {
+
+                         error.innerHTML = "Weak Password at least 1 must be uppercase letter".fontcolor('goldenrod');
+
+                         Progress.className = "progress-bar progress-bar-animated progress-bar-striped bg-warning";
+
+                         Progress.style.width = "70%";
+
+                    }
+
+               }
+
+          }
+
+     </script>
+
+</head>
+
+<body class="container-fluid">
+
+     <fieldset class="w-25">
+
+          <legend>Verify Password</legend>
+
+          <input type="password" class="form-control" id="Password" onkeyup="VerifyPassword()">
+
+          <div class="progress w-100 mt-2">
+
+               <div id="Progress" class="progress-bar progress-bar-striped progress-bar-animated"></div>
+
+          </div>
+
+          <div id="error"></div>
+
+     </fieldset>
+
+</body>
+
+</html>

@@ -1,0 +1,12 @@
+<script>
+
+     var email = prompt("Enter Email");      // john_nit@gmail.com , sam@outlook.com
+
+
+     var id = email.slice(0, email.indexOf("@"));
+
+     var domain = email.slice(email.indexOf("@")+1);
+
+     document.write(`Id=${id}<br>Domain=${domain}`);                                          
+
+</script>
