@@ -1,0 +1,326 @@
+XMLHttpRequest Issues 
+- It is not async by default.
+- You have to explicitly Configure async.
+- It requires various parsing techniques to convert response data.
+- It is not good in handling errors.
+- 
+
+
+                                    JavaScript "fetch()" Promise
+- Promise is by default async.
+- It Provides good error handling methods.
+- It returns every response in binary format.
+- However it requires conversion of data.
+
+Syntax:
+    fetch("url")
+            .then(function(){ on success })
+            .catch(function(){ on failure })
+            .finally(function(){ always})
+
+- then() function return a response from URL, which is in "binary format".
+- You need another then() function that converts binary to required format.
+
+Syntex
+        .then(function(response){
+
+        })
+
+Ex- fatch
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX Product Demo</title>
+
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+
+    <script>
+        function bodyload() {
+
+            fetch("../data/product.json")
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (product) {
+
+                    document.getElementById("imgProduct").src = product.image;
+                    document.getElementById("lblTitle").innerText = product.title;
+                    document.getElementById("lblRating").innerText = product.rating.rating;
+
+                    document.getElementById("lblReviews").innerText =
+                        product.rating.Ratings.toLocaleString() +
+                        " Ratings " +
+                        product.rating.reviews.toLocaleString() +
+                        " Reviews";
+
+                    document.getElementById("lblPrice").innerHTML =
+                        "&#8377; " + product.price.toLocaleString();
+
+                    var offerList = document.getElementById("lsOffers");
+                    offerList.innerHTML = "";   // clear first
+
+                    product.offers.map(function (offer) {
+                        var li = document.createElement("li");
+                        li.className = "bi bi-tag-fill text-success my-2";
+                        li.innerHTML = `<span class="text-secondary"> ${offer}</span>`;
+                        offerList.appendChild(li);
+                    });
+                })
+                .catch(function (error) {
+                    console.error("Fetch error:", error);
+                });
+        }
+    </script>
+</head>
+
+<body class="container-fluid" onload="bodyload()">
+
+    <div class="row mt-4">
+        <div class="col-3">
+            <img id="imgProduct" class="img-fluid">
+        </div>
+
+        <div class="col-9">
+            <h4 id="lblTitle"></h4>
+
+            <div class="my-2">
+                <span class="badge bg-success p-2">
+                    <span id="lblRating"></span>
+                    <span class="bi bi-star-fill"></span>
+                </span>
+                <span class="fw-bold text-secondary ms-2" id="lblReviews"></span>
+            </div>
+
+            <h3 class="my-3" id="lblPrice"></h3>
+
+            <ul class="list-unstyled" id="lsOffers"></ul>
+        </div>
+    </div>
+
+</body>
+</html>
+
+
+Ex json
+{
+        "title": "Apple iPhone 15 (Black, 128 GB)",
+        "price": 79900,
+        "rating": {"rating":4.6, "Ratings":39755, "reviews":2187},
+        "offers":[
+        "Special PriceGet extra  ₹3000 off (price inclusive of cashback/coupon)T&C",
+        "No Cost EMI on Bajaj Finserv EMI Card on cart value above ₹3000T&C",
+        "Bank Offer5% Unlimited Cashback on Flipkart Axis Bank Credit CardT&C",
+        "Partner OfferSign up for Flipkart Pay Later and get Flipkart Gift Card worth ₹1000*Know More"
+        ],
+        "image": "../public/images/iphon15black.png"
+}
+
+
+                                        Object with function
+
+- Object comprises of data and functionality.
+- Data is defined as property and action is defined as function.
+- The members of object are accessed outside object using object reference name and a key name.
+- The members of object are accessed within object using "this" keyword.
+
+Syntax:
+    {
+        key: value,
+        key: function(){}
+    }
+EX:
+<script>
+    var product ={
+        name: "",
+        price: 0,
+        Qty:0,
+        Total : function(){
+            return this.Qty * this.price;
+        },
+        print: function(){
+            document.write(`Name: ${this.name} <br> Price: ${this.price} <br> Qty: ${this.Qty} <br> Total: ${this.Total()} <br>`);
+    
+        }
+    }
+    product.name = "Samsung TV";
+    product.price = parseInt(prompt("Enter Price: "));
+    product.Qty = parseInt(prompt("Enter Qty: "));
+    product.print();
+</script>
+
+
+Ex- Array of object
+.json
+
+[
+  {
+    "title": "Apple iPhone 15 (Black, 128 GB)",
+    "price": 79900,
+    "rating": { "rating": 4.6, "Ratings": 39755, "reviews": 2187 },
+    "offers": [ "...", "...", "..." ],
+    "image": "../public/images/iphone-black.png"
+  },
+    {
+    "title": "Apple iPhone 15 (green, 128 GB)",
+    "price": 79900,
+    "rating": { "rating": 4.6, "Ratings": 39755, "reviews": 2187 },
+    "offers": [ "...", "...", "..." ],
+    "image": "../public/images/iphone-green.png"
+  },
+   {
+    "title": "Apple iPhone 15 (Pink, 128 GB)",
+    "price": 79900,
+    "rating": { "rating": 4.6, "Ratings": 39755, "reviews": 2187 },
+    "offers": [ "...", "...", "..." ],
+    "image": "../public/images/iphone-pink.png"
+  }
+]
+
+obj-1.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX Product List</title>
+
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+
+    <script>
+        function bodyload() {
+
+            fetch("../data/product-1.json")
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (products) {
+
+                    // products is an ARRAY
+                    var section = document.querySelector("section");
+                    section.innerHTML = "";
+
+                    products.forEach(function (product) {
+
+                        var div = document.createElement("div");
+                        div.className = "row mt-4 border-bottom pb-3";
+
+                        div.innerHTML = `
+                            <div class="col-2">
+                                <img src="${product.image}" width="100%">
+                            </div>
+
+                            <div class="col-8">
+                                <div class="h4">${product.title}</div>
+
+                                <div class="my-2">
+                                    <span class="badge bg-success p-1 rounded">
+                                        ${product.rating.rating}
+                                        <span class="bi bi-star-fill"></span>
+                                    </span>
+
+                                    <span class="ms-3 text-secondary fw-bold">
+                                        ${product.rating.Ratings.toLocaleString()} Ratings &
+                                        ${product.rating.reviews.toLocaleString()} Reviews
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="col-2">
+                                <div class="h2">
+                                    &#8377; ${product.price.toLocaleString()}
+                                </div>
+                            </div>
+                        `;
+
+                        section.appendChild(div);
+                    });
+                })
+                .catch(function (error) {
+                    console.error("Fetch Error:", error);
+                });
+        }
+    </script>
+</head>
+
+<body class="container-fluid" onload="bodyload()">
+
+    <section ></section>
+
+</body>
+</html>
+
+
+api.nasa.gov - NASA API WEBSITE
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NASA Mars Photos</title>
+
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+
+    <script>
+        function bodyload() {
+
+            fetch("https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&api_key=DEMO_KEY")
+                .then(function (response) {
+                    if (!response.ok) {
+                        throw new Error("HTTP Error " + response.status);
+                    }
+                    return response.json();
+                })
+                .then(function (marsObject) {
+
+                    marsObject.photos.forEach(function (item) {
+
+                        var div = document.createElement("div");
+                        div.className = "card m-2 p-2";
+                        div.style.width = "250px";
+
+                        div.innerHTML = `
+                            <a href="${item.img_src}" target="_blank">
+                                <img src="${item.img_src}" class="card-img-top" style="height:200px; object-fit:cover;">
+                            </a>
+
+                            <div class="card-header">
+                                <div class="fw-bold">Photo ID: ${item.id}</div>
+                            </div>
+
+                            <div class="card-body">
+                                <dl>
+                                    <dt class="bi bi-camera"> Camera</dt>
+                                    <dd>${item.camera.full_name}</dd>
+
+                                    <dt class="bi bi-globe"> Earth Date</dt>
+                                    <dd>${item.earth_date}</dd>
+                                </dl>
+                            </div>
+                        `;
+
+                        document.querySelector("section").appendChild(div);
+                    });
+                })
+                .catch(function (error) {
+                    console.error("NASA API Error:", error);
+                });
+        }
+    </script>
+</head>
+
+<body class="container-fluid" onload="bodyload()">
+    <section class="d-flex flex-wrap justify-content-center"></section>
+</body>
+</html>
+

@@ -1,0 +1,186 @@
+What is difference between
+    a) slice()
+    b) substr()
+    c) substring()
+
+Ex:
+<script>
+     var email = prompt("Enter Email");      // john_nit@gmail.com , sam@outlook.com
+
+     var id = email.slice(0, email.indexOf("@"));
+     var domain = email.slice(email.indexOf("@")+1);
+     document.write(`Id=${id}<br>Domain=${domain}`);                                          
+</script>
+
+
+Ex:
+<script>
+     var videoUrl = "https://www.youtube.com?v=yzab45&quot;;
+     
+     var videoCode = videoUrl.slice(videoUrl.indexOf("=")+1);
+
+     document.write(`Video Code: ${videoCode}`);
+</script>
+
+Ex:
+<script>
+     var message = prompt("Enter your message");    //welcoME TO JavaScriPT;
+     var firstChar = message.charAt(0).toUpperCase();
+     var restChars = message.slice(1).toLowerCase();
+     var sentence = firstChar + restChars;
+     document.write(sentence);
+</script>
+
+11. trim()            : It removes the leading spaces in a string. It trims both start and
+                  end.
+
+12. trimEnd()        : It removes leading spaces towards end.
+
+13. trimStart()        : It removes leading space towards start.
+
+Syntax:
+    var  otp = "  5678";
+    otp.trim();                "5678"
+
+Ex:
+<script>
+     var OTP = prompt("Enter OTP");
+
+     if(OTP.trim()=="5678")
+     {
+          document.write("Success..");
+     }
+     else
+     {
+          document.write("Invalid OTP");
+     }
+</script>
+
+14. split()            : It splits the string into multiple strings using a delimiter. [separator]
+
+Syntax:
+    var  msg = "Welcome to JavaScript";
+    var  result = msg.split(' ');
+
+    result[0]        // Welcome
+    result[1]        // to
+    result[2]        // JavaScript
+
+
+15. replace()        : It replaces specified char or word with a new char and word.
+                  It can replace only the first occurrence value.
+
+Syntax:
+     var  msg = "Hello ! JavaScript";
+     msg.replace("JavaScript", "HTML");
+
+16. repeat()        : It creates a copy of string. It uses a number that specified the
+                  total count of copies to create.
+
+Syntax:
+    var msg = "Welcome";
+    msg.repeat(2);
+
+17. match()        : It uses a regular expression to verify the pattern of value.
+                  It returns Boolean true if string is matching specified pattern.
+
+Note: Patterns or Regular Expression in JavaScript is defined using "/  /".
+
+Syntax:
+        var regExp = /\+91\d{10}/;
+        var mobile = "919876543210";
+
+        if(mobile.match(regExp))        => true or false
+        {
+        }
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Document</title>
+     <script>
+          function VerifyPassword(){
+               var password = document.getElementById("Password").value;
+               var regExp = /(?=.*[A-Z])\w{4,15}/;
+               var error = document.getElementById("error");
+               var Grade = document.getElementById("Grade");
+
+               if(password.match(regExp))
+               {
+                    error.innerHTML = "Strong Password".fontcolor('green');
+                    Grade.value=100;
+               }
+               else {
+                    if(password.length<4)
+                    {
+                         error.innerHTML = "Poor Password min 4 chars required".fontcolor('red');
+                         Grade.value = 20;
+                    } else {
+                         error.innerHTML = "Weak Password at least 1 must be uppercase letter".fontcolor('goldenrod');
+                         Grade.value = 60;
+                    }
+               }
+          }
+     </script>
+</head>
+<body>
+     <fieldset>
+          <legend>Verify Password</legend>
+          <input type="password" id="Password" onkeyup="VerifyPassword()">
+          <div><meter id="Grade" style="width:170px" min="1" max="100"></meter></div>
+          <div id="error"></div>
+     </fieldset>
+</body>
+</html>
+
+Ex:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Document</title>
+     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+     <script>
+          function VerifyPassword(){
+               var password = document.getElementById("Password").value;
+               var regExp = /(?=.*[A-Z])\w{4,15}/;
+               var error = document.getElementById("error");
+               var Progress = document.getElementById("Progress");
+
+               if(password.match(regExp))
+               {
+                    error.innerHTML = "Strong Password".fontcolor('green');
+                    Progress.className = "progress-bar progress-bar-animated progress-bar-striped bg-success";
+                    Progress.style.width = "100%";
+               }
+               else {
+                    if(password.length<4)
+                    {
+                         error.innerHTML = "Poor Password min 4 chars required".fontcolor('red');
+                         Progress.className = "progress-bar progress-bar-animated progress-bar-striped bg-danger";
+                         Progress.style.width = "30%";
+                    } else {
+                         error.innerHTML = "Weak Password at least 1 must be uppercase letter".fontcolor('goldenrod');
+                         Progress.className = "progress-bar progress-bar-animated progress-bar-striped bg-warning";
+                         Progress.style.width = "70%";
+                    }
+               }
+          }
+     </script>
+</head>
+<body class="container-fluid">
+     <fieldset class="w-25">
+          <legend>Verify Password</legend>
+          <input type="password" class="form-control" id="Password" onkeyup="VerifyPassword()">
+          <div class="progress w-100 mt-2">
+               <div id="Progress" class="progress-bar progress-bar-striped progress-bar-animated"></div>
+          </div>
+          <div id="error"></div>
+     </fieldset>
+</body>
+</html>

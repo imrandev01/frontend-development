@@ -1,0 +1,83 @@
+HTML Parsing
+Flow:
+Markup=>Bytes=>Chars=>Tokens=>Elements => DOM => Layout => Render => Paint
+
+What is HTML about?
+- It is about designing a layout for page using DOM.
+- DOM is "Document Object Model".
+- DOM comprises elements arranged in hierarchial order.
+
+HTML Elements:
+- Elements in HTML are categorized into 5 groups according to WHATWG
+
+    1. Normal Elements
+    2. Void Elements
+    3. RC Data Elements
+    4. Raw Text Elements
+    5. Foreign Elements
+
+Normal Elements
+- A normal element returns a presentation directly on callback.
+- It doesn't require additional attributes to return presentation.
+- A normal element starts presentation and will not stop.
+- You have to explicitly stop by using end token.
+
+    <b>        start token
+    </b>        end token
+
+Void Elements
+- The terms void refers to no return.
+- Void elements will not return any presentation directly on call back.
+- They require additional attributes.
+- It doesn't require end token
+
+    <img>    
+
+RC Data Elements
+- Rich text content elements.
+- Rich text allows alphabet, number & special chars.
+- It will not allow any another element or format inside.
+
+Ex:
+    <textarea> </textarea>
+
+
+Raw Text Elements
+- These are the elements presented used raw text.
+- These elements doesn't require any token [tag].
+- Raw text chars are used to present content
+
+Ex:
+    &#8377;
+    &copy;
+
+
+Foreign Elements
+- These are HTML element, but not supported on all browsers directly.
+- They require additional plugin's to work.
+Ex:
+    <svg>  XML
+    <canvas>
+    <mathml>
+
+
+Summary
+- Normal
+- Void
+- RC Data
+- Raw Text
+- Foreign
+
+FAQ: What are semantic & non-semantic elements in HTML?
+Ans:  Semantic refers to specific purpose. HTML have over 100 of semantics.
+     Non-Semantic are used for various purpose. They are not for specific.
+
+Ex:
+    <header> <footer> <main>..            Semantic
+    <div> <span>                        Non Semantic
+
+FAQ: What is difference between "html" & "htm" ?
+Ans:  Technically there is no difference. Both are same.
+      ".htm" is as per naming standards, extention name given to file in 3 chars.
+
+Elements in HTML.

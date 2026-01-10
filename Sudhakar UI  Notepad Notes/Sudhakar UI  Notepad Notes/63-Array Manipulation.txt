@@ -1,0 +1,168 @@
+Non Primitive
+- Array
+- [ ]
+- Array()
+overhead is issues releted to memory where mamory is available but applicain can not use. it can resuse complexity by stoing multiple values.
+
+Storing values in Array:
+- You can initialize values into array memory.
+
+Syntax:
+    var values = [10, "A", true];
+    var values = new Array(10, "A", true);
+
+- You can assign values with reference of property.
+- Property is a string type that maps to memory index, which is number type.
+
+Syntax:
+    var values = [ ];
+    values[0] = 10;            // 0 is property
+    values["1"] = 20;            // 1 is property    
+    values[0] = 30;            // valid you can re-assign, as var & let allows
+                               assignment.
+
+- Array memory can handle any type of value
+    a) Primitive type
+    b) Non Primitive type
+    c) Function
+
+Syntax:
+    var values = [ 10, "A", true, ["Delhi", "Hyd"], function(){ } ];
+
+    values[0] = 10;
+    values[1] = "A";
+    values[2] = true;
+    values[3] = ["Delhi", "Hyd"];
+    values[4] = function(){ }
+
+- Array can handle function in memory, but it must be anonymous.
+- Anonymous function will not have a name.
+- Anonymous functions are accessed by using IIFE pattern.
+  [Immediately Invoked Function Expression]
+
+Syntax:
+     values[4]();
+     values[3][0]        // Delhi
+
+Syntax: IIFE
+<script>
+    (function()
+    {
+        document.write("Hello !");
+    })();
+
+</script>
+
+Ex:
+<script>
+     var values = [[10, 20, 30], ["Delhi", "Hyd", ["TV", "Watch"]]];
+     values[1][2][1] = "Fastrack Watch";
+     document.write(values[1][2][1]);
+</script>
+
+Ex:
+<script>
+     var values = [[10, 20, 30], ["Delhi", "Hyd", ["TV", "Watch"]], function(){document.write("Function inside array")}];
+     values[1][2][1] = "Fastrack Watch";
+     document.write(values[1][2][1] + "<br>");
+     values[2]();
+</script>
+
+                       Array Manipulations
+
+1. Reading Array Elements
+
+        toString()            : It returns all array elements with "," delimiter. (seperator)
+        join()            : It returns all array elements with custom delimiter.
+        map()            : It is an iterator that reads elements in sequential order.
+        forEach()            : It is an iterator that reads elements and index in                                   sequential order.
+
+       
+Ex:
+<script>
+     var categories = ["Electronics", "Fashion", "Footwear"];
+     document.write(categories.toString()  + "<br>");
+     document.write(categories.join(" / "));
+</script>
+
+Syntax: Map Iterator
+
+        collection.map(function(value){
+            // use value
+        })
+
+Syntax: forEach Iterator
+
+        collection.forEach(function(value, index){
+            // use index & value
+        })
+
+Ex:
+<script>
+     var categories = ["Electronics", "Fashion", "Footwear"];
+     categories.forEach(function(value, index){
+        document.write(`<p>[${index}]${value}</p>`);
+     });
+</script>
+
+
+<script>
+     var categories = ["Electronics", "Fashion", "Footwear"];
+     categories.map(function(value){
+        document.write(`<p>${value}</p>`);
+     });
+</script>
+
+- You can use explicit iterators for reading array properties and elements.
+
+        for..in        It can read all properties of array.
+        for..of        It can read all elements of array.
+
+Syntax:
+        for(var property in collection)
+        {
+        }
+
+        for(var value of collection)
+        {
+        }
+
+Ex:
+<script>
+     var categories = ["Electronics", "Fashion", "Footwear"];
+     for(var property in categories)
+     {
+         document.write(`<p>[${property}]${categories[property]} </p>`);
+     }
+</script>
+
+2. Filtering Elements
+
+        find()    : It is an iterator that finds and returns only first occurrence value
+                  that matches the given condition.
+
+        filter()    : It is an iterator that returns all values that match given condition
+
+        slice()    : It can returns the values between specified index.
+
+Syntax:
+   
+       collection.find(function(value){
+        return value_condition;            => returns on value
+      });
+
+     
+     collection.filter(function(value){        => returns an array [ ]
+        return value_condition;
+    });
+
+   
+Ex:
+<script>
+     var values = [40000, 31000, 57000, 67000, 45100];
+     values.filter(function(value){
+         return value>=30000 && value<=50000;
+     }).map(function(value){
+         document.write(`<p>${value}</p>`);
+     })
+</script>

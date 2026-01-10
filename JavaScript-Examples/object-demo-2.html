@@ -1,0 +1,33 @@
+<!-- <script>
+    var product = {
+        id: 1,
+        title: "Sumsung TV",
+        price: 45000.44,
+        stock: true,
+        rating: 4.5
+       }
+    if ("rating" in product){
+        document.write(`"Rating" :${product.rating}`);
+    } else {
+        document.write(`Rating" property does not exist in product object.`);
+    }
+</script> -->
+
+
+
+
+<script>
+    var id= Symbol();
+
+    var product = {
+        [id]: 1,
+        title: "Sumsung TV",
+        price: 45000.44,
+        stock: true,
+        rating: 4.5
+       }
+    Object.keys(product).map(function(key){
+        document.write(`<li>${key}</li>`);
+    })
+    document.write(`Product ID :${product[id]}`);
+</script>

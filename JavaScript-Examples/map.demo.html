@@ -1,0 +1,98 @@
+<!-- <script>
+var topics = new Map();
+    topics. set("HTML is a markup language");
+    topics. set( "CSS" ,"It configures styles");
+    topics. set (true,"Stock Available");
+    topics . set( "Cities " ,["Delhi", "Hyd"]);
+    topics. set(1001, {Name: "TV" ,Rating: 4.3});
+
+    topics.delete ( "CSS" );
+
+    for(var item of topics. entries()){
+        document. write(item + "<br>");
+    }
+</script> -->
+
+<!-- <script>
+    var Departure= new Date();
+    
+    document. write(Departure);
+</script> -->
+<!-- 
+<script>
+    var Departure = new Date("2024-07-15 14:50:30.64");
+    var weekdays = ["Sunday", "Monday", "Tue", "Wed", "Thur", "Friday", "Saturday"];
+    var months = ["Jan", "Feb", "March", "April","May", "June", "July", "August", "Sep","October", "Nov", "Dec"];
+    
+    document.write(`${weekdays[Departure.getDay()]} ${Departure.getDate()}${months[Departure.getMonth()]},${Departure.getFullYear()}`)
+
+</script> -->
+
+<!-- 
+<script>
+    var Departure = new Date("2024-07-15 14:50:30.64");
+    var weekdays = ["Sunday", "Monday", "Tue", "Wed", "Thur", "Friday", "Saturday"];
+    var months = ["Jan", "Feb", "March", "April","May", "June", "July", "August", "Sep","October", "Nov", "Dec"];
+
+    Departure.setDate(12);
+
+    document.write(`${weekdays[Departure.getDay()]} ${Departure.getDate()} ${months[Departure.getMonth()]},${Departure.getFullYear()}`)
+</script> -->
+
+
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greeting</title>
+
+    <script>
+        function bodyload() {
+            var now = new Date();
+            var hrs = now.getHours();
+
+            var h1 = document.querySelector("h1");
+
+            if (hrs >= 0 && hrs < 12) {
+                h1.innerHTML = "Good Morning!";
+            } 
+            else if (hrs >= 12 && hrs < 17) {
+                h1.innerHTML = "Good Afternoon!";
+            } 
+            else {
+                h1.innerHTML = "Good Evening!";
+            }
+        }
+    </script>
+</head>
+
+<body onload="bodyload()">
+    <h1 align="center"></h1>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Clock</title>
+
+    <script>
+        function bodyload() {
+            setInterval(function () {
+                var now = new Date();
+                document.querySelector("h2").innerHTML =
+                    now.toLocaleTimeString();
+            }, 1000);
+        }
+    </script>
+</head>
+
+<body onload="bodyload()">
+    <font face="monospace">
+        <h2></h2>
+    </font>
+</body>
+</html>

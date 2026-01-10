@@ -1,0 +1,131 @@
+Body Section of HTML
+1. bgcolor
+2. text
+
+    color name, shade name, hexa [3 chars, 6chars]
+    RGB [0,1,2,3,4,5,6,7,8,9,a,b,c,d,e,f]
+
+3. background        : It is used to set a background image for page.
+
+    <body  background="D:\path\pic.jpg">        // invalid
+    <body  background="images/pic.jpg">        // valid
+
+ Note: Never use a physical path for resources in web design.
+       Always recommended to use virtual path.
+
+            ./            It shows the list of file in current folder
+            ../            It shows the files list of previous level folder
+                        [one level back]
+
+- To control background image you need CSS attributes.
+   [Cascading Style Sheet]
+- Go to <head> section of page
+- Add <style> container
+- Add background styles for body
+
+<head>
+  <style>
+    body
+    {
+    }
+ </style>
+</head>
+
+- You can apply the background styles
+
+        a) background-size            : size in pixes or in %  or  vh, vw
+        b) background-repeat        : no-repeat, repeat-x, repeat-y, repeat
+        c) background-position        : top, center, bottom, left, center, right
+        d) background-attachment    : scroll, fixed
+       
+Syntax:
+<head>
+ <style>
+    body {
+          background-size: 100vw 100vh;
+          background-repeat: no-repeat;
+          background-position: center center;
+          background-attachement: fixed;
+        }
+ </style>
+</head>
+<body background="./images/banner.jpg">
+
+</body>
+
+4. align        : It aligns the page content left, center, right or justify.
+
+Syntax:
+    <body align="center | left | right | justify">
+
+    </body>
+
+5. alink        : It sets color for active links in body section.
+
+6. vlink        : It sets color for visitied links in body section.
+
+Syntax:
+    <body alink="red"  vlink="gray">
+
+        <a href="http://www.amazon.in"&gt; Amazon </a>
+
+    </body>
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+     
+    </style>
+</head>
+<body align="center" vlink="gray" alink="red">
+    <a href="https://asp.net"&gt; ASP.NET </a> |
+    <a href="https://www.amazon.in">Amazon</a&gt;
+</body>
+</html>
+
+
+7. leftmargin            ]
+8. rightmargin            ]    space between the page and border of content
+9. topmargin            ]
+10. bottommargin        ]
+
+FAQ: What is difference between margin & padding?
+Ans:
+  - Margin is the distance between border of content and page.
+  - Padding is the distance between border and content inside border.
+
+Summary: Body Attributes
+- bgcolor
+- text
+- background
+- align
+- alink
+- vlink
+- top, left, right, bottom margins
+
+                      HTML Elements for Body Layout
+
+- HTML 4 uses <table> for page layout design.
+- Tables are not SEO friendly and they lead to a situation called "Kiss-Of-Death".
+- HTML 5 introduced new semantic and non-semnatic elements for designing page layout.
+
+Layout Semantics:
+    <header>
+    <footer>
+    <section>
+    <main>
+    <aside>
+    <article>
+    <dialog>
+    <figure>
+    <figcaption>
+    <address>
+    <nav>
+Non Semantics:
+    <div>
+    <span>

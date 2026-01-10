@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <script type="text/javascript">
+        var menuItems = ["Home", "Shop"];
+
+        function LoadMenuItems(){
+            document.getElementById("IsmenuItems").innerText = "";
+            menuItems.map(function(item){
+                var option = document.createElement("option");
+                option.value = item;
+                document.getElementById("IsmenuItems").appendChild(option);
+                })
+                document.getElementById("lblCount").innerHTML = menuItems.length;
+        }
+        function AddClick(){
+            var item_name = document.getElementById("txtItemName").value;
+            if(menu)
+        }
+
+
+    </script>
+</head>
+<body class="container-fluid">
+        <div class="mt-3 w-25">
+            <h2>Design Your Menu</h2>
+            <div>
+                <label class="form-label fw-bold" >Add menu Item</label>
+                <div class="input-group">
+                    <input type="text" class="form-control"><button class="btn btn-primary">Add</button>
+            </div>
+        </div>
+        <div class="my-2">
+            <label class="form-label fw-bold">Menu Items <span class="badge bg-danger" ></span></label>
+            <div>
+                <select class="form-select" size="3">
+
+                </select>
+                <div class="mt-2">
+                    <button></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

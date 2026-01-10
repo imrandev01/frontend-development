@@ -1,0 +1,286 @@
+Configure Array
+Store Elements
+Read Array Elements
+
+Creating and Adding elements into page dynamically:
+
+1. You can create any HTML element by using
+
+        document.createElement()
+
+Syntax:
+        document.createElement("img")
+        document.createElement("p")
+        document.createElement("div")
+
+2. Assign created element to a memory reference
+
+Syntax:
+        var pic = document.createElement("img");    [HTMLElement type]
+
+3. Every dynamic element requires "Properties"
+
+Syntax:
+        pic.width = "200";
+        pic.height= "100";
+        pic.src= "./images/name.jpg";
+
+4. Add element into page by using "appendChild()"
+
+Syntax:
+        <body>  </body>
+        <div id="container"> </div>
+
+        document.querySelector("body").appendChild(pic);
+        document.getElementById("container").appendChild(pic);
+
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function LoadClick(){
+            var pic = document.createElement("img");
+           
+            pic.width="100";
+            pic.height="100";
+            pic.src="../public/images/women-fashion.jpg";
+
+            document.getElementById("container").appendChild(pic);
+
+        }
+    </script>
+</head>
+<body>
+    <button onclick="LoadClick()">Load Image</button>
+    <br><br>
+    <div id="container">
+       
+    </div>
+</body>
+</html>
+
+Ex:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function LoadClick(){
+             var ol = document.createElement("ol");
+             ol.type = "a";
+             
+             var item1 = document.createElement("li");
+             var item2 = document.createElement("li");
+
+             item1.innerHTML = "Home";
+             item2.innerHTML = "About";
+
+             ol.appendChild(item1);
+             ol.appendChild(item2);
+
+             document.getElementById("container").appendChild(ol);
+
+        }
+    </script>
+</head>
+<body>
+    <button onclick="LoadClick()">Load List</button>
+    <br><br>
+    <div id="container">
+       
+    </div>
+</body>
+</html>
+
+Ex:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function LoadClick(){
+           
+            var table = document.createElement("table");
+            table.width="25%";
+            table.border="1";
+
+            var thead = document.createElement("thead");
+            var tr_head = document.createElement("tr");
+            var th  = document.createElement("th");
+
+            th.innerHTML = "Product Name";
+
+            tr_head.appendChild(th);
+            thead.appendChild(tr_head);
+            table.appendChild(thead);
+
+            document.getElementById("container").appendChild(table);
+        }
+    </script>
+</head>
+<body>
+    <button onclick="LoadClick()">Load Table</button>
+    <br><br>
+    <div id="container">
+       
+    </div>
+</body>
+</html>
+
+Ex:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+         var menu = ["Home", "Shop", "Blog", "Pages", "Docs", "Contact"];
+         function bodyload(){
+             menu.map(function(item){
+                 
+                  var li = document.createElement("li");
+                  li.innerHTML = item;
+                  document.querySelector("ol").appendChild(li);
+
+                  var button = document.createElement("button");
+                  button.type = "button";
+                  button.innerHTML = item;
+                  document.querySelector("nav").appendChild(button);
+
+                  var option = document.createElement("option");
+                  option.text = item;
+                  option.value = item;
+                  document.querySelector("select").appendChild(option);
+
+                  var ul_li = document.createElement("li");
+                 
+                  var input = document.createElement("input");
+                  input.type = "checkbox";
+                  input.value = item;
+
+                  var label = document.createElement("label");
+                  label.innerHTML = item;
+
+                  ul_li.appendChild(input);
+                  ul_li.appendChild(label);
+
+                  document.querySelector("ul").appendChild(ul_li);
+
+             })
+         }
+    </script>
+</head>
+<body onload="bodyload()">
+    <nav style="display: flex;justify-content: space-between; width: 50%;">
+
+    </nav>
+    <ol>
+
+    </ol>
+    <select>
+
+    </select>
+    <ul>
+
+    </ul>
+</body>
+</html>
+
+Ex:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+         var menu = ["Home", "Shop", "Blog", "Pages", "Docs"];
+         function bodyload(){
+             menu.map(function(item){
+                 
+                  var li = document.createElement("li");
+                  li.innerHTML = item;
+                  document.querySelector("ol").appendChild(li);
+
+                  var button = document.createElement("button");
+                  button.type = "button";
+                  button.innerHTML = item;
+                  document.querySelector("nav").appendChild(button);
+
+                  var option = document.createElement("option");
+                  option.text = item;
+                  option.value = item;
+                  document.querySelector("select").appendChild(option);
+
+                  var ul_li = document.createElement("li");
+                 
+                  ul_li.innerHTML = `<input type="checkbox"> <label>${item}</label>`;
+
+
+                  document.querySelector("ul").appendChild(ul_li);
+
+             })
+         }
+    </script>
+</head>
+<body onload="bodyload()">
+    <nav style="display: flex;justify-content: space-between; width: 50%;">
+
+    </nav>
+    <ol>
+
+    </ol>
+    <select>
+
+    </select>
+    <ul>
+
+    </ul>
+</body>
+</html>
+
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <script>
+         var menu = ["Amazon","Home", "Shop", "Blog", "Pages", "Docs"];
+         function bodyload(){
+              menu.map(function(item){
+                  var div = document.createElement("div");
+                  div.className = "alert alert-dismissible alert-warning";
+                  div.innerHTML = `
+                      <button class="btn btn-close" data-bs-dismiss="alert"></button>
+                      <h3>${item}</h3>
+                  `;
+                  document.querySelector("section").appendChild(div);
+              })
+         }
+    </script>
+</head>
+<body onload="bodyload()" class="container-fluid">
+    <section class="m-4 p-4 w-25">
+
+    </section>
+</body>
+</html>

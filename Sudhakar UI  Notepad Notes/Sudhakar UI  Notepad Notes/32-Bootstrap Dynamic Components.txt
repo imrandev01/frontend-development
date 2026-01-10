@@ -1,0 +1,365 @@
+Bootstrap Dynamic Components
+
+Note: Dynamic components require "bootstrap.bundle.js"  script file.
+      Link the script file into HTML page
+
+      <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"> </script>
+
+1. Alerts
+- It is an embedded message box in page.
+- It is along with existing content in page.
+- It is used to notify messages in page.
+
+Classes:
+    .alert
+    .alert-dismissible
+    .alert-{contextual}
+    .alert-link
+    .alert-title
+    .alert-subtitle
+
+Syntax:
+    <div class="alert alert-dismissible"> </div>
+
+Dynamic Attributes:
+    data-bs-dismiss         : It is defined for button to close the component on click
+
+Syntax:
+    <button data-bs-dismiss="alert"> OK </button>
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alerts</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+</head>
+<body class="container-fluid">
+    <h2>Alerts</h2>
+    <div class="alert alert-success alert-dismissible">
+        <button class="btn btn-close" data-bs-dismiss="alert"></button>
+        <h3 class="alert-title">Registered Successfully</h3>
+        <p class="alert-subtitle">Welcome to our website - Verify the email</p>
+        <a class="alert-link" href="#">Help?</a>
+        <br><br>
+        <button data-bs-dismiss="alert" class="btn btn-success">OK</button>
+    </div>
+    <div class="alert w-25 alert-info alert-dismissible">
+        <button class="btn btn-close" data-bs-dismiss="alert"></button>
+        <img src="../public/images/a1.jpg" width="200" height="200">
+        <h3>45% OFF</h3>
+    </div>
+</body>
+</html>
+
+2. Modal
+- It is dialog that pops up.
+- Content is in the backdrop and dialog is over the content.
+
+Classes:
+    .modal
+    .modal-dialog
+    .modal-content
+    .modal-header
+    .modal-body
+    .modal-dialog-centered
+    .modal-dialog-scrollable
+    .modal-fullscreen
+    .modal-footer
+
+Syntax:
+    <div class="modal">
+       <div class="modal-dialog">
+           <div class="modal-content">
+            … header, body ,footer …
+        </div>
+      </div>
+       </div>
+
+-  Every modal must have an "ID" reference.
+-  Every modal is hidden in page.
+-  You can open specific model with button or link click.
+-   It requires attributes.
+
+Dynamic Attributes
+    data-bs-toggle        : which component to open, it refers to component name
+    data-bs-target        : It refers to component "ID"
+    data-bs-dismiss    : which component to close
+
+Syntax:
+    <div  class="modal"  id="login"> </div>
+
+    <button data-bs-toggle="modal" data-bs-target="#login">
+    <a href="#login"  data-bs-toggle="modal">
+
+- To open model with transition use ".fade" class.
+
+    <div class="modal fade"> </div>
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modals</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+</head>
+<body class="container-fluid">
+    <button data-bs-toggle="modal" data-bs-target="#login" class="btn btn-primary mt-3">Login</button>
+
+    <div class="modal fade" id="login">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header bg-dark text-white">
+                    <h2 class="bi bi-person-fill"> User Login </h2>
+                    <button class="btn btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <dl>
+                        <dt>User Name</dt>
+                        <dd><input type="text" class="form-control"></dd>
+                        <dt>Password</dt>
+                        <dd><input type="password" class="form-control"></dd>
+                        <dt>User Name</dt>
+                        <dd><input type="text" class="form-control"></dd>
+                        <dt>Password</dt>
+                        <dd><input type="password" class="form-control"></dd>
+                        <dt>User Name</dt>
+                        <dd><input type="text" class="form-control"></dd>
+                        <dt>Password</dt>
+                        <dd><input type="password" class="form-control"></dd>
+                        <dt>User Name</dt>
+                        <dd><input type="text" class="form-control"></dd>
+                        <dt>Password</dt>
+                        <dd><input type="password" class="form-control"></dd>
+                        <dt>User Name</dt>
+                        <dd><input type="text" class="form-control"></dd>
+                        <dt>Password</dt>
+                        <dd><input type="password" class="form-control"></dd>
+                    </dl>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary">Login</button>
+                    <button class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vel eligendi ullam modi blanditiis dolores? Laudantium blanditiis, quam consequatur optio iure nemo illum nesciunt incidunt quis totam, eveniet, sit placeat magni.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam fuga ex voluptates est natus repellendus? Adipisci a ducimus id rerum at, beatae sit distinctio minus, magni natus possimus ipsa asperiores.
+    </p>
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vel eligendi ullam modi blanditiis dolores? Laudantium blanditiis, quam consequatur optio iure nemo illum nesciunt incidunt quis totam, eveniet, sit placeat magni.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam fuga ex voluptates est natus repellendus? Adipisci a ducimus id rerum at, beatae sit distinctio minus, magni natus possimus ipsa asperiores.
+    </p>
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vel eligendi ullam modi blanditiis dolores? Laudantium blanditiis, quam consequatur optio iure nemo illum nesciunt incidunt quis totam, eveniet, sit placeat magni.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam fuga ex voluptates est natus repellendus? Adipisci a ducimus id rerum at, beatae sit distinctio minus, magni natus possimus ipsa asperiores.
+    </p>
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vel eligendi ullam modi blanditiis dolores? Laudantium blanditiis, quam consequatur optio iure nemo illum nesciunt incidunt quis totam, eveniet, sit placeat magni.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam fuga ex voluptates est natus repellendus? Adipisci a ducimus id rerum at, beatae sit distinctio minus, magni natus possimus ipsa asperiores.
+    </p>
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vel eligendi ullam modi blanditiis dolores? Laudantium blanditiis, quam consequatur optio iure nemo illum nesciunt incidunt quis totam, eveniet, sit placeat magni.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam fuga ex voluptates est natus repellendus? Adipisci a ducimus id rerum at, beatae sit distinctio minus, magni natus possimus ipsa asperiores.
+    </p>
+   
+</body>
+</html>
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modals</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+</head>
+<body class="container-fluid">
+    <button data-bs-toggle="modal" data-bs-target="#login" class="btn btn-primary mt-3">Login</button>
+    <a href="#offers" data-bs-toggle="modal" class="mt-3 btn btn-warning"> Offers </a>
+
+    <div class="modal fade" id="offers">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Limited Offers</h2>
+                    <button class="btn btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="../public/images/a1.jpg" width="100" height="100">
+                    <img src="../public/images/a2.jpg" width="100" height="100">
+                    <img src="../public/images/a3.jpg" width="100" height="100">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="login">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header bg-dark text-white">
+                    <h2 class="bi bi-person-fill"> User Login </h2>
+                    <button class="btn btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <dl>
+                        <dt>User Name</dt>
+                        <dd><input type="text" class="form-control"></dd>
+                        <dt>Password</dt>
+                        <dd><input type="password" class="form-control"></dd>
+                        <dt>User Name</dt>
+                        <dd><input type="text" class="form-control"></dd>
+                        <dt>Password</dt>
+                        <dd><input type="password" class="form-control"></dd>
+                        <dt>User Name</dt>
+                        <dd><input type="text" class="form-control"></dd>
+                        <dt>Password</dt>
+                        <dd><input type="password" class="form-control"></dd>
+                        <dt>User Name</dt>
+                        <dd><input type="text" class="form-control"></dd>
+                        <dt>Password</dt>
+                        <dd><input type="password" class="form-control"></dd>
+                        <dt>User Name</dt>
+                        <dd><input type="text" class="form-control"></dd>
+                        <dt>Password</dt>
+                        <dd><input type="password" class="form-control"></dd>
+                    </dl>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary">Login</button>
+                    <button class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vel eligendi ullam modi blanditiis dolores? Laudantium blanditiis, quam consequatur optio iure nemo illum nesciunt incidunt quis totam, eveniet, sit placeat magni.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam fuga ex voluptates est natus repellendus? Adipisci a ducimus id rerum at, beatae sit distinctio minus, magni natus possimus ipsa asperiores.
+    </p>
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vel eligendi ullam modi blanditiis dolores? Laudantium blanditiis, quam consequatur optio iure nemo illum nesciunt incidunt quis totam, eveniet, sit placeat magni.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam fuga ex voluptates est natus repellendus? Adipisci a ducimus id rerum at, beatae sit distinctio minus, magni natus possimus ipsa asperiores.
+    </p>
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vel eligendi ullam modi blanditiis dolores? Laudantium blanditiis, quam consequatur optio iure nemo illum nesciunt incidunt quis totam, eveniet, sit placeat magni.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam fuga ex voluptates est natus repellendus? Adipisci a ducimus id rerum at, beatae sit distinctio minus, magni natus possimus ipsa asperiores.
+    </p>
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vel eligendi ullam modi blanditiis dolores? Laudantium blanditiis, quam consequatur optio iure nemo illum nesciunt incidunt quis totam, eveniet, sit placeat magni.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam fuga ex voluptates est natus repellendus? Adipisci a ducimus id rerum at, beatae sit distinctio minus, magni natus possimus ipsa asperiores.
+    </p>
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vel eligendi ullam modi blanditiis dolores? Laudantium blanditiis, quam consequatur optio iure nemo illum nesciunt incidunt quis totam, eveniet, sit placeat magni.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam fuga ex voluptates est natus repellendus? Adipisci a ducimus id rerum at, beatae sit distinctio minus, magni natus possimus ipsa asperiores.
+    </p>
+   
+</body>
+</html>
+
+3. Collapse
+- It is used to show or hide any content in page dynamically.
+
+Classes:
+    .collapse
+    .show
+
+Syntax:
+    <div class="collapse show" id=""> </div>
+
+Attributes:
+    data-bs-target
+    data-bs-toggle
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collapse</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+</head>
+<body class="container-fluid">
+    <button class="btn btn-dark w-100 mt-3" data-bs-toggle="collapse" data-bs-target="#q1" >What is Netflix?</button>
+    <div class="collapse show bg-dark p-3 mt-2 text-white" id="q1">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam libero adipisci non nostrum, corporis laborum accusamus porro eligendi aspernatur earum molestiae ducimus maxime perspiciatis eos quam voluptates sed quae culpa.</p>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dignissimos deserunt error reprehenderit illum dolore veniam eius quasi dicta facilis tenetur, quos ullam, temporibus rem provident quaerat eligendi et non debitis.</p>
+    </div>
+</body>
+</html>
+
+4. Accordion
+- It is a combination of multiple items using "Mutex" mechanism.
+- You can select one item to open and show, where all other items will close.
+
+Classes:
+    .accordion
+    .accordion-item
+    .accordion-header
+    .accordion-body
+    .accordion-collapse
+    .accordion-button
+
+Syntax:
+    <div class="accordion"  id="">
+          <div class="accordion-item">
+           … header, body with collapse …
+          </div>
+          <div class="accordion-item">
+          </div>
+    </div>
+
+Attribute:
+    data-bs-target
+    data-bs-toggle
+    data-bs-parent    : It is defined for all accordion-collapse items.
+                      It refers to ID of accordion.
+
+    <div class="accordion-collapse collapse"  id="q1" data-bs-parent="#faqs">
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accordion</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+</head>
+<body class="container-fluid">
+   <h1 class="text-center">Frequently Asked Questions</h1>
+   <div class="accordion" id="faqs">
+        <div class="accordion-item">
+            <div class="accordion-header">
+                <button data-bs-target="#q1" data-bs-toggle="collapse" class="accordion-button">What is Netflix?</button>
+            </div>
+            <div class="accordion-collapse collapse" id="q1" data-bs-parent="#faqs">
+                <div class="accordion-body">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus at suscipit magni laborum quidem fugiat. Minus, corrupti? Aut ratione, cumque iusto laboriosam consequuntur nobis voluptates incidunt sapiente aliquam dolores aliquid.</p>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Incidunt repudiandae odio minima doloribus nihil, quisquam exercitationem asperiores architecto quibusdam reprehenderit voluptate eligendi eos ratione nam esse excepturi quidem, eaque tenetur?</p>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <div class="accordion-header">
+                <button data-bs-target="#q2" data-bs-toggle="collapse" class="accordion-button">How much does Netflix cost?</button>
+            </div>
+            <div class="accordion-collapse collapse" id="q2" data-bs-parent="#faqs">
+                <div class="accordion-body">
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam natus illum facilis aliquid corporis repellat quidem voluptas, provident dolores error eveniet quos ipsum fugit unde fugiat omnis ut sapiente sint!</p>
+                </div>
+            </div>
+        </div>
+   </div>
+</body>
+</html>

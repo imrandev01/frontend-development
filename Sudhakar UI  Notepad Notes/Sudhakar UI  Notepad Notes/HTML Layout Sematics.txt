@@ -1,0 +1,249 @@
+Non Semantic Elements
+a) <div>
+b) <span>
+
+CSS Border , Margin & Padding:
+
+    {
+      border: size style color;        [2px  dotted, solid, double, dashed..   red,green]
+      margin: all directions
+      margin-left:
+      margin-right:
+      margin-top:
+      margin-bottom:
+      padding: all directions
+      padding-left:
+      padding-right:
+      padding-top:
+      padding-bottom:
+      }
+
+FAQ: What is a <div>?
+Ans:
+    - It refers to a division.
+    - It is a container used to keep all related content together.
+    - Technically it is used to refactor content.
+    - Refactor is the process of extracting relative content into a division.
+
+FAQ: What is a <span>?
+Ans:
+    - span refers to part of existing content.
+    - It is a container that keeps content along with existing but allows to access
+      individually.
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            border:1px solid black;
+            padding: 20px;
+            margin: 10px;
+        }
+        span {
+            color:red;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        Web Development
+        <div>
+            Front End
+            <div>
+                HTML <br>
+                It is a <span>markup</span> language.
+            </div>
+            <div>
+                CSS <br>
+                It defines styles.
+            </div>
+        </div>
+        <div>
+            Back End
+            <div>
+                MongoDB <br>
+                It is database.
+            </div>
+            <div>
+                Node JS <br>
+                It is server side program.
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+FAQ: How to access specific div or span in style?
+Ans: There are various techniques to access, which include
+        a) type
+        b) id
+        c) class  etc..
+
+    <div class="nav"> </div>
+
+    .nav {
+         color :red;
+     }
+
+Adding Icons into Project:
+- There are various free and premium icon providers for web development
+    a) bootstrap icons
+    b) font awesome icons
+    c) telerik icons
+    d) mui icons
+    etc..
+
+Setup Bootstrap Icons:
+1. Open Terminal in VS Code [ Project Terminal ]
+
+2. Run the command
+
+    > npm  install  bootstrap-icons --save
+
+3. It adds a new folder into project by name "node_modules"
+
+4. Node_Modules is the folder that contains all library files that you install using NPM.
+
+5. Bootstrap icons are kept in a file  "bootstrap-icons.css"
+
+Path:
+    node_modules/bootstrap-icons/font/bootstrap-icons.css
+
+6. Icons are stored under the reference of class names  in ".css" file
+
+        .bi bi-house
+        .bi bi-bell
+        .bi bi-facebook
+        etc..
+
+        icons.getbootstrap.com
+
+7. To use icons in any HTML page you have to link the CSS file
+
+<head>
+<link rel="stylesheet"  href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+</head>
+<body>
+    <span class="bi bi-house"> </span>
+    <div  class="bi bi-twitter-x"> </div>
+</body>
+
+Ex: Template
+https://themes.getbootstrap.com/product/shopper/-
+ 
+
+Body Layout Semantics:
+
+1. <header>
+- It defines the content to display at top margin of page.
+- Typically header of website comprises of
+        * Brand Logo
+        * Brand Title
+        * Navigation
+        * Shortcut Links
+        * Search Bar
+          etc..
+2. <nav>
+- It is for defining navigation area in a page.
+- It comprises of items used to navigate between content in site.
+
+CSS Text Styles:
+
+    {
+      font-family:  It refers to the name of font [Arial, Times New Roman]
+      font-size:    char size
+      font-style:    italic
+      font-weight: bold
+    }
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+Ex:
+shopper-template.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <style>
+        header {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding: 20px;
+            font-family: Arial;
+        }
+        nav span {
+            margin-right: 40px;
+            font-size: 14px;
+        }
+        .short-cuts span {
+            margin-right: 10px;
+        }
+        .brand-title {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        article {
+            background-color: black;
+            padding: 10px;
+            text-align: center;
+            font-family: Arial;
+            color:white;
+            font-size: 13px;
+        }
+        .bi-lightning-fill {
+            color:goldenrod;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div>
+            <span class="brand-title">Shopper.</span>
+        </div>
+        <div>
+            <nav>
+                <span>Home</span>
+                <span>Catalog</span>
+                <span>Shop</span>
+                <span>Blog</span>
+                <span>Docs</span>
+                <span>Pages</span>
+            </nav>
+        </div>
+        <div class="short-cuts">
+            <span class="bi bi-search"></span>
+            <span class="bi bi-person"></span>
+            <span class="bi bi-heart"></span>
+            <span class="bi bi-cart"></span>
+        </div>
+    </header>
+    <article>
+        <span class="bi bi-lightning-fill"></span>
+        <span> HAPPY HOLIDAY DEALS ON EVERYTHING </span>
+        <span class="bi bi-lightning-fill"></span>
+    </article>
+</body>
+</html>

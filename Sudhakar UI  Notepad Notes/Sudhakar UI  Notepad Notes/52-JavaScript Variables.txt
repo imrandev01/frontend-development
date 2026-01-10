@@ -1,0 +1,127 @@
+Variables
+- Configuration
+- Keywords
+    a) var
+    b) let
+    c) const
+
+const:
+- It is a block scope constant.
+- It allows only initialization.
+- It will not allow declaring and assigning.
+       
+        const x;        // invalid
+        x = 10;        // invalid
+       
+        const x = 10;    // valid
+        x =20;        // invalid
+
+- It will not support shadowing and hoisting.
+
+Global Scope:
+
+- A global scope allows access from any function in a module.
+- You can declare or initialize values in global scope. So that you can access from various function or components.
+- You can declare or initialize global variables using var, let or const.
+
+Ex:
+<script>
+    // module scope
+    let x = 10;
+    var y = 20;
+    const z = 30;
+    function f1() {
+        document.write("F1 x=" + x + "y=" + y + "z=" + z + "<br>");
+    }
+    function f2(){
+        document.write("F2 x=" + x + "y=" + y + "z=" + z + "<br>");
+    }
+    f1();
+    f2();
+</script>
+
+- You can configure a variable inside function and make it global by using "window" reference. But it is possible for JavaScript only when it is used in browser.
+  [window is a browser object]
+
+Ex:
+<script>
+    "use strict";
+    // module scope
+    let x = 10;
+    var y = 20;
+   
+    function f1() {
+        window.z = 40;
+        document.write("F1 x=" + x + "y=" + y + "z=" + z + "<br>");
+    }
+    function f2(){
+        document.write("F2 x=" + x + "y=" + y + "z=" + z + "<br>");
+    }
+    f1();
+    f2();
+</script>
+
+Naming Rules:
+- Variable name must start with an alphabet.
+- It can start with underscore "_" but not recommended.
+- It can be alpha numeric but can't start with number.
+- Don't use special chars in variable name.
+- It can max 255 chars long.
+- It can't be a keyword.
+
+      var class;        // invalid
+      var class2;        // valid
+      var Class;        // valid
+
+- It must speak what it is.
+
+FAQ's:
+1. var x, y, z;     is it a valid syntax?
+A. Yes.
+
+2. var x = 10, y, z;  what is the value of y & z?
+A. undefined
+
+3. const x, y, z=20;    is it valid?
+A. No. x & y are not initialized.
+
+4. var x = y = z = 20;   is it valid?
+A. Yes if it is not in strict mode.
+
+5. What is difference between
+A.
+    var x, y, z;        // declaring 3 individual variables
+    var [x,y,z];        // declaring one collection with 3 references
+
+6. What is result of given
+
+    var [x, y, z] = 20;        // invalid 20 is not an iterator.
+
+7. What is result of given
+
+    var [x,y,z] = [20];        // x = 20, y=undefined, z=undefined
+
+8. What is the result of given
+   
+    var [x, y] = [20, 30, 50];    //  valid in JavaScript  x=20, y=30
+
+
+                          JavaScript Data Types
+- In computer programming data type defines the data structure.
+- Data type refers to the structure of data in memory.
+- Data structure comprises of variable details about data, which include
+    a) type
+    b) range
+    c) behaviour etc..
+- JavaScript is a not a strongly typed language.
+- JavaScript is implicitly typed or dynamic typed.
+- The data type will be determined according to the value assigned.
+
+    var x = 10;        x is number
+    x= "A";            x is string
+    x= true;            x is Boolean
+
+- JavaScript types are classified into 2 groups
+
+    1. Primitive Data Types
+    2. Non Primitive Data Types

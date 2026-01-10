@@ -1,0 +1,251 @@
+Images in HTML
+- <img> element
+- Attributes for <img>
+- Cards
+
+Ex: Amazon Cards
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Am azon</title>
+    <style>
+        body {
+            background-color: lightgray;
+        }
+        section {
+            display: grid;
+            grid-template-columns: 3fr 3fr 3fr 3fr;
+            margin-top: -250px;
+        }
+        .card {
+            background-color: white;
+            padding: 5px;
+            margin: 10px;
+            height: 400px;
+        }
+        .card-title {
+            font-family: Arial;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        .card-header {
+            height: 60px;
+        }
+        .row {
+            display: grid;
+            grid-template-columns: 6fr 6fr;
+            grid-gap: 5px;
+            font-family: Arial;
+            font-size: 14px;
+            height: 150px;
+        }
+        .card-footer {
+            text-align: center;
+            font-family: Arial;
+            color: darkcyan;
+            padding-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="./images/amazon-banner.jpg" width="100%">
+    </header>
+    <section>
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">Deals on smartphones that suits your budget</div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div>
+                        <img src="./images/a1.jpg" width="100%">
+                        <p>Budget | Under <br>&#8377; 10,000</p>
+                    </div>
+                    <div>
+                        <img src="./images/a2.jpg" width="100%">
+                        <p>Mid Range | &#8377; 10,000 <br> &#8377; 25,000</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div>
+                        <img src="./images/a3.jpg" width="100%">
+                        <p>Premium | ₹25,000 - ₹40,000</p>
+                    </div>
+                    <div>
+                        <img src="./images/a4.jpg" width="100%">
+                        <p>Ultra Premium | above ₹40,000</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="footer-title">See all offers</div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">Latest trends from top brands | 50% - 70% off</div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div>
+                        <img src="./images/a5.jpg" width="100%">
+                        <p>Kurtas</p>
+                    </div>
+                    <div>
+                        <img src="./images/a5.jpg" width="100%">
+                        <p>Tops</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div>
+                        <img src="./images/a7.jpg" width="100%">
+                        <p>Dresses</p>
+                    </div>
+                    <div>
+                        <img src="./images/a8.jpg" width="100%">
+                        <p>Sarees</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="footer-title">More Offers</div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div>
+                       
+                    </div>
+                    <div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div>
+
+                    </div>
+                    <div>
+                       
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">Up to 75% off | Electronics & accessories</div>
+            </div>
+            <div class="card-body">
+                <img src="./images/a13.jpg" height="290" width="100%">
+            </div>
+            <div class="card-footer">
+                <div class="footer-title">Get offers</div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
+
+Image Advanced Attributes:
+
+1. crossorigin         :  It refers to CORS [Cross Origin Resource Sharing].
+                   It is used for images, which are accessed from remote locations.
+                   It allows to set restrictions for image.
+                       
+                        a) allow-anonymous
+                        b) use-credentials
+
+Syntax:
+ <img src="some-remote-url"  crossorigin="anonymous | use-credentials">
+
+Ex:
+<img width="500" height="400" crossorigin="use-credentials" src="https://apod.nasa.gov/apod/image/2405/BlackHole_Simonnet_960.jpg"&gt;
+
+2. decoding        :  It controls image loading along with other content in page.
+                   It can define
+                    a) sync        : blocking  [blocks other content]
+                    b) async        : unblocking [along with other content]
+                    c) auto        : changes according to situation
+
+Syntax:
+    <img src="..."  decoding="async | sync | auto">
+
+3. Importance        : It sets priority for image.
+                  Priority includes
+                    a) low
+                    b) high
+                    c) auto
+Syntax:
+    <img src="..."  importance="low | high | auto">
+
+
+4. srcset            : It is used to configure multiple images.
+                  An image element can embed multiple images.
+                  However images will rotate[change] with CSS attributes.
+
+
+Syntax:
+    <img srcset="set of images">
+
+FAQ: How to keep image SEO friendly?
+Ans:  Enclose image in <figure> with <figcaption>
+
+Syntax:
+    <figure>
+        <img src="pic.jpg" width="200" height="200">
+        <figcaption> Title </figcaption>
+    </figure>
+
+CSS Float for Images:
+- "float" is a CSS attribute used to float content left or right.
+- It controls the content wrapping along with alignment.
+- "float" may effect other elements in container, hence you have to use "clear" as CSS attribute to discard float.
+
+    {
+      float: left | right;
+      clear:left | right | both;
+    }
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .pic2 {
+            float: left;
+        }
+        .pic1 {
+            float: right;
+        }
+        p {
+            clear: left;
+        }
+    </style>
+</head>
+<body>
+    <img class="pic1" src="./images/a2.jpg" width="100" height="100">
+   
+    <img class="pic2" src="./images/a1.jpg" width="100" height="100">
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum vitae modi magnam omnis, quaerat neque fugiat porro a veritatis. Voluptates illum neque eligendi possimus, iusto unde aut officia dolorem corporis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime ipsa ullam vitae, assumenda sint quos architecto quidem praesentium id amet quia! Modi ratione minus error autem est placeat at ut?</p>
+</body>
+</html>
+
+FAQ: What is difference between align and float?
+Ans : Float is a responsive attribute of CSS. It can be controlled dynamically.
+     Align is basic HTML attribute used for text-wrapping. It is not responsive.
+
+
+                            Links in HTML

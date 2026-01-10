@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX Product List</title>
+
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+
+    <script>
+        function bodyload() {
+
+            fetch("../data/product-1.json")
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (products) {
+
+                    // products is an ARRAY
+                    var section = document.querySelector("section");
+                    section.innerHTML = "";
+
+                    products.forEach(function (product) {
+
+                        var div = document.createElement("div");
+                        div.className = "row mt-4 border-bottom pb-3";
+
+                        div.innerHTML = `
+                            <div class="col-2">
+                                <img src="${product.image}" width="100%">
+                            </div>
+
+                            <div class="col-8">
+                                <div class="h4">${product.title}</div>
+
+                                <div class="my-2">
+                                    <span class="badge bg-success p-1 rounded">
+                                        ${product.rating.rating}
+                                        <span class="bi bi-star-fill"></span>
+                                    </span>
+
+                                    <span class="ms-3 text-secondary fw-bold">
+                                        ${product.rating.Ratings.toLocaleString()} Ratings &
+                                        ${product.rating.reviews.toLocaleString()} Reviews
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="col-2">
+                                <div class="h2">
+                                    &#8377; ${product.price.toLocaleString()}
+                                </div>
+                            </div>
+                        `;
+
+                        section.appendChild(div);
+                    });
+                })
+                .catch(function (error) {
+                    console.error("Fetch Error:", error);
+                });
+        }
+    </script>
+</head>
+
+<body class="container-fluid" onload="bodyload()">
+
+    <section ></section>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+[
+    {
+        "title": "Apple iPhone 15 (Black, 128 GB)",
+        "price": 79900,
+        "rating": {"rating":4.6, "Ratings":39755, "reviews":2187},
+        "offers":[
+        "Special PriceGet extra  ₹3000 off (price inclusive of cashback/coupon)T&C",
+        "No Cost EMI on Bajaj Finserv EMI Card on cart value above ₹3000T&C",
+        "Bank Offer5% Unlimited Cashback on Flipkart Axis Bank Credit CardT&C",
+        "Partner OfferSign up for Flipkart Pay Later and get Flipkart Gift Card worth ₹1000*Know More"
+        ],
+        "image": "../public/images/iphon15black.png"
+},
+{
+        "title": "Apple iPhone 15 (Black, 128 GB)",
+        "price": 79900,
+        "rating": {"rating":4.6, "Ratings":39755, "reviews":2187},
+        "offers":[
+        "Special PriceGet extra  ₹3000 off (price inclusive of cashback/coupon)T&C",
+        "No Cost EMI on Bajaj Finserv EMI Card on cart value above ₹3000T&C",
+        "Bank Offer5% Unlimited Cashback on Flipkart Axis Bank Credit CardT&C",
+        "Partner OfferSign up for Flipkart Pay Later and get Flipkart Gift Card worth ₹1000*Know More"
+        ],
+        "image": "../public/images/black-15.jpeg"
+},
+{
+        "title": "Apple iPhone 15 (Black, 128 GB)",
+        "price": 79900,
+        "rating": {"rating":4.6, "Ratings":39755, "reviews":2187},
+        "offers":[
+        "Special PriceGet extra  ₹3000 off (price inclusive of cashback/coupon)T&C",
+        "No Cost EMI on Bajaj Finserv EMI Card on cart value above ₹3000T&C",
+        "Bank Offer5% Unlimited Cashback on Flipkart Axis Bank Credit CardT&C",
+        "Partner OfferSign up for Flipkart Pay Later and get Flipkart Gift Card worth ₹1000*Know More"
+        ],
+        "image": "../public/images/green-15.jpeg"
+}
+]

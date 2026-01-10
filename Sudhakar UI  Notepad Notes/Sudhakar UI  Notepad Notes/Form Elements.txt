@@ -1,0 +1,183 @@
+Password
+- It will mask the chars with "*".
+- Attributes are similar to textbox.
+
+Syntax:
+ <input type="password"  required  pattern=""  autofocus  placeholder="" … >
+
+
+                            Number
+- It restricts only numeric type value.
+- Numeric refers to integer, decimal, float, binary, hexa, octa, exponent etc.
+- Additional attributes
+    a) min
+    b) max
+    c) step
+    d) value
+
+Syntax:
+    <input type="number"  name="rate" min="8.45"  max="18.45"  value="10.45" step="0.01">
+
+                               Range
+
+- It is similar to number but have a slider to select values.
+
+Syntax:
+ <input type="range" name="rate" min="8.45" max="18.45"  value="10.45" step="0.01">
+
+
+                             Color
+- It can display a color picker.
+- You can select and submit color.
+- Color value must be a 6 char hexadecimal value.
+
+Syntax:
+ <input type="color" name="color" value="#00ff00">
+
+
+                            Email
+- It is similar to text but can validate email address format.
+
+
+Syntax:
+  <input type="email" name="Email"  placeholder=""  autofocus  required … >
+
+                            URL
+- It is similar to text but can validate URL format.
+- URL format must have protocol, domain and valid extension.
+
+            www.amazon.in        // invalid
+            https://www.amazon.in    // valid
+
+Syntax:
+ <input type="url" name="url" placeholder=""  required   autofocus … >
+
+                           Date & Time
+- HTML 5 provides various input types for handling date & time values
+    a) date
+    b) time
+    c) datetime-local
+    d) month
+    e) year
+    f) week
+- You can restrict the date by using the attributes
+    a) min
+    b) max
+- The date form in computer programming
+
+    "year-month-day hrs:min:sec.milliSecs"
+
+Syntax:
+<input type="date" name="dept"  min="2024-05-17"  max="2024-06-06">
+
+
+                           File Input
+- It is a file browser.
+- It is not a file uploader.
+- It is only for selecting file on your PC.
+
+Syntax:
+ <input type="file" name="photo">
+
+- You can set filter for specific file types by using "accept" attribute.
+
+Syntax:
+ <input type="file" name="photo"  accept=".jpg,.png..">
+
+- You can use the attribute "multiple" to allow selection of multiple file.
+
+Syntax:
+ <input type="file" name="photos"  multiple>
+
+                            Radio Button
+- Radio element allows to select one or multiple from a group of choices.
+- However radio will not allow to deselect the selected option.
+- Hence radios are design with "Mutex" mechanism.
+- Mutex is "Mutual Exclusion".
+- You can configure mutex by defining same name for all radios in a category.
+- You can switch between selection and choose any one from list.
+
+Syntax:
+ <input type="radio" name="gender"> <label> Male </label>
+
+Note: <label> is a data binding element, which you can use to bind with any form element.
+
+       <label for="gender">  Male </label>
+     
+- If you want any radio selected on page load, then define "checked" attribute.
+- If checked is defined for multiple then it works only for the latest.
+
+Syntax:
+    <input type="radio" name="gender" checked> <label> Male </label>
+
+- Radio's submit "ON" as value.
+- Hence every radio must have value defined.
+
+Syntax:
+ <input type="radio" name="gender" value="Male"> <label> Male </label>
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        <dl>
+           <dt>Gender</dt>
+           <dd>
+            <input type="radio" name="Gender" value="Male"> <label for="Gender">Male</label>
+            <input type="radio" name="Gender" value="Female"> <label for="Gender">Female</label>
+           </dd>
+        </dl>
+        <button>Login</button>
+    </form>
+</body>
+</html>
+
+
+                          Checkbox
+
+- It is similar to radio but allows to check and uncheck any option.
+- It is not effected by Mutex.
+
+Syntax:
+ <input type="checkbox" name="terms"  value="Accept"> <label> I Accept </label>
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul {
+            list-style: none;
+            border:1px solid gray;
+            width: 100px;
+            height: 50px;
+            overflow: auto;
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <dl>
+           <dt>Select Courses</dt>
+           <dd>
+              <ul>
+                <li><input type="checkbox" checked value="Java" name="Course"> <label>Java</label></li>
+                <li><input type="checkbox" value="React" name="Course"> <label>React</label></li>
+                <li><input type="checkbox" value="Angular" name="Course"> <label>Angular</label></li>
+                <li><input type="checkbox" value="Oracle" name="Course"> <label>Oracle</label></li>
+              </ul>
+           </dd>
+        </dl>
+        <button>Login</button>
+    </form>
+</body>
+</html>

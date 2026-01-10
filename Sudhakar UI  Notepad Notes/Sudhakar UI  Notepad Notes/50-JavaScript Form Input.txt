@@ -1,0 +1,143 @@
+JavaScript Input
+Query String
+prompt()
+
+3. Form Input Elements
+- You can use form elements to input a value.
+- The input elements include textbox, checkbox , radio, dropdown, number, range etc.
+- Form elements accept a "value" as input, which you can access and use in application.
+
+Syntax:
+    <input type="text"  id="UserName">
+    <input type="password"  id="Password">
+    <select  id="Cities">
+    <input type="checkbox" id="Stock"> <label> Available </label>
+    <button> Insert </button>
+
+    document.getElementById("UserName").value        => textbox value
+    document.getElementById("Cities").value            => select - option value
+    document.getElementById("Stock").value            => ON
+    document.getElementById("Stock").checked        => true / false
+    document.querySelector("button").innerHTML        => Insert
+
+Ex: Inox
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inox</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <script type="text/javascript">
+        function BookClick(){
+            document.getElementById("btnContainer").style.display = "none";
+            document.getElementById("summaryContainer").style.display = "block";
+
+            document.getElementById("lblMovie").innerHTML = document.getElementById("lstMovies").value;
+            document.getElementById("lblCinema").innerHTML = document.getElementById("lstCinema").value;
+            document.getElementById("lblDate").innerHTML = document.getElementById("lstDate").value;
+            document.getElementById("lblTime").innerHTML = document.getElementById("lstTiming").value;
+
+            poster = document.getElementById("imgPoster");
+            movie = document.getElementById("lstMovies").value;
+
+            if(movie=="CHANDU CHAMPION")
+            {
+                poster.src = "../public/images/chandu.jpg";
+            }
+            else
+            {
+                poster.src = "../public/images/inside.jpg";
+            }
+
+        }
+
+        function ModifyClick(){
+            document.getElementById("title").innerHTML = "Modify Booking";
+            document.getElementById("btnBook").innerHTML = "Update";
+            document.getElementById("btnBook").className = "btn btn-success";
+        }
+    </script>
+</head>
+<body class="container-fluid">
+   
+    <div id="btnContainer">
+        <button data-bs-target="#booking" data-bs-toggle="modal" class="btn btn-primary mt-3">Quick Booking</button>
+    </div>
+
+    <div id="summaryContainer" class="w-50 mt-3" style="display: none;">
+        <div class="bg-dark text-white p-2 d-flex justify-content-between">
+            <span class="fs-6">Booking Summary</span>
+            <span class="bi bi-ticket-fill"></span>
+        </div>
+        <div class="row my-3">
+            <div class="col-3">
+                <img height="200" width="100%" border="1" id="imgPoster">
+            </div>
+            <div class="col-9">
+                <dl class="row">
+                    <dt class="col-3">Movie</dt>
+                    <dd class="col-9" id="lblMovie"></dd>
+                    <dt class="col-3">Date</dt>
+                    <dd class="col-9" id="lblDate"></dd>
+                    <dt class="col-3">Cinema</dt>
+                    <dd class="col-9" id="lblCinema"></dd>
+                    <dt class="col-3">Show Time</dt>
+                    <dd class="col-9" id="lblTime"></dd>
+                </dl>
+            </div>
+        </div>
+        <button data-bs-target="#booking" onclick="ModifyClick()" data-bs-toggle="modal" class="btn btn-warning bi bi-pen-fill">Modify Booking</button>
+        <a href="./form-input.html" class="btn btn-danger">Cancel Booking</a>
+    </div>
+
+    <div class="modal fade" id="booking">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="title">Quick Booking</h2>
+                    <button class="btn btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="d-flex justify-content-between bg-dark text-white p-2">
+                        <div>
+                            <select class="form-select" id="lstMovies">
+                                <option>Select Movie</option>
+                                <option>CHANDU CHAMPION</option>
+                                <option>INSIDE OUT 2</option>
+                            </select>
+                        </div>
+                        <div>
+                            <select class="form-select" id="lstDate">
+                                <option>Select Date</option>
+                                <option>Today, 14 Jun</option>
+                                <option>Tomorrow, 15 Jun</option>
+                            </select>
+                        </div>
+                        <div>
+                            <select class="form-select" id="lstCinema">
+                                <option>Select Cinema</option>
+                                <option>PVR Next Galleria </option>
+                                <option>PVR Panjagutta Hyderabad</option>
+                            </select>
+                        </div>
+                        <div>
+                            <select class="form-select" id="lstTiming">
+                                <option>Select Timing</option>
+                                <option>07:50 PM</option>
+                                <option>10:20 PM</option>
+                            </select>
+                        </div>
+                        <div>
+                            <button onclick="BookClick()" id="btnBook" class="btn btn-danger" data-bs-dismiss="modal">Book</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

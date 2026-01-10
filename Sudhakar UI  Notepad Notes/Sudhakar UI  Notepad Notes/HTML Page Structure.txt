@@ -1,0 +1,109 @@
+HTML Parsing
+HTML Elements
+HTML DOM
+
+www.getbootstrap.com
+https://colorlib.com/
+
+HTML Page Structure:
+1. Every web page starts with "Document Declaration"
+
+            <!DOCTYPE html>
+
+    - It specifies that the page is designed using HTML 5 version.
+    - Browser engine uses HTML 5 parser.
+
+            < >        Start Token / Tag
+            <!>        Not token
+            </>        End Token
+    - Markup languages have a declaration to notify the version and behaviour.
+
+2. Every document have a scope, which is defined by using
+
+            <html>
+
+            </html>
+     - It specifies the start and end of document in browser.
+     - Document related sources are kept within the document scope.
+
+3. Every document scope have a "lang" attribute [language].
+
+            <html  lang="en-in">
+
+            </html>
+
+   - It defines the regional language for web page.
+   - The currency, number & date formats are according to regional language.
+   
+Ex:
+    <!DOCTYPE html>
+    <html lang="en-in">
+
+    </html>
+
+4. Every document comprises of 2 section at high levels
+
+    a) <head>
+    b) <body>
+
+Head Section:
+- It defines the content that is loaded into browser cache [memory].
+- It saves round trips.
+- The frequently requested content in page is kept in <head>.
+- The content in head section first loads into browser memory and then delivered to the browser when ever requested.
+- The popular <head> section contents are
+
+    1. <title>
+    2. <link>
+    3. <meta>
+    4. <script>
+    5. <style>
+    6. <base>
+
+FAQ: What is round trip?
+Ans:  It is a technique used in web applications.
+     In round trip the resource requested by client is returned as response from server.
+     You can save round trip by caching the resource.
+
+Title:
+- A page title is used to display title in the titlebar of browser.
+- It is also used in bookmarking the page.
+- It is used in SEO [Search Engine Optimization] to display the title of the page you are searching for.
+
+Syntax:
+<!DOCTYPE html>
+<html lang="en-in">
+     <head>
+       <title> Travel - Explore World </title>
+    </head>
+</html>
+
+Link:
+- It is used to link various resources to your page.
+- It is also used in SEO.
+- You can link shortcut icons, style sheets etc.
+- It is also used in responsive design.
+
+Ex: Set Favicon
+1. Open Ms-Paint
+2. Set Image Properties :  24 x 24 pixels
+3. Draw icons and save in your project folder
+        public/icons/favicon.png
+
+4. Go to your project and rename the icon as "favicon.ico"
+5. Link to HTML page
+
+    <head>
+        <title> Travel </title>
+        <link rel="shortcut icon"  href="public/icons/favicon.ico">
+    </head>
+
+
+Ex:
+<!DOCTYPE html>
+<html lang="en-in">
+  <head>
+      <title>Travel Site - Explore World</title>
+      <link rel="shortcut icon" href="public/icons/favicon.ico">
+  </head>
+</html>

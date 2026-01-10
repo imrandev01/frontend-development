@@ -1,0 +1,56 @@
+What types of applications?
+- Web Application
+- Distributed Application
+
+
+                         Web Applications
+- Front End
+    HTML
+    CSS
+    Bootstrap    
+    Sass, Less
+    JavaScript
+    jQuery
+    React
+    TypeScript
+
+- Back End
+    MongoDB
+    Express JS
+    Node JS
+    MySQL
+
+What is Full Stack ?
+- It is a developer platform.
+- A full stack comprises of all tools required for a developer from building to deploying.
+- It contains
+    a) Front End
+    b) Back End
+
+What is Role of developer in Back End?
+- Creating Database
+- Designing Data Structure
+- Storing the Data
+- Handling CRUD Operations on Data
+    C    Create
+    R    Read
+    U    Update
+    D    Delete
+- Writing Business logic for application [communication with database]
+- Designing API
+
+What is the role of developer in Front End?
+- Consuming data from API
+- Creating a UI for presenting data.
+- Designing interactions with data
+    a) Sorting
+    b) Filtering
+    c) Searching
+    d) Posting
+    etc..
+
+Developer Environments:
+1. SandBox                : Repository
+2. Development            : Build App
+3. Quality                    : Test App
+4. Production                : Go Live

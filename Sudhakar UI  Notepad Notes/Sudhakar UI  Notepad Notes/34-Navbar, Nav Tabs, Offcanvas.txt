@@ -1,0 +1,187 @@
+Offcanvas
+- It is similar to modal but have various directions.
+
+Classes:
+    .offcanvas
+    .offcanvas-start
+    .offcanvas-end
+    .offcanvas-top
+    .offcanvas-bottom
+    .offcanvas-header
+    .offcanvas-body
+
+Syntax:
+    <div class="offcanvas offcanvas-start" id="menu">
+        <div class="offcanvas-header">
+        </div>
+        <div class="offcanvas-body">
+        </div>
+    </div>
+Attributes:
+    data-bs-target
+    data-bs-toggle
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offcanvas</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+</head>
+<body class="container-fluid">
+    <div class="btn-toolbar bg-dark p-2">
+        <button data-bs-target="#menu" data-bs-toggle="offcanvas" class="bi bi-justify btn btn-light"></button>
+    </div>
+    <div class="offcanvas offcanvas-start" id="menu">
+        <div class="offcanvas-header bg-dark text-white">
+            <h2>Amazon</h2>
+            <button class="btn btn-close-white btn-close" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ul>
+                <li>Home</li>
+                <li>About</li>
+                <li>Contact</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
+
+                           Nav with Tabs
+- It is a dynamic navigation between tab based content in page.
+
+Classes:
+     .nav
+     .nav-tabs
+     .nav-pills
+     .nav-menu
+     .nav-item
+     .nav-text
+     .nav-link
+     .tab-content
+     .tab-pane
+     .active     [ it is defined for nav-item ]
+
+Syntax:
+    <ul class="nav nav-tabs">
+       <li> <a href="#tab-id" data-bs-toggle="tab"> Item1 </a>  </li>
+    </ul>
+    <div class="tab-content">
+       <div class="tab-pane" id="">
+       </div>
+    </div>
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nav Tabs</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+</head>
+<body class="container-fluid">
+    <h2>Tabs Demo</h2>
+    <ul class="nav nav-tabs">
+        <li class="nav-item"> <a href="#basic" data-bs-toggle="tab" class="nav-link active"> <span class="nav-text"> Basic Details </span> </a> </li>
+        <li class="nav-item"> <a href="#preview" data-bs-toggle="tab" class="nav-link"> <span class="nav-text"> Preview </span> </a </li>
+        <li class="nav-item"> <a href="#features" data-bs-toggle="tab" class="nav-link"> <span class="nav-text"> Features </span> </a </li>
+        <li class="nav-item"> <a href="#ratings" data-bs-toggle="tab" class="nav-link"> <span class="nav-text"> Ratings </span> </a </li>
+    </ul>  
+    <div class="mt-4 tab-content">
+        <div class="tab-pane active" id="basic">
+            <dl>
+                <dt>iPhone 15 [Black]</dt>
+                <dd> &#8377; 70,000/- </dd>
+            </dl>
+        </div>
+        <div class="tab-pane" id="preview">
+            <img src="../public/images/iphone-black.jpg" width="200" height="300">
+        </div>
+        <div class="tab-pane" id="features">
+            <ul>
+                <li>Feature-1</li>
+                <li>Feature-2</li>
+                <li>Feature-3</li>
+                <li>Feature-4</li>
+            </ul>
+        </div>
+        <div class="tab-pane" id="ratings">
+            <div class="fs-3">4.3 <span class="bi bi-star-fill text-success">  Ratings  & 5600 Reviews</span></div>
+        </div>
+    </div>
+</body>
+</html>
+
+                               Navbar
+- It is used for responsive navigation.
+- It can change according to device width and orientation.
+
+Classes:
+    .navbar
+    .navbar-brand
+    .navbar-toggler
+    .navbar-toggler-icon
+    .navbar-expand-lg | sm
+    .navbar-nav
+    .nav-menu
+    .nav-item
+    .nav-link
+    .nav-text
+    .navbar-collapse
+    .navbar-dark | light
+    .bg-{contextual}
+
+Note: To make responsive always use "container-fluid" for your content.
+
+Syntax:
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+       <div class="container-fluid">
+        <button class="navbar-toggler"> </button>
+       </div>
+       <div class="navbar-collapse">
+         <ul class="navbar-nav">
+         </ul>
+       </div>
+    </nav>
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <button class="navbar-toggler" data-bs-target="#menu" data-bs-toggle="collapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-brand">Shopper.</div>
+            <div class="navbar-collapse collapse" id="menu">
+                <ul class="navbar-nav">
+                    <li class="nav-item"> <a class="nav-link"> <span class="navbar-text"> Home </span> </a> </li>
+                    <li class="nav-item"> <a class="nav-link" href="../public/shopper-template.html" target="bodyframe"> <span class="navbar-text"> Shop </span> </a> </li>
+                    <li class="nav-item"> <a class="nav-link"> <span class="navbar-text"> Blog </span> </a> </li>
+                    <li class="nav-item"> <a class="nav-link"> <span class="navbar-text"> Contact </span> </a> </li>
+                    <li class="nav-item"> <div class="input-group"> <input type="text" class="form-control"> <button class="bi bi-search btn btn-warning"></button> </div> </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main class="mt-4">
+        <iframe name="bodyframe" class="w-100" height="400"></iframe>
+    </main>
+</body>
+</html>

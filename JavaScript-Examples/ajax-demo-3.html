@@ -1,0 +1,149 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <script>
+        function bodyload() {
+            var product ={};
+            var http = new XMLHttpRequest();
+            http.open("get", "../data/product.json", true);
+            http.send();
+            http.onreadystatechange = function() {
+                if (http.readyState == 4){
+                    product = JSON.parse(http.responseText);
+                    document.getElementById("imgProduct").src = product.image;
+                    document.getElementById("lblTitle").innerText = product.title;
+                    document.getElementById("lblRating").innerText = product.rating.rate;
+                    document.getElementById("lblReviews").innerText = `${product.rating.ratings.toLocaleString()} Ratings ${product.rating.reviews.toLocaleString()} Reviews`;
+                    document.getElementById("lblPrice").innerHTML = "&#8377;" + product.price.toLocaleString();
+
+                    product.offers.map(function(offer){
+                        var li = document.createElement("li");
+                        li.className = "bi bi-tag-fill text-success my-2";
+                        li.innerHTML = `<span class="text-secondary"> ${offer}</span>`;
+                        document.getElementById("lsOffers").appendChild(li);
+                    });
+                }
+        }
+    }
+    </script>
+</head>
+<body class="container-fluid" onload="bodyload()">
+    <div class="row mt-3">
+        <div class="col-3">
+            <img width="100%" id="imgProduct">
+        </div>
+        <div class="col-9">
+            <div class="h4" id="lblTitle"></div>
+            <div class="my-3">
+                <span class="bg-success badge rounded p-2"><span id="lblRating"></span><span class="bi bi-star-fill text-white"></span></span>
+                <span class="fw-bold text-secondary" id="lblReviews" ></span>
+            </div>
+            <div class="my-3">
+                <div class="h" id="lblPrice"></div>
+            </div>
+            <div class="my-3">
+                <ul class="list-unstyled" id="lsOffers">
+
+                </ul>
+
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX Product Demo</title>
+
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+
+    <script>
+        function bodyload() {
+
+            // Step-1: Create XMLHttpRequest object
+            var http = new XMLHttpRequest();
+
+            // Step-2: Configure request
+            http.open("GET", "../data/product.json", true);
+
+            // Step-3: Send request
+            http.send();
+
+            // Step-4: Check readyState
+            http.onreadystatechange = function () {
+
+                if (http.readyState === 4 && http.status === 200) {
+
+                    // Step-5: Convert JSON text to Object
+                    var product = JSON.parse(http.responseText);
+
+                    // Data Binding
+                    document.getElementById("imgProduct").src = product.image;
+                    document.getElementById("lblTitle").innerText = product.title;
+                    document.getElementById("lblRating").innerText = product.rating.rating;
+
+                    document.getElementById("lblReviews").innerText =
+                        product.rating.Ratings.toLocaleString() +
+                        " Ratings " +
+                        product.rating.reviews.toLocaleString() +
+                        " Reviews";
+
+                    // ₹ symbol using HTML entity
+                    document.getElementById("lblPrice").innerHTML =
+                        "&#8377; " + product.price.toLocaleString();
+
+                    // Using map() to render offers
+                    var offersHTML = product.offers.map(function (offer) {
+                        return `
+                            <li class="my-2">
+                                <span class="bi bi-tag-fill text-success me-2"></span>
+                                <span class="text-secondary">${offer}</span>
+                            </li>
+                        `;
+                    });
+
+                    document.getElementById("lsOffers").innerHTML =
+                        offersHTML.join("");
+                }
+            };
+        }
+    </script>
+</head>
+
+<body class="container-fluid" onload="bodyload()">
+
+    <div class="row mt-4">
+        <div class="col-3">
+            <img id="imgProduct" class="img-fluid">
+        </div>
+
+        <div class="col-9">
+            <h4 id="lblTitle"></h4>
+
+            <div class="my-2">
+                <span class="badge bg-success p-2">
+                    <span id="lblRating"></span>
+                    <span class="bi bi-star-fill"></span>
+                </span>
+                <span class="fw-bold text-secondary ms-2" id="lblReviews"></span>
+            </div>
+
+            <h3 class="my-3" id="lblPrice"></h3>
+
+            <ul class="list-unstyled" id="lsOffers"></ul>
+        </div>
+    </div>
+
+</body>
+</html>

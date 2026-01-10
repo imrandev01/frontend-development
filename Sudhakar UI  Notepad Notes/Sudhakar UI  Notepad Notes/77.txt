@@ -1,0 +1,6024 @@
+Express JS - Express JS is a middleware framework. - Middleware is a software that enables communication in network based application. - Framework is an software architectural pattern. - Software architectural patterns are solutions for enabling and controlling the application 
+flow. - They can build the application and control its flow. - There are various software architectural patterns 
+        - Black Board System 
+        - Microservices 
+        - MVC [Model View Controller] 
+        - MVP [Model View Presenter] 
+        - MVVM [Model View - View Model ] 
+        etc. 
+ 
+Setup Express JS: 
+ 
+1. Install express JS 
+ 
+    > npm  install  express --save 
+ 
+2. Configure a server side application using Express 
+ 
+    const express = require("express"); 
+ 
+    let app = express(); 
+ 
+3. App can handle communication between client and server. 
+ 
+    app.get() 
+    app.post() 
+    app.put() 
+    app.delete() 
+    etc. 
+ 
+Syntax: 
+    app.get('path', function(request, response){ 
+ 
+    }) 
+ 
+4. Start application using listen() 
+ 
+    app.listen(port); 
+ 
+ 
+Ex: 
+index.js 
+ 
+const express = require("express"); 
+ 
+let app = express(); 
+ 
+app.get('/', (req, res)=>{ 
+     res.send('<h2>Welcome to Express JS</h2>'); 
+}); 
+ 
+app.get('/mobiles', (req, res)=>{ 
+     res.send([{Name:'iPhone 16'}, {Name:'Samsung'}]); 
+}); 
+ 
+app.listen(3030); 
+console.log(`Server Started http://127.0.0.1:3030`); 
+    
+ 
+                                Routing - Routing enables navigation in application. - Routing is a technique used in web application to configure user and SEO friendly URL's. - Routing can be implemented client side and server side. - Server side routes are used to configure request and response. - A route can handle request from client and send a customized response. 
+ 
+Route Flow: 
+- A client request is sent to web server. - A Http Handler validates the request and sends to Routing Engine. - Routing Engine verifies the requested path by comparing with the path defined in application 
+Route Table. - If requested path is matching then it send a response to client request. - If path mismatch then it sends an error page with HTTP status code. 
+ 
+Configuring Routes: - Every route comprises of a request path and callback function. 
+ 
+Syntax: 
+        app.get("path", function() { });   // path:request path  function(){}: callback () 
+ - Path comprises of entities and wild cards 
+ 
+    "/"            It executes when user request is not for any specific. 
+    "*"            It executes when requested path mismatch. [not found] 
+    "/name"        It executes when requested path exactly matches with given name 
+    "/colou?r"        It executes when requested path is matching regular expression 
+ - The callback function comprises of various objects, the primary are 
+        a) request 
+        b) response 
+ - A request object can request content from client, which includes 
+        request.query            => query string 
+        request.cookies        => cookies 
+        request.body            => form body 
+        request.params        => route parameters 
+        etc.. 
+ - A response object can send customized response to client, which includes 
+  file, plain text, html, JSON, XML etc. 
+ 
+        response.json()        => specific JSON response 
+        response.send()        => any type of response 
+        response.end()        => end the response 
+ 
+Ex: 
+index.js 
+ 
+const express = require("express"); 
+const mongoClient = require("mongodb").MongoClient; 
+ 
+let app = express(); 
+ 
+app.get('/', (req, res)=>{ 
+     res.send('<h2>Welcome to Express JS</h2>'); 
+}); 
+ 
+app.get('/mobiles', (req, res)=>{ 
+     res.send([{Name:'iPhone 16'}, {Name:'Samsung'}]); 
+}); 
+ 
+app.get('/c*t', (req, res)=>{ 
+     res.send('You requested path that uses Regular expression'); 
+}); 
+ 
+app.get('/products', (req, res)=>{ 
+     mongoClient.connect('mongodb://127.0.0.1:27017').then(clientObj=>{ 
+           var database = clientObj.db("sampledb"); 
+           database.collection("products").find({}).toArray().then(documents=>{ 
+                res.send(documents); 
+                res.end(); 
+           }) 
+     }) 
+}); 
+ 
+app.get('/path',(req, res)=>{ 
+      
+}) 
+ 
+app.get('*', (req, res)=>{ 
+     res.send('404 - Requested Path Not Found'); 
+}); 
+ 
+app.listen(3030); 
+console.log(`Server Started http://127.0.0.1:3030`); 
+ 
+Express JS Framework - Create Server Side App - Routing - Wild Card Routes 
+ 
+ Route Parameters - A route parameter allows to query any content directly from URL. - Parameter is defined in route path. - The values are configured in URL. - You can access route parameters using "request" object. 
+ 
+Syntax: 
+       app.get('/path/:param1/:param2', ( req, res ) => { 
+ 
+       }) 
+ 
+      http://server.com/value1/value2 
+ 
+        param1=value1 
+        param2=value2 
+ 
+     req.params = { param1:value1, param2:value2} 
+ 
+     req.params.param1;        // value1 
+ 
+Without Route Params: 
+ 
+   http://localhost:3030/products?id=1&name=tv&price=50000 
+ 
+With Route Params: 
+ 
+   http://localhost:3030/products/1/tv/50000 
+ 
+Ex: 
+index.js 
+ 
+const express = require("express"); 
+const mongoClient = require("mongodb").MongoClient; 
+ 
+let app = express(); 
+ 
+app.get('/', (req, res)=>{ 
+     res.send('<h2>Welcome to Express JS</h2>'); 
+}); 
+ 
+app.get('/mobiles', (req, res)=>{ 
+     res.send([{Name:'iPhone 16'}, {Name:'Samsung'}]); 
+}); 
+ 
+app.get('/c*t', (req, res)=>{ 
+     res.send('You requested path that uses Regular expression'); 
+}); 
+ 
+app.get('/products', (req, res)=>{ 
+     mongoClient.connect('mongodb://127.0.0.1:27017').then(clientObj=>{ 
+           var database = clientObj.db("sampledb"); 
+           database.collection("products").find({}).toArray().then(documents=>{ 
+                res.send(documents); 
+                res.end(); 
+           }) 
+     }) 
+}); 
+ 
+app.get('/products/:id', (req, res)=>{ 
+     mongoClient.connect('mongodb://127.0.0.1:27017').then(clientObj=>{ 
+           var database = clientObj.db("sampledb"); 
+           database.collection("products").findOne({id:parseInt(req.params.id)}) 
+           .then(document=>{ 
+               res.send(document); 
+               res.end(); 
+           }) 
+     }) 
+}); 
+ 
+app.get('/details/:id/:name/:price',(req, res)=>{ 
+     res.send(`Id=${req.params.id}<br>Name=${req.params.name}<br>Price=${req.params.pric
+e}`); 
+}); 
+ 
+app.get('*', (req, res)=>{ 
+     res.send('404 - Requested Path Not Found'); 
+}); 
+ 
+app.listen(3030); 
+console.log(`Server Started http://127.0.0.1:3030`); 
+
+
+
+
+
+Complete Back-end( Node js & Express & Database) - Every business in real-world runs using an ERP system.  - ERP is Enterprise Resource Planning. - It is business backend with various modules like 
+a) Admin 
+b) Purchasing  
+c) CRM 
+d) SRM  
+e) Finance  
+f)  BI  etc.. - Popular ERP are 
+a) SAP 
+b) Oracle 
+c) PEGA etc. - Business documents include   
+a) PR [Purchase Requisition] 
+b) PO [Purchase Order] 
+c) Invoice  
+d) Contract  
+Application Backend  - Every software business needs an application. - Every ERP module requires an application. - Applications designed for ERP modules will not maintain the business flow, they are 
+responsible for business interactions in the front end. - Application backend depends on the tiers and layers. 
+FAQ: What is "Tier" architecture? 
+Ans :  Application runs on "Tiers".  
+Software applications are categorized into  
+  a) One-Tier 
+  b) Two-Tier 
+  c) 3-Tier 
+  d) N-Tier etc.. 
+Note: Every web application is a "3-Tier" application. 
+  a) Presentation Tier 
+  b) Application Tier 
+  c) Data Tier 
+What is Backend? - Business Backend - Application Backend  
+What is difference between Tier & Layers? - Application runs in tiers. 
+ Database Tier 
+ Application Tier 
+ Presentation Tier - Application is built in layers. 
+ Database Layer 
+ Business Layer 
+ UI Layer 
+                           Database Layer 
+1. What is Database? 
+A. Database is an organized collection of information electronically & typically stored in a 
+computing system. 
+     Organized collection enables features like: 
+ - Relationship  
+ - Filtering  
+ - Sorting 
+ - Querying  
+ - Grouping etc.. 
+     Data in database enables data predictions and data analysis. 
+2. What are the various types of databases? 
+           A. 
+            - Relational Database 
+ - Object Oriented Database 
+ - Cloud Database 
+ - NoSQL Database 
+ - Open Source Database 
+ - Entity Database [OLTP] 
+ - Document Database [JSON] 
+ - Distributed Database  
+ - Self Driven Database etc..  [Snow Flake] 
+What is database? 
+What are various types of databases? 
+ 
+Database Models: - Every software application is built with a set of modules.  - Each module have different roles and responsibilities.  - Every module doesn't require data to maintain. - Developer have to identify the modules that require data and design database models 
+  
+ a) Conceptual Model 
+ b) Physical Model 
+ c) Logical Model 
+ d) Entity Model 
+ 
+Conceptual Model - It comprises of a list of modules that require data. 
+- It is a database model for initializing the data requirements.  
+Syntax: 
+                         admin 
+  user 
+  product 
+ 
+Physical Model - It comprises of information or data related to each module. - It is a database model that contains information about the fields and their data type. 
+Syntax: 
+  tbladmin 
+   admin_id [number] 
+   admin_name[string] 
+   password [string] 
+ 
+   tblproduct 
+   product_id [number] 
+   name [ string ] 
+   price [ number ] 
+   rating [number] 
+ 
+Logical Model - It contains information about relationship between modules. - It is a database model to configure relationship using Primary & Foreign Key. 
+  tblProduct 
+   product_id [PK] 
+   name  
+   CategoryId [FK] 
+ 
+tblCategory  
+category_id [PK] 
+name 
+Entity Model - It is the complete business model. - Entity refers to business requirements. - It is a database model that comprises of details like table, field, data type, relationship etc. - It is a blue print for designing database.  - The final model is known as "Entity Relationship Diagram". 
+Syntax: 
+tblcategory 
+category_id : number [PK] 
+name : string 
+tblproduct 
+product_id : number [PK] 
+name : string 
+category_id: number [FK - reference tblCategory] 
+Note: Make sure that your MySQL server is running in background. - Open "services.msc"  on your PC - Right click on "MySQL" and select start. 
+MySQL Environment: - Every database system comprises of 2 environments 
+1. Server 
+2. Client 
+- Server is the location where your data is kept. - Client is the location from where you interact with the data. - The client tool is "MySQL Workbench". 
+Database Objects: 
+ 
+1. Database   : It is store used to maintain data required for application. 
+2. Table    : It is schema for database used to store data for various  
+                     modules in application.  
+3. View    : It is a virtual data set that comprises of data filtered, sorted 
+         or grouped from various tables or from specific table.  
+4. Stored Procedure                : It is used to refactor the statements. 
+         Refactor is the process of encapsulating a set of statements. 
+                     So that you can reuse across various locations. 
+                     A procedure can return or can be void. 
+ 
+5. Function    : It is used to evaluate a value with any expression.  
+                                             You can build expressions using function. 
+6. Trigger   : It is used to execute a set of procedures or functions  
+       in a sequential order.  
+7. Form  : It provides an UI for database, so that developer can 
+       easily interact with database & its objects. [CRUD] 
+ 
+8. Report                  : It a process of generating a document that exports your 
+           data into various formats like "pdf, xlsx, csv" etc. 
+            Report is a document that shows your data and allows to 
+             export & print. 
+ 
+9. Macros   : It is used to design batch operations. 
+      Batch operations are a set of sequential operations you  
+      want to execute repeatedly. 
+ 
+SQL Language: - Structured Query Language. - It is a language used by developer to communicate with database objects. - It uses various operators and functions to handle communication.  - Based of type of operations the language is classified into 3 types 
+  a) DDL 
+  b) DML 
+  c) DCL - Data Definition Language used to configure and create the data objects. - Data Manipulation Language used to filter, sort, group and manage data. - Data Control Language allows to handle security like authorization, authentication. 
+1. Creating a new Database 
+  
+    create  : It is used to create various database objects like 
+     database, 
+    view,  
+    stored procedure  
+    trigger etc. 
+Syntax: 
+ create  database  databaseName; 
+ create  schema    databaseName; 
+Ex: 
+ create database  shopping; 
+2. Select database to start using it 
+Syntax: 
+  use  databaseName; 
+  use  shopping; 
+ 
+   MySQL Tables - Table provides a schema to store data in rows and columns. - You can use "create" command for creating a new table. 
+ 
+Syntax: 
+  create  table  table_name 
+  ( 
+ 
+  ) 
+ - Table comprises of fields with following details 
+ 
+  a) field name 
+  b) data type 
+  c) constraint  
+ 
+Syntax: 
+    create  table  table_name 
+    ( 
+        field_name  data_type   constraint, 
+    ) - MySQL data type determines the type of value you can store in a field. Some of the 
+popular MySQL types are  
+   Number Types: 
+   INT    Signed & Unsinged 
+   Decimal()   Float, double, decimal  
+   Float   Float 
+   Double   Double  
+ 
+  String Type: 
+   VARCHAR 
+   LONGTEXT 
+   MEDIUMTEXT 
+   CHAR 
+    
+  Date & Time Type: 
+ 
+   DATE 
+   TIME 
+   DATETIME 
+   YEAR 
+ 
+  Boolean Type: [There is no specific Boolean type in MySQL] 
+ 
+   TINYINT   0 = false, 1 = true 
+Syntax: 
+  
+  create  table  tblproducts 
+  ( 
+      ProductId  INT, 
+      Name  VARCHAR(30), 
+      Price    Decimal(6), 
+      Stock   TINYINT, 
+      Mfd      DATE 
+  ) 
+ 
+MySQL Constraints: - Constraint controls the behavior of field and its value. 
+- MySQL table field can use various types of constraints. 
+1. Primary Key 
+2. Unique Key 
+3. Foreign Key 
+4. Check 
+5. Not Null 
+6. Default  
+Primary Key Constraint: - Every record in database table requires a unique identification. - It is used for querying and manipulating specific record.  - Every table can have only one primary field. 
+Unique Key Constraint: - A database table requires few fields with unique values. - The value given for one record can't be used for another record.  - You can't have multiple primary keys in a table. - Hence a unique key constraint can be used for field. - Table can have multiple unique key fields. 
+Check Constraint: - It is used to check the input value by matching with any expression. - It allows to store value into field only when it is matching the given expression.  - It uses a validator to validate the input value. - It ensures that contradictory and unauthorized data is not get stored into database. 
+Default Constraint: - It is used to configure a default value for field. - If a value is not provides for field in database table, then it is set to null. - You can avoid null and use a default value to store by using default constraint.  
+ 
+Not Null Constraint: - It ensures that the field is not empty. - It will not allow null.  - It is used for required fields.  - If a default value or explicit value is not defined then it will not allow to save data. 
+ 
+Foreign Key Constraint: - It configures the relation ship between fields from multiple tables. - It is a primary of a table used as a reference in another table. - You can have multiple foreign keys to configure various relation ships like 
+ a) One-to-One 
+ b) One-to-Many 
+ c) Many-to-Many 
+ 
+Syntax: 
+ create table  tblProducts 
+ ( 
+   ProductId   INT  Primary Key, 
+   Name varchar(30), 
+   Price decimal(6,2), 
+   Mfd  Date 
+ ) 
+ 
+Creating a table with various constraints: 
+1. Primary Key :  It uses  "PRIMARY KEY"   
+                            :  It sets   UNIQUE  & NOT NULL. 
+Syntax: 
+ create table  tblcategories  
+ ( 
+    CategoryId  INT   PRIMARY KEY, 
+    CategoryName  varchar(20) 
+ ) 
+ 
+2. Not Null : It uses  "NOT NULL"  
+Syntax: 
+ create table tblcategories 
+ ( 
+   CategoryId  INT  PRIMARY KEY, 
+   CategoryName  varchar(20)  NOT NULL 
+ ) 
+ 
+ 
+3.  Unique : It uses  "UNIQUE"  
+ 
+Syntax: 
+ create table tblcategories 
+ ( 
+   CategoryId  INT  PRIMARY KEY, 
+   CategoryName  varchar(20) NOT NULL   UNIQUE  
+ ) 
+ 
+     Unique verifies only the value and ignores the capitalization.  
+      
+4. Default : It uses "DEFAULT" 
+      It takes are default value. 
+      Value type must match the field type. 
+ 
+Syntax: 
+ create  table tblproducts 
+ ( 
+    ProductId  INT  PRIMARY KEY, 
+    Name varchar(40) NOT NULL, 
+    Qty INT  DEFAULT 1 
+ ) 
+ 
+5. Check: It uses "CHECK" with any condition. 
+    Condition requires decision making operators. 
+ 
+Syntax: 
+ create table tblProducts 
+ ( 
+    ProductId  INT  PRIMARY KEY, 
+    Name varchar(40) NOT NULL, 
+    Qty INT  DEFAULT 1 CHECK(Qty<5) 
+ ) 
+  Comparison Operators 
+  >   greater than 
+  >= greater than or equal 
+  <  less than 
+  <=  less than or equal 
+   !=  Not equal 
+  =  Equal  
+  Logical Operators 
+  AND   
+  OR 
+  NOT 
+ 
+6. Auto Increment: It allows to increment the value of a field by 1 and add  
+       to preceding field. 
+       It uses "AUTO_INCREMENT" 
+       The default value starts with 1. 
+       The preceding value depends on the previous value. 
+ 
+Syntax: 
+create table tblproducts 
+( 
+  ProductId INT PRIMARY KEY AUTO_INCREMENT, 
+  Name varchar(30) NOT NULL, 
+  Qty INT DEFAULT 1 CHECK(Qty<5) 
+) 
+ 
+Note: Auto_Increment can be defined only for fields that handle numeric type data. 
+ 
+ 
+7. Foreign Key : It uses "FOREGIN KEY" with "REFERENCE"  
+    Reference is from a table that have relationship with  
+  current table. The foreign key constraint changes according to type of  
+relation ship. 
+  a) One-to-One 
+  b) One-to-Many 
+  c) Many-to-Many 
+ 
+Business Model of i-shop Application:  
+1. Conceptual Model of i-shop 
+  - Customers 
+- Admin - Vendors - Shopping Cart - Products - Shipping & Billing - Categories 
+Foreign Key Constraint: - It is used to configure relationship between fields in tables.  - You can configure any relationship like 
+a) One-to-One 
+b) One-to-Many 
+c) Many-to-Many - Foreign key field must be defined in the table where you want to configure relationship. - The field name and data type must match with the reference table field. - The foreign key constraint is created to configure relationship between table. 
+Syntax: 
+Constraint  constraint_name 
+FOREIGN KEY  (foreign_key_fieldName) 
+REFERENCES  reference_table_name(reference_field_name) 
+ON UPDATE  reference_type 
+ON DELETE  reference_type - A constraint name is required to modify or delete constraints.  - Foreign key field name is the field in current table that you want as foreign key. - Reference table name is the table that contains fields that you want to connect with the 
+foreign key. - Reference types are configured to setup relationship between tables so that they can 
+control the data from parent.  - There are 3 reference types 
+a) RESTRICT 
+b) CASCADE 
+c) SET NULL - The reference types define the actions to perform when the parent field is modified or 
+deleted.  - The default reference type is "RESTRICT". 
+RESTRICT: - It configures the relation between parent and child tables. - Restrict indicates that the parent field can't be modified or deleted if it comprises of 
+relative fields in child.  
+Syntax: 
+1. Create Parent table 
+create table tblcategories 
+( 
+) 
+CategoryId INT PRIMARY KEY,  
+CategoryName varchar(30) 
+2. Create a table with Foreign Key relation 
+create table tblproducts 
+( 
+ProductId INT PRIMARY KEY, 
+Name varchar(30), 
+CategoryId INT,  
+CONSTRAINT fk_categories FOREIGN KEY (CategoryId)  
+REFERENCES tblcategories(CategoryId)  
+ON UPDATE RESTRICT ON DELETE RESTRICT 
+) 
+CASCADE: - It is a relationship type configured for foreign key. - Cascade indicates that if foreign key field from parent table is deleted or modified then it 
+removes all relative records from all tables that have relation with the field. 
+Syntax: 
+create table tblproducts 
+( 
+) 
+ProductId INT PRIMARY KEY, 
+Name varchar(30), 
+CategoryId INT,  
+constraint fk_categories FOREIGN KEY (CategoryId)  
+REFERENCES tblcategories(CategoryId)  
+ON UPDATE CASCADE ON DELETE CASCADE 
+SET NULL - It is a relationship type configured for foreign key. - It is used to SET null as value into the data of table that have relationship with parent. - If field is changed or deleted the relative data is set to Null. 
+Syntax: 
+create table tblproducts 
+( 
+ProductId INT PRIMARY KEY, 
+Name varchar(30), 
+CategoryId INT,  
+constraint fk_categories FOREIGN KEY (CategoryId)  
+REFERENCES tblcategories(CategoryId)  
+ON UPDATE CASCADE ON DELETE SET NULL 
+) 
+FAQ's: 
+1. Can we define multiple foreign key fields? 
+A. Yes. You can define from or multiple tables. 
+Syntax: 
+constraint  fk_name   Foreign Key (Field1, Field2, ..) 
+References  tblName(field1, field2,...) 
+2. Can we configure multiple constrains? 
+A. Yes. If fields are from various tables then you can have a constraint for every table. 
+Insert & Query  
+Class comments 
+Creating Database  
+Creating Tables 
+Creating Constraints 
+Foreign Key Constraints  
+Inserting Data into Tables - SQL "INSERT" command is used to insert data into a database table. - It uses table name, field name and values to insert into table. 
+Syntax: 
+INSERT  INTO  table_name (field1, field2, ..)  VALUES (value1, value2); - You have to follow all constraint rules defined to design data table while inserting data. 
+- You have to define exactly the same data type for value as defined in structure.  - Numeric types are defined with number as value. - String types are defined with single quote 'value'. - Dates are defined with single quote in 'YY-MM-DD' format. 
+ 
+Ex: 
+ INSERT  INTO  tblcategories  (CategoryId, CategoryName)  VALUES 
+        (1, 'Electronics'); 
+ - You can insert multiple records into table using a "," delimiter.  
+ 
+Ex:  INSERT INTO tblcategories (CategoryId, CategoryName) VALUES 
+       (2, 'Fashion'), 
+       (3, 'Footwear'), 
+       (4, 'Accessories'); 
+ 
+ Query Data from Tables: - Query allows you to read and return the data from a database table. - SQL provides a "SELECT" command for querying. - SELECT refers to field names and uses various operators to fetch data from table. - Different operators allow to filter and sort the data. 
+ 
+Syntax: 
+      SELECT  field_Name  FROM tableName; 
+ - You can use "*" meta character to search for all fields from table. 
+ 
+Syntax: 
+ SELECT  *  FROM table_Name; 
+Note: Avoid using meta character in query to improve the query performance. 
+Ex: 
+SELECT  CategoryId, CategoryName  FROM tblcategories; 
+SELECT   * FROM tblcategories; - SELECT allows to alias the field name while querying. It is good to display field name in user 
+friendly format.  - It requires "AS" operator for aliasing the field names. 
+Syntax: 
+SELECT  field_name  AS  alias_name  FROM  table_name; 
+Ex: 
+SELECT CategoryName AS  'Product Category'  FROM  tblcategories; - You can set alias for multiple fields. 
+Ex: 
+SELECT   CategoryId  AS  'Category ID',  CategoryName AS  'Product Category' 
+FROM  tblcategories. - SELECT allows to embed any expression, evaluate the expression and store the result in an 
+alias field. - Expression can be any arithematic or by using any built-in functions. 
+Syntax: 
+  SELECT  field_name  (expression) AS  alias_name  FROM table_Name; 
+ 
+Ex: 
+  SELECT   Name, Price, Qty, (Qty * Price) AS  Total FROM tblproducts; 
+ 
+  SELECT   FirstName, LastName, (concat('FirstName', 'LastName')) AS 'Full Name'  
+  FROM tblEmployees; 
+ - SELECT allows to filter the data by using "WHERE" command.  - WHERE uses an expression to find the matching data and return as result.  - Expression is built by using comparison and logical operators. 
+  Comparison Operators: 
+   =  Equal 
+   >  Greater than 
+   > =  Greater than or equal 
+   <  Less than 
+   < =  Less than or equal 
+   < > !=             Not Equal 
+ 
+ Logical Operators 
+   AND  Logical AND [&&] 
+   OR  Logical OR [ || ] 
+   NOT  Logical NOT [ ! ] 
+ 
+Syntax: 
+ SELECT  Field  FROM table_name  WHERE   Expression; 
+ 
+Ex: 
+       SELECT   Name, Price FROM tblproducts  WHERE  Price>10000; 
+ 
+Ex: 
+       select Name, Price, Qty AS 'Quantity', (Qty * Price) AS Total from tblproducts Where 
+Name='Mobile'; 
+ 
+Task: Write query for accessing product name and price where price is between 10000 
+          to 30000. 
+Ans:  
+ select Name, Price from tblproducts where  Price>=10000  AND  Price<=30000 
+ 
+Task: Write query to access all electronic products with rating above 4. 
+ 
+   ProductId,  
+   Name, 
+   Price, 
+   Rating, 
+   Category 
+ 
+Ans: Select * from tblproducts where Category='Electronics'  AND  Rating>=4; 
+Task: Write query to access electronics and fashion products. 
+Ans: Select * from tblproducts where Category='Electronics' OR Category='Fashion'; 
+ 
+Query: Find all records where rating is between 3 to 5. 
+Ans :    select * from tblproducts where Rating >=3 AND Rating<=5 
+ - You can use "BETWEEN" operator to find value with in specified range. 
+ 
+Syntax: 
+   SELECT  *  FROM  table_name  WHERE  field_name  BETWEEN  lower_bound  AND 
+upper_bound. 
+Ex: 
+SELECT * FROM tblproducts  WHERE  Price  BETWEEN 1000 AND 10000; 
+Query: Find all products whose category is  Footwear or Fashion and Rating is between      
+to 5. 
+Ans: 
+SELECT * FROM tblproducts where (Category='Footwear' OR Category='Fashion') AND 
+(Rating>=4 AND Rating<=5); 
+SELECT * FROM tblproducts  where (Category='Footwear' OR Category='Fashion') AND 
+(Rating BETWEEN 4 AND 5); - You can use IN operator to find a set of values. 
+Syntax: 
+SELECT * FROM  table_name  WHERE  field_name  IN (value1, value2,..); 
+Ex: 
+SELECT * FROM tblproducts  WHERE  Rating IN (3,5); 
+SELECT * FROM tblproducts  WHERE  Category IN ('Fashion', 'Footwear'); - You can use "LIKE" operator to find records by matching with meta characters. 
+a) %  
+b) _  
+Syntax: 
+Zero or more occurrences of char(s) 
+One occurrences of char(s) 
+SELECT * FROM table_name WHERE  field_name  LIKE   'Chars%'; 
+SELECT * FROM table_name WHERE  field_name  LIKE   '_chars'; 
+SELECT * FROM table_name WHERE  field_name  LIKE   '%Chars%'; 
+4 
+Ex: 
+SELECT * FROM tblProducts WHERE  Name  LIKE   '%Casuals'; - You can "LIMIT" the number of records displayed in Query. - Every query returns all matching records you can display top or any specific range of 
+records by using LIMIT operator.  
+Syntax: 
+SELECT * FROM table_name  LIMIT  Count_Number; 
+SELECT * FROM table_name  LIMIT  start_number, total_count_from_start; 
+Ex: 
+SELECT  * FROM tblproducts LIMIT 3; 
+SELECT  * FROM tblproducts LIMIT 3,5;  // after 3 up to 5 count => 4,5,6,7,8 - You can sort the records by using "ORDER BY". - The sorting order can be "ASC & DESC"  [Ascending & Decending]  - IF order is not defined then the default is "ASC". 
+Syntax: 
+SELECT * from table_name  ORDER BY  field_name;  
+SELECT * from table_name  ORDER BY  field_name  DESC; 
+Ex: 
+SELECT * FROM tblproducts  ORDER BY  Price DESC; 
+// default ASC 
+Query: Find all records where category is electronics and display top 2 rating 
+products in electronics. 
+Ans:    
+Select * from tblproducts  Where  Category='Electronics'  ORDER By Rating DESC  LIMIT 2; 
+Query: Calculate the total amount based on Qty and Price for all products 
+and display the top 3 highest total products. 
+ProductId, Name, Price, Qty, Rating, Category 
+Ans:  
+SELECT *, (Qty*Price) as Total FROM tblproducts order by Total desc limit 3; 
+SELECT Name, Price, Qty, (Qty*Price) as Total FROM tblproducts order by Total desc limit 3; - You can group a set of records by using GROUP BY operator.  - Group requires a common value for multiple records. - Group By is used to group similar type of content after evaluating specific expression or 
+function. 
+Syntax: 
+select expression, fields from tableName  where expression group by field_name; 
+Ex: 
+SELECT count(*) FROM shopping.tblproducts where Rating > 3;     // returns 3 count 
+SELECT count(*) FROM shopping.tblproducts where Rating > 3 group by Category; 
+// return 2, 1 
+SELECT Category, count(*) FROM shopping.tblproducts where Rating > 3 group by Category; 
+// Electronics   2 
+Footwear     1 - You can select records using NULL or NOT NULL 
+Syntax: 
+Select * from table_name where  field_name IS NULL; 
+Ex: 
+Select * from tblproducts where  Rating IS NULL; 
+Select * from tblproducts where  Rating IS NOT NULL; - You can avoid selecting duplicate values by using DISTINCT. - MYSQL identifies the records as duplicates only where all values are similar. 
+Syntax: 
+Select DISTINCT from tableName; - You can select records and return the result by using various formats and value 
+evaluations. It requires various types of MySQL functions.  - MySQL provides built-in functions to handle string, number, date etc. 
+MySQL String Functions: 
+1. ASCII() 
+String. 
+Syntax: 
+: It returns the ASCII code of specified character. 
+If it is used for a field, then it returns the ACSII code of first character in 
+SELECT  ASCII('A');  
+SELECT  ASCII(a);   
+Ex: 
+// 65 
+// 97 
+SELECT Name, ascii(Name) as ProductName_FirstChar_Code from tblproducts; 
+2. CHAR_LENGTH() : It returns the total count of Characters in a string. 
+Syntax: 
+Ex: 
+SELECT  CHAR_LENGTH('Welcome'); // 7 
+SELECT Name, char_length(Name) as Total_Count_Of_Chars from tblproducts; 
+3. SUBSTRING() :  It returns specified numbers of chars from given index. 
+Syntax: 
+SELECT  substring('string', startIndex);    
+SELECT  substring('string', startIndex, countOfChars); 
+SELECT  substring('Welcome to MySQL', 9,2);  
+SELECT  substring('Welcome to MySQL', 9);   
+// reads up to end 
+// to 
+// to MySQL 
+4. SUBSTR(): It returns specified number of chars from given index. 
+It is alias function for substring.  
+Note: The start position is 1. It is not index number.  
+Ex: 
+SELECT Name, substring(Name, 1,4) as ProductName_Sliced from tblproducts; 
+5. TRIM(): It remove leading spaces from a string. 
+Syntax: 
+SELECT  TRIM('Welcome    ');  
+// 'Welcome' 
+6. CONCAT(): It concat multiple strings into a single string. 
+Syntax: 
+Ex: 
+SELECT  CONCAT('First', 'Last');  
+FirstLast 
+Select FirstName, LastName, concat(FirstName, LastName) as FullName from 
+tblEmployee 
+7. UPPER(): It returns a string in Uppercase letters. 
+8. LOWER(): It returns a string in Lowercase letters. 
+Ex: 
+select Name, upper(Name) as ProductName from tblproducts; 
+select Name, lower(Name) as ProductName from tblproducts; 
+9. FORMAT(): It can apply a format for numeric values. It converts into a string and applies 
+format of value. 
+Syntax: 
+SELECT  FORMAT(Number, Decimal Places) 
+Ex:  
+SELECT Name, Price, format(Price, 2) from tblproducts ; 
+MySQL Number Functions: 
+1. COUNT     
+2. MAX()        
+3. MIN()        
+4. AVG()        
+5. SUM()        
+: It returns the maximum of given set of values. [largest] 
+: It returns the minimum of given set of values [smallest] 
+: It returns average of given set of values. 
+: It finds the returns the sum of given set of values. 
+1. COUNT(): It returns the count of records that matches the given condition. It uses "*" to 
+return all records count. 
+Ex: 
+Select count(*) from tblproducts where Rating > 4; 
+Select count(*) from tblproducts where Category='Electronics'; 
+Select count(*) from tblproducts where (Category='Electronics') AND Rating > 4; 
+ 
+Syntax: 
+    SELECT  COUNT(field_name)  from table_name;    // ignores null values 
+                                                 // use non-nullable field 
+Ex: 
+    Select count(ProductId) from tblproducts; 
+    Select MIN(Price) from tblproducts; 
+    Select MAX(Rating) from tblproducts; 
+    Select AVG(Price) from tblproducts; 
+    Select SUM(Price) from tblproducts; 
+ 
+Queries: 
+1. Find total count of products whose rating is above 4? 
+2. Find total count of products where category is electronics? 
+3. Find Average price of footwear products? 
+4. Find Highest rating in electronics products? 
+5. Find Total amount of Footwear products with rating above 4? 
+6. Find Least rating in footwear and electronic products? ------------------------------------------------------------------------------------------------ 
+ 
+6. ROUND()        : Rounds a number to the nearest value. 
+ 
+7. FLOOR()        : Rounds a number to the lower bound value. 
+ 
+8. CEIL()            : Rounds a number to the upper bound value. 
+ 
+9. POW()            : A number raised to its power. 
+ 
+                  SELECT  POW(2,3);        // 8 
+                  SELECT  FLOOR(4.2);        // 4 
+ 
+ 
+MySQL Date Functions: 
+ 
+1. CURRENT_DATE()     : returns current date value  "2025-02-13" 
+ 
+2. CURRENT_TIME()      : returns current time value  "17:54:23" 
+ 
+3. NOW()                    : returns both date and time 
+ 
+4. DATE()                : extracts date from a string [date-time] 
+ 
+5. TIME()                    : extracts time from a string [date-time] 
+ 
+                          SELECT  DATE('2025-02-10 16:32:56'); 
+                          SELECT  DATE('My Date of Birth 1995-03-10'); //null 
+ 
+6. DAYNAME()            : It returns weekday name. 
+ 
+7. WEEKDAY()            : It returns weekday number. [0=Monday] 
+ 
+8. MONTH()                : It returns month number. 
+ 
+9. MONTHNAME()            : It returns month name. 
+ 
+                         SELECT MONTH('2025-02-13');     // 2 
+                         SELECT MONTHNAME('2025-02-13');  // February 
+ 
+10. WEEK()                : It returns week number. 
+ 
+ 
+11. HOUR()                : It returns hour number from time  [ 0 to 23] 
+ 
+12. MINUTE()                : It returns minute number from time [0 to 59] 
+ 
+13. SECOND()            : It returns second number from time. [0 to 59] 
+ 
+14. MICROSECOND()        : It returns microsecond number. [0 to 99] 
+ 
+15. YEAR()                : It returns year number from date. 
+ 
+ 
+MySQL Conversion Functions 
+1. CAST()  : It can convert a value as specified data type. 
+ 
+                 select cast('2025-02-13' AS date); 
+ 
+2. COVERT() : It converts a value into specific type. 
+ 
+                  select convert('2025-02-13', date); 
+ 
+MySQL Conditional Functions: [Decision Making] 
+ 
+1. IF()  : It uses a Boolean expression and returns result or true & false. 
+                  It provides statements to render on true and on false. 
+ 
+Syntax:     
+     SELECT  IF(condition, result_on_true, result_on_false); 
+ 
+Ex: 
+    select Name, Rating, if(Rating>3, 'Good', 'Average') as Ranking from tblproducts; 
+ 
+2. CASE  : It is used to configure multiple conditions and results to compute 
+                  on various conditions. 
+ 
+Syntax: 
+     Select  your_query   
+        CASE 
+            WHEN   condition  THEN  statement1 
+            WHEN   condition  THEN  statement2 
+            ... 
+            ELSE   statement_when_condition_mismatch 
+        END 
+ 
+Ex: 
+select Name, Rating, 
+  CASE 
+    WHEN Rating >= 4 THEN 'GOOD' 
+    WHEN Rating IS NULL THEN 'N/A' 
+    WHEN Rating < 4 THEN 'AVERAGE' 
+    ELSE 'POOR' 
+  END as Ranking 
+ from tblproducts 
+ 
+MySQL Server & DB Functions: 
+1. USER()        : It returns current user name. 
+ 
+2. VERSION()        : It returns current server version. 
+ 
+3. DATABASE()    : It returns current active database. [in use] 
+ 
+Syntax: 
+     SELECT USER(); 
+     SELECT VERSION(); 
+ 
+ Updating Table Data - SQL provides "UPDATE" command to modify table data. - To update any value you have to find the value using "WHERE" command. - You can use all comparison and logical operators to find the data. - Updating new data into existing field is done by "SET" command. 
+ 
+            UPDATE        =  ACTION 
+            WHERE        =  QUERY to FIND 
+            SET            =  ASSIGN NEW VALUE 
+ - MySQL "Safe Mode" is default set to ON. - It is a secured mode that allows to update the data only by using "PRIMARY KEY" field. 
+ 
+Syntax: 
+   UPDATE  tableName  SET  field_name=newValue WHERE  primary_key_field=value; 
+ - You can update multiple fields using "," delimiter. 
+ 
+Ex: 
+Update tblproducts SET Name='Samsung TV', Qty=3 WHERE ProductId=1; 
+ - You can set safe update data mode to false in order enable update without a Key field. 
+ 
+Syntax:     
+        SET   SQL_SAFE_UPDATES = 0 
+ 
+        1 = true,  0 = false 
+ 
+Ex: 
+update tblproducts set Qty=3 where Category='Electronics';    // valid only when safe 
+                                                       mode is off. 
+ 
+Query: Update rating to 4 for electronic products whose price is above 40000? 
+A:  Update tblproducts SET Rating=4 WHERE (Category='Electronics' AND Price>40000) 
+ 
+ 
+  Updating Table Structure - SQL provides "ALTER" command to modify and update structure of table and fields. - Table structure includes adding fields, changing field name, removing field, changing data   
+type of field etc. - It also includes adding and removing constraints. 
+ 
+1. Adding a new Field to table. - ALTER requires "ADD" command to add a new field. - You have to use helpers commands that specify where to add the field. - You can add "AFTER" specific field or as "FIRST" field. - Alter command can alter a table, view, constraint or any database object. - To modify the a table it require "TABLE" command. 
+ 
+Syntax: 
+   ALTER  TABLE table_name 
+    ADD  field_name data_type  constraints 
+   AFTER | FIRST  field_name; 
+ - If you don't define the helper command then it adds new field as last field. 
+ 
+Ex: 
+alter table tblvendors 
+ADD VendorRating INT AFTER VendorName; 
+ 
+Note: You can view the table structure by using the "DESCRIBE" command. 
+ 
+Syntax: 
+        DESCRIBE   table_name; 
+ 
+2. Modifying the field structure. - You can modify existing field structure. - It requires ALTER to use "MODIFY" command. - You can modify the data type or constraints. - You can't directly modify the foreign key constraints. - You have to define the data type of field every time while modifying the structure. 
+ 
+Syntax: 
+     ALTER  TABLE  table_name 
+ 
+            MODIFY   field_name  data_type  constraint; 
+ 
+Ex: 
+Alter table tblproducts 
+  MODIFY Qty int NOT NULL 
+ - You can add or modify multiple fields with different constraints. 
+ 
+Ex: 
+ALTER TABLE tblproducts 
+ 
+  MODIFY Qty int NOT NULL DEFAULT 1, 
+  MODIFY Rating int NOT NULL 
+ 
+3. Modify the Field Name - Alter command provides "CHANGE" helper that allows to change the filed name. - You have to define the data type for field while changing the name. 
+   [It is not mandatory in latest versions] - You can set the position of field while defining new name "FIRST | AFTER". 
+ 
+Syntax: 
+ 
+ ALTER TABLE  table_name CHANGE COLUMN 
+  old_field_name  new_name  FIRST | AFTER field_name;   // valid with beta versions 
+ 
+Syntax: 
+  ALTER TABLE  table_name CHANGE COLUMN 
+    old_field_name   new_name data_type  FIRST|AFTER  field_name; 
+ 
+Ex: 
+alter table tblproducts change column  Qty  Quantity int after Price 
+ 
+4. Remove field from table - ALTER provides  "DROP" command to remove the field from table. - It completely depends on Cascade and Restrict references defined while 
+  creating table. - Usually cascade and restrict are defined while configuring foreign key relation between 
+tables. - DROP COLUMN is used to remove any specific column from table. 
+ 
+Syntax: 
+    ALTER TABLE table_name DROP COLUMN  field_name; 
+ - You can drop multiple columns 
+ 
+Syntax: 
+    ALTER TABLE table_name 
+        DROP COLUMN  field_name, 
+        DROP COLUMN  field_name 
+ - You can't drop a column if it is defined with "restrict" reference. 
+Managing Primary Keys: - Table can have only one primary key field. - You can remove a primary and set another field a primary key. 
+ 
+Syntax: 
+    alter table tblvendors  Drop Primary Key; 
+ 
+    alter table tblvendors Add primary key (VendorName); 
+ - If you want multiple unique key fields then add UNIQUE constraint. 
+ 
+Managing Foreign Key: - Table can have multiple foreign keys. - You can add a new foreign key field 
+ 
+Syntax: 
+    alter table tableName  Add  constraint  constraint_name 
+        FOREIGN KEY (fieldName) 
+        REFERENCES referenceTableName(fieldName) 
+        ON UPDATE CASCADE ON DELETE CASCADE 
+ - You can remove foreign key by using drop command and constraint name. 
+ 
+Syntax: 
+    alter table tableName  DROP constraintName; 
+ 
+    alter table  tblproducts  DROP  fk_categories; 
+ 
+ 
+                         DELETE Command - SQL DELETE command allows to delete table data. - You can delete using various condition with "WHERE". - You can also limit deleting number of records using "LIMIT". 
+ 
+Syntax: 
+    DELETE  FROM  tableName  Where  condition  LIMIT count; 
+    DELETE  FROM  tableName  Where  condition; 
+ 
+Ex: 
+    Delete  from  tblproducts where  ProductId=4; 
+    Delete  from tblproducts where Category='Electronics' LIMIT 3; 
+ 
+Query: How to delete the top 3 rating products from table? 
+ 
+Ans:         Delete from tblproducts order by Rating desc limit 3 
+ 
+                           Stored Procedures(function) - Computer programming provides "Refactor" mechanism. - Refactor allows to extract a set of statements and enclose as a single unit. So that you can 
+reuse the statements without rewriting. - Programming languages allow refactor by using 
+    a) Function 
+    b) Method 
+    c) Procedure - A function is intended to return a value. It can't be void. - A method is always void it is not intended to return value. - A procedure can return value or can be void type. It can change according the situation 
+and state. - SQL allows to create procedures, so that they can return the value or can be void. 
+ 
+Creating a Stored Procedure: - A procedure may contain multiple set of statements. - Various statements in a procedure need to be separated. - Hence every procedure requires a delimiter. [Separator] - The "DELIMITER" keyword is used to configure a separator for stored procedure. - DELIMETER is mandatory for stored procedures in MySQL. - The default delimiter is "$$". You can customize the delimiter. 
+ 
+Syntax: 
+    DELIMITER  $$ 
+ 
+        // your procedure 
+ 
+    DELIMITER; 
+ - Procedure is created by using "CREATE PROCEDURE" command. 
+ 
+Syntax: 
+      Create Procedure  procedureName() 
+      - Statements in procedure are defined using "BEGIN" & "END" block. 
+ 
+Syntax: 
+      create procedure  procedureName() 
+      Begin 
+        statements; 
+      End $$ 
+ 
+Syntax: 
+    DELIMITER $$ 
+    
+       Create Procedure  procedure_name () 
+       Begin 
+          statements; 
+       End$$ 
+    
+    DELIMITER; 
+ - You can execute the statements by calling stored procedure. 
+ 
+Syntax: 
+      call  procedure_name(); 
+ 
+Ex: 
+DELIMITER $$ 
+   create procedure GetFootwear() 
+   Begin 
+      Select * from tblproducts where Category='Footwear'; 
+   End$$ 
+DELIMITER ; 
+ 
+Ex: 
+    call GetFootwear();   // call procedure 
+ 
+Note: Stored procedures are required to reduce Injection Attacks. 
+ 
+Syntax: 
+    DELIMITER $$ 
+ 
+        CREATE  PROCEDURE   sp_name() 
+        BEGIN 
+            // statements; 
+        END$$ 
+ 
+    DELIMITER; 
+ 
+                            Parameters - A procedure can be parameter less or parameterized.   - If procedure is parameter less, then it performs the same functionality every time. - Parameters allow to modify the procedure. - A procedure can handle different functionalities using parameters. - It can change according to state and situation. 
+ 
+Syntax: 
+      Create Procedure  sp_Name(params) 
+       Begin 
+ 
+       End 
+ 
+       call  sp_Name(value); 
+ - Every procedure comprises 
+    a) Declaration 
+    b) Definition 
+    c) Signature 
+ 
+    CREATE PROCEDURE  spName(params)   => Declaration 
+ 
+    BEGIN  ...statements... END                 => Definition 
+ 
+    spName(value)                         => Signature 
+ 
+- Declaration defines the name and its configuration. - Definition defines the functionality. - Signature is used to access the procedure or call the procedure. - The parameters defined while declaring a procedure are known as "Formal Parameters". - The parameters defined while calling procedure are known as "Actual Parameters". 
+ 
+Syntax: 
+        Create  Procedure sp_Name(formalParameter) 
+        Begin 
+        
+        End; 
+ 
+        sp_Name(actualParameter); 
+ 
+        formalParameter = actualParameter 
+ - Parameters that are configured in procedure are classified into 3 types 
+    
+    a) IN 
+    b) OUT 
+    c) INOUT 
+ - "IN" parameter takes a value and uses the same value across all statements that are 
+executed by a procedure. - "OUT" parameter can change its value according to the statements. It is not constant across 
+multiple statements in procedure. - "INOUT" can switch between IN & OUT according to situation. - Every parameter requires 
+    a) Parameter Name 
+    b) Data Type 
+ 
+Syntax: 
+    Create Procedure  sp_Name(IN | OUT  paramName  datatype) 
+    Begin 
+ 
+    End 
+ - Every parameter is a required parameter. It is mandatory to define a value for parameter. - The compiling system identifies the parameters as arguments. - The number of arguments defined in declaration, the same number of parameters are 
+required. 
+ 
+IN Parameter: - It takes a value and uses as constant across various statements in procedure. - The value defined can't be assigned with a new value inside the procedure. 
+ 
+Ex: 
+DELIMITER $$ 
+   create procedure GetByCategory(IN categoryName varchar(20)) 
+   Begin 
+      Select * from tblproducts where Category=categoryName; 
+   End$$ 
+DELIMITER ; 
+ 
+call  GetByCategory('Electronics'); 
+call  GetByCategory('Fashion'); 
+ - IN parameter allows to input value. - You can configure multiple IN parameters for a procedure. 
+ 
+Syntax: 
+    Create Procedure sp_Name(IN param1 datatype, IN param2 datatype) 
+    Begin 
+ 
+    End 
+ 
+Ex: 
+DELIMITER $$ 
+   create procedure GetCategoryRating(IN categoryName varchar(20), IN rating int) 
+   Begin 
+ 
+      Select * from tblproducts where (tblproducts.Category=categoryName) AND 
+(tblproducts.Rating> rating); 
+ 
+   End$$ 
+DELIMITER ; 
+ 
+Query: Create a procedure for Sorting and can change the sorting order while calling 
+        procedure.     
+                  SortProducts(fieldname, asc|desc) 
+                  SortProducts(Rating, DESC); 
+                  SortProducts(Price,ASC) 
+ 
+OUT Parameter: - It will not allow to input any value from procedure call. - It can contain a value evaluated as a result of any expression inside procedure. - It allows to access and use the value. - Value in out parameter depends on the query defined in stored procedure. - Expression an return result and store into out parameter by using "INTO" command. 
+ 
+Syntax: 
+    Create Procedure sp_Name(out  paramName datatype) 
+    Begin 
+        ....statement.. expression_result  INTO paramName; 
+    End 
+ - Out parameters are configured in procedure call by using "@paramName". - You can access the out parameter and render its value by using "SELECT" command. 
+ 
+    sp_Name(@paramName); 
+    select @paramName; 
+ 
+Ex: 
+DELIMITER $$ 
+   create procedure GetAvgPrice(out avgPrice int) 
+   Begin 
+      Select avg(Price) into avgPrice from tblproducts; 
+   End$$ 
+DELIMITER ; 
+ 
+call GetAvgPrice(@avgPrice); 
+select @avgPrice; Stored Procedure 
+Parameters 
+ 
+                             Variables - Variables are storage locations in memory where you can store a value and use as a part of 
+any expression. - Variables are declared by using "DECLARE" keyword. - Variable requires a name and data type to define. 
+ 
+Syntax: 
+        DECLARE   variableName  datatype; 
+    
+Ex: 
+        declare  productName  varchar(30); 
+        declare  price decimal(8,2); 
+        - Variable configuration comprises of 3 phases 
+        a) Declaring 
+        b) Assignment 
+        c) Initialization - Declaring is the process of configuring variable name and data type. 
+ 
+        Declare  price  decimal(8,2); 
+ - You can assign value into variable after declaring, by using "SET" keyword. 
+ 
+        SET  price = 4500.44; 
+ - Initialization is the process of defining a value into variable while declaring variable. - You can initialize value by using "DEFAULT" keyword. 
+ 
+        Declare price  decimal(8,2)  default  0.00; 
+ - Variable scope restricts the accessibility of variable. - If any variable is declared outside procedure then it is global. - If variable is declared inside procedure then it is block scope. - The default query window where you run queries will not allow to define a global variable. - All variables must be in the scope of Begin & End. - You can't access variable outside the procedure, hence you need an out parameter to store 
+the result. 
+ 
+Ex: 
+ 
+DELIMITER $$ 
+ 
+  create procedure spGetRating(out result int)   
+  Begin 
+     declare rate int default 0; 
+  
+     select avg(Rating) into rate from tblproducts; 
+      
+     set result = rate; 
+      
+  End$$ 
+ 
+DELIMITER ; 
+ - Run the procedure 
+ 
+call spGetRating(@result); 
+select @result; 
+ - You can use statements like "IF" & "CASE" to handle decision making in a stored procedure. 
+ 
+Syntax: 
+        if   condition  then 
+            statements; 
+            elseif condition  then 
+            statements; 
+        else 
+            statements; 
+        end if; 
+ - IF statements checks all conditions until satisfied. It is slow when there are many 
+  conditions to verify. - Case statements executes exactly the block that matches given condition. It is faster in 
+execution when there are many conditions. 
+ 
+Ex: 
+ 
+DELIMITER $$ 
+  
+  create procedure spGetReview(in id int, out review varchar(40)) 
+  Begin 
+      
+     declare rate int default 0; 
+     declare msg varchar(40); 
+ 
+     select Rating into rate from tblproducts where ProductId=id; 
+      
+     if rate > 4 then 
+                set msg = 'Very Good  - Product have good quality'; 
+         elseif rate >= 3 AND rate <= 4 then 
+        set msg = 'Average - Product have avg quality '; 
+     else 
+                set msg = 'Poor - Product have poor quality'; 
+     end if; 
+      
+     set review = msg; 
+      
+  End$$ 
+ 
+DELIMITER ; 
+ - Call procedure 
+ 
+call spGetReview(1, @review); 
+select @review 
+ 
+Task-1: Create similar procedure to display product name and its review. 
+Task-2: Select Product Name, Vendor Name from tblproducts 
+ 
+            Id    Name   VendorName   VendoryCity     
+            ------------------------------------------------------- 
+            1     TV          Bajaj                 Hyd 
+            2     TV          Bajaj                Delhi 
+            3    TV         Reliance           Chennai 
+ 
+          Create a  variable that contains your City 
+            declare  yourCity  varchar(20)  default  'Delhi' 
+          Get the vendor city and compare with your city 
+            
+            if yourCity==vendorCity 
+                msg = "Same Day Delivery" 
+            else 
+                msg  = "Next day delivery" 
+ 
+       call  spDelivery(1, 'Delhi', @msg) 
+ - SQL Joins & View 
+SQL Joins - Join allows to compare data in multiple tables. - You can query and Join data from multiple tables so that you can view difference between 
+data in tables. - Join are categories into following types 
+ 
+    a) Inner Join 
+    b) Cross Join 
+    c) Left Join 
+    d) Right Join 
+ - Join comprises of left and right tables with fields from both tables queried  using a 
+condition. 
+- Condition is defined by using "ON" keyword. 
+ 
+Syntax: 
+    Select  fields_from_both_tables  FROM table_left  JOIN table_right  ON Condition; 
+ - You can use "AS" for aliasing the fields while querying data from different tables. 
+ 
+Ex: 
+1. Create tables 
+            allvendors 
+                VendorId (PK) 
+                VendorName 
+            hydvendors 
+                VendorId(PK) 
+                VendorName 
+ 
+2. AllVendors table data                Hydvendors table data 
+        1    Reliance                1   Bajaj 
+        2    Bajaj                2   Sony 
+        3    Sony                3   Reliance 
+        4    Samsung 
+        5    PI 
+ 
+3. Create Inner Join 
+ - It compares multiple tables and returns only the matching records. 
+ - Condition is defined by using "ON". 
+ 
+Ex: 
+SELECT  allvendors.VendorId, allvendors.VendorName AS AllVendors,   
+            hydvendors.VendorId, hydvendors.VendorName AS HydVendor 
+        
+        FROM allvendors INNER JOIN hydvendors ON                           
+        
+        allvendors.VendorName=hydvendors.VendorName; 
+ 
+Inner Join        : It returns all matching records from both tables. 
+Left Join            : It returns all records of left table and null in the right table when 
+                  matching records not found. 
+Right Join        : It returns all records of right table and null in the left table when 
+                  matching records not found. 
+Cross Join        : It returns null in both left and right tables when records mismatch. 
+ 
+ 
+                          MySQL Views - A view represents virtual data table. - You can query data from tables and save the result as a view so that you can individually 
+handle the result when ever required. - How ever the data in view is connected with source tables. - You can change the view but can't manipulate the data in view. - You can change only the query of view not the data. 
+ 
+Syntax: 
+    create view viewName as query; 
+ 
+Ex: 
+    create view  top_rated_products  AS   
+    select * from tblproducts where  Rating >= 4; 
+ 
+Ex: 
+create view common_vendors AS 
+select  allvendors.VendorName as AllVendors, hydvendors.VendorName as HydVendor 
+from allvendors inner join hydvendors ON allvendors.VendorName=hydvendors.VendorName; 
+ - You can access the view just like a table; 
+ 
+    select * from  view_name; 
+    select * from  common_vendors; 
+ 
+MySQL Triggers - Trigger is a stored program similar to a procedure. - It comprises of commands that execute automatically when table is updated. - You can create a log of actions performed on tables. - So that you can track the actions on data. - Triggers are required to keep data integrity and log. 
+ 
+Syntax: 
+   CREATE TRIGGER  trigger_name 
+   { BEFORE | AFTER }   { INSERT | UPDATE | DELETE } 
+   ON table_name 
+   FOR Each ROW 
+   BEGIN 
+    .... statements.... 
+   END 
+ - BEFORE & AFTER defines when trigger need to execute. - INSERT, UPDATE & DELETE are the actions that execute trigger. - FOR EACH ROW specifies that trigger executes and updates changes after each row. - BEGIN, END is the scope that contains statements to execute. 
+ 
+Ex: 
+1. Create a new database table by name  tblstudents 
+ 
+        Student_Id  (PK) Int  Not Null 
+        Grade  varchar(10) 
+ 
+2. Create a another database table to track and the data changes in students table 
+    
+        students_log   [table name] 
+ 
+        Id  (PK)  INT   NOT NULL  AUTO_INCREMENT, 
+        Action  Varchar(20), 
+        Change_Time   TIMESTAMP  DEFAULT  CURRENT_TIMESTAMP 
+        Student_Id  INT, 
+        FOREIGN KEY  (Student_Id)  References tblStudents(Student_Id) 
+ 
+Note: Constraint name is required only when the changes expected in 
+      foreign key 
+ 
+3. Create a trigger to track the changes in student table 
+ 
+ 
+        DELIMITER // 
+        Create trigger  track_students 
+        After  Update ON  tblstudents 
+        FOR EACH ROW 
+        BEGIN 
+ 
+             Insert into students_log (Student_Id, Action)  values 
+             (NEW.id, 'Update'); 
+ 
+        END // 
+        DELIMITER; 
+ 
+Ex: 
+table-1: 
+tblStudents 
+    Student_Id  INT  PK   AUTO_INCREMENT 
+    Grade  varchar(10) 
+ 
+table-2: 
+students_log 
+    LogId            INT  PK   AUTO_INCREMENT 
+    Action            Varchar(20), 
+    Change_Time        TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
+    Student_Id         INT 
+    
+    Foreign Key (Student_Id)  References  tblStudents(Student_Id) 
+ 
+Trigger: 
+ 
+DELIMITER // 
+create trigger track_students 
+after update ON tblstudents 
+FOR EACH ROW 
+BEGIN 
+   insert into students_log (Student_Id, Action) values (NEW.Student_Id, 'Update'); 
+END// 
+DELIMITER ; 
+ 
+          
+                                                  THE END MYSQL 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+MONGODB 
+MongoDB - It is open source and cross platform NON-SQL database. - It is document oriented and semi-structured database. - Document oriented allows to handle schema less content. - It supports ORM [Object Relational Mapping]. - ORM introduces features like  lazy loading, change tracking, identity resolution etc. - It supports AD-HOC querying. [Dynamic Queries] - It supports Indexing. [It doesn't require a primary key field] - It supports data replications, which enable to handle load. 
+ 
+Issues with MongoDB: - It is structured less. - It is non-relational - It is not great for data predictions and analytics. 
+ 
+Setup MongoDB in your PC: 
+ 
+1. Download MongoDB Community Server 
+ 
+        https://www.mongodb.com/try/download/community 
+ 
+2. Run the Installer on your PC and select  "MongoDB Compass"  while installing. 
+ 
+ 
+3. Start MongoDB server from  "Services.msc" 
+ 
+4. MongoDB server runs on following IP location 
+ 
+    mongodb://127.0.0.1:27017 
+            (or) 
+    mongodb://localhost:27017 
+ 
+5. Open MongoDB Compass on your PC. 
+    [ It is a GUI tool for managing MongoDB] 
+ 
+6. Create New Connection with following address 
+ 
+            mongodb://127.0.0.1:27017 
+ 
+7. Connect & Save 
+ 
+                  MongoDB Terminology 
+ 
+MySQL                        MongoDB ----------------------------------------------------------------------------------- 
+Database     (Schema)            Database 
+ 
+Tables                        Collections 
+ 
+Record / Row                    Document 
+ 
+Field                        Field [ Key ] 
+ 
+Joins                        Embedded Documents 
+ 
+ 
+Note: MongoDB Compass provides 
+        a) GUI         : For handling database and its objects graphically.     
+        b) Mongosh    : Mongo Shell, which is a CLI [command line tool]. 
+ 
+ 
+                          Mongo Shell Commands 
+ 
+1. To view existing databases 
+ 
+        > show dbs 
+ 
+     - The default databases on MongoDB server 
+        a) admin 
+        b) config 
+        c) local 
+ 
+2. To clear screen 
+ 
+        > cls 
+ 
+3. To recall the recently used commands  use  up & down arrows. 
+MongoDB Shell 
+    > show dbs 
+    > cls 
+ 
+4. To use an existing database or to create a new database Mongo Shell uses "use" 
+command. 
+ 
+        > use  databaseName 
+ 
+    - If database exists it starts using it, else it can create a new database. 
+    - MongoDB creates a temporary database by specified name. 
+    - You can't view the new database in the list of databases, until you store some 
+      data into database. 
+ 
+        > db             
+    
+    - "db" command refers to current active database. 
+ 
+        > use  sampledb        => new database name 
+        > db                    => shows active database 
+ 
+5. Creating a new collection 
+    - MongoDB database stores data in collections. 
+    - Collection represents a table of MySQL. 
+    - You can create a new collection by using the method 
+            "createCollection()" 
+ 
+    Syntax: 
+           > db.createCollection("name", { options }) 
+           > db.createCollection("name") 
+ 
+ 
+    - Table options is a key & value collection.   
+            { Key : Value } 
+ 
+    - MongoDB collection options are 
+ 
+            Option            Description 
+            ---------------------------------------------------------------------------------------------- 
+            autoIndexId        It is a Boolean option takes "true / false". 
+                            It generates an auto generated Id for every document 
+                            in collection. 
+                            It is a unique document ID for every record. 
+                            It is default set to "true". 
+ 
+            size                It refers to the memory allocated for collection. 
+                            It uses "bytes" as value. 
+                            It is integer type. 
+ 
+                            8 bits        = 1 byte 
+                            1024 bytes    = 1 kb 
+                            1024 kb        = 1 mb 
+                            1024 mb        = 1 gb 
+                            1024 gb        = 1 tb 
+ 
+                            1024 x 1024 = 1048576  [1mb] 
+                            1048576 * 2 =  2097152  [2mb] 
+ 
+            max                It defines the maximum number of documents 
+                            allowed. 
+                            It is a number. 
+ 
+ 
+            capped            It is a Boolean option, takes "true or false". 
+                            If capped is set to true, you can't store more than the                                max 
+limit. 
+                            If capped is set to false then the new documents will 
+                            replace the old. 
+Syntax: 
+    
+> db.createCollection("name", { autoIndexId:true/false, size:0,  max:0, capped:true/false }) 
+ 
+Ex: 
+ 
+>db.createCollection("categories", {autoIndexId:true, size:2097152, max:5, capped:true }) 
+ 
+6. To view the list of collections in database 
+ 
+        > show collections 
+ 
+7. To remove any collection you can use "drop()" method. 
+    
+Syntax: 
+        > db.collectionName.drop() 
+        
+Ex: 
+        > db.categories.drop() 
+ 
+ 
+8. To remove any database you have to switch into the database and use the command 
+        dropDatabase() 
+ 
+Syntax: 
+        > use databaseName 
+        > db.dropDatabase()MongoDB Commands - Creating Database - Creating Collection - Collection Options 
+ 
+FAQ's: 
+1. How to identify capped collection? 
+A. By using "isCapped()". It is a Boolean method that returns true if collection is capped. 
+ 
+Syntax: 
+    db.collectionName.isCapped(); 
+ 
+2. How to change a normal collection to capped collection? 
+A. By using  "db.runCommand()" with "convertToCapped" attribute. 
+ 
+Syntax: 
+    db.runCommand({ 'collectionName', convertToCapped: true }) 
+ 
+3. Can we change the capped size and capped max length? 
+A. Yes by using  "collMod" attribute with capped size and capped length. 
+ 
+  Insert Data into Database Collection - MongoDB latest version recommends 
+    a) insertOne() 
+    b) insertMany() - Every document is JSON type. - JSON is JavaScript Object Notation. - The data type of fields are referred as "BSON" type. 
+   [Binary Serialization Object Notation] 
+ 
+FAQ: What is Serialization & De-Serialization? 
+Ans:  The process of converting an object in to binary in order to transport via network 
+         and store in a data source is known as "Serialization". 
+ 
+      The process of converting an object to binary in order to read and display 
+      is known as "Deserialization". 
+ 
+                Writing    => Serialization 
+                Reading    => Deserialization 
+ - Object is a key and value collection, where key is string type and value can be any 
+  BSON type. 
+ 
+                { 
+                  "key" : value 
+                } 
+ 
+Syntax: 
+       db.collectionName.insertOne( { key : value, key : value } ) 
+       db.collectionName.insertMany( [ {key: value }, {key : value} ]) 
+ - The value type can be any one of the following BSON 
+ - The commonly used types 
+1. Number Type 
+    - int, long, double, decimal 
+ 
+    { 
+       age : 22,  rate:4.5,  reviews: 560 
+    } 
+ 
+2. String Type 
+    - single quote, double quote, backtick 
+    - single quote is recommended 
+ 
+    {     
+      Name: 'John' 
+    } 
+ 
+3. Boolean Type 
+    - It uses only "true or false" as value 
+ 
+    { 
+      Stock: true | false 
+    } 
+ 
+4. Null & Undefined 
+    - If value is expected dynamically then set as null. 
+    - If value is not defined statically then set as undefined. 
+ 
+     { 
+        Name: null, 
+        Price: undefined 
+    } 
+ 
+5. Symbol 
+    - It is used to configure a unique hidden field 
+    - It is hidden over iterations but accessible individually. 
+ 
+    { 
+       Id : Symbol() 
+    } 
+ 
+ 
+6. Regular Expression 
+    - It uses a set of meta characters and quantifiers enclosed in "/ /". 
+ 
+    { 
+       Mobile : /\+91\d{10}/ 
+    } 
+ 
+7. Array Type 
+    - It is a sequential collection of values. 
+    - It can have a collection of various data types. 
+ 
+    { 
+      values : [10, "A", true] 
+    } 
+ 
+    - It is always recommended to use only array meta character. "[ ]" 
+ 
+ 
+8. Object Type 
+    - It is a key and value collection. 
+    - You can configure embedded objects. 
+ 
+    { 
+      rating : { rate: 4.5, count: 5600 } 
+    } 
+ 
+ 
+9. Date & Time 
+    - BSON date is defined by using "$date" operator. 
+    - It uses a date & time value as string. 
+        
+    { 
+       mfd : {   
+            $date: "yy-mm-dd hrs:min:sec.milliSec" 
+             } 
+    } 
+ 
+ 
+Ex: Inserting single document 
+ 
+    > db.categories.insertOne( { CategoryId: 1, CategoryName: "Electronics" } ) 
+ 
+Ex: Inserting multiple documents 
+ 
+    > db.categories.insertMany([{CategoryId:2, CategoryName:"Kids Fashion"}, {CategoryId:3, 
+CategoryName:"Mens Fashion"}]) 
+ 
+MongoDB Insert Documents - insertOne() - insertMany() - BSON 
+ 
+Querying Documents from Collection - Create a new collection by name "products". - Visit the API   
+        https://fakestoreapi.com/products - Copy data [JSON] - Open Notepad => Paste copied data => Save as  "data.json" - Go to MongoDB compass - Select collection "products" from your database. - Import from JSON => data.json 
+ 
+            { 
+              id: number, 
+              title: string, 
+              description: string, 
+              image: string, 
+              category: string 
+              price: number 
+              rating: {rate: number, count: number} 
+            } - MongoDB provides "find()" method to find documents. - It requires a query defined as object. "{ key:value }" 
+ 
+Syntax: 
+        db.collectionName.find({ query }) 
+        
+Ex: 
+        db.products.find({})            It returns all documents 
+ - To query any specific document(s) it requires various operators or entities 
+ 
+        $eq            Equal 
+        $ne            Not Equal 
+        $gt            Greater than 
+        $gte            Greater than or equal 
+        $lt            Less than 
+        $lte            Less than or equal 
+        $and        logical AND 
+        $or            logical OR 
+        $not            logical NOT 
+ 
+Syntax: 
+        db.collection.find({fieldname:value})      It returns exact match [1 or many] 
+ 
+        db.categories.find({CategoryId:2}) 
+ 
+        db.products.find({category: 'jewelery'}) 
+ - If you want to query using any expression then it is defined as object. - The field name uses an object for expression. 
+ 
+Syntax: 
+        db.collection.find({field: { expression } }) 
+ 
+Queries: 
+1. Return all documents whose price is above 400 
+ 
+    >db.products.find({price:{$gte:400}}) 
+ 
+2. If your query is from an object field then you have to configure complete hierarchy in 
+string format.   
+    Return all products whose rating is above 4.5 [rating.rate] 
+ 
+ 
+    > db.products.find({'rating.rate': {$gte:4.5 }}) 
+ 
+3. Return the products with rating 4.5 
+ 
+    > db.products.find({'rating.rate': 4.5}) 
+    > db.products.find({'rating.rate': {$eq:4.5}}) 
+ 
+ 
+4. Return the products that belong electronics and price is above 400. 
+    - It requires logical AND with multiple expressions. 
+    - Logical AND is defined using "$and" 
+    - Multiple expressions are defined as "[ ]" array 
+ 
+Syntax: 
+    > db.collection.find({$and:[ {exp1}, {exp2}, ... ]}) 
+ 
+    - It returns true only when all expressions evaluate to true. 
+    
+    > db.products.find({$and:[ {category:'electronics'}, {price:{$gte:400}} ]}) 
+ 
+5. Return all products whose rating is between 3.0 & 4.6 
+ 
+    > db.products.find({$and:[{'rating.rate':{$gte:3.0}},{'rating.rate':{$lte:4.6}}]}) 
+ 
+ 
+6. Return all products whose category is jewelery and rating is between 3.0 & 4.6 
+ 
+>db.products.find({$and:[{category:'jewelery'},{'rating.rate':{$gte:3.0}},{'rating.rate':{$lte:4.6}}]}) 
+ 
+ 
+7. Return all jewelery and electronic products. 
+ 
+> db.products.find({$or:[{category:'jewelery'},{category:'electronics'}]}) 
+ 
+ 
+8. Return all jewelery and electronic products with rating above 4.5 
+ 
+   (category==jewelery || category==electronics) && (rating.rate > =4.5) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+FAQ: How to find values from array type? 
+Ans : MongoDB provides "$all" operator to find values from array. 
+ 
+Syntax: 
+        {   
+            id: 1, 
+            category: "electronics", 
+            title: "TV", 
+            shippedTo: [ "Delhi", "Mumbai" ] 
+        }, 
+        { 
+           .... 
+           shippedTo: [ "Hyd", "Delhi" ] 
+        } 
+ 
+    > db.products.find({$all:{ shippedTo: ['Hyd', ..] }}) 
+ 
+FAQ: How to find value in using date type? 
+Ans:  Date type values are stored in ISO format. 
+    
+        { 
+           "mfd": { 
+                 "$date": "2025-01-22T00:00:00.000Z" 
+                   } 
+        } 
+ 
+     You can search and find the date by using "ISODate()" method. 
+ 
+       > db.collection.find({ mfd: ISODate("2025-01-22T00:00:00.000Z") }) 
+ 
+                        
+                       Updating Documents - MongoDB requires a find query to find the document and update. - Update can be 
+    a) modifying document data 
+    b) adding fields 
+    c) renaming fields 
+    d) removing fields etc.. - MongoDB update methods are 
+    a) updateOne() 
+    b) updateMany() - Update methods require operators 
+    a) $set 
+    b) $unset 
+    c) $rename 
+ 
+    $set            : It is used to change the value of any field. 
+    $unset        : It removes a field 
+    $rename        : It allows to change the field name. 
+ 
+Syntax: 
+    > db.collection.updateOne({find_query}, {update_query}) 
+    > db.collection.updateMany({find_quer}, {update_query}) 
+ 
+Ex: Change the price of product with id=2 
+    
+ > db.products.updateOne({id:2}, {$set: {price:50.53}}) 
+  
+Ex: Change the rating of product with id=2 
+ 
+ > db.products.updateOne({id:2},{$set: {'rating.rate':4.9} }) 
+ 
+Ex: Add stock field for all products with electronics category. 
+ 
+ > db.products.updateMany({category:'electronics'}, { $set: {stock:true} }) 
+ 
+Ex: Update rating to 4.5 for all electronics products with price above 400. 
+ 
+> db.products.updateMany({$and:[{category:'electronics'},{price:{$gte:400}}]}, 
+{$set:{'rating.rate':4.5}}) 
+ 
+Ex: Update electronic and jewelery products by setting stock as true. 
+ 
+> db.products.updateMany({$or:[{category:'jewelery'},{category:'electronics'}]}, 
+{$set:{stock:true}}) 
+ - You can change the field name by using "$rename" 
+ 
+Syntax: 
+     > db.collection.updateMany({find_query}, {$rename:{"old_name" : "new_name"}}) 
+ 
+Ex: Find all electronics and change their field name "stock" to "instock" 
+ 
+      >db.products.updateMany({category:'electronics'}, {$rename: {'stock': 'instock'}}) 
+ - You can remove any field by using "$unset". 
+ 
+    >db.collection.updateMany({find_query},{$unset:{"fieldName": " "}}) 
+ 
+ 
+For Doubts 
+ 
+                Timings - 9:30 AM to 6:00 PM 
+ 
+                 ZOOM ID : 91690775166 
+                 PWD    : 406682 MongoDB Delete Query - MongoDB allows to remove documents using following methods 
+ 
+    a) deleteOne() 
+    b) deleteMany() 
+ 
+Syntax: 
+      > db.collection.deleteOne({ find_query }); 
+ 
+Ex: 
+      > db.products.deleteOne({id:2}) 
+      > db.products.deleteMany({'rating.rate':{$lte:3.0}) 
+ - To remove any collection 
+ 
+    > db.collection.drop() 
+    > db.products.drop() 
+ - To remove database 
+ 
+    > db.dropDatabase() 
+ 
+Summary: CRUD - find() - insertOne() - insertMany() - updateOne() - updateMany() - deleteOne() - deleteMany() - createCollection() - use 
+ 
+                    MongoDB Validation Schema - Validation is the process of verifying user input. - Validation is required to ensure that contradictory and unauthorized data is not get stored 
+into database. - MongoDB provides "jsonSchema" to configure validation for collection. - JSON Schema uses "bson" types that verify the data type of value that you insert. - It uses "validator" object for validation 
+ 
+Syntax: 
+    > db.createCollection("name", { 
+            validator:{ 
+            $jsonSchema: { 
+                bsonType: "object", 
+                required: [ key1, key2, key3, ...], 
+                properties: { 
+                    fieldname: { bsonType: "datatype", description:"", validator:"" } 
+                } 
+            } 
+           } 
+     }) 
+ 
+Ex: 
+db.createCollection("users", { 
+     validator: { 
+        $jsonSchema:{ 
+            bsonType:"object", 
+            required:["UserName", "Age"], 
+            properties:{ 
+               UserName: { 
+                        bsonType:"string", 
+                        description:"User Name must be a string" 
+                               }, 
+               Age:{ 
+                        bsonType:"int", 
+                        minimum:15, 
+                        maximum:30, 
+                        description:"age 15 to 30 only" 
+                 } 
+                  }         // end of properties 
+            }             // end of schema 
+            }                 // end of validator 
+        }                // end of options 
+    ) 
+ - Validation Schema is defined with "validator" 
+ 
+    > db.collection("name", { validator: { } }) 
+ - Validator uses "$jsonSchema", which is object type 
+ 
+    > db.collection("name", { validator: { $jsonSchema: { } } }) 
+ - Every schema have following keys 
+        a) bsonType        : It is always object type for schema 
+        b) required        : It defines the fields that are required [not value] 
+        c) properties        : It is an object that configures validation for every field. 
+ 
+    > db.collection("name", { 
+        validator: { 
+            $jsonSchema: { 
+                 bsonType: "object", 
+                 required: [ "fields.." ], 
+                 properties: { 
+ 
+                  } 
+             } 
+         } 
+        }) - Every field validation is defined as object with bsontype, validator services & description. 
+ 
+            properties: { 
+                field : {     
+                       bsonType: "datatype", 
+                       minimum: value, 
+                       maximum: value, 
+                       required: true, 
+                       description: "message" 
+                    }, 
+                 field: {  } 
+            } 
+ 
+Note: You can add new fields that are not defined in validator. But you can't ignore 
+      the fields that are defined as required fields. 
+ 
+FAQ: What is a clustered collection in MongoDB? 
+Ans:  A clustered collection can have multiple indexes. 
+     You can configure multiple unique key fields other than autoIndexId. 
+     It is good for manipulations. 
+     However it is slow in interactions when there are multiple unique keys in collection. 
+ 
+Syntax: 
+db.createCollection( 
+   "collectionName", 
+    { clusteredIndex: { "key": { id: 1 }, "unique": true, "name": "any description" } } 
+) 
+ 
+                                                           NODE JS 
+ 
+Node JS 
+Node JS is an open source and cross platform JavaScript runtime used by developers to build 
+Web Applications, Servers, CLI tools and Scripts. 
+ 
+FAQ: What is server side scripting? 
+Ans:  Server Side Scripting is a technique where scripts are employed on server, 
+      in order to generate response customized for every client request. 
+ 
+      There are various server side scripting technologies like 
+        a) PHP 
+        b) ASP / ASP.NET 
+        c) JSP 
+        d) Node JS  etc. 
+ - Node JS allows to write scripts on server side, so that they can configure a business 
+logic that handle communication between client and database. 
+ 
+Features of Node JS: 
+1. It is JavaScript based. 
+2. It is single threaded. 
+    - It uses a single ton pattern. 
+    - Object is created for first request and the same is used across requests. 
+    - It manages memory by reducing overload. 
+    - It improves performance of application. 
+3. It is modular. 
+    - Modular refers to "Part-by-Part". 
+    - It configures application specific framework. 
+    - It loads only what is required for the situation. 
+    - It makes application light weight and faster. 
+4. It is asynchronous. 
+    - It uses unblocking technique. 
+    - It can perform any task in background without blocking other tasks in memory. 
+    - It improves performance of application. 
+5. It will not use buffering. 
+    - Data is received in the form of memory packets. 
+    - So it is continuous without break. 
+ 
+Issues - It is not good for multi threaded interactions that are required for application. - It is not good for application that requires lot of data caching. 
+ 
+Note: Server Side scripting technology provides a set of server side objects and 
+      techniques that are used to handle communication with client and data server. 
+ 
+      Objects: 
+         - Request 
+         - Response 
+          - Session 
+         - Application 
+         - Server 
+         - File Stream etc.. 
+ 
+      Techniques: 
+         - Caching 
+         - Routing 
+         - Model Binding 
+         - Event Binding etc.. 
+ 
+Setup Server Side Node Application: 
+ 
+1. Install Node JS on your PC. 
+ 
+    https://nodejs.org/en 
+ 
+2. Install VS code editor. 
+ 
+3. Add a new folder for server side application 
+ 
+        F:\server-app 
+ 
+4. Open project folder in VS code 
+ 
+5. Open terminal and run the following command 
+ 
+        > npm  init  -y     
+ 
+       - It generates package.json 
+    
+6. Setup language analysis tool "esLint" for JavaScript project. 
+ 
+        > npm init @eslint/config@latest 
+ 
+   ? Install  "eslint config" package :  yes 
+   ? How would you like to use ESLint? To check syntax and find problems 
+   ? What type of modules does your project use?  CommonJS 
+   ? Which framework does your project use? None of these 
+   ? Does your project use TypeScript? No 
+   ? Where does your code run?  Select Browser & Node 
+   ? Would you like to install eslint, global.. now? Yes 
+   ? Which package manager do you want to use? npm 
+ 
+7. It will install all supported libraries and generates configuration file 
+ 
+        "eslint.config.mjs" 
+ 
+Note: All supported library files are copied into "node_modules" folder. 
+ 
+ 
+* Module Systems: - Application development requires 
+    a) Language 
+    b) Library 
+    c) Framework - Language & Library can build application, but can't control application flow. - Framework can control application flow. - Library is a set of factories and factory is a set of values and functions. 
+ 
+    value, function => Factory => Service => Application 
+ - A library can be implements using 2 techniques 
+ 
+    a) Legacy 
+    b) Modular 
+ - A legacy library imports everything into memory, but uses only few. It leads to memory 
+overload and application is heavy. 
+ - A modular library imports only the required content for state and situation. It makes the 
+application light weight. 
+ - JavaScript uses various module systems like 
+    a) Common JS 
+    b) UMD (Universal Module Distribution) 
+    c) AMD (Asynchronous Module Distribution) 
+    d) JavaScript Module [ES Module] etc.. 
+ - The default module system of Node JS is "Common JS". It uses JavaScript V8 compiler. 
+JavaScript OOP - Computer programming systems that are used for real-world application development are 
+classified into following 
+1. POPS 
+2. OBPS 
+3. OOPS 
+POPS - Process Oriented Programming System - It is light weight and faster. - It can directly interact with hardware services. - It supports low level features. 
+Ex: C, Pascal  etc. - Reusability and Extensibility issues - Dynamic memory issues 
+OBPS - Object Based Programming System - Enables reusability & limited extensibility. - Supports dynamic memory. 
+Ex: JavaScript, Visual Basic etc. - Extensibility issues - Code level security issues - No template mechanism 
+OOPS - Object Oriented Programming System - Reusability - Extensibility - Code Level Security - Templates 
+Ex: C++, Java, C# etc. - It is complex and tedious. - Can't directly interact with hardware services. - It will not support low level features. - It is heavy and slow. 
+JavaScript Module - A module comprises of values, functions and classes. 
+- You can create factory with module. - You can build an application by using modules. - Application with modules enable features like 
+    a) Reusability 
+    b) Extensibility 
+    c) Maintainability 
+    d) Testability - Every JavaScript file is considered as a module. 
+ 
+            home.js 
+        // values 
+        // functions 
+        // classes 
+ 
+JavaScript Module System [ ES Module ] 
+ - Browsers can use ES module system when script is configured with  MIME type as 
+  "module". 
+            <script type="module"> 
+ 
+            </script> 
+ - ES module requires "export" keyword in order to export any function or class from module. 
+ 
+              export function Name() { } 
+              export class Name() { } 
+ - You have to use "import" keyword to import the functions or classes. 
+ 
+              import  { functionName, className }  from  "moduleName"; 
+ - Every module can have one "default" export. - A default export member enable eager loading of value and functions. 
+ 
+              import  defaultName  from  "moduleName"; 
+ - You can import all members from any module by using the meta character "*". It requires an alias 
+name to access all imported members. 
+ 
+ 
+              import  * as ref from "moduleName"; 
+ 
+Note: You can't import default member using "*" meta character. 
+      You can configure default along with all other members. 
+ 
+            import  defaultMember, * as ref  from "moduleName"; 
+ 
+Ex: 
+1. Add a new folder  "src" 
+ 
+2. Add new files into src folder 
+    
+        calculator.js 
+        app.html 
+ 
+calculator.js 
+ 
+var title = "Calculator App"; 
+ 
+export function PrintTitle(){ 
+    return title; 
+} 
+ 
+export function Addition(a, b){ 
+    return a + b; 
+} 
+ 
+export default function Multiply(a, b){ 
+    return a * b; 
+} 
+ 
+app.html 
+ 
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Document</title> 
+    <script type="module"> 
+        import Multiply, * as cal from "./calculator.js"; 
+        
+        document.querySelector("h2").innerHTML = cal.PrintTitle(); 
+        document.querySelector("p").innerHTML = `Addition=${cal.Addition(20, 
+30)}<br>Multiply=${Multiply(2,5)}` 
+    </script> 
+</head> 
+<body> 
+    <h2></h2> 
+    <p></p> 
+</body> 
+</html> 
+ 
+JavaScript OOP - Modules - ES Module System - Export & Import 
+ 
+ 
+  Common JS Module System - Module is a set of value, functions and classes. - CJS module refers to a JavaScript file with extension ".js or .cjs" - The members in module are marked with "exports" keyword. 
+ 
+Syntax: 
+        exports.refName = function() {   } 
+ - You can import and use from any location by using "require()" method. 
+ 
+Syntax: 
+        const ref = require("./module_name");        "ref" can access all members 
+        const ref = require("./module_name").functionName(); 
+ - You have to compile and run JavaScript programs server side by using Node compiler. [ 
+Node use google chrome v8 compiler ]. 
+ 
+        > node  file.js 
+ 
+Note: You can't use any of the BOM & DOM methods of JavaScript server side. 
+      You can use JavaScript only as language server side. 
+ 
+Ex: 
+1. src/calculator.js 
+ 
+var title = "Calculator App"; 
+ 
+exports.PrintTitle = function(){ 
+    return title; 
+} 
+ 
+exports.addition = function(a, b){ 
+    return a + b; 
+} 
+ 
+exports.multiply = function(a, b){ 
+    return a * b; 
+} 
+ 
+2. src/app.js 
+ 
+const library = require("./calculator"); 
+ 
+console.log(`${library.PrintTitle()}\nAddition=${library.addition(50,20)}`); 
+ 
+ 
+ Class in OOP(already complete javascript) 
+ 
+Class enables features like 
+    a) Reusability 
+    b) Separation 
+    c) Extensibility 
+    d) Testability etc. 
+ 
+Class Members: - A class member can be any one of the following 
+    a) Property 
+    b) Accessor 
+    c) Method 
+    d) Constructor 
+ 
+  Reusability & Extensibility 
+   a) Aggregation 
+   b) Inheritance 
+   Polymorphism(charcter) 
+ 
+ 
+ 
+Node Modules (pre-define module) 
+ Node JS is a JavaScript runtime that provides various built-in modules for handling web  
+applications, scripts, command line tools, servers etc. 
+ 
+1. HTTP Module: - HTTP refers to "Hyper Text Transfer Protocol" - It configures a set of rules for creating web application and handling an application. - Node "http" module can "create a server". - It can configure a server side application. - It can handle request from client and send a customized response to client. 
+ 
+Syntax: 
+        const  http = require("http"); 
+ - HTTP object provides a set of properties and methods that are used to handle server side 
+application. 
+ 
+        createServer()        : It is responsible for creating a new server. 
+ 
+        STATUS_CODES    : It returns the status codes and status text of   
+every                                   request. 
+ 
+        METHODS        : It returns the HTTP Verbs like GET, POST, PUT etc. 
+ 
+ 
+    HTTP Status Codes range from 100 to 500 
+        1xx         : Related to process that defines request & response 
+        2xx         : Related to confirmation. 
+        3xx         : Related to redirection and actions on server. 
+        4xx         : Related client side issues. 
+        5xx         : Related to server side issues. 
+ 
+   Http Methods refer to HTTP verbs that define the actions like 
+        GET            : for fetching 
+        POST         : for saving 
+        PUT            : for updating 
+        PATCH       : for partial update 
+        DELETE      : for removing etc.. 
+ 
+Creating Server: 
+1. Http module provides "createServer()" to create a server object. 
+ 
+    http.createServer(function(request, response){ 
+ 
+ 
+    }) 
+ 
+2. Request object is responsible for requesting the client data, which can be 
+    - Query String 
+    - Form Body 
+    - Cookies etc. 
+ 
+3. Response object is responsible for sending a response to client, which can be 
+    - Text 
+    - HTML 
+    - File 
+    - XML 
+    - JSON etc. 
+ 
+4. Response object provides various methods 
+ 
+     a) writeHead()        It defines the type of content to send a response. 
+     b) write()                It contains the chunk of response. The content to send. 
+     c) end()                It ends the response. 
+ 
+Syntax: 
+      
+    http.createServer(function(request, response){ 
+ 
+        response.writeHead(statusCode, { content-type }); 
+        response.write("content to send"); 
+        response.end(); 
+    }) 
+ 
+    - Always response is sent to client when status code is 200 [OK]. 
+ 
+5. Server starts using "listen()" method. 
+ 
+      http.createServer().listen(port); 
+ 
+      Port Numbers: 
+            1 to 1023            Well known port numbers 
+            1024 to 41591        Registered port numbers 
+            41592 to 65565    Dynamic port numbers 
+ 
+Ex: 
+  index.js 
+ 
+const http = require("http"); 
+ 
+http.createServer((req, res)=>{ 
+     res.writeHead(200, {'content-type':'text/html'}); 
+     res.write("<h2>Welcome to Node JS</h2><p>HTML response sent from server</p>"); 
+     res.end(); 
+}).listen(4040); 
+console.log(`Server Started: http://127.0.0.1:4040`); 
+ 
+> node index.js 
+ 
+    http://localhost:4040 
+           (or) 
+    http://127.0.0.1:4040 
+ 
+ 
+Ex: JSON Response 
+ 
+const http = require("http"); 
+ 
+http.createServer((req, res)=>{ 
+     res.writeHead(200, {'content-type':'application/json'}); 
+     res.write(JSON.stringify([{Name:'TV', Price:45000},{Name:'Mobile', Price:12000}])); 
+     res.end(); 
+}).listen(4040); 
+console.log(`Server Started: http://127.0.0.1:4040`); 
+ 
+Node Http Module(previous learnt) - Creating Server - Handling Request - Sending Response 
+ 
+ 
+  Connection with Backed Database - Node JS requires a middleware to communicate with backend database. - Node JS uses database drivers as middleware tools to connect with backend database. - Middleware is a software that handle communication in network based application. - Database drivers provide various properties and methods to communicate with database. - Every database requires different set of drivers. 
+ 
+   http://seshajobs.com/ 
+ 
+ 
+Connection with MongoDB Database: - Node JS can use 2 types of libraries to communicate with MongoDB. 
+    a) MongoDB Driver 
+    b) Mongoose (library) 
+ - MongoDB driver provides a set of properties and methods to communicate with MongoDB 
+database. It uses a traditional database first approach. 
+ - Mongoose uses object modeling and can implement ORM. [Object Relational Mapping]. 
+ 
+Note: MongoDB latest drivers mangoose library provides promise based functions and 
+      supports ORM. 
+ 
+MongoDB Drivers for Node JS: 
+1. Install MongoDB drivers for project 
+ 
+        > npm  install  mongodb --save 
+ 
+2. MongoDB module provides server and client classes, you have to import 
+    "MongoClient" class. 
+ 
+    - Server classes are for administration 
+    - Client classes are for communication 
+ 
+Syntax: 
+    const mongoClient = require("mongodb").MongoClient; 
+ 
+ 
+3. MongoClient class provides a "connect()" method to connect with MongoDB server. 
+ 
+Syntax: 
+ 
+     mongoClient.connect("mongodb://127.0.0.1:27017") 
+    .then(()=>{ 
+        console.log("connected.."); 
+    }) 
+    .catch(()=>{ 
+        console.log("Unable to connect"); 
+    }) 
+ 
+    - connect() is a JavaScript promise, which is asynchronous in request. 
+    - It returns a client object on resolve. [then] 
+    - It returns an error object on reject. [catch] 
+ 
+Syntax: 
+        mongoClient.connect(url).then(clientObject=>{}).catch(error=>{}).finally() 
+ 
+Ex: 
+ test.js 
+ 
+const mongoClient = require("mongodb").MongoClient; 
+ 
+mongoClient.connect("mongodb://127.0.0.1:27017").then(clientObject=>{ 
+    console.log(`Connection Success..`); 
+}).catch(error=>{ 
+    console.log(error); 
+}) 
+ 
+4. You have configure connection with a database on server using client object. 
+ 
+    
+Syntax:     
+    mongoClient.connect("url").then(clientObject=>{ 
+ 
+        var database = clientObject.db("databaseName"); 
+    
+    }) 
+ 
+5. You have to communicate with any collection in database by using collection() method. 
+ 
+Syntax: 
+         database.collection("collectionName").find() 
+                                          .insertOne() 
+                                          .deleteOne() 
+                                          .updateOne() etc.. 
+ 
+ 
+6. The find() method returns document(s) on success. If query returns multiple documents 
+then convert it into array by using "toArray()". 
+ 
+ 
+Syntax: 
+          database.collection("name").find({}).toArray().then(documents=>{ 
+ 
+          }) 
+ 
+ 
+Ex: 
+test.js 
+ 
+const mongoClient = require("mongodb").MongoClient; 
+ 
+mongoClient.connect("mongodb://127.0.0.1:27017").then(clientObject=>{ 
+      var database =  clientObject.db("sampledb"); 
+      database.collection("categories").find({}).toArray().then(documents=>{ 
+          console.log(documents); 
+      }) 
+}); 
+ 
+Ex: Connection with backend database using client request 
+ 
+index.js 
+ 
+const http = require("http"); 
+const mongoClient = require("mongodb").MongoClient; 
+ 
+http.createServer((req, res)=>{ 
+ 
+     res.writeHead(200, { 'content-type': 'application/json' }); 
+ 
+     mongoClient.connect("mongodb://127.0.0.1:27017").then(clientObject=>{ 
+ 
+          var database = clientObject.db("sampledb"); 
+ 
+          database.collection('products').find({}).toArray().then(documents=>{ 
+               res.write(JSON.stringify(documents)); 
+               res.end(); 
+          }); 
+ 
+     }); 
+ 
+ 
+}).listen(5050); 
+console.log(`Server Started http://127.0.0.1:5050`); 
+Note: To return any specific document you can use  "findOne()". It returns the first occurrence 
+document that match given condition. 
+ 
+Syntax: 
+     database.collection("products").findOne({id:2}).then(document=>{ 
+        console.log(document); 
+    }) 
+ 
+    To return multiple documents you can use "find()" with "toArray()". 
+ 
+Syntax: 
+    database.collection("products").find({}).toArray().then(documents=>{ 
+        console.log(documents); 
+    }) 
+ 
+ 
+Ex: 
+index.js 
+ 
+const http = require("http"); 
+const mongoClient = require("mongodb").MongoClient; 
+ 
+http.createServer((req, res)=>{ 
+ 
+     res.writeHead(200, { 'content-type': 'application/json' }); 
+ 
+     mongoClient.connect("mongodb://127.0.0.1:27017").then(clientObject=>{ 
+ 
+          var database = clientObject.db("sampledb"); 
+ 
+          database.collection('products').findOne({id:2}).then(document=>{ 
+                res.write(JSON.stringify(document)); 
+                res.end(); 
+          }); 
+ 
+     }); 
+ 
+ 
+}).listen(5050); 
+console.log(`Server Started http://127.0.0.1:5050`); 
+ 
+Ex: Inserting Document 
+test.js 
+ 
+const mongoClient = require("mongodb").MongoClient; 
+ 
+mongoClient.connect("mongodb://127.0.0.1:27017").then(clientObject=>{ 
+      var database =  clientObject.db("sampledb"); 
+      
+      var category = { 
+         CategoryId:5, 
+         CategoryName: "Women Fashion" 
+      } 
+ 
+      database.collection("categories").insertOne(category).then(()=>{ 
+          console.log('Record Inserted'); 
+      }); 
+ 
+ 
+}); 
+ 
+Ex: Updating Document 
+ 
+test.js 
+ 
+const mongoClient = require("mongodb").MongoClient; 
+ 
+mongoClient.connect("mongodb://127.0.0.1:27017").then(clientObject=>{ 
+      var database =  clientObject.db("sampledb"); 
+      
+      database.collection("categories").updateOne({CategoryId:3},{$set:{CategoryName:'Kids 
+Accessories'}}).then(()=>{ 
+         console.log("Record Updated.."); 
+      }) 
+ 
+ 
+}); 
+ 
+ 
+Ex: Deleting Document 
+test.js 
+ 
+const mongoClient = require("mongodb").MongoClient; 
+ 
+mongoClient.connect("mongodb://127.0.0.1:27017").then(clientObject=>{ 
+      var database =  clientObject.db("sampledb"); 
+      
+      database.collection("categories").deleteOne({CategoryId:5}).then(()=>{ 
+           console.log("Record Deleted"); 
+      }) 
+ 
+ 
+}); 
+ 
+ 
+MongoDB ORM - ORM is object relational mapper. - It allows the developers to write for business requirements instead of writing for database.   - It eliminates lot of data access code usually developer need to write for application. - ORM enables features like 
+    a) Lazy Loading 
+    b) Change Tracking 
+    c) Identity Resolution etc. - ORM supports various approaches like 
+    a) Code First 
+    b) Database First 
+ 
+Ex: 
+ test.js 
+const mongoClient = require("mongodb").MongoClient; 
+ 
+mongoClient.connect("mongodb://127.0.0.1:27017").then(clientObject=>{ 
+      
+    var database = clientObject.db("shopping"); 
+ 
+    database.collection("products").insertOne({Id:2, Name:'Mobile', Price:12000.44}).then(()=>{ 
+        console.log(`Record Inserted `); 
+    }); 
+ 
+ 
+}); 
+ 
+                          Async Techniques - JavaScript provides "async" and "await" to configure actions using unblocking technique. - Unblocking will not block other tasks while performing the specified. 
+ 
+Syntax: 
+        async function name() 
+        { 
+           return  await value; 
+        } 
+ 
+Mongoose for MongoDB - Mongoose is an "Object Modeling Tool". - It provides an asynchronous environment for communication with MongoDB database. - The async functions of mongoose allows to handle interactions using unblocking 
+techniques. 
+ - Install mongoose for your project 
+        >npm install mongoose –save Node Object Modules 
+ 
+2. OS  Module - It provides a set of properties and methods that give access to server Operating System. - Server side OS details include 
+ 
+    a) arch        : It returns the architecture of OS, which provides graphic card, 
+                  processor details etc. 
+ 
+    b) cpus        : It returns processor architecture.  Its generation, capacity etc. 
+ 
+    c) freemem    : It returns the total free memory on server. [in bytes] 
+ 
+    d) hostname    : It returns server name or IP address. 
+ 
+    e) platform    : It returns the OS type. 
+ 
+    f)  version    : It returns the server OS version number. 
+ 
+Syntax: 
+    const  os = require("os"); 
+    
+    console.log(`${os.cpus()[0].model} \n ${os.platform()} \n ${os.hostname()}`); 
+ 
+FAQ: How to access client side OS details? 
+Ans:  By using client objects like 
+        a) navigator 
+        b) location 
+ 
+      document.write(`${location.hostname}<br>${navigator.platform}`) 
+ 
+2.  Process Module - It provides a set of properties and methods that are required to access current application 
+process details. - It includes details like 
+    a) in which platform the app is running 
+    b) which version of platform app is using 
+    c) what is the environment setup for app 
+    d) what is ID of process for app etc.. 
+ 
+    platform            : returns the platform 
+    version            : returns the platform version 
+    env                : returns environment details 
+    pid                : returns the process ID 
+    addListener        : adds event listener 
+    removeListener     : removes the event listener 
+ 
+Syntax: 
+    const process = require("process"); 
+      
+    console.log(process.platform + "\n" + process.pid); 
+ 
+Ex: 
+const process = require("process"); 
+ 
+Object.keys(process.env).map(key=>{ 
+     console.log(`${key} : ${process.env[key]}`); 
+}) 
+ 
+3. Path Module 
+ - It provides a set of properties and methods that are used to access uploaded file details like 
+    a) dirname            : current folder name 
+    b) extname            : file extension 
+    c) delimiter             : path separator 
+    d) basename            : root folder name 
+ 
+Syntax: 
+    const path = require("path"); 
+    
+    console.log(path.extname("d:\\images\\pic.jpg"));        // .jpg 
+ 
+Ex: 
+const path = require("path"); 
+ 
+var uploadedfile = "d:\\project\\images\\pic.jpg"; 
+ 
+if(path.extname(uploadedfile)===".jpg"){ 
+     console.log('Uploaded Successfully..'); 
+} else { 
+     console.log(`You can upload on JPG files`); 
+} 
+ 
+console.log(path.dirname(uploadedfile)); 
+ 
+4. FS Module [File Stream] - It provides a set of properties and methods that are used to handle files server side. - You can handle interactions like 
+    a) reading data from file 
+    b) writing into a file 
+    c) open file for read-only etc. - It provides both Sync and Async techniques. 
+ 
+Ex: Sync 
+ 
+const fs = require("fs"); 
+ 
+console.log(`Start Reading Data from file`); 
+ 
+let data = fs.readFileSync("notes.txt"); 
+console.log(data.toString()); 
+ 
+console.log(`End of Reading`); 
+ 
+Ex: Async 
+ 
+const fs = require("fs"); 
+ 
+console.log(`Start Reading Data from file`); 
+ 
+fs.readFile("notes.txt",(error, data)=>{ 
+     if(!error){ 
+          console.log(data.toString()); 
+     } else { 
+          console.log(error); 
+     } 
+}) 
+ 
+console.log(`End of Reading`); 
+Node Modules - http - os 
+- path - process - fs 
+ 
+Web Site on Local Server(IIS): 
+1. Open windows control panel 
+2. Switch to "Large Icons" 
+3. Go to "Programs and Features" 
+4. Click on "Turn Windows Features ON or OFF" 
+5. Select "Internet Information Services [IIS]" checkbox 
+6. Click OK to add local server 
+ 
+Create Site: 
+1. Open IIS from your programs 
+2. Expand local computer 
+3. Expand "Sites" folder 
+4. Right Click on "Default Website" 
+5. Select "Add Virtual Directory" 
+ 
+        alias            : food-blog 
+        Physical Path    : e:\food-blog  [create a folder by name food-blog] 
+ 
+6. Add index.html  into physical path 
+7. Open any browser and request 
+ 
+        http://localhost/food-blog 
+                (or)     
+        http://127.0.0.1/food-blog 
+ 
+FAQ: 
+1. What is URL ? 
+A. Uniform Resource Location [Locator] 
+     It is a virtual path used to access resources from a website or application on server. 
+ 
+ Syntax: 
+        http://www.amazon.in 
+ 
+        http   : It is a protocol. 
+                      It defines set of rules for handling communication in web 
+                      application. 
+                      There are various types of protocols 
+                        a) file 
+                        b) ftp 
+                        c) smtp 
+                        d) msmq 
+                        e) named pipes etc. 
+ 
+2. What are Web Server Protocols? 
+A. http, https (secured) 
+ 
+3. What is "file" server protocol? 
+A. It is used to access resources on server locally using file system. 
+ 
+        file:///e:/food-blog 
+ 
+4. What is Domain? 
+A. It is the reference name of business on WWW. [World Wide Web] 
+ 
+        amazon.in     
+        unesco.org 
+        name.gov.in        gov.in  [sub domain] 
+ 
+ 
+5. What is URI? 
+A. Uniform Resource Identifier 
+     It exactly identifies the user location in current context of URL. 
+ 
+        http://127.0.0.1/food-court/index.html#court     => URL 
+ 
+        index.html#court        => URI 
+ 
+Virtual Path 
+Physical Path 
+URL 
+URI 
+Protocols 
+Domain 
+Domain Types 
+IIS 
+XAMP, WAMP 
+ 
+   URL Module(server url) - It provides set of classes with properties and methods used to handle server URL. - You can access the virtual path and know the resource location. 
+ 
+ Syntax: 
+        const  url = require("url"); 
+    - URL module provides a parse() method that can convert the server URL into readable format. 
+So that you can access details like 
+        a) hostname            : server name / IP address 
+        b) protocol            : returns http or protocol name 
+        c) query                : returns query string values as object. 
+        d) search                : returns complete query string 
+        e) href                : returns the complete URL 
+        f) pathname            : returns the file virtual location [folder and file name] 
+ 
+Syntax: 
+        url.parse('virtual_path', true); 
+ 
+        true        : It is a Boolean value that allows converting of encoded data. 
+ 
+Ex: 
+test.js 
+ 
+const url = require("url"); 
+ 
+var virtualPath = url.parse('http://127.0.0.1/site/page.html?id=1&name=tv&#39;, true); 
+ 
+console.log(`Protocol=${virtualPath.protocol}\nServer 
+Name=${virtualPath.hostname}\nQuery=${virtualPath.search}`); 
+ 
+var obj = virtualPath.query;  // { id:1, name:tv } 
+console.log(`Product Id=${obj.id}\nName=${obj.name}`); 
+ 
+        
+                        
+ 
+NODE EVENT 
+1.What is Event? 
+A. Event is a message sent by sender to its subscriber in order to notify change. 
+ 
+2. What is event pattern? 
+A. Event follows a software design pattern called "Observer". It is a communication pattern. 
+Event uses delegate mechanism "function pointer". 
+ 
+3. What is event handler? 
+A. Event handler defines the action to be performed. It is a trigger for event. 
+ 
+        onclick            : Event 
+        onclick="Name()"    : Event Handler 
+ 
+4. What is event listener? 
+A. It configures event for component dynamically. 
+    Listener have a trigger and action to perform. 
+    You can add listener or remove listener dynamically. 
+ 
+5. What is Event Emitter? 
+A. Event Emitter is the base class for all events. 
+    Every event is derived from event emitter base. 
+ 
+Configuring Server Side Events: 
+1. Import the events module 
+ 
+     const  events = require("events"); 
+ 
+2. Create a new object for EventEmitter class. 
+ 
+    let  event = new EventEmitter(); 
+ 
+3. Configure a function that works as a Subscriber, It is a  function that defines actions 
+     to perform when event is triggered. 
+ 
+    let  handleName = function() { 
+ 
+    } 
+ 
+ 
+4. Register event by using  "on()" method 
+ 
+      event.on("eventName", handleName); 
+ 
+      It uses addEventListener and registers a new event by specified name. 
+      Every event requires a handler function. 
+ 
+5. Event is executed by using "emit()" method. 
+ 
+      event.emit("eventName"); 
+ 
+ 
+Ex: 
+const events = require("events"); 
+ 
+let event = new events.EventEmitter(); 
+ 
+let handlerName = function(){ 
+     console.log(`Event Executed Successfully..`); 
+} 
+ 
+event.on('send', handlerName);          //onsend="handlerName" 
+event.emit('send'); 
+ 
+Ex: 
+test.js 
+ 
+const events = require("events"); 
+const mongoClient = require("mongodb").MongoClient; 
+ 
+ 
+let event = new events.EventEmitter(); 
+ 
+let handlerName = function(){ 
+     mongoClient.connect('mongodb://127.0.0.1:27017').then(clientObj=>{ 
+         var database = clientObj.db("sampledb"); 
+         database.collection('categories').find({}).toArray().then(documents=>{ 
+             console.log(documents); 
+         }) 
+     }) 
+} 
+ 
+event.on('send', handlerName);          //onsend="handlerName" 
+event.emit('send'); 
+ 
+ 
+FAQ: What is difference between  addEventListener() & on()? 
+Ans:  addEventListener is just an alias of "on()". 
+ 
+Syntax: 
+      event.addEventListener('eventName',handleName).emit('eventName'); 
+ 
+Ex: 
+const events = require("events"); 
+const mongoClient = require("mongodb").MongoClient; 
+ 
+ 
+let event = new events.EventEmitter(); 
+ 
+ 
+ 
+let handlerName = function(){ 
+     mongoClient.connect('mongodb://127.0.0.1:27017').then(clientObj=>{ 
+         var database = clientObj.db("sampledb"); 
+         database.collection('categories').find({}).toArray().then(documents=>{ 
+             console.log(documents); 
+         }) 
+     }) 
+} 
+ 
+event.addListener('send', handlerName).emit('send'); 
+ 
+Express JS - Express JS is a middleware framework. - Middleware is a software that enables communication in network based application. - Framework is an software architectural pattern. - Software architectural patterns are solutions for enabling and controlling the application 
+flow. - They can build the application and control its flow. - There are various software architectural patterns 
+        - Black Board System 
+        - Microservices 
+        - MVC [Model View Controller] 
+        - MVP [Model View Presenter] 
+        - MVVM [Model View - View Model ] 
+        etc. 
+ 
+Setup Express JS: 
+ 
+1. Install express JS 
+ 
+    > npm  install  express --save 
+ 
+2. Configure a server side application using Express 
+ 
+    const express = require("express"); 
+ 
+    let app = express(); 
+ 
+3. App can handle communication between client and server. 
+ 
+    app.get() 
+    app.post() 
+    app.put() 
+    app.delete() 
+    etc. 
+ 
+Syntax: 
+    app.get('path', function(request, response){ 
+ 
+    }) 
+ 
+4. Start application using listen() 
+ 
+    app.listen(port); 
+ 
+ 
+Ex: 
+index.js 
+ 
+const express = require("express"); 
+ 
+let app = express(); 
+ 
+app.get('/', (req, res)=>{ 
+     res.send('<h2>Welcome to Express JS</h2>'); 
+}); 
+ 
+app.get('/mobiles', (req, res)=>{ 
+     res.send([{Name:'iPhone 16'}, {Name:'Samsung'}]); 
+}); 
+ 
+app.listen(3030); 
+console.log(`Server Started http://127.0.0.1:3030`); 
+    
+ 
+                                Routing - Routing enables navigation in application. - Routing is a technique used in web application to configure user and SEO friendly URL's. - Routing can be implemented client side and server side. - Server side routes are used to configure request and response. - A route can handle request from client and send a customized response. 
+ 
+Route Flow: 
+- A client request is sent to web server. - A Http Handler validates the request and sends to Routing Engine. - Routing Engine verifies the requested path by comparing with the path defined in application 
+Route Table. - If requested path is matching then it send a response to client request. - If path mismatch then it sends an error page with HTTP status code. 
+ 
+Configuring Routes: - Every route comprises of a request path and callback function. 
+ 
+Syntax: 
+        app.get("path", function() { });   // path:request path  function(){}: callback () 
+ - Path comprises of entities and wild cards 
+ 
+    "/"            It executes when user request is not for any specific. 
+    "*"            It executes when requested path mismatch. [not found] 
+    "/name"        It executes when requested path exactly matches with given name 
+    "/colou?r"        It executes when requested path is matching regular expression 
+ - The callback function comprises of various objects, the primary are 
+        a) request 
+        b) response 
+ - A request object can request content from client, which includes 
+        request.query            => query string 
+        request.cookies        => cookies 
+        request.body            => form body 
+        request.params        => route parameters 
+        etc.. 
+ - A response object can send customized response to client, which includes 
+  file, plain text, html, JSON, XML etc. 
+ 
+        response.json()        => specific JSON response 
+        response.send()        => any type of response 
+        response.end()        => end the response 
+ 
+Ex: 
+index.js 
+ 
+const express = require("express"); 
+const mongoClient = require("mongodb").MongoClient; 
+ 
+let app = express(); 
+ 
+app.get('/', (req, res)=>{ 
+     res.send('<h2>Welcome to Express JS</h2>'); 
+}); 
+ 
+app.get('/mobiles', (req, res)=>{ 
+     res.send([{Name:'iPhone 16'}, {Name:'Samsung'}]); 
+}); 
+ 
+app.get('/c*t', (req, res)=>{ 
+     res.send('You requested path that uses Regular expression'); 
+}); 
+ 
+app.get('/products', (req, res)=>{ 
+     mongoClient.connect('mongodb://127.0.0.1:27017').then(clientObj=>{ 
+           var database = clientObj.db("sampledb"); 
+           database.collection("products").find({}).toArray().then(documents=>{ 
+                res.send(documents); 
+                res.end(); 
+           }) 
+     }) 
+}); 
+ 
+app.get('/path',(req, res)=>{ 
+      
+}) 
+ 
+app.get('*', (req, res)=>{ 
+     res.send('404 - Requested Path Not Found'); 
+}); 
+ 
+app.listen(3030); 
+console.log(`Server Started http://127.0.0.1:3030`); 
+ 
+Express JS Framework - Create Server Side App - Routing - Wild Card Routes 
+ 
+ Route Parameters - A route parameter allows to query any content directly from URL. - Parameter is defined in route path. - The values are configured in URL. - You can access route parameters using "request" object. 
+ 
+Syntax: 
+       app.get('/path/:param1/:param2', ( req, res ) => { 
+ 
+       }) 
+ 
+      http://server.com/value1/value2 
+ 
+        param1=value1 
+        param2=value2 
+ 
+     req.params = { param1:value1, param2:value2} 
+ 
+     req.params.param1;        // value1 
+ 
+Without Route Params: 
+ 
+   http://localhost:3030/products?id=1&name=tv&price=50000 
+ 
+With Route Params: 
+ 
+   http://localhost:3030/products/1/tv/50000 
+ 
+Ex: 
+index.js 
+ 
+const express = require("express"); 
+const mongoClient = require("mongodb").MongoClient; 
+ 
+let app = express(); 
+ 
+app.get('/', (req, res)=>{ 
+     res.send('<h2>Welcome to Express JS</h2>'); 
+}); 
+ 
+app.get('/mobiles', (req, res)=>{ 
+     res.send([{Name:'iPhone 16'}, {Name:'Samsung'}]); 
+}); 
+ 
+app.get('/c*t', (req, res)=>{ 
+     res.send('You requested path that uses Regular expression'); 
+}); 
+ 
+app.get('/products', (req, res)=>{ 
+     mongoClient.connect('mongodb://127.0.0.1:27017').then(clientObj=>{ 
+           var database = clientObj.db("sampledb"); 
+           database.collection("products").find({}).toArray().then(documents=>{ 
+                res.send(documents); 
+                res.end(); 
+           }) 
+     }) 
+}); 
+ 
+app.get('/products/:id', (req, res)=>{ 
+     mongoClient.connect('mongodb://127.0.0.1:27017').then(clientObj=>{ 
+           var database = clientObj.db("sampledb"); 
+           database.collection("products").findOne({id:parseInt(req.params.id)}) 
+           .then(document=>{ 
+               res.send(document); 
+               res.end(); 
+           }) 
+     }) 
+}); 
+ 
+app.get('/details/:id/:name/:price',(req, res)=>{ 
+     res.send(`Id=${req.params.id}<br>Name=${req.params.name}<br>Price=${req.params.pric
+e}`); 
+}); 
+ 
+app.get('*', (req, res)=>{ 
+     res.send('404 - Requested Path Not Found'); 
+}); 
+ 
+app.listen(3030); 
+console.log(`Server Started http://127.0.0.1:3030`); 
+ 
+                                 
+ 
+ 
+ API(Application Programming Interface) 
+ 
+1. Distributed Computing 
+   - It allows communication between two applications running on two different devices. 
+   - It also allows communication between two objects running in two different process of 
+same machine. 
+ 
+2. Distributed Computing Technologies 
+ 
+    CORBA         
+    - Common Object Request Broken Architecture 
+    - 14+ languages C++, Java etc. 
+ 
+    DCOM 
+    - Distribute Component Object Model 
+    - Visual Basic Language 
+    
+    RMI 
+    - Remote Method Invocation 
+    - J2EE 
+ 
+    EJB 
+    - Enterprise Java Beans 
+    - Java 
+ 
+    Web Service 
+    - All technologies know web service 
+    - PHP, JSP, ASP etc. 
+ 
+    Remoting 
+    - It is used by .NET technology 
+ 
+3. Web Service 
+      - It is distributed computing technology used in all language. 
+    - Introduced by W3C [World Wide Web Consortium] 
+ 
+4. Communication Specification 
+ 
+    a) SOAP 
+    b) REST 
+    c) JSON 
+ 
+    SOAP 
+    - Service Oriented Architecture Protocol. 
+    - Consumer will send an XML request. 
+        
+            <Products> 
+                <Product> 
+                  <Category> Electronics </Category> 
+                </Product> 
+            </Products> 
+ 
+    - Provider will send an XML response. 
+ 
+            <Products> 
+                <Product> 
+                    <Id>1</Id> 
+                    <Name>TV</Name> 
+                    <Category>Electronics</Category> 
+                </Product> 
+                .... 
+                .... 
+            </Products> 
+ 
+ 
+    REST 
+        - Representational State Transfer 
+        - Consumer sends a simple query request 
+ 
+            http://server.com/products?category=electronics 
+    
+        - Provider sends an XML or JSON response. 
+        
+     JSON 
+        - JavaScript Object Notation 
+        - Consumer sends JSON request 
+ 
+            { 
+              category: "electronics" 
+            } 
+ 
+        - Provider sends JSON response 
+ 
+            [ 
+              {  Id:1, Name:'TV', Category: 'electronics' } 
+               .... 
+            ] 
+ 
+ 
+5. Issues with Web Service 
+    - It uses SOAP as communication specification. 
+    - XML request & response 
+    - It runs only on HTTP protocol. 
+    - It runs only on Web Server. 
+ 
+6. Web API 
+    - Application Programming Interface 
+    - It is an alternative for Web Service 
+    - It uses REST & JSON. 
+    - It can work on various protocols. 
+    - It can run on various servers. 
+ 
+Note : API allows to reach any device and any OS service. 
+What is Distributed Computing? 
+Various Distributed Computing Technologies 
+    CORBA, DCOM, RMI, EJB, Remoting 
+What is Web Service? 
+What are issues with Web Service? 
+What is API? 
+Various Communication Specification 
+    - SOAP 
+    - REST 
+    - JSON 
+ 
+  API - Application Programming Interface - It provides a business logic that enable communication between client, server and database. - It can make the data available for any device or any OS service. - API uses XML & JSON format of data.(for transformation) - It can run on any server and any protocol. 
+ 
+FAQ: Why XML & JSON? - Light weight - Faster - Cross platform - Not infected with VIRUS [Vital Information Under Seized] - Not blocked by firewalls. [Flow through firewall] - Doesn't require COM to Marshal. [Common Object Model] 
+  [object-binary-object] - Data is secured 
+ 
+ 
+Creating API using Node & Express JS: 
+ 
+1. Install following libraries & framework 
+ 
+        > npm  install  express   --save 
+        > npm  install  cors  --save 
+        > npm  install mongodb --save 
+ 
+    express        : It is a middleware framework for creating API's 
+    CORS        : Cross Origin Resource Sharing, It enables and disables 
+                  various HTTP requests. 
+    mongodb        : It database driver for mongodb connection. 
+ 
+2. Add a new file 
+      api.js 
+const express = require("express"); 
+const cors = require("cors"); 
+const mongoClient = require("mongodb").MongoClient; 
+ 
+const constr = "mongodb://127.0.0.1:27017"; 
+ 
+const app = express(); 
+app.use(cors()); 
+app.use(express.urlencoded({extended:true})); 
+app.use(express.json()); 
+ 
+app.get('/categories', (req, res)=>{ 
+    mongoClient.connect(constr).then(clientObj=>{ 
+         var database = clientObj.db("sampledb"); 
+         database.collection("categories").find({}).toArray().then(documents=>{ 
+              res.send(documents); 
+              res.end(); 
+         }); 
+    }); 
+}); 
+ 
+app.get('/categories/:id', (req, res)=>{ 
+    mongoClient.connect(constr).then(clientObj=>{ 
+         var database = clientObj.db("sampledb"); 
+         database.collection("categories").findOne({CategoryId:parseInt(req.params.id)}) 
+         .then(document=>{ 
+             res.send(document); 
+             res.end(); 
+         }); 
+    }); 
+}); 
+app.post('/add-category', (req, res)=>{ 
+ 
+    mongoClient.connect(constr).then(clientObj=>{ 
+        var database = clientObj.db("sampledb"); 
+        var category = { 
+             CategoryId: parseInt(req.body.CategoryId), 
+             CategoryName: req.body.CategoryName 
+        }; 
+        database.collection("categories").insertOne(category).then(()=>{ 
+            console.log(`Category Added`); 
+            res.redirect("/categories"); 
+        }); 
+   }); 
+}); 
+ 
+app.put('/edit-category/:id', (req, res)=>{ 
+    mongoClient.connect(constr).then(clientObj=>{ 
+        var database = clientObj.db("sampledb"); 
+        database.collection("categories").updateOne({CategoryId:parseInt(req.params.id)},{$set:{
+CategoryId:parseInt(req.body.CategoryId), CategoryName:req.body.CategoryName}}) 
+        .then(()=>{ 
+            console.log(`Category Updated`); 
+            res.redirect("/categories"); 
+        }); 
+   }); 
+}); 
+ 
+app.delete('/delete-category/:id', (req, res)=>{ 
+    mongoClient.connect(constr).then(clientObj=>{ 
+        var database = clientObj.db("sampledb"); 
+        database.collection("categories").deleteOne({CategoryId:parseInt(req.params.id)}) 
+        .then(()=>{ 
+            console.log(`Category Deleted`); 
+            res.redirect("/categories"); 
+        }); 
+   }); 
+}); 
+ 
+app.listen("4040"); 
+console.log(`Server Started http://127.0.0.1:4040`);    // API URL 
+ 
+CROS 
+Routing 
+API Requests 
+CRUD 
+ 
+ 
+                        Express Static Resources - A server side application designed using Node & Express comprises of API routes. - It can respond to the requests and server the routes. - It can't access other static resources like CSS, HTML, SCSS, Images, Docs etc. - You have to configure static resources for server side app by using 
+    "express.static()" method. 
+ 
+Syntax: 
+ 
+    const express = require("express"); 
+    
+    const app = express(); 
+ 
+    app.use(express.static("public")); 
+ 
+ 
+Ex: 
+1. Add a new folder "public" with "index.html". 
+2. Add script file into root level by name "index.js" 
+3. You can configure static resources and API's. 
+ 
+            index.js 
+const express = require("express"); 
+const cors = require("cors"); 
+const mongoClient = require("mongodb").MongoClient; 
+ 
+const constr = "mongodb://127.0.0.1:27017"; 
+ 
+const app = express(); 
+app.use(cors()); 
+app.use(express.urlencoded({extended:true})); 
+app.use(express.json()); 
+ 
+app.use(express.static("public")); 
+ 
+app.get('/categories', (req, res)=>{ 
+    mongoClient.connect(constr).then(clientObj=>{ 
+         var database = clientObj.db("sampledb"); 
+         database.collection("categories").find({}).toArray().then(documents=>{ 
+              res.send(documents); 
+              res.end(); 
+         }); 
+    }); 
+}); 
+app.get('/categories/:id', (req, res)=>{ 
+    mongoClient.connect(constr).then(clientObj=>{ 
+         var database = clientObj.db("sampledb"); 
+         database.collection("categories").findOne({CategoryId:parseInt(req.params.id)}) 
+         .then(document=>{ 
+             res.send(document); 
+             res.end(); 
+         }); 
+    }); 
+}); 
+app.post('/add-category', (req, res)=>{ 
+ 
+    mongoClient.connect(constr).then(clientObj=>{ 
+        var database = clientObj.db("sampledb"); 
+        var category = { 
+             CategoryId: parseInt(req.body.CategoryId), 
+             CategoryName: req.body.CategoryName 
+        }; 
+        database.collection("categories").insertOne(category).then(()=>{ 
+            console.log(`Category Added`); 
+            res.redirect("/categories"); 
+        }); 
+   }); 
+}); 
+ 
+app.put('/edit-category/:id', (req, res)=>{ 
+    mongoClient.connect(constr).then(clientObj=>{ 
+        var database = clientObj.db("sampledb"); 
+        database.collection("categories").updateOne({CategoryId:parseInt(req.params.id)},{$set:{
+CategoryId:parseInt(req.body.CategoryId), CategoryName:req.body.CategoryName}}) 
+        .then(()=>{ 
+            console.log(`Category Updated`); 
+            res.redirect("/categories"); 
+        }); 
+   }); 
+}); 
+ 
+app.delete('/delete-category/:id', (req, res)=>{ 
+    mongoClient.connect(constr).then(clientObj=>{ 
+        var database = clientObj.db("sampledb"); 
+        database.collection("categories").deleteOne({CategoryId:parseInt(req.params.id)}) 
+        .then(()=>{ 
+            console.log(`Category Deleted`); 
+            res.redirect("/categories"); 
+        }); 
+   }); 
+}); 
+ 
+app.listen("4040"); 
+console.log(`Server Started http://127.0.0.1:4040`); 
+ 
+ 
+4. Index.html with JavaScript 
+ 
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Index</title> 
+    <script> 
+        function bodyload(){ 
+            fetch(`http://127.0.0.1:4040/categories`) 
+            .then(response=> response.json()) 
+            .then(categories=>{ 
+                 categories.map(category=>{ 
+                     var option = document.createElement("option"); 
+                     option.text = category.CategoryName; 
+                     option.value = category.CategoryName; 
+                     document.querySelector("select").appendChild(option); 
+                 }) 
+            }) 
+        } 
+    </script> 
+</head> 
+<body onload="bodyload()"> 
+    <h1>Index</h1> 
+    <select> 
+ 
+    </select> 
+</body> 
+</html> 
+ 
+5. Run your Index.js 
+ 
+    > node   index.js 
+ 
+        http://localhost:4040        => serves index.html 
+ 
+                
+  JSON Server(create fake api) - It configures a local server with Data and API's. - Data is locally maintained in a JSON file. - API's are generated implicitly for the data designed in JSON. - API routes are implicitly configured for handling all request like GET, POST, PUT, DELETE etc. 
+ 
+1. Install JSON server globally on your device 
+ 
+        C:\> npm  install  -g   json-server 
+ 
+2. Go to your application physical path and add a new JSON file for data 
+ 
+              "db.json" 
+ 
+    { 
+      "categories": [ { }, { } ], 
+      "products": [ { }, { } ], 
+      "users": [ { }, { } ] 
+    } 
+ 
+Note: Every record in data comprises of "id" as primary key. 
+ 
+ 
+3. Start JSON server 
+ 
+     >json-server  db.json  --watch  --port=5050 
+ 
+4. API end points are auto generated 
+ 
+      http://localhost:5050/categories            GET all categories 
+                       /categories/1        GET specific category 
+                       /categories             POST into categories 
+                       /categories/1        PUT into categories 
+                      /categories/1            DELETE from categories 
+ 
+ 
+  Express Error Handling - Errors in application are categorized into 2 types 
+    a) Compile Time Errors 
+    b) Run Time Errors - Compile time errors refer to syntactical errors in code. If any compile time error occurs then 
+the application fails to run or start. - Run time errors occurs when compiler is unable to understand the instructions provided to 
+application while using the application. - If any runtime error occurs then it leads to "Abnormal Termination" of application. - You can prevent abnormal termination using Exception handling. - The statements used for handling exceptions are 
+ 
+        a) try        It is monitoring block, contains statements to execute. 
+        b) catch        It is handler block, catches the error. 
+        c) throw        It can throw exception explicitly 
+        d) finally        It contains statements to execute always 
+ 
+Error Handling in Express: - Express provides promise based functions that report errors on reject. - Reject executes when there is any issues in the request. - Express request methods provides 
+    a) request 
+    b) response 
+    c) next - Next is derived from "NextFunction". - It provides various functionalities like differToRoute and catch the errors. - It can report the errors to express. 
+ 
+Syntax: 
+    app.get("route", (req, res, next)=>{ 
+ 
+          // configure the actions 
+          res.end(); 
+          next(error); 
+    }) 
+ - Next function returns errors to express which you can catch using  debugger. 
+ 
+Setup Debugger for Express: 
+ - Express provides a debugger to test all the route actions defined in application. - It tracks the routes and reports the errors. 
+ 
+Syntax: 
+         >set  DEBUG=express:* & node api.js 
+ 
+ - It will start tracking the request and shows the tracking details. - However if any issue occurred in application at runtime, it will terminate the application. - You have to make sure that you are handling exceptions using catch() for every API request. 
+ 
+Syntax: 
+   app.get("/path", (req, res, next) =>{ 
+ 
+        mongoClient.connect("url").then(clientObject=>{ 
+ 
+         }) 
+         .catch(error=>{     
+            next(error); 
+         }) 
+   }) 
+ - Next method can send only specific error details, which include 
+    a) name 
+    b) message 
+ 
+Syntax: 
+        .catch(error=>{ 
+            next(`${error.name} : ${error.message`); 
+        }) 
+ 
+Ex: 
+api.js 
+ 
+const express = require("express"); 
+const cors = require("cors"); 
+const mongoClient = require("mongodb").MongoClient; 
+ 
+const constr = "mongodb://127.0.0.1:27017"; 
+ 
+const app = express(); 
+app.use(cors()); 
+app.use(express.urlencoded({extended:true})); 
+app.use(express.json()); 
+ 
+app.use(express.static("public")); 
+ 
+app.get('/categories', (req, res, next)=>{ 
+    mongoClient.connect(constr).then(clientObj=>{ 
+         var database = clientObj.db("sampledb"); 
+         database.collection("categories").find({}).toArray().then(documents=>{ 
+              res.send(documents); 
+              next(); 
+              res.end(); 
+         }); 
+    }).catch(error=>{ 
+         next(error.message); 
+    }) 
+}); 
+app.get('/categories/:id', (req, res, next)=>{ 
+    mongoClient.connect(constr).then(clientObj=>{ 
+         var database = clientObj.db("sampledb"); 
+         database.collection("categories").findOne({CategoryId:parseInt(req.params.id)}) 
+         .then(document=>{ 
+             res.send(document); 
+             res.end(); 
+         }); 
+    }).catch(error=>{ 
+         next(error.message); 
+    }); 
+}); 
+app.post('/add-category', (req, res)=>{ 
+ 
+    mongoClient.connect(constr).then(clientObj=>{ 
+        var database = clientObj.db("sampledb"); 
+        var category = { 
+             CategoryId: parseInt(req.body.CategoryId), 
+             CategoryName: req.body.CategoryName 
+        }; 
+        database.collection("categories").insertOne(category).then(()=>{ 
+            console.log(`Category Added`); 
+            res.redirect("/categories"); 
+        }); 
+   }); 
+}); 
+ 
+app.put('/edit-category/:id', (req, res)=>{ 
+    mongoClient.connect(constr).then(clientObj=>{ 
+        var database = clientObj.db("sampledb"); 
+        database.collection("categories").updateOne({CategoryId:parseInt(req.params.id)},{$set:{
+CategoryId:parseInt(req.body.CategoryId), CategoryName:req.body.CategoryName}}) 
+        .then(()=>{ 
+            console.log(`Category Updated`); 
+            res.redirect("/categories"); 
+        }); 
+   }); 
+}); 
+ 
+app.delete('/delete-category/:id', (req, res)=>{ 
+    mongoClient.connect(constr).then(clientObj=>{ 
+        var database = clientObj.db("sampledb"); 
+        database.collection("categories").deleteOne({CategoryId:parseInt(req.params.id)}) 
+        .then(()=>{ 
+            console.log(`Category Deleted`); 
+            res.redirect("/categories"); 
+        }); 
+   }); 
+}); 
+ 
+app.listen(4040); 
+console.log(`Server Started http://127.0.0.1:4040`); 
+ 
+ 
+ 
+jQuery - It is a JavaScript library. - Library comprises of pre-defined functions. - So that you can "write-less & do more". - It is light weight and faster. - It is CSS compliant. - It is cross browser compatible. - "John Resig" introduced jQuery in 2006. 
+ 
+1. Install jQuery for project 
+ 
+    > npm  install  jquery  --save 
+ 
+2. jQuery library file is  "jquery.js", you have to link with your web page. 
+ 
+    <script  src="../node_modules/jquery/dist/jquery.js"> </script> 
+ 
+3. jQuery library is configured using "$" directive. 
+ 
+4. All jQuery functions are defined in an anonymous function. 
+ 
+            $()        => invoke jQuery functions 
+ 
+5. It uses a callback function that defines the scope of jQuery. 
+ 
+            $(function(){ 
+ 
+                // jQuery logic 
+ 
+            }) 
+ 
+ 
+Selecting HTML elements: 
+ 
+- jQuery uses all CSS selectors to select elements. - You can use 
+    a) Type Selector 
+    b) Id Selector 
+    c) Class Selector 
+    d) Dynamic Pseudo Classes etc. 
+ 
+Syntax: 
+     <h1> </h1> 
+     <p id="p1"> </p> 
+     <div class="msg"> </div> 
+ 
+      $("h1") 
+      $("#p1") 
+      $(".msg") 
+      $("nav span") 
+      $("h1+p") 
+      $("p[id]") 
+      $("input[type=text]") 
+      etc.. 
+ 
+jQuery DOM methods: 
+    text()        It is similar to innerText or textContent 
+    html()        It is similar to innerHTML 
+    val()            It gets and sets value into element. 
+    attr()            It gets the attribute of element 
+    prop()        It gets the property of element 
+    css()        It sets styles dynamically for element 
+    before()        It adds new element before the selected. 
+    after()        It adds new element after the selected. 
+    prepend()    It adds as prefix 
+    append()        It adds as suffix 
+    appendTo()    It adds to specific element. 
+    etc.. 
+ 
+Syntax: 
+    $("p").html("<b> Welcome </b>"); 
+    $("h1").text("Welcome"); 
+ 
+    <input type="text" id="UserName"> 
+ 
+    $("#UserName").val() 
+    $("#UserName").val("John") 
+ 
+Note: jQuery uses JavaScript as language. 
+        - Variables 
+        - Data Types 
+        - Operators 
+        - Statements 
+        - Functions 
+        - Classes 
+        - DOM & BOM methods 
+ 
+Ex: 
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Home</title> 
+    <script src="../node_modules/jquery/dist/jquery.js"></script> 
+    <script> 
+        $(()=>{ 
+             $("h1").text("jQuery"); 
+             $("#subtitle").text("write less, do more"); 
+             $(".msg").text("jQuery is a JavaScript library for DOM interactions"); 
+        }) 
+    </script> 
+</head> 
+<body> 
+    <h1></h1> 
+    <p id="subtitle"></p> 
+    <div class="msg"></div> 
+</body> 
+</html> 
+ 
+Ex: Dynamically Creating and Adding Elements 
+ 
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Home</title> 
+    <script src="../node_modules/jquery/dist/jquery.js"></script> 
+    <script> 
+        $(()=>{ 
+             var categories = ["All", "Electronics", "Fashion", "Footwear"]; 
+             categories.map(category=>{ 
+                   $(`<li>${category}</li>`).appendTo("ol"); 
+                   $(`<option value=${category}>${category}</option>`).appendTo("select"); 
+             }) 
+        }) 
+    </script> 
+</head> 
+<body> 
+   <ol> 
+ 
+   </ol> 
+   <select> 
+ 
+   </select> 
+</body> 
+</html> 
+ 
+Ex: Other DOM methods 
+ 
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Home</title> 
+    <script src="../node_modules/jquery/dist/jquery.js"></script> 
+    <script> 
+        $(()=>{ 
+            $("p").before("jQuery"); 
+            $("p").after("with jQuery"); 
+            $("p").prepend("Add Left-"); 
+            $("p").append("-Add Right"); 
+        }) 
+    </script> 
+</head> 
+<body> 
+   <p> Write Less, Do More </p> 
+</body> 
+</html> 
+ 
+ 
+Ex: Generating Table 
+ 
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Home</title> 
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css"> 
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css"> 
+ 
+    <script src="../node_modules/jquery/dist/jquery.js"></script> 
+    <script> 
+        $(()=>{ 
+           fetch("https://fakestoreapi.com/products&quot;) 
+           .then(response=> response.json()) 
+           .then(products =>{ 
+                products.map(product=>{ 
+                     $( 
+                        `<tr> 
+                            <td>${product.title}</td> 
+                            <td><img src=${product.image} width="100" height="100"></td> 
+                            <td>${product.price}</td> 
+                        </tr>` 
+                     ).appendTo("tbody"); 
+                }) 
+           }) 
+        }) 
+    </script> 
+</head> 
+<body class="container-fluid"> 
+   <table class="table table-hover"> 
+      <thead> 
+         <tr> 
+            <th>Title</th> 
+            <th>Preview</th> 
+            <th>Price</th> 
+         </tr> 
+      </thead> 
+      <tbody> 
+ 
+      </tbody> 
+   </table> 
+</body> 
+</html> 
+ 
+Ex: Design Card 
+ 
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Home</title> 
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css"> 
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css"> 
+ 
+    <script src="../node_modules/jquery/dist/jquery.js"></script> 
+    <script> 
+        $(()=>{ 
+           fetch("https://fakestoreapi.com/products&quot;) 
+           .then(response=> response.json()) 
+           .then(products =>{ 
+                products.map(product=>{ 
+                     $(` 
+                        <div class="card m-2 p-2" style="width:200px"> 
+                            <img src=${product.image} class="card-img-top" height="120"> 
+                            <div class="card-header overflow-auto" style="height:120px"> 
+                                ${product.title} 
+                            </div> 
+                            <div class="card-body"> 
+                                <dl> 
+                                    <dt>Price </dt> 
+                                    <dd>${product.price}</dd> 
+                                    <dt>Rating </dt> 
+                                    <dd>${product.rating.rate} <span class="bi bi-star-fill text
+success"></span> </dd> 
+                                </dl> 
+                            </div> 
+                            <div class="card-footer"> 
+                                <button class="btn btn-warning w-100 bi bi-cart4"> Add to Cart</button> 
+                            </div> 
+                        </div> 
+                     `).appendTo("section"); 
+                }) 
+           }) 
+        }) 
+    </script> 
+</head> 
+<body class="container-fluid"> 
+    <section class="d-flex flex-wrap"> 
+ 
+    </section> 
+</body> 
+</html> 
+ 
+jQuery Events 
+Event Handling in jQuery - jQuery uses all JavaScript browser events. - jQuery adds a listener for elements. - Listener uses a callback with event as argument. 
+ 
+Syntax: 
+     <button  id="btn"> 
+ 
+     $("#btn").click(function(event){ 
+ 
+          event.clientX; 
+          event.clientY; 
+          event.target.id; 
+          event.target.name; 
+          .... 
+     }) 
+ 
+Ex: 
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Document</title> 
+    <script src="../node_modules/jquery/dist/jquery.js"></script> 
+    <script> 
+        $(()=>{ 
+              
+             $("#btnInsert").click((e)=>{ 
+                   $("p").text(`Record Inserted into ${$("#lstDatabase").val()} Database`); 
+                   console.log(`Button Id=${e.target.id}\nX=${e.clientX}`); 
+             }); 
+ 
+             $("#lstDatabase").change(()=>{ 
+                  $("p").text(`${$("#lstDatabase").val()} Selected`); 
+             }); 
+ 
+        }) 
+    </script> 
+</head> 
+<body> 
+    <select id="lstDatabase"> 
+        <option>Select Database</option> 
+        <option>Oracle</option> 
+        <option>MySQL</option> 
+        <option>MongoDB</option> 
+    </select> 
+    <button id="btnInsert">Insert</button> 
+    <p></p> 
+</body> 
+</html> 
+ 
+Note: You can't add event listener for elements that are dynamically generated by using 
+      selectors. It requires to search for element in document and add listener. 
+ 
+Syntax: 
+      $(document).on("event", "selector", function(event){ 
+ 
+      }) 
+ 
+Ex:     
+      $(document).on("click", "#btn", (e)=>{ 
+ 
+       }) 
+ 
+Ex: 
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Document</title> 
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css"> 
+    <script src="../node_modules/jquery/dist/jquery.js"></script> 
+    <script> 
+        $(()=>{ 
+              
+              fetch(`https://fakestoreapi.com/products`) 
+              .then(response=> response.json()) 
+              .then(products=>{ 
+                  products.map(product=>{ 
+                       $(` 
+                         <div class="card m-2 p-2" style="width:200px"> 
+                            <img class="card-img-top" height="100" src=${product.image}> 
+                            <div class="card-header"> 
+                                <button id="btnAdd" value=${product.id} class="btn btn-warning w-100 bi bi
+cart4">Add to Cart</button> 
+                            </div> 
+                         </div> 
+                       `).appendTo("main"); 
+                  }); 
+              }); 
+            
+             $(document).on("click", "#btnAdd", (e)=>{ 
+                  alert(`${e.target.value} Add Clicked`); 
+             }) 
+ 
+        }) 
+    </script> 
+</head> 
+<body class="container-fluid"> 
+    <h3>Cards</h3> 
+    <main class="d-flex flex-wrap"> 
+ 
+    </main> 
+</body> 
+</html> 
+ 
+Ex: 
+1. src/emi.js 
+ 
+ 
+$(()=>{ 
+ 
+     $("#rangeAmount").change(()=>{ 
+        $("#txtAmount").val($("#rangeAmount").val()); 
+     }); 
+ 
+     $("#rangeYears").change(()=>{ 
+         $("#txtYears").val($("#rangeYears").val()); 
+     }); 
+ 
+     $("#rangeRate").change(()=>{ 
+         $("#txtRate").val($("#rangeRate").val()); 
+     }); 
+ 
+     $("#btnCalculate").click(()=>{ 
+           var P = parseInt($("#txtAmount").val()); 
+           var N = parseInt($("#txtYears").val())*12; 
+           var R = parseFloat($("#txtRate").val())/12/100; 
+ 
+           var EMI = P * R * (Math.pow(1+R,N)) / (Math.pow(1+R,N)-1); 
+ 
+           $("#result").html(`Your EMI amount is <b>${Math.round(EMI).toLocaleString('en
+in',{style:'currency', currency:'INR'})}</b> for next ${N} Months`) 
+ 
+     }) 
+ 
+}) 
+ 
+2. views/emi.html 
+ 
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>EMI Calculator</title> 
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css"> 
+    <script src="../node_modules/jquery/dist/jquery.js"></script> 
+    <script src="../src/emi.js"></script> 
+</head> 
+<body class="container-fluid bg-secondary text-dark"> 
+    <div class="bg-light p-2 m-2"> 
+        <h2 class="text-center">Personal Loan EMI Calculator</h2> 
+        <div class="row my-4 p-4"> 
+            <div class="col"> 
+                Amount you need &#8377; <input type="text" id="txtAmount" size="16"> 
+            </div> 
+            <div class="col"> 
+                for <input type="text" id="txtYears" size="2"> years 
+            </div> 
+            <div class="col"> 
+                Interest rate <input type="text" id="txtRate" size="2"> % 
+            </div> 
+        </div> 
+        <div class="my-2 row p-4"> 
+            <div class="col"> 
+                <input type="range" id="rangeAmount" min="100000" max="1000000" 
+value="100000" class="form-range"> 
+                <div> 
+                    <span>&#8377; 1,00,000/- </span> 
+                    <span class="float-end">&#8377; 10,00,000/- </span> 
+                </div> 
+            </div> 
+            <div class="col"> 
+                <input type="range" id="rangeYears" min="1" max="5" value="1" class="form-range"> 
+                <div> 
+                    <span>1 </span> 
+                    <span class="float-end">5 </span> 
+                </div> 
+            </div> 
+            <div class="col"> 
+                <input type="range" id="rangeRate" min="10.45" max="18.45" step="0.01" 
+value="10.45" class="form-range"> 
+                <div> 
+                    <span>10.45% </span> 
+                    <span class="float-end">18.45% </span> 
+                </div> 
+            </div> 
+        </div> 
+        <div class="row my-4"> 
+            <div class="col text-end"> 
+                <button id="btnCalculate" class="btn btn-primary">Calculate</button> 
+            </div> 
+        </div> 
+        <div class="my-4"> 
+            <div class="text-center fs-4" id="result"></div> 
+        </div> 
+    </div> 
+</body> 
+</html> 
+ 
+    jQuery Ajax - JavaScript AJAX techniques 
+    a) XMLHttpRequest 
+    b) fetch() 
+    c) ajax() => third party http request handler 
+ 
+    $.ajax() => jquery ajax 
+    $.getJSON() 
+ 
+jQuery Ajax - Asynchronous JavaScript and XML . - It enables partial post back. - You can add new details into page without reloading the page. - AJAX in browser is managed by using XMLHttpRequest object. - JavaScript can use 
+    a) XMLHttpRequest 
+    b) fetch() - jQuery provides Ajax methods with more features 
+    * It is default async. 
+    * It is good in error handling. 
+    * It provides a complete life cycle methods to track every phase of request. 
+    * It returns data in native format of data source. 
+    * Conversions not required. 
+    * It is good in handling CORS. 
+ - jQuery Ajax methods include 
+ 
+    $.ajax() 
+    $.getJSON() 
+    .ajaxSuccess() 
+    .ajaxError() 
+    .ajaxComplete() 
+    .ajaxStart() 
+    .ajaxEnd() 
+    etc. 
+ 
+Syntax: 
+        $.ajax({ 
+            method: "get | post | put | patch | delete", 
+            data: "data_to_submit", 
+            success: function(){ }, 
+            url: "api_route", 
+            error: function(){ } [failure] 
+        }) 
+ - The success function returns response object that comprises of response data. - The failure function returns error object that comprises of error details. 
+ 
+Ex: 
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Document</title> 
+    <script src="../node_modules/jquery/dist/jquery.js"></script> 
+    <script> 
+        $(()=>{ 
+             var now = new Date(); 
+             $("#time").html(`Page Loaded on ${now.toLocaleTimeString()}`); 
+ 
+             $("#btnEmi").click(()=>{ 
+                  $.ajax({ 
+                       method: 'get', 
+                       url: './emi-calculator.html', 
+                       success: (response)=>{ 
+                           $("section").html(response); 
+                       } 
+                  }) 
+             }) 
+ 
+             $("#btnFake").click(()=>{ 
+                  $.ajax({ 
+                       method: 'get', 
+                       url: './events.html', 
+                       success: (response)=>{ 
+                           $("section").html(response); 
+                       } 
+                  }) 
+             }) 
+ 
+ 
+        }) 
+    </script> 
+</head> 
+<body> 
+    <nav> 
+        <span id="time"></span> 
+        <div> 
+            <button id="btnEmi">EMI Calculator</button> 
+            <button id="btnFake">Fakestore Product</button> 
+        </div> 
+    </nav> 
+    <section> 
+ 
+    </section> 
+</body> 
+</html> 
+ - jQuery Ajax provides various life cycle methods to track the request and identify issues in 
+every phase. It have a sequential order of processing requests 
+ 
+        1st         ajaxStart() 
+        2nd        ajaxSuccess() 
+        3rd        ajaxComplete() 
+        4th        ajaxEnd() 
+        5th        ajaxError() 
+ - Every life cycle method returns 2 objects 
+    a) event 
+    b) XMLHttpRequest - XMLHttpRequest object is referred as  "jqXHR", which contains 
+    a) status 
+    b) statusText 
+    c) error  etc. 
+ 
+Ex: 
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Document</title> 
+    <script src="../node_modules/jquery/dist/jquery.js"></script> 
+    <script> 
+        $(()=>{ 
+          
+             $("button").click(()=>{ 
+ 
+                    $.ajax({ 
+                        method: 'get', 
+                        url: '../src/note.txt', 
+                        success: (data)=> { 
+                             $("#container").html(data); 
+                        } 
+                    }) 
+ 
+             }) 
+ 
+        }) 
+        .ajaxStart(()=>{ 
+             alert('Your request for help is initiated'); 
+        }) 
+        .ajaxSuccess(()=>{ 
+            alert('Your request sent to process'); 
+        }) 
+        .ajaxComplete(()=>{ 
+            alert('Your request processed successfully..'); 
+        }) 
+        .ajaxStop(()=>{ 
+            alert('Response is ready - You can view the result'); 
+        }) 
+        .ajaxError((e, JQXHR)=>{ 
+ 
+            alert(`${JQXHR.status} : ${JQXHR.statusText}`); 
+        }) 
+    </script> 
+</head> 
+<body> 
+    <button>Load Help</button> 
+    <br><br> 
+    <pre id="container"> 
+ 
+    </pre> 
+</body> 
+</html> 
+ 
+Handling CRUD operations with JSON Server Data - Back End API with JSON Server - Front End UI with HTML, CSS, Bootstrap, jQuery 
+ 
+1.  Create a new project folder 
+ 
+        D:\jquery-to-do-app 
+ 
+2.  Open in VS code & setup basic environment for bootstrap & jquery 
+ 
+        > npm  init -y 
+        > npm  install bootstrap  bootstrap-icons jquery --save 
+ 
+3. Add folders 
+        > public 
+        > src 
+        > data 
+ 
+4. Add "db.json" into data folder 
+ 
+    { 
+    "users": [ 
+        { 
+            "id":1, 
+            "username": "john_nit", 
+            "password": "john@11", 
+            "email": "john@gmail.com" 
+        } 
+    ], 
+    "appointments": [ 
+        { 
+            "id":1, 
+            "title": "Meeting", 
+            "description": "attend meeting", 
+            "date": "2025-04-10", 
+            "username":"john_nit" 
+        } 
+    ] 
+} 
+ 
+5.  Go to public folder and add a new file 
+            index.html 
+ 
+6.  Go to src folder and add a new file 
+            index.js 
+            index.css 
+ 
+Project Design Files( in code)-28 march 
+jQuery Cookies - JavaScript document object provides access to cookies. - It have complex technique of handling cookies in browser, which include adding, reading and 
+removing cookies. - jQuery provides a pre-defined cookie library, how ever it is a 3rd party library. 
+ 
+1. Install jQuery Cookie library 
+ 
+     > npm  install  jquery.cookie --save 
+ 
+2. Import  "jquery.cookie.js" into page 
+ 
+3. The cookie provider 
+ 
+    $.cookie( 'name',  value,  { expires : days }) 
+ 
+    If expires is not defined, then it is an in-memory cookie [temporary] 
+ 
+    $.removeCookie('name');        // deleting cookie 
+ 
+jQuery UI - It is a component library similar to bootstrap. - Bootstrap up to versions 4 used jQuery for functionality. - Bootstrap 5 doesn't require jQuery to add explicitly. - jQuery UI provides 
+    a) Interactions 
+    b) Widgets 
+    c) Animations [Effects] 
+ 
+Setup jQuery UI 
+1. visit https://jqueryui.com/ 
+ 
+2. Download the stable version "zip" folder 
+ 
+3. Extract the folder , copy files 
+ 
+4. Go to your project , add a new folder "jquery-ui" 
+ 
+5. Paste the copied files into jquery-ui folder 
+ 
+6. Link the following files 
+ 
+        jquery.js 
+        jquery-ui.js 
+        jquery-ui.css 
+ 
+ 
+Interactions: 
+    - sortable 
+    - draggable 
+    - resizable 
+    - droppable 
+    - selectable 
+ 
+ 
+Widgets : 
+    - dialog 
+    - accordion 
+    - dropdown 
+    - navbar etc. 
+ 
+Ex: 
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Document</title> 
+    <link rel="stylesheet" href="../jquery-ui/jquery-ui.css"> 
+    <script src="../node_modules/jquery/dist/jquery.js"></script> 
+    <script src="../jquery-ui/jquery-ui.js"></script> 
+    <script> 
+         $(()=>{ 
+            
+            $("aside").resizable(); 
+ 
+            $("ol").sortable(); 
+ 
+            $("#faq").accordion(); 
+ 
+         }) 
+    </script> 
+</head> 
+<body> 
+    <h3>FAQ's</h3> 
+    <div id="faq"> 
+        <h2>What is Netflix?</h2> 
+        <div> 
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Necessitatibus, enim 
+tenetur minus quam eaque neque molestias culpa dicta ut quisquam officia, exercitationem 
+blanditiis sunt libero adipisci veniam suscipit obcaecati nostrum! Lorem, ipsum dolor sit amet 
+consectetur adipisicing elit. Voluptate voluptatem beatae cum veniam itaque sunt, nisi fugit 
+aut minus? Nihil modi ex, itaque ut repellendus iste dignissimos rem fugiat voluptates!</p> 
+        </div> 
+        <h2>How much does Netflix cost?</h2> 
+        <div> 
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptas labore 
+assumenda maiores ipsa perferendis aliquid iusto quam cupiditate omnis error culpa dolorem 
+fugit asperiores sequi, incidunt molestias blanditiis consequatur deserunt? Lorem, ipsum 
+dolor sit amet consectetur adipisicing elit. Voluptas delectus magni suscipit repellat ipsum 
+perspiciatis atque praesentium, asperiores voluptatem inventore accusamus, rem itaque 
+eaque excepturi est, ad vero quis? Provident!</p> 
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam sunt ipsum 
+quam est dolore voluptas officia libero expedita impedit voluptatem nam dolores, odio 
+explicabo, veniam praesentium iure reiciendis fuga animi?</p> 
+        </div> 
+    </div> 
+    <ol> 
+        <li>CSS</li> 
+        <li>HTML</li> 
+        <li>JavaScript</li> 
+        <li>jQuery</li> 
+        <li>Bootstrap</li> 
+    </ol> 
+    <aside style="width:200px; border:1px solid black; padding: 10px;"> 
+        <h4>Ads</h4> 
+        <img src="../public/images/banner.jpg" width="200" height="200"> 
+    </aside> 
+</body> 
+</html> 
+ 
+ 
+SASS(Syntactically Awesome Style Sheet) - Syntactically Awesome Style Sheet - Sass is a language used by developers to handle issues of CSS like 
+    a) Reusability 
+    b) Extensibility 
+    c) Maintainability 
+    d) Testability etc. - Sass is a CSS pre-processor. - Browser or webpage can't understand Sass. - Sass is trans compiled to CSS. 
+ 
+Setup Environment for Sass: 
+ 
+1. Install sass globally on your PC 
+ 
+    C:\> npm  install  -g  sass 
+ 
+    C:\> sass  --version        // to check version 
+ 
+2. You have to create a new folder by name "sass / scss" in your project. 
+ 
+3. Sass files are saved with extension ".scss" 
+ 
+            index.scss 
+ 
+        // code is written by using Sass commands & statements 
+        // It is CSS compatible. 
+ 
+4. Trans compile the sass code into CSS file 
+ 
+    D:\your_project\sass> sass  index.scss  index.css --watch 
+ 
+    --watch         It is a flag for continously monitoring the changes in Scss and 
+                up date into css. 
+ 
+Note: If watch is not defined the every change in scss must be re-compiled. 
+ 
+5. Link "index.css" to your webpage. 
+ 
+<head> 
+    <link rel="stylesheet" href="./index.css"> 
+</head> 
+ 
+                       Sass Language Features 
+ 
+1. Hierarchy of elements reference 
+ - CSS have to use lot of rational or relational selectors to select child and adjacent 
+elements. - Sass allows to write in the same hierarchy how you defined in HTML page. 
+ 
+Syntax: 
+        .parent { 
+ 
+            // parent styles 
+        
+            .child { 
+                // child styles 
+            } 
+ 
+        } 
+ 
+Ex: 
+ index.scss 
+ 
+.alert { 
+    border:2px solid red; 
+    background-color: rgb(246, 214, 214); 
+    padding: 20px; 
+    border-radius: 10px; 
+    h2 { 
+        color:rgb(160, 0, 0); 
+    } 
+    p { 
+        color:red; 
+    } 
+    a { 
+        text-decoration: none; 
+        color:rgb(171, 3, 3); 
+    } 
+} 
+ 
+index.html 
+ 
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Document</title> 
+    <link rel="stylesheet" href="./index.css"> 
+</head> 
+<body> 
+    <div class="alert"> 
+        <h2>Record Deleted</h2> 
+        <p> Record deleted successfully.. </p> 
+        <a href="#">Help?</a> 
+    </div> 
+    
+</body> 
+</html> 
+ 
+2. Variables - Variables are storage locations in memory where you can store a value and use as a part 
+of any expression. - Sass variables are declared by using "$" reference. 
+ 
+Syntax: 
+        $variableName : value; 
+ - The value stored in a variable is of CSS value types 
+        a) color name 
+        b) units 
+        c) hexadecimal 
+        d) method names  [ rgb(), hsl() ] 
+            etc.. 
+ - Variables are accessed and used with styles using "$" reference. 
+ 
+    { 
+       color : $variableName; 
+       border: 2px solid $variableName; 
+    } 
+ - Variable scope is classified into 2 types 
+ 
+    a) Global     
+    b) Block Level 
+ - Global variable is declared at module level. - Block level is configured in a block and accessible in a closure. 
+ 
+Ex: 
+ index.scss 
+ 
+$themeColor : rgb(0, 160, 3); 
+$bgcolor : rgb(222, 246, 214); 
+$themeSpace : 20px; 
+.alert { 
+    border:2px solid $themeColor; 
+    background-color: $bgcolor; 
+    padding: $themeSpace; 
+    border-radius: $themeSpace; 
+    h2 { 
+        color:$themeColor; 
+    } 
+    p { 
+        color:$themeColor; 
+    } 
+    a { 
+        text-decoration: none; 
+        color:$themeColor; 
+    } 
+    button { 
+        margin-top: $themeSpace; 
+        padding: 5px; 
+        background-color: $themeColor; 
+        color:white; 
+        border:none; 
+        width: 50px; 
+    } 
+} 
+ 
+ 
+index.html 
+ 
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Document</title> 
+    <link rel="stylesheet" href="./index.css"> 
+</head> 
+<body> 
+    <div class="alert"> 
+        <h2>Record Deleted</h2> 
+        <p> Record deleted successfully.. </p> 
+        <a href="#">Help?</a> 
+        <div> 
+        <button>OK</button> 
+        </div> 
+    </div> 
+    
+</body> 
+</html> 
+ 
+3. Mixin - A mixin is just like a method in programming. - It is used to refactor the code. - Refactoring allows to reuse the code without rewriting. 
+ 
+Syntax: 
+    @mixin   Name() 
+    { 
+    } 
+ - @mixin is a directive used to configure a method. - Mixin is always void type. - A mixin name is used as reference name to access the block of code. - Mixin is imported in used in various locations using "@include" directive. 
+ 
+Syntax: 
+    @include  Name(); 
+ - It can be parameter less or parameterized. - Parameters allows to modify the mixin. - If mixin is parameterized then you have to define values for all parameters while 
+including a mixin. 
+ 
+Syntax: 
+       @mixin Name($param1, $param2) 
+        { 
+    
+        } 
+ 
+        @include  Name(value1, value2); 
+ 
+Ex: 
+index.scss 
+ 
+$themeColor : rgb(0, 160, 3); 
+$bgcolor : rgb(222, 246, 214); 
+$themeSpace : 20px; 
+ 
+@mixin box-model($borderColor, $bgcolor, $space) 
+{ 
+    border: 4px solid $borderColor; 
+    background-color: $bgcolor; 
+    padding: $space; 
+    border-radius: $space; 
+} 
+ 
+.alert { 
+    @include box-model(green, rgb(207, 241, 207), 20px); 
+    h2 { 
+        color:$themeColor; 
+    } 
+    p { 
+        color:$themeColor; 
+    } 
+    a { 
+        text-decoration: none; 
+        color:$themeColor; 
+    } 
+    button { 
+        margin-top: $themeSpace; 
+        padding: 5px; 
+        background-color: $themeColor; 
+        color:white; 
+        border:none; 
+        width: 50px; 
+    } 
+} 
+ 
+4. Sass Functions - Function is used to build any expression. - Expression evaluates and returns a value. - Sass function always returns a value. 
+ 
+Syntax: 
+    @function Name(params) 
+    { 
+       @return  value | expression; 
+    } 
+ - Function is accessed by using its reference name. 
+ 
+Syntax: 
+       { 
+         property : Name(value); 
+      } 
+ 
+Ex: 
+index.scss 
+ 
+$themeColor : rgb(0, 160, 3); 
+$bgcolor : rgb(222, 246, 214); 
+$themeSpace : 5px; 
+ 
+@function setFontSize($newSize){ 
+    @return $newSize / 4; 
+} 
+ 
+@function RotateText($angle){ 
+    @return $angle - 20; 
+} 
+ 
+@mixin box-model($borderColor, $bgcolor, $space) 
+{ 
+    border: 4px solid $borderColor; 
+    background-color: $bgcolor; 
+    padding: $space; 
+    border-radius: $space; 
+} 
+ 
+.alert { 
+    @include box-model(green, rgb(207, 241, 207), 20px); 
+    h2 { 
+        color:$themeColor; 
+        font-size: setFontSize(300) + px; 
+        transform: rotate(RotateText(25deg)); 
+    } 
+    p { 
+        color:$themeColor; 
+    } 
+    a { 
+        text-decoration: none; 
+        color:$themeColor; 
+    } 
+    button { 
+        margin-top: $themeSpace; 
+        padding: 5px; 
+        background-color: $themeColor; 
+        color:white; 
+        border:none; 
+        width: 50px; 
+    } 
+} 
+ 
+index.html 
+ 
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Document</title> 
+    <link rel="stylesheet" href="./index.css"> 
+</head> 
+<body> 
+    <div class="alert"> 
+        <h2>Record Deleted</h2> 
+        <p> Record deleted successfully.. </p> 
+        <a href="#">Help?</a> 
+        <div> 
+        <button>OK</button> 
+        </div> 
+    </div> 
+    
+</body> 
+</html> 
+ 
+5. Sass Statements - Statements are used to control the execution flow. - Sass provides 
+    a) Decision Making 
+    b) Iteration / Looping 
+ 
+ 
+Decision Making: - Sass uses "@if" statement to handle decisions. - It is used to execute a set of statement when the condition evaluates to true. - You can configure "@else" clause to define statements to execute when condition 
+evaluates to false. - It supports 
+    a) simple decision 
+    b) forward jump 
+    c) multi level 
+    d) multiple 
+ 
+Syntax: 
+    @if (condition1) 
+     { 
+         // effects on true; 
+     } 
+    @else if (condition2) 
+     { 
+         // effects on condition2 true; 
+     } 
+    @else 
+    { 
+        // effects on false; 
+    } 
+ 
+Ex: 
+  index.scss 
+ 
+$themeName : "success"; 
+ 
+@mixin ApplyTheme($borderColor, $bgColor, $buttonColor) 
+{ 
+    .alert { 
+        border: 2px solid $borderColor; 
+        background-color: $bgColor; 
+        padding: 20px; 
+        h2 { 
+            color: $borderColor; 
+        } 
+        p { 
+            color:$borderColor; 
+        } 
+        button { 
+            border:none; 
+            padding: 5px; 
+            width: 50px; 
+            background-color: $borderColor; 
+            color: $buttonColor; 
+        } 
+        a { 
+            color:$borderColor; 
+            margin-bottom: 20px 
+        } 
+    } 
+} 
+ 
+@if($themeName=="success") 
+{ 
+    @include ApplyTheme(green, rgb(207, 243, 207) , white); 
+} 
+@else if ($themeName=="danger") 
+{ 
+    @include ApplyTheme(rgb(198, 0, 0), rgb(244, 191, 191) , white ); 
+} 
+@else if($themeName=="warning") 
+{ 
+    @include ApplyTheme(rgb(186, 158, 0), rgb(251, 241, 184) , white ); 
+} 
+@else { 
+    @include ApplyTheme(black, rgb(245, 240, 240) , white); 
+} 
+ 
+ 
+Iteration and Loops: - Sass uses @for as statement for creating loop or iterations. - A set of statements are executed repeatedly until the given condition is satisfied. - It uses a lower and upper bound value to initialize and end to loop. 
+ 
+Syntax: 
+    @for  $ref  from  initialValue   through   finalValue 
+     { 
+        // effects; 
+     } 
+ - Sass allows to bind a dynamic value with string by using the binding expression defined 
+with "#{ }". 
+ 
+Syntax: 
+         .box-#{ $varName } 
+          { 
+ 
+          } 
+ 
+Ex: 
+index.scss 
+ 
+ 
+div { 
+    box-shadow: 4px 3px 2px black; 
+    padding: 20px; 
+    border:2px solid black; 
+    width: 150px; 
+    font-family: Arial; 
+    font-size: 18px; 
+} 
+@for $i from 1 through 4 
+{ 
+    .box-#{$i} { 
+        margin-left: $i * 150px; 
+        margin-bottom: $i + 10px; 
+        transform: skewX($i*5deg); 
+    } 
+} 
+ 
+index.html 
+ 
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Document</title> 
+    <link rel="stylesheet" href="./index.css"> 
+</head> 
+<body> 
+    <div class="box-1"> 
+        Test & Deploy 
+    </div> 
+    <div class="box-2"> 
+        Build & Debug 
+    </div> 
+    <div class="box-3"> 
+        UI Design 
+    </div> 
+    <div class="box-4"> 
+        UX Plan 
+    </div> 
+</body> 
+</html> 
+ 
+6. Module System - Sass modules are "scss" files with "_" prefix. - You can define variables, functions, mixins and other styles in a module. - It allows to import and use only the required according to state and situation. - It enables 
+    a) reusability 
+    b) separation 
+    c) modular approach - It makes styles light weight and faster in rendering. 
+ 
+Note: The files that you configure as modules to import into another documents 
+      will have "_" prefix. The main sass file should not container "_" prefix. 
+ 
+Ex: 
+_variables.scss 
+ 
+$themeName : "success"; 
+$space : 20px; 
+ 
+_mixins.scss 
+ 
+ 
+@mixin ApplyTheme($borderColor, $bgColor, $buttonColor) 
+{ 
+    .alert { 
+        border: 2px solid $borderColor; 
+        background-color: $bgColor; 
+        padding: 20px; 
+        h2 { 
+            color: $borderColor; 
+        } 
+        p { 
+            color:$borderColor; 
+        } 
+        button { 
+            border:none; 
+            padding: 5px; 
+            width: 50px; 
+            background-color: $borderColor; 
+            color: $buttonColor; 
+        } 
+        a { 
+            color:$borderColor; 
+            margin-bottom: 20px 
+        } 
+    } 
+} 
+ 
+_theme.scss 
+ 
+@import "variables"; 
+@import "mixins"; 
+ 
+@mixin SetFinalTheme($Name) 
+{ 
+    @if($Name=="success") 
+    { 
+        @include ApplyTheme(green, rgb(207, 243, 207) , white); 
+    } 
+    @else if ($Name=="danger") 
+    { 
+        @include ApplyTheme(rgb(198, 0, 0), rgb(244, 191, 191) , white ); 
+    } 
+    @else if($Name=="warning") 
+    { 
+        @include ApplyTheme(rgb(186, 158, 0), rgb(251, 241, 184) , white ); 
+    } 
+    @else { 
+        @include ApplyTheme(black, rgb(245, 240, 240) , white); 
+    } 
+} 
+ 
+index.scss 
+ 
+@import "theme"; 
+@include SetFinalTheme("danger"); 
+ 
+index.html 
+ 
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Document</title> 
+    <link rel="stylesheet" href="./index.css"> 
+</head> 
+<body> 
+    <div class="alert"> 
+        <h2>Record Deleted</h2> 
+        <p> Record deleted successfully.. </p> 
+        <a href="#">Help?</a> 
+        <div> 
+        <button>OK</button> 
+        </div> 
+    </div> 
+    
+</body> 
+</html> 
+ 
+Tailwind CSS 
+ - It is a framework for CSS with pre-defined classes and components to build interactive 
+and responsive UI rapidly. - It is compatible with all front end libraries and frameworks like angular, react, vue, etc. - You can implement in existing project or create a new application and setup tailwind as 
+CSS framework. - To create a project and setup environment you need various bundling tools 
+        a) webpack 
+        b) vite 
+        c) parcel 
+ 
+Create a new project using Vite as bundler: 
+ 
+1. Open any PC location in command project to create a project 
+ 
+        D:\>npm  create   vite@latest 
+ 
+        Project Name            :  vite-web-app 
+ 
+        Select a framework        :   Others 
+ 
+        Select variant            :   Extra Vite Starters 
+ 
+        Select a template        :   Library 
+ 
+        Select variant [library]    :   JavaScript 
+ 
+2. After scaffolding the project change to project folder in command prompt 
+ 
+        D:\> cd   vite-web-app 
+ 
+        D:\vite-web-app> 
+ 
+3. Run the command 
+ 
+        > npm  install 
+ 
+4. Open project folder in VS code  editor 
+ 
+5.  Run project 
+ 
+        > npm  run dev        [ development ] 
+ 
+6.  Remove the HTML containers from  "index.html", keep body empty. 
+ 
+7.  Remove all CSS code from  "styles.css"  and link to index.html 
+ 
+    <head> 
+    <link rel="stylesheet"  href="./styles.css"> 
+    </head> 
+ 
+8. Install Tailwind CSS for project created with Vite 
+ 
+    >npm  install  tailwindcss    @tailwindcss/vite   
+ 
+ 
+9. Go to "styles.css" 
+ 
+    @import  "tailwindcss";        // it imports all tailwind classes 
+ 
+10. Go to "vite.config.js" and add tailwind plugin for vite app. 
+ 
+ 
+    import tailwindcss from '@tailwindcss/vite'; 
+ 
+    export default defineConfig({ 
+       ....... 
+       ......., 
+       plugins : [ 
+          tailwindcss() 
+       ] 
+        }) 
+ 
+Ex: 
+index.html 
+ 
+<!doctype html> 
+<html lang="en"> 
+  <head> 
+    <meta charset="UTF-8" /> 
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" /> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
+    <title>Vite App</title> 
+    <link rel="stylesheet" href="./style.css"> 
+  </head> 
+  <body> 
+     <h1 class="ms-4 border-4 border-green-600 border p-4 border-dotted text-3xl font-bold 
+underline mt-4 font-family-Arial">Welcome to Tailwind CSS</h1> 
+  </body> 
+</html> 
+ 
+Note: Tailwind provides pre-defined classes for various CSS attributes 
+        a) Layout 
+        b) Margin 
+        c) Padding 
+        d) Borders 
+        e) Box Shadow 
+        f) Typography  [font & text effects] etc. 
+ 
+      <div  class="m-{ }  p-{ }  font-{ }>  </div> 
+ 
+Build API & Database for To-Do Application 
+1. Create a new database in MongoDB 
+        
+            todo 
+ 
+2. Add collections 
+ 
+    a) users 
+        { 
+            userid: string; 
+            password: string; 
+            email: string; 
+        } 
+ 
+    b) appointments 
+        { 
+          appointment_id: number; 
+          title: string; 
+          description: string; 
+          date: date; 
+          userid: string; 
+        } 
+ 
+3. Create API end points 
+ 
+    GET        /users                        return all users 
+    GET        /appointments                    return all appointments 
+    GET        /appointments/1                returns specific appointment 
+    
+    POST    /register-user                    add new user into database 
+    POST    /add-appointment                add new appointment 
+    PUT        /edit-appointment/1            modify and update specific appointment 
+    DELETE    /delete-appointment/1        remove specific appointment 
+ 
+    > npm install  express  mongodb  cors --save 
+ 
+4. Add a new folder "server" into jquery-to-do app 
+ 
+5. Add a new file  "api.js" 
+ 
+const mongoClient = require("mongodb").MongoClient; 
+const cors = require("cors"); 
+const express = require("express"); 
+ 
+const conString = "mongodb://127.0.0.1:27017"; 
+ 
+const app = express(); 
+app.use(cors()); 
+app.use(express.urlencoded({extended:true})); 
+app.use(express.json()); 
+ 
+app.get('/users', (req, res)=>{ 
+    mongoClient.connect(conString).then(clientObj=>{ 
+         var database = clientObj.db("todo"); 
+         database.collection('users').find({}).toArray().then(documents=>{ 
+              res.send(documents); 
+              res.end(); 
+         }); 
+    }); 
+}); 
+ 
+app.get('/appointments', (req, res)=>{ 
+    mongoClient.connect(conString).then(clientObj=>{ 
+         var database = clientObj.db("todo"); 
+         database.collection('appointments').find({}).toArray().then(documents=>{ 
+              res.send(documents); 
+              res.end(); 
+         }); 
+    }); 
+}); 
+ 
+app.get('/appointments/:id', (req, res)=>{ 
+    mongoClient.connect(conString).then(clientObj=>{ 
+         var database = clientObj.db("todo"); 
+         database.collection('appointments').findOne({appointment_id:parseInt(req.params.i
+d)}).then(document=>{ 
+            res.send(document); 
+            res.end(); 
+         }); 
+    }); 
+}); 
+ 
+app.post('/register-user', (req, res)=>{ 
+ 
+    var user = { 
+        userid: req.body.userid, 
+        password: req.body.password, 
+        email: req.body.email 
+    } 
+ 
+    mongoClient.connect(conString).then(clientObj=>{ 
+        var database = clientObj.db("todo"); 
+        database.collection('users').insertOne(user).then(()=>{ 
+              console.log('User Registered'); 
+              res.end(); 
+        }); 
+   }); 
+}); 
+ 
+app.post('/add-appointment', (req, res)=>{ 
+ 
+    var appointment = { 
+        appointment_id : parseInt(req.body.appointment_id), 
+        title: req.body.title, 
+        description: req.body.description, 
+        date: new Date(req.body.date), 
+        userid: req.body.userid 
+    }; 
+ 
+    mongoClient.connect(conString).then(clientObj=>{ 
+        var database = clientObj.db("todo"); 
+        database.collection('appointments').insertOne(appointment).then(()=>{ 
+              console.log('Appointment Added'); 
+              res.end(); 
+        }); 
+   }); 
+}); 
+ 
+app.put('/edit-appointment/:id', (req, res)=>{ 
+ 
+    var id = parseInt(req.params.id); 
+ 
+    var appointment = { 
+        appointment_id : parseInt(req.body.appointment_id), 
+        title: req.body.title, 
+        description: req.body.description, 
+        date: new Date(req.body.date), 
+        userid: req.body.userid 
+    }; 
+ 
+    mongoClient.connect(conString).then(clientObj=>{ 
+        var database = clientObj.db("todo"); 
+        database.collection('appointments').updateOne({appointment_id:id},{$set:appointme
+nt}) 
+        .then(()=>{ 
+            console.log('Appointment Updated'); 
+            res.end(); 
+        }); 
+   }); 
+}); 
+ 
+app.delete('/delete-appointment/:id', (req, res)=>{ 
+    var id = parseInt(req.params.id); 
+ 
+    mongoClient.connect(conString).then(clientObj=>{ 
+        var database = clientObj.db("todo"); 
+        database.collection('appointments').deleteOne({appointment_id:id}) 
+        .then(()=>{ 
+            console.log('Appointment Deleted'); 
+            res.end(); 
+        }); 
+   }); 
+}); 
+ 
+app.listen(4040); 
+console.log(`Server Started http://127.0.0.1:4040`); 
+ 
+6. Go to Index.js  and make changes in API requests and  appointment_id, userid 
+ 
+                        index.js 
+ 
+function LoadView(url){ 
+    $.ajax({ 
+        method: 'get', 
+        url: url, 
+        success: (response)=>{ 
+             $("section").html(response); 
+        } 
+    }); 
+} 
+ 
+// jQuery Load Action 
+ 
+$(()=>{ 
+ 
+     if($.cookie('uname')) { 
+          LoadDashBoard(); 
+     } else { 
+          LoadView('./home.html'); 
+     } 
+ 
+     $(document).on('click', '#home-register-button', ()=>{ 
+          LoadView('./register.html'); 
+     }) 
+ 
+     $(document).on('click', '#home-login-button', ()=>{ 
+        LoadView('./login.html'); 
+     }) 
+ 
+     $(document).on('click', '#btn-home', ()=>{ 
+        LoadView('./home.html'); 
+     }) 
+ 
+     // Verify User Name 
+ 
+     $(document).on('keyup', '#txtUserName', ()=>{ 
+ 
+          $.ajax({ 
+               method: 'get', 
+               url: 'http://127.0.0.1:4040/users&#39;, 
+               success: (users)=>{ 
+                   for(var user of users){ 
+                       if(user.userid===$("#txtUserName").val()){ 
+                            $("#lblUserError").html('User Name Taken - Try 
+Another').css("color","red"); 
+                            break; 
+                       } else { 
+                            $("#lblUserError").html('User Name Available').css("color","green"); 
+                       } 
+                   } 
+               } 
+          }) 
+ 
+     }) 
+ 
+ 
+     // Register Click 
+ 
+     $(document).on('click', '#btnRegister',()=>{ 
+ 
+          var user = { 
+               userid: $("#txtUserName").val(), 
+               password: $("#txtPassword").val(), 
+               email: $("#txtEmail").val() 
+          }; 
+ 
+          $.ajax({ 
+               method: 'post', 
+               url: 'http://127.0.0.1:4040/register-user&#39;, 
+               data: user 
+          }); 
+          alert('Registered Successfully..'); 
+     }); 
+ 
+     function LoadDashBoard(){ 
+          $.ajax({ 
+               method:'get', 
+               url: './dashboard.html', 
+               success: (response)=>{ 
+                    $("section").html(response); 
+                    $("#active-user").html($.cookie('uname')); 
+                    $.ajax({ 
+                         method:'get', 
+                         url:'http://127.0.0.1:4040/appointments&#39;, 
+                         success:(appointments=>{ 
+                              
+                              var results = appointments.filter(appointment=> 
+appointment.userid===$.cookie('uname')); 
+ 
+                              results.map(appointment=>{ 
+                                    $(`<div class="alert mx-2 alert-success"> 
+                                        <h3>${appointment.title}</h3> 
+                                        <p>${appointment.description}</p> 
+                                        <div class="bi bi-calendar"> ${appointment.date} </div> 
+                                        <div> 
+                                          <button id="btn-edit" value=${appointment.appointment_id} data
+bs-target="#edit-appointment" data-bs-toggle="modal" class="bi bi-pen-fill btn btn
+warning"></button> 
+                                          <button id="btn-delete" value=${appointment.appointment_id} 
+class="bi bi-trash-fill btn btn-danger mx-2"></button> 
+                                        </div> 
+                                    </div>`).appendTo("#appointment-cards"); 
+                              }) 
+                         }) 
+                    }) 
+               } 
+          })   
+     } 
+ 
+     // Login Click 
+ 
+     $(document).on('click', '#btnLogin', ()=>{ 
+ 
+            $.ajax({ 
+               method: 'get', 
+               url: 'http://127.0.0.1:4040/users&#39;, 
+               success: (users)=>{ 
+                    console.log(users); 
+                    var user = users.find(item=> item.userid===$("#txtUserName").val()); 
+                    if(user){ 
+                         if(user.password===$("#txtPassword").val()){ 
+                              $.cookie('uname', $("#txtUserName").val(),{expires:2}); 
+                              LoadDashBoard();     
+                         } else { 
+                              alert('Invalid Password'); 
+                         } 
+                    } else { 
+                         alert('Invalid User Name'); 
+                    } 
+               } 
+            }) 
+     }) 
+ 
+     // Signout Click 
+ 
+     $(document).on('click', '#btn-signout', ()=>{ 
+ 
+          $.removeCookie('uname'); 
+          LoadView('./home.html'); 
+ 
+     }) 
+ 
+ 
+     // Add Appointment Click 
+ 
+     $(document).on('click', '#btn-add', ()=>{ 
+ 
+               var appointment = { 
+                    appointment_id: parseInt($("#appointment-id").val()), 
+                    title: $("#appointment-title").val(), 
+                    description: $("#appointment-description").val(), 
+                    date: $("#appointment-date").val(), 
+                    userid: $.cookie('uname') 
+               } 
+ 
+               $.ajax({ 
+                    method: 'post', 
+                    url: 'http://127.0.0.1:4040/add-appointment&#39;, 
+                    data: appointment, 
+               }); 
+ 
+               LoadDashBoard(); 
+ 
+     }) 
+ 
+     // Delete Appointment 
+ 
+     $(document).on('click', '#btn-delete',(e)=>{ 
+ 
+           var flag = confirm('Are you sure?\nWant to Delete?'); 
+           if(flag===true){ 
+               $.ajax( 
+                    { 
+                         method: 'delete', 
+                         url: `http://127.0.0.1:4040/delete-appointment/${e.target.value}` 
+                    } 
+                ); 
+                LoadDashBoard(); 
+           } 
+          
+     }) 
+ 
+ 
+     // Edit Appointment 
+     $(document).on('click', '#btn-edit',(e)=>{ 
+ 
+           $.ajax({ 
+               method:'get', 
+               url: `http://127.0.0.1:4040/appointments/${e.target.value}`, 
+               success: (appointment)=>{ 
+                     console.log(appointment); 
+                     $("#edit-appointment-id").val(appointment.appointment_id); 
+                     $("#edit-appointment-title").val(appointment.title); 
+                     $("#edit-appointment-description").val(appointment.description); 
+                     $("#edit-appointment-date").val(appointment.date.substring(0, 
+appointment.date.indexOf('T'))); 
+               } 
+           }) 
+ 
+     }) 
+ 
+     // Update & Save Appointment 
+     $(document).on('click', '#btn-save',()=>{ 
+ 
+          console.log($("#edit-appointment-id").val()); 
+ 
+          var appointment = { 
+               appointment_id: $("#edit-appointment-id").val(), 
+               title: $("#edit-appointment-title").val(), 
+               description: $("#edit-appointment-description").val(), 
+               date: $("#edit-appointment-date").val(), 
+               userid: $.cookie('uname') 
+          } 
+ 
+          $.ajax({ 
+               method: 'put', 
+               url: `http://127.0.0.1:4040/edit-appointment/${$("#edit-appointment-id").val()}`, 
+               data: appointment 
+          }); 
+          LoadDashBoard(); 
+ 
+     }) 
+ 
+}) 
+Node MySQL Connection 
+1. Install MySQL Drivers for your project 
+ 
+    > npm install mysql --save 
+ 
+2. Import MySQL module and create a new connection 
+ 
+    const mysql  = require("mysql"); 
+ 
+    var con = mysql.createConnection({ 
+          host: "localhost", 
+          user: "root", 
+          password: "12345", 
+          database: "shopping" 
+    }); 
+ 
+    con.connect(function(error){ 
+         if(!error){ 
+            console.log("connected.."); 
+         } else { 
+            console.log(error); 
+         } 
+    }) 
+ 
+ 
+3. To Query on connected database you have to use "query()" method. 
+ 
+    con.query("Your_SQL_Query", function(error, records, fields){ 
+ 
+            if(!error) { 
+                // actions... 
+            } else { 
+                   // report error; 
+            } 
+    }) 
+ 
+Ex: 
+demo.js 
+ 
+var mysql = require("mysql"); 
+ 
+var con = mysql.createConnection({ 
+     host: 'localhost', 
+     user: 'root', 
+     password: '1234', 
+     database: 'shopping' 
+}); 
+ 
+con.connect((err)=>{ 
+    if(!err){ 
+        console.log('Connected to MySql'); 
+    } else { 
+        console.log(err); 
+    } 
+}); 
+con.query("Select * from tblproducts", function(error, records, fields){ 
+     if(!error) { 
+          console.log(records); 
+     } else { 
+         console.log(error); 
+     } 
+}) 
+ 
+ 
+Ex: API & MySQL 
+ 
+const express = require("express"); 
+const mysql = require("mysql"); 
+ 
+const con = mysql.createConnection({ 
+     host: 'localhost', 
+     user:'root', 
+     password:'1234', 
+     database: 'shopping' 
+}); 
+ 
+const app = express(); 
+ 
+app.get("/products", (req, res)=>{ 
+     con.connect(); 
+     con.query('select * from tblproducts', (error, records, fields)=>{ 
+          if(!error){ 
+               res.send(records); 
+               res.end(); 
+          } else { 
+             console.log(error); 
+          } 
+     }); 
+}); 
+ 
+app.post("/add-product", (req, res)=>{ 
+    con.connect(); 
+    con.query(`insert into tblproducts (Id, Name, Price) values (${req.body.Id}, 
+${req.body.Name}, ${req.body.Price})`, (error)=>{ 
+        if(!error){ 
+            console.log('record inserted'); 
+        } 
+    }) 
+}) 
+ 
+app.listen(4030); 
+console.log('Server Started'); 
+ 
+ Video Library Project 
+ - Project Modules 
+    a) Admin 
+    b) User 
+ - Admin Module 
+    - Admin can Login 
+    - Admin can view his dash-board 
+    - Admin can add new video, update and delete videos. 
+    - Videos are embedded youtube videos. 
+ - User Module 
+    - User can Register 
+    - User can Login     
+    - User can browse and view videos. 
+    - User can like, dislike or comment on video 
+ 
+Unit Testing 
+FAQ: How we select a technology for project? 
+Ans:  By verifying "AS-IS  & "TO-BE" with GAPS. 
+ 
+     AS-IS            TO-BE            GAP 
+    ------------------------------------------------------------------------------ 
+    what your         what client        Java 20% 
+    technology        wants?            .NET 10% 
+    is capable of?                        PHP 2% 
+ 
+ 
+    AS-IS === TO-BE        => Test Pass 
+    AS-IS !== TO-BE        => Test Fail 
+ - JavaScript based technologies use various frameworks for testing, which includes 
+ 
+        a) Jasmine - Karma 
+        b) JEST 
+ - JEST is a light weight testing framework for JavaScript based applications designed in 
+Angular, React, Vue, Node etc. 
+ 
+Setup Testing Framework for your project: 
+ 
+1. Open your project terminal and install 
+ 
+        >npm install  jest --save-dev 
+ 
+        
+2. Your application comprises of source code and test file 
+ 
+          home.js        => contains your logic 
+ 
+          home.test.js    => contains test functions 
+          [home.spec.js] 
+ 
+3. Add functions into source code. 
+        home.js 
+ 
+4. Import and link to HTML page. 
+        
+    <script type="module"> 
+        import  { functions } from  "./home.js"; 
+        .... 
+    </script> 
+ 
+5. Go to your test file  "home.test.js" 
+    
+    - Testing every function comprises of 3 phases 
+        a) Arrange 
+        b) Act 
+        c) Assert 
+    - Arrange imports required modules. 
+    - Act defines the functionality to test. 
+    - Asserts reports the test results. 
+    - Every testing framework have a set of various functions for every phase. 
+        
+        test()        : It is used to arrange and configure your test 
+        expect()        : It defines the act. 
+        toBe...        : These are mock functions for verifying result [assert] 
+ 
+Ex: 
+1. Create a new project  "d:testing" 
+ 
+2. Open Terminal 
+ 
+        > npm init -y 
+        > npm install  jest --save-dev 
+ 
+3. Add files 
+       home.js             
+function Title(){ 
+    return "Amazon"; 
+} 
+ 
+module.exports = Title; 
+ 
+       total.js 
+ 
+function Total(qty, price){ 
+   return qty * price; 
+} 
+module.exports = Total; 
+ 
+4. Add test files 
+        home.test.js 
+const Title = require("./home"); 
+ 
+test("Title Test",()=>{ 
+    expect(Title()).toBe("Amazon"); 
+}); 
+ 
+        total.test.js 
+const Total = require("./total"); 
+ 
+test("Total Test", ()=>{ 
+    expect(Total(3,1000)).toBe(3000); 
+}) 
+ 
+5. Go to package JSON 
+ 
+    { 
+     scripts: { 
+        "test"  : "jest" 
+      } 
+    } 
+ 
+6. Run 
+    > npm test 
+ 
+Deployment - Deployment is the process of publishing our application on to live environment. - It is the process of moving our application from development to production. - You can deploy on local servers like 
+    a) IIS 
+    b) WAMP 
+    c) XAMP 
+    d) Tomcat  etc. - You can deploy on to cloud servers like 
+    a) GIT hub pages 
+    b) Firebase 
+    c) Netlify 
+    d) AWS 
+    e) Azure  etc. 
+ 
+Deploying on local server:  [ IIS ] 
+1. IIS is Internet Information Services Manager 
+2. It is a webserver available with windows OS. 
+    - Go to "programs & features" in your control panel 
+    - Click on "Turn windows features on or off" 
+    - Select "IIS" 
+    - Click OK 
+ 
+3. Create a new project folder on your device or you can use existing project folder. 
+4. Make sure that it have  "index.html" at root level. 
+            
+        e:\web-developer-portfolio 
+ 
+5. Add CDN links to your webpage for all libraries. Don't use node_modules. 
+ 
+        - Add all repository of images, docs into public 
+        - Dynamic files into src 
+ 
+6. Open IIS from your PC 
+ 
+7. Expand local computer "http://localhost&quot; 
+ 
+8. Expand "sites" folder 
+ 
+9. Right click on "Default Website" 
+ 
+10. Add a new virtual directory  [ right click on default website ] 
+ 
+        website name :   web-portfolio 
+        physical path    :   e:\web-developer-portfolio 
+ 
+ 
+11. Open browser and request 
+ 
+        http://localhost/web-portfolio 
+        http://127.0.0.1/web-portfolio 
+ 
+Deploying on Cloud: 
+1. Create a new account on "GIT"   
+ 
+2. Login into your GIT account 
+ 
+    https://github.com/ 
+ 
+3. Create a new repository 
+ 
+         name        : web-portfolio 
+        accessibility    : public 
+        add            : readme.md 
+ 
+     Click "Create Repository" 
+ 
+4. Download and Install  GIT Desktop 
+ 
+    https://desktop.github.com/download/ 
+ 
+5. Login into GIT desktop with your same GIT account where you created portfolio 
+ 
+6. Go to "current repositories" => click Add => Clone Repository   
+ 
+7. Select   "web-portfolio" 
+ 
+8. Choose the path 
+        
+         E:\web-portfolio 
+ 
+9. Copy all your project files into the physical path. 
+ 
+10. Go to GIT desktop => write a description for every change => commit 
+ 
+11. Push to Origin 
+ 
+12. Go to your GIT account in browser 
+ 
+13. Select Settings => Pages  => Branch => Main => Save 
+ 
+14. It generates live URL for your site. 
+ 
+Every time: -  Open your project physical path in VS code -  Modify your app -  Go to GIT desktop => Commit => Push to Origin 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

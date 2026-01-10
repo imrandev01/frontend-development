@@ -1,0 +1,205 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <script>
+
+    </script>
+</head>
+<body class=""container-fluid" onload="LoadMenuItems()">
+    <div class="mt-3 w-50">
+        <h2>Design Your Menu</h2>
+        <div>
+            <label class="form-label fw-bold">Add menu Item</label>
+            <div class="input-group">
+                <input type="text" placeholder="New Menu Item Name" class="form-control" id="txtName"> <button onclick="AddClick()" class="btn btn-primary">Add</button>
+            </div>
+        </div>
+        <div class="my-2">
+            <label class="form-label fw-bold">Menu Items <span class="badge bg-danger" id="lblCount"></span></label>
+            <button onclick="SortAsc()" class="bi bi-sort-alpha-down btn btn-success"></button>
+            <button onclick="SortDesc()" class="bi bi-sort-alpha-up btn btn-warning"></button>
+            <div>
+                <select class="form-select" size="3" id="IsmenuItems">
+
+                </select>
+                <div class="mt-2 row">
+                    <div class="col">
+                        <button data-bs-toggle="modal" onclick="EditClick()" data-bs-torget="#edit" class="btn w-100 btn-warning" bi bi-pen-fill>Edit</button>
+                        <div class="modal fade-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h3>Edit Item</h3>
+                                </div>
+                                <div class="modal-body">
+                                    <input type="text" id="txtEdit" class="form-control">
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-success" data-bs-dismiss="modal" onclick="SaveClick()">Save</button>
+                                    <button class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+    </div>
+    <div class="col">
+        <button onclick="RemoveClick()" class="btn btn-danger w-100 btn-outline-danger bi bi-trash-fill">Remove </button>
+    </div>
+    <div class="col">
+        <button onclick="RemoveAllClick()" class="btn btn-danger w-100 btn-outline-danger bi bi-trash">Remove All</button>
+    </div>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Design</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="cdn.jsdelivr.net">
+    <link rel="stylesheet" href="cdn.jsdelivr.net">
+</head>
+<body class="container-fluid" onload="LoadMenuItems()">
+    <div class="mt-3 w-50">
+        <h2>Design Your Menu</h2>
+        
+        <!-- Add Item Section -->
+        <div class="mb-3">
+            <label class="form-label fw-bold">Add Menu Item</label>
+            <div class="input-group">
+                <input type="text" placeholder="New Menu Item Name" class="form-control" id="txtName"> 
+                <button onclick="AddClick()" class="btn btn-primary">Add</button>
+            </div>
+        </div>
+
+        <!-- Menu List Section -->
+        <div class="my-2">
+            <label class="form-label fw-bold">Menu Items <span class="badge bg-danger" id="lblCount">0</span></label>
+            <div class="mb-2">
+                <button onclick="SortAsc()" class="bi bi-sort-alpha-down btn btn-success"></button>
+                <button onclick="SortDesc()" class="bi bi-sort-alpha-up btn btn-warning"></button>
+            </div>
+            
+            <select class="form-select" size="5" id="IsmenuItems">
+                <!-- Items will load here -->
+            </select>
+
+            <div class="mt-3 row">
+                <!-- Edit Button & Modal -->
+                <div class="col">
+                    <button data-bs-toggle="modal" data-bs-target="#editModal" onclick="EditClick()" class="btn w-100 btn-warning bi bi-pen-fill"> Edit</button>
+                </div>
+                
+                <!-- Remove Button -->
+                <div class="col">
+                    <button onclick="RemoveClick()" class="btn btn-danger w-100 bi bi-trash-fill"> Remove</button>
+                </div>
+                
+                <!-- Remove All Button -->
+                <div class="col">
+                    <button onclick="RemoveAllClick()" class="btn btn-dark w-100 bi bi-trash"> Remove All</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Modal Structure (Alag se bahar rakha hai taaki sahi chale) -->
+    <div class="modal fade" id="editModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Item</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="text" id="txtEdit" class="form-control">
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success" data-bs-dismiss="modal" onclick="SaveClick()">Save</button>
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="cdn.jsdelivr.net"></script>
+    
+    <script>
+        // Yahan aapke functions aayenge (LoadMenuItems, AddClick, etc.)
+        function LoadMenuItems() { console.log("Loaded"); }
+    </script>
+</body>
+</html>
+
+
+
+
+<script type="text/javascript">
+    var menuItems = ["Home", "Shop"];
+
+    function LoadMenuItems() {
+        document.getElementById("IsMenuItems").innerHTML="";
+        menuItems.map(function(item) {
+            var option = document.createElement("option");
+            option.text = item;
+            option.value = item;
+            document.getElementById("IsMenuItems").appendChild(option);
+        })
+        document.getElementById("lblCount").innerText = menuItems.length;
+    }
+    function AddClick() {
+        var item_Name = document.getElementById("txtName").value;
+        if(menuItems.indexOf(item_Name)==-1) 
+        {
+            menuItems.push(itemName);
+            alert(`${item_Name} added Successfully...`);
+            LoadMenuItems();
+            document.getElementById("txtName").value = "";
+        } else{
+            alert(`${item_Name} already exists in the menu.`);
+        }
+    }
+    function RemoveClick() {
+        var select = document.getElementById("IsMenuItems").value;
+        var selectedItemIntex =menuItems.indexOf(selectedItem);
+        var flag = confirm(`Are you sure you want to remove ${selectedItem} from the menu?`);
+        if(flag==true) {
+            menuItems.splice(selectedItemIndex,1);
+            
+            LoadMenuItems();
+        }
+    }
+    function RemoveAllClick() {
+       menuItems.length = 0;
+         LoadMenuItems();
+    }
+    function EditClick() {
+        var selectedItem = document.getElementById("IsMenuItems").value;
+        document.getElementById("txtEdit").value = selectedItem;
+    }
+    function SaveClick() {
+       var newValue = document.getElementById("txtEdit").value;
+       var selectedItem = document.getElementById("IsMenuItems").value;
+         var selectedIndex = menuItems.indexOf(selectedItem);
+            menuItems[selectedIndex] = newValue;
+            LoadMenuItems();
+    }
+    function SortAsc() {
+        menuItems.sort();
+        LoadMenuItems();
+    }
+    function SortDesc() {
+        menuItems.sort();
+        menuItems.reverse();
+        LoadMenuItems();
+    }
+</script>

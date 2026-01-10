@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+  <style>
+     .card {
+       width: 200px;
+       height: 300px;
+       background-image: url("../public/images/bag-1.jpg");
+       background-size: cover;
+       display: flex;
+       flex-direction: column;
+       justify-content: end;
+       align-items: center;
+       overflow: hidden;
+       transition: 1s;
+     }
+     .short-cuts span {
+        background-color: white;
+        padding: 10px;
+        border-radius: 20px;
+        margin-right: 20px;
+     }
+     .short-cuts span:hover {
+        background-color: red;
+        color: white;
+     }
+     .short-cuts {
+        transform: translateY(40px);
+        transition: 1s;
+     }
+     .card:hover {
+        background-image: url("../public/images/bag-2.jpg");
+        background-size: cover;
+        transition: 1s;
+     }
+     .card:hover .short-cuts {
+       transform: translateY(-40px);
+       transition: 1s;
+     }
+  </style>
+</head>
+<body>
+    <div class="card">
+       <div class="short-cuts">
+         <span class="bi bi-eye"></span>
+         <span class="bi bi-cart"></span>
+         <span class="bi bi-heart"></span>
+       </div>
+    </div>
+</body>
+</html>
+
+                          CSS 3D Transforms
+- 3 Dimensional Transforms comprises of X, Y & Z axis.
+- 3D requires a perspective to view the content.
+
+a) Translate3D
+    translateX()
+    translateY()
+    translateZ()
+
+b) Sclae3D
+    scaleX()
+    scaleY()
+    scaleZ()
+
+c) Rotate3D
+
+d) Skew3D
+
+
+Note: Transforms are not supported across all browsers, hence you need various CSS
+      plugins to configure.
+
+        -webkit            -webkit-transform
+        -moz            -moz-transform
+        -o                -o-transform
+        -ms                -ms-transform
+
+Syntax:
+       {
+          transform:scaleX(200px);
+          -webkit-transform:scaleX(200px);
+          -moz-transform:scaleX(200px);
+          -o-transform:scaleX(200px);
+          -ms-transform:scaleX(200px);
+      }
+ 
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        img {
+            margin: 30px;
+            transform: scale3d(1,1,1);
+            transition: 2s;
+        }
+        img:hover {
+            transform: scale3d(1.5, 1.5, 2);
+            transition: 2s;
+            box-shadow: 10px 10px 2px black;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <img src="../public/images/women-fashion.jpg" width="100" height="100">
+    <img src="../public/images/men-fashion.jpg" width="100" height="100">
+    <img src="../public/images/kids-fashion.jpg" width="100" height="100">
+    </div>
+</body>
+</html>
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        img {
+            position: absolute;
+        }
+        .pic-1 {
+            transform: scale3d(1,1,1);
+            transition: 2s;
+            width: 100px;
+            height: 100px;
+            background-image: url("../public/images/women-fashion.jpg");
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .pic-2 {
+            opacity: 0.3;
+        }
+        .pic-2:hover {
+            transform: scale3d(2, 2, 2);
+            transition: 2s;
+            box-shadow: 12px 12px 2px gray;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="pic-1">
+        <img class="pic-2" src="../public/images/women-fashion.jpg" width="100" height="100">
+    </div>
+</body>
+</html>
+     
+                           CSS Transitions
+
+transition                    : short hand for all effects
+transition-duration            : time take to complete the transform
+transition-delay            : the delay time for starting transform
+transition-property            : the properties that use the timings and effects
+transition-timing-function    : pre-defined transition effects
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            transition-duration: 5s;
+            transition-delay: 1s;
+            transition-property: width;
+            transition-timing-function: steps(4);
+        }
+        div:hover {
+            width: 1000px;
+            background-color: yellow;
+            transition-duration: 2s;
+            transition-delay: 1s;
+            transition-property: width;
+            transition-timing-function: steps(20);
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+</body>
+</html>
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <style>
+       body {
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        height: 100vh;
+       }
+       div {
+         transform: rotate(0deg);
+         transition-duration: 10s;
+         transition-timing-function: linear;
+       }
+       div:hover {
+          transform: rotate(360deg);
+          transition-duration: 10s;
+          transition-timing-function: linear;
+       }
+    </style>
+</head>
+<body>
+   <div class="bi bi-star-fill" style="color:red; font-size: 150px;"></div>
+</body>
+</html>
+
+                        CSS Keyframes

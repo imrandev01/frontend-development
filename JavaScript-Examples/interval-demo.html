@@ -1,0 +1,192 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function bodyload(){
+            setInterval(function(){
+                var now = new Date();
+                document.querySelector("p").innerHTML = now.toLocaleTimeString();
+            }, 1000);
+        }
+    </script>
+</head>
+<body onload="bodyload()">
+    <p></p>
+</body>
+</html> -->
+
+
+
+
+
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <style>
+        progress{
+            width: 300px;
+            height: 30;
+        }
+        @keyframes ZoomEffect {
+            from {
+                transform: scale();
+            }
+            to {
+                transform: scale();
+            }
+            
+        }
+    </style>
+    <script>
+       var count = 1;
+       function StartProgress(){
+        count++;
+        document.getElementById("progress").value =count;
+        document.getElementById("lblStatus").innerHTML=`${count} % completed`;
+        if (count===100){
+            document.getElementById("progressContainer").style.display="none";
+            document.getElementById("imageContainer").style.display= "block";
+            document.getElementById("pic").style.animationName= "ZoomEffect";
+            document.getElementById("pic").style.animationDuration = "5000ms";
+        }
+       }
+       var thread;
+       function LoadClick(){
+        document.getElementById("btnContainer").style.display= "none";
+        document.getElementById("progressContainer").style.display="block"
+        thread=setInterval(progressContainer,100);
+       }
+       function PauseClick(){
+        clearInterval(thread);
+        document.getElementById("lblStaus").innerHTML = `${count} % Complete pause`;
+       }
+       function PlayClick(){
+        thread =setInterval(StartProgress,100);
+       }
+    </script>
+</head>
+<body class="container-fluid d-flex justify-content-center align-items-center" style="height: 100vh">
+    <div class="text-center">
+        <div id="btnContainer">
+            <button class="btn btn-primary" onclick="LoadClick()">Load Image</button>
+        </div>
+        <div id="progressContainer" style="display: none;">
+            <progress id="progress" min="1" max="100"></progress>
+        </div>
+        <div>
+            <button onclick="PauseClick()" class="btn btn-danger bi bi-pause"></button>
+            <button onclick="PlayClick()" class="btn btn-success bi bi-play"></button>
+        </div>
+        <p id="lblStatus"></p>
+        <div>
+            </div>
+            <div id="imageContainer" style="display: none;">
+            <img id="pic" src="../public/images/woman-fasion.jpg" width="200" height="300">
+            </div>
+        </div>
+</body>
+</html>
+
+ -->
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progress Demo</title>
+
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+
+    <style>
+        progress {
+            width: 300px;
+            height: 30px;
+        }
+
+        @keyframes ZoomEffect {
+            from { transform: scale(1); }
+            to   { transform: scale(2); }
+        }
+    </style>
+
+    <script>
+        var count = 1;
+        var thread;
+
+        function StartProgress() {
+            count++;
+            document.getElementById("progress").value = count;
+            document.getElementById("lblStatus").innerHTML =
+                `${count} % Completed`;
+
+            if (count === 100) {
+                clearInterval(thread);
+
+                document.getElementById("progressContainer").style.display = "none";
+                document.getElementById("imageContainer").style.display = "block";
+
+                var pic = document.getElementById("pic");
+                pic.style.animationName = "ZoomEffect";
+                pic.style.animationDuration = "5000ms";
+            }
+        }
+
+        function LoadClick() {
+            document.getElementById("btnContainer").style.display = "none";
+            document.getElementById("progressContainer").style.display = "block";
+            thread = setInterval(StartProgress, 100);
+        }
+
+        function PauseClick() {
+            clearInterval(thread);
+            document.getElementById("lblStatus").innerHTML =
+                `${count} % Completed (Paused)`;
+        }
+
+        function PlayClick() {
+            thread = setInterval(StartProgress, 100);
+        }
+    </script>
+</head>
+
+<body class="container-fluid d-flex justify-content-center align-items-center" style="height:100vh">
+
+    <div class="text-center">
+
+        <div id="btnContainer">
+            <button class="btn btn-primary" onclick="LoadClick()">Load Image</button>
+        </div>
+
+        <div id="progressContainer" style="display:none;">
+            <progress id="progress" min="1" max="100"></progress>
+            <p id="lblStatus" class="mt-2"></p>
+        </div>
+
+        <div class="my-2">
+            <button onclick="PauseClick()" class="btn btn-danger bi bi-pause"></button>
+            <button onclick="PlayClick()" class="btn btn-success bi bi-play"></button>
+        </div>
+
+        <div id="imageContainer" style="display:none;">
+            <img id="pic" src="../public/images/woman-fasion.jpg" width="200" height="300">
+        </div>
+
+    </div>
+
+</body>
+</html>

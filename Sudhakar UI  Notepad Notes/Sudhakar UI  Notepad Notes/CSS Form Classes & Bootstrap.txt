@@ -1,0 +1,260 @@
+CSS Form Classes
+
+- Class is a program template.
+- It provides a set of values and functions, which you can implement and customize according to requirements.
+- It is a pre-defined logic.
+- It enables easy reusability and extensibility.
+
+Element state classes:
+
+        :focus
+        :read-only
+        :disabled
+        :checked
+
+Syntax:
+    element: focus {
+       
+    }
+
+    +        Adjacent element
+    ~        Anywhere within scope after the specified.
+    space    Child element
+
+
+    nav div { }        all div's inside nav
+    nav+div{ }         div adjacent to nav
+    nav~div{ }        div after nav at any occurrence
+
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       .UserName+div {
+          display: none;
+       }
+       .UserName:focus+div {
+         display: block;
+         color:red;
+         font-size: 14px;
+       }
+       .UserName:focus {
+          box-shadow: 3px 3px 2px red;
+          border:1px solid red;
+          outline: none;
+       }
+       input:read-only {
+          cursor: not-allowed;
+       }
+       button:disabled {
+         cursor: not-allowed;
+         background-color: gray;
+         color:white;
+       }
+    </style>
+</head>
+<body>
+   <dl>
+      <dt>User Id</dt>
+      <dd><input type="text" class="UserId" value="david_nit" readonly></dd>
+      <dt>User Name</dt>
+      <dd>
+         <input type="text" class="UserName" readonly placeholder="Name in Block Letters" value="DAVID">
+         <div>Name in Block Letters</div>
+      </dd>
+   </dl>
+   <button disabled> Login</button>
+</body>
+</html>
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .terms~button {
+           display: none;
+        }
+        .terms:checked~button {
+           display: block;
+        }
+        .terms+label {
+          color:red;
+        }
+        .terms:checked+label {
+          color:green;
+        }
+    </style>
+</head>
+<body>
+   <fieldset>
+       <legend>Terms of Service</legend>
+       <textarea rows="4" cols="40" disabled>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste ab, unde a neque ut rerum quae fugit dolorum vitae sapiente laudantium ea maxime eos adipisci sunt id, distinctio quasi. Aliquid? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ducimus hic facere sit laborum iusto commodi tempora, dolor recusandae voluptatum rerum autem doloremque consectetur cum? Inventore harum at maiores quo accusantium.</textarea>
+       <div>
+         <input type="checkbox" class="terms"> <label>I Accept</label>
+         <br><br>
+         <button>Submit</button>
+       </div>
+   </fieldset>
+</body>
+</html>
+
+Validation State Classes:
+   
+        :required
+        :optional
+        :in-range
+        :out-of-range
+        :valid
+        :invalid
+
+Syntax:
+    input:invalid {
+        border:1px solid red;
+    }
+    input:valid {
+        border:1px solid green;
+    }
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       input:required+span {
+         display: inline;
+         color:red;
+       }
+       input:optional+span {
+         display: none;
+       }
+       input:required {
+          border:1px solid red;
+          outline: none;
+       }
+       .mobile~div {
+         display: none;
+       }
+       .mobile:invalid~div {
+         display: block;
+         color:red;
+         font-size: 14px;
+       }
+       .username:invalid~div {
+         display: block;
+         color:red;
+         font-size: 14px;
+       }
+       .username:valid~div {
+         display: none;
+       }
+       .username:valid {
+         border:1px solid green;
+         outline: none;
+       }
+       .username:valid+span {
+         display: none;
+       }
+       .age:in-range+div {
+         display: none;
+       }
+       .age:out-of-range+div {
+         display: block;
+         color:red;
+         font-size: 14px;
+       }
+    </style>
+</head>
+<body>
+    <form>
+      <dl>
+         <dt>User Name</dt>
+         <dd>
+            <input class="username" type="text" required> <span>*</span>
+            <div>User Name Required</div>
+         </dd>
+         <dt>Password</dt>
+         <dd><input type="password"> <span>*</span></dd>
+         <dt>Mobile</dt>
+         <dd>
+            <input type="text" class="mobile" pattern="\+91\d{10}"> <span>*</span>
+            <div>Invalid Mobile</div>
+         </dd>
+         <dt>Age</dt>
+         <dd>
+            <input type="number" min="15" max="30" class="age">
+            <div>Age 15 to 30 only</div>
+         </dd>
+      </dl>
+      <button>Login</button>
+    </form>
+</body>
+</html>
+
+                             Bootstrap Form Classes
+
+- Bootstrap is an open source & cross platform component framework to build interactive UI rapidly.
+- Open source allows to customize according to requirements.
+- Cross platform allows to run on all browsers and devices.
+- Component is a combination of
+    a) Markup
+    b) Styles
+    c) Logic
+- Framework is a set of libraries.
+- Library is a set of values and functions.
+- Like bootstrap we have various libraries and frameworks
+
+        a) Tailwind CSS
+        b) Twitter Bootstrap
+        c) Telerik
+        d) MUI
+        e) Angular Material etc...
+
+- Bootstrap latest version is "5". It provides icons and component library.
+- Install bootstrap for your project
+
+        > npm  install  bootstrap  bootstrap-icons  --save
+
+- Link the bootstrap files to your page
+
+<head>
+<link rel="stylesheet"  href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+<link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+</head>
+
+- Bootstrap CSS file provides pre-defined classes for various CSS effects.
+
+1. Margin Classes
+        .m-{size}            all directions size 1 to 4
+        .mt-{ }            top margin
+        .mb-{ }            bottom margin
+        .my-{ }            top and bottom
+        .ms-{ }            start = left margin
+        .me-{ }            end = right margin
+        .mx-{ }            left & right margin
+
+2. Padding Class
+        .p-{ }
+        .pt-{ }
+        .pb-{ }
+        .py-{ }
+        .ps-{ }
+        .pe-{ }
+        .px-{ }
+
+3. Border Class
+        .border
+        .border-{size}            1 to 4
+        .border-{contextual}    primary, secondary, danger, warning, success, info
+                            dark, light etc.

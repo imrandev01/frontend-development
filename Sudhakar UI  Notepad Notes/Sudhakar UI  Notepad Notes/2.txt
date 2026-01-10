@@ -1,0 +1,83 @@
+Summary
+- What is Front End?
+- What is Back End?
+- What is the role of Front end and Back end developers?
+
+                    Web Applications - Front End
+
+1. You must have a PC with
+    a) Windows 8+ versions
+    b) Apple Mac
+    c) Linux
+   
+2. RAM  4 GB+
+
+
+3. Download and Install "Node JS" on your PC
+
+    - Every developer PC must have a "Package Manager".
+    - Package Manager is a software tool used to install, update and uninstall any
+      library required for project.
+    - There are various package manager softwares
+        a) NPM [Node Package Manager]
+        b) Yarn
+        c) NuGet
+        d) Bower
+        e) RubyGEMS
+        f) Composer etc..
+Ex:
+    - visit  "https://nodejs.org/en&quot;
+    - Download "LTS" [Long Term Support Version]
+    - Open setup file and install on your PC.
+    - Open Command Prompt on your PC
+
+            C:\> node  -v
+            C:\> npm  -v
+
+4. Download and Install "Visual Studio Code" editor
+
+    -  Editor is a software tool.
+    -  It provides an IDE [Integrated Development Environment]
+    -  IDE allows to build, debug, test & deploy.
+    - There are various editors        
+            https://editorconfig.org/
+    - Download VS Code
+               https://code.visualstudio.com/
+
+5. Open Visual Studio Code and Install the following Extentions for Web Development.
+
+    a) Live Server  [Ritwick Dey]
+        - It is used to host your web application
+        - It runs the web application locally.
+        - You can test and deploy locally using live server.
+        - You can try other server like
+             IIS [Internet Information Services Manager]
+             Apache Tomcat
+             XAMP
+             WAMP
+   
+    b) Vscode-icons  [vscode team]
+
+    c)  IntelliSense for CSS class names in HTML
+
+
+Summary
+- Install Node JS
+- Install Visual Studio Code
+- Install Plugin's [Extentions]
+    Live Server
+    Vscode Icons
+    IntelliSense for CSS class name in HTML
+
+What is Web?
+- Network comprises of group of computers connected with each other for sharing information and resources.
+- ARAPNET is the first computer network introduced by US-DOD.
+  [Advanced Research Projects Agency Network]
+- CERN developed concept of Internet.
+- Tim Berners Lee introduced the concept of "Web".
+- Web is a portion of internet with restricted access.
+- W3C mantains the standards of Web.
+  [World Wide Web Consoritum]
+- The latest version of Web is "Web-3"        
+
+How to build a Web application?

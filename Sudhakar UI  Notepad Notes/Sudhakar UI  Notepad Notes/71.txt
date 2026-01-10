@@ -1,0 +1,186 @@
+FAQ: What are the issues with object?
+- It can have keys only of "string" type.
+- It uses all explicit methods and operators for manipulation.
+- It is slow in interactions.
+Note: Object provides a schema for data. [structured data]
+                        
+                        
+                                Map Type
+- It is a key / value collection same as object.
+- It provides schema less data.
+- Key can be any type and value can be any type.
+- It provides implicit methods for manipulation.
+- It is faster when compared to object.
+Syntax:
+        var ref = new Map();
+
+        -size           It returns the length of keys
+        . set()         It adds a new key and value
+        .get()          It can access the value with reference of key
+        . delete()      It removes a keys
+        .clear()        It removes all keys
+        .has()          It finds a key
+        .keys()         It returns all keys
+        .values()       It returns all values
+        .entries()      It returns both keys and values
+        
+<script>
+var topics = new Map();
+    topics. set("HTML is a markup language");
+    topics. set( "CSS" ,"It configures styles");
+    topics. set (true,"Stock Available");
+    topics . set( "Cities " ,["Delhi", "Hyd"]);
+    topics. set(1001, {Name: "TV" ,Rating: 4.3});
+
+    topics.delete ( "CSS" );
+
+    for(var item of topics. entries()){
+        document. write(item + "<br>");
+    }
+</script>
+        
+                    JavaScript Date & Time
+JavaScript provides Date() constructor to configure date and time values.
+
+Syntax:
+    var dept = new Date();          // loads the current date and time into memory
+    var dept = new Date("yy-mm-dd hrs:min:sec.milliSec");       // stores specific date
+
+<script>
+    var Departure= new Date();
+    
+    document. write(Departure);
+</script>
+        
+Ex-      
+    var dept = new Date("2024-07-14 18:40:43.7")
+
+- JavaScript provides various methods to access the date and time values
+        getHours()          O to 23
+        getMinutes()        O to 59
+        getSeconds()        O to 59
+        getMilliSeconds()   O to 99
+        getDate()           1 to 28, 29, 30, 31
+        getDay()            weekday number O=sunday, 1=Monday..
+        getMonth()          month number 0=Jan,.... 11=december
+        getFullYear()       year number 4 digits 2024
+        getYear() [obsolete]
+
+        toDateString()
+        toTimeString()
+        toLocaleDateString()
+        toLocaleTimeString()
+
+
+<script>
+    var Departure = new Date("2024-07-15 14:50:30.64");
+    var weekdays = ["Sunday", "Monday", "Tue", "Wed", "Thur", "Friday", "Saturday"];
+    var months = ["Jan", "Feb", "March", "April","May", "June", "July", "August", "Sep","October", "Nov", "Dec"];
+    
+    document.write(`${weekdays[Departure.getDay()]} ${Departure.getDate()}${months[Departure.getMonth()]},${Departure.getFullYear()}`)
+
+</script>
+
+
+Note: JavaScript supports various 3rd party Date Adapters to handle and manipulate 
+      Date and Time values.
+                a) moment
+                b) dayjs
+                c) luxon
+                etc..
+
+- JavaScript provides various methods to set date and time.
+                setHours()
+                setMinutes()
+                setSeconds()
+                setMilliSeconds()
+                setDate()
+                setMonth()
+                setYear()
+
+
+<script>
+    var Departure = new Date("2024-07-15 14:50:30.64");
+    var weekdays = ["Sunday", "Monday", "Tue", "Wed", "Thur", "Friday", "Saturday"];
+    var months = ["Jan", "Feb", "March", "April","May", "June", "July", "August", "Sep","October", "Nov", "Dec"];
+
+    Departure.setDate(12);
+
+    document.write(`${weekdays[Departure.getDay()]} ${Departure.getDate()} ${months[Departure.getMonth()]},${Departure.getFullYear()}`)
+</script>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greeting</title>
+
+    <script>
+        function bodyload() {
+            var now = new Date();
+            var hrs = now.getHours();
+
+            var h1 = document.querySelector("h1");
+
+            if (hrs >= 0 && hrs < 12) {
+                h1.innerHTML = "Good Morning!";
+            } 
+            else if (hrs >= 12 && hrs < 17) {
+                h1.innerHTML = "Good Afternoon!";
+            } 
+            else {
+                h1.innerHTML = "Good Evening!";
+            }
+        }
+    </script>
+</head>
+
+<body onload="bodyload()">
+    <h1 align="center"></h1>
+</body>
+</html>
+
+
+
+                                JavaScript Timer Events
+setTimeout()
+clear Timeout()
+setlnterval()
+dearlnterval()
+
+
+Syntax:
+        setlnterval(function(){},interval);      //interval 1000ms = 1sec
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Clock</title>
+
+    <script>
+        function bodyload() {
+            setInterval(function () {
+                var now = new Date();
+                document.querySelector("h2").innerHTML =
+                    now.toLocaleTimeString();
+            }, 1000);
+        }
+    </script>
+</head>
+
+<body onload="bodyload()">
+    <font face="monospace">
+        <h2></h2>
+    </font>
+</body>
+</html>
+
+        
+        
+        
+        

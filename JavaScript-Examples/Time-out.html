@@ -1,0 +1,69 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function msg1(){
+            document.querySelector("p").innerHTML= "Hello !";
+        }
+        function msg2(){
+            document.querySelector("p").innerHTML = "How are you? ";
+        }
+        function msg3(){
+            document.querySelector("p").innerHTML = "Welcome to JavaScript";
+        }
+        function DisplayClick(){
+            msg1();
+            msg2();
+            msg3();
+        }
+    </script>
+</head>
+<body onload ="bodyload()">
+    <div align="center">
+        <button onclick="DisplayClick()">Display Messages</button>
+        <p></p>
+    </div>  
+</body>
+</html> -->
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function msg1(){
+            document.querySelector("p").innerHTML= "Hello !";
+        }
+        function msg2(){
+            document.querySelector("p").innerHTML = "How are you? ";
+        }
+        function msg3(){
+            document.querySelector("p").innerHTML = "Welcome to JavaScript";
+        }
+        var m1, m2, m3;
+        function DisplayClick(){
+            m1 = setTimeout(msg1,3000);
+            m2 = setTimeout(msg2,6000);
+            m3 = setTimeout(msg3,10000);
+        }
+        function Cancleclick(){
+            clearTimeout(m2);
+        }
+    </script>
+</head>
+<body onload ="bodyload()">
+    <div align="center">
+        <button onclick="DisplayClick()">Display Messages</button>
+        <button onclick="Cancleclick()">cancel msg2</button>
+        <p></p>
+    </div>  
+</body>
+</html>

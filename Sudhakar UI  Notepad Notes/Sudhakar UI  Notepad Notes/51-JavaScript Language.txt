@@ -1,0 +1,180 @@
+Form Input Elements
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <script type="text/javascript">
+        function SubmitClick(){
+            document.getElementById("lblId").innerHTML = document.getElementById("txtId").value;
+            document.getElementById("lblName").innerHTML = document.getElementById("txtName").value;
+            document.getElementById("lblPrice").innerHTML = document.getElementById("txtPrice").value;
+            document.getElementById("lblCity").innerHTML = document.getElementById("lstCities").value;
+
+            stock = "";
+            stockCheckBox = document.getElementById("optStock");
+
+            if(stockCheckBox.checked)
+            {
+                stock = "Available";
+            }
+            else
+            {
+                stock = "Out of Stock";
+            }
+            document.getElementById("lblStock").innerHTML = stock;
+           
+        }
+    </script>
+</head>
+<body class="container-fluid">
+    <div id="registerContainer">
+        <h2>Register Product</h2>
+        <dl class="w-25">
+            <dt>Product Id</dt>
+            <dd><input type="number" id="txtId" class="form-control"></dd>
+            <dt>Name</dt>
+            <dd><input type="text" id="txtName" class="form-control"></dd>
+            <dt>Price</dt>
+            <dd><input type="number" id="txtPrice" class="form-control"></dd>
+            <dt>Shipped To</dt>
+            <dd>
+                <select id="lstCities" class="form-select">
+                    <option>Select City</option>
+                    <option>Delhi</option>
+                    <option>Hyd</option>
+                </select>
+            </dd>
+            <dt>Stock</dt>
+            <dd class="form-switch">
+                <input type="checkbox" id="optStock" class="form-check-input"> <label> Available </label>
+            </dd>
+            <button onclick="SubmitClick()" data-bs-toggle="modal" data-bs-target="#details" class="btn btn-primary w-100">Submit</button>
+        </dl>
+    </div>
+    <div class="modal fade" id="details">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Product Details</h2>
+                </div>
+                <div class="modal-body">
+                    <dl>
+                        <dt>Product Id</dt>
+                        <dd id="lblId"></dd>
+                        <dt>Name</dt>
+                        <dd id="lblName"></dd>
+                        <dt>Price</dt>
+                        <dd id="lblPrice"></dd>
+                        <dt>Shipping City</dt>
+                        <dd id="lblCity"></dd>
+                        <dt>Stock</dt>
+                        <dd id="lblStock"></dd>
+                    </dl>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" data-bs-dismiss="modal"> OK </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+                         JavaScript Language
+1. Variables
+2. Data Types
+3. Operators
+4. Statements
+5. Functions
+6. OOP
+
+
+                              Variables
+- Variables are storage locations in memory where you can store a value and use it as a part of any expression.
+- Variable uses a temporary memory, which can vary its value according to state and situation.
+- Variable have same reference name but varying values.
+- Variable configuration have 3 phases
+   
+    a) Declaration      
+    b) Assignment
+    c) Initialization
+
+- Declaration comprises of specification about behaviour, scope and reference name.
+- If JavaScript is not in strict mode, then declaration is not mandatory.
+- If JavaScript is in strict mode, then you have to declare a variable by using the keywords:
+    a) var
+    b) let
+    c) const
+
+Syntax:
+            var x;        // declaring
+            let price;        // declaring
+
+- Assignment is the process of storing a value into variable reference after declaring.
+
+            var x;        // declaring
+            x = 10;        // assigning
+            x = 20;        // assigning
+
+- Initialization is the process of storing a value into variable reference while declaring a variable.
+
+            var x = 10;    // initialization
+            x = 20;        // assignment
+
+FAQ: What is difference between var, let & const?
+
+var
+- It configures a function scope variable.
+- A function scope variable can be declared in any block of a function and can be accessed from any another block inside function.
+- It allows declaring, initialization and assignment.
+
+Ex:
+<script>
+    function f1()
+    {
+        var x;          // declaring
+        x = 10;         // assignment
+        if(x==10)
+        {
+            var y = 20;     // initialization
+        }
+        document.write("x=" + x + "<br>" + "y=" + y);
+    }
+    f1();
+</script>
+
+- It allows shadowing.
+- Shadowing is the process of re-declaring or re-initializing same name identifier within the scope.
+
+        var x = 10;        // initialization
+        x = 20;            // assignment
+        var x = 30;        // shadowing
+
+- It allows hoisting.
+- It is a mechanism of configuring the declaration of variable at any location in function, there is no order dependency in declaring and using a variable.
+- It allows to use and later declare or initialize.
+
+Ex:
+<script>
+    "use strict";
+    function f1()
+    {
+        x = 10;
+        document.write("x=" + x);
+        var x;                      //hoisting
+    }
+    f1();
+</script>
+
+let:
+- It configures a block scope variable.
+- It is accessible only in the block where it is declared and its inner blocks.
+- It supports declaring, assignment and initialization.
+- It will not support shadowing & hoisting.

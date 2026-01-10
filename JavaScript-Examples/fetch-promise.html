@@ -1,0 +1,150 @@
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX Product Demo</title>
+
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+
+    <script>
+        function bodyload() {
+
+            fetch("../data/product.json")
+            .then(function(response){
+                return response.json();
+            })
+            .then(function(product){
+                document.getElementById("imgProduct").src = product.image;
+                document.getElementById("lblTitle").innerText = product.title;
+                document.getElementById("lblRating").innerText = product.rating.rating;
+                document.getElementById("lblReviews").innerText =
+                    product.Rating.ratings.toLocaleString() +
+                    " Ratings " +
+                    product.rating.reviews.toLocaleString() +
+                    " Reviews";
+                document.getElementById("lblPrice").innerHTML =
+                    "&#8377; " + product.price.toLocaleString();
+                product.offers.map(function(offer){
+                    var li =document.createElement("li");
+                    li.className = "bi bi-tag-fill text-success my-2";
+                    li.innerHTML = `<span class="text-secondary"> ${offer}</span>`;
+                    document.getElementById("lsOffers").appendChild(li);
+                })
+            })
+                
+        }
+    </script>
+</head>
+
+<body class="container-fluid" onload="bodyload()">
+
+    <div class="row mt-4">
+        <div class="col-3">
+            <img id="imgProduct" class="img-fluid">
+        </div>
+
+        <div class="col-9">
+            <h4 id="lblTitle"></h4>
+
+            <div class="my-2">
+                <span class="badge bg-success p-2">
+                    <span id="lblRating"></span>
+                    <span class="bi bi-star-fill"></span>
+                </span>
+                <span class="fw-bold text-secondary ms-2" id="lblReviews"></span>
+            </div>
+
+            <h3 class="my-3" id="lblPrice"></h3>
+
+            <ul class="list-unstyled" id="lsOffers"></ul>
+        </div>
+    </div>
+
+</body>
+</html>
+
+
+
+
+
+
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX Product Demo</title>
+
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+
+    <script>
+        function bodyload() {
+
+            fetch("../data/product.json")
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (product) {
+
+                    document.getElementById("imgProduct").src = product.image;
+                    document.getElementById("lblTitle").innerText = product.title;
+                    document.getElementById("lblRating").innerText = product.rating.rating;
+
+                    document.getElementById("lblReviews").innerText =
+                        product.rating.Ratings.toLocaleString() +
+                        " Ratings " +
+                        product.rating.reviews.toLocaleString() +
+                        " Reviews";
+
+                    document.getElementById("lblPrice").innerHTML =
+                        "&#8377; " + product.price.toLocaleString();
+
+                    var offerList = document.getElementById("lsOffers");
+                    offerList.innerHTML = "";   // clear first
+
+                    product.offers.map(function (offer) {
+                        var li = document.createElement("li");
+                        li.className = "bi bi-tag-fill text-success my-2";
+                        li.innerHTML = `<span class="text-secondary"> ${offer}</span>`;
+                        offerList.appendChild(li);
+                    });
+                })
+                .catch(function (error) {
+                    console.error("Fetch error:", error);
+                });
+                
+        }
+    </script>
+</head>
+
+<body class="container-fluid" onload="bodyload()">
+
+    <div class="row mt-4">
+        <div class="col-3">
+            <img id="imgProduct" class="img-fluid">
+        </div>
+
+        <div class="col-9">
+            <h4 id="lblTitle"></h4>
+
+            <div class="my-2">
+                <span class="badge bg-success p-2">
+                    <span id="lblRating"></span>
+                    <span class="bi bi-star-fill"></span>
+                </span>
+                <span class="fw-bold text-secondary ms-2" id="lblReviews"></span>
+            </div>
+
+            <h3 class="my-3" id="lblPrice"></h3>
+
+            <ul class="list-unstyled" id="lsOffers"></ul>
+        </div>
+    </div>
+
+</body>
+</html>

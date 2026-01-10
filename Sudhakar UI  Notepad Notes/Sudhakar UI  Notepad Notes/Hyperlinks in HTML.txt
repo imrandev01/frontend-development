@@ -1,0 +1,292 @@
+Images in HTML
+
+                            Hyperlink in HTML
+- Hyper refers to "beyond".
+- A hyper link navigates the user to any specified location.
+- Hyperlink can be clickable text, picture or graphic.
+- Navigation is classified into 2 types
+    a) Intra Document
+    b) Inter Document
+- Intra document navigation enables redirection from one location to another within the same page.
+- Inter document navigation enables redirection from one page to another.
+- Hyperlink is created by using anchor element <a>.
+
+Intra Document Links:
+1. You have to define target location with "id", which is a unique reference for elements in page.
+
+            <header id="top">
+            <h2 id="html">
+            <img id="pic">
+
+2. You have to set ID in URL by using <a>  "href" attribute.
+
+            <a href="#top">  Top </a>
+            <a href="#html"> HTML </a>
+            <a href="#pic"> Pic </a>
+
+FAQ: How to remove underline for hyperlink?
+Ans: By using CSS "text-decoration" set to "none".
+
+Syntax:
+    a{
+       text-decoration: none;
+    }
+
+Ex: Intra Links - Fashion Page
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion Store</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <style>
+        header {
+            background-color: black;
+            color:white;
+            font-size: 20px;
+            font-family: Arial;
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+        }
+        nav span {
+            margin-right: 20px;
+        }
+        section {
+            display: grid;
+            grid-template-columns: 2fr 10fr;
+        }
+        main {
+            height: 500px;
+            overflow: auto;
+        }
+        ul {
+            list-style: none;
+            margin-left: -40px;
+        }
+        li {
+            background-color: black;
+            color:white;
+            padding: 5px;
+            width: 80px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            font-size: 20px;
+            font-family: Arial;
+        }
+        a {
+            color:white;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="brand-title">Shopper.</div>
+        <nav>
+            <span><a href="#home">Home</a></span>
+            <span><a href="#men">Men's Fashion</a></span>
+            <span><a href="#women">Women's Fashion</a></span>
+            <span><a href="#kid">Kid's Fashion</a></span>
+        </nav>
+        <div>
+            <span class="bi bi-search"></span>
+            <span class="bi bi-heart"></span>
+            <span class="bi bi-cart4"></span>
+        </div>
+    </header>
+    <section>
+        <div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#men">Men</a></li>
+                <li><a href="#women">Women</a></li>
+                <li><a href="#kid">Kids</a></li>
+            </ul>
+        </div>
+        <main>
+            <h1 id="home">Home</h1>    
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat totam exercitationem dolorem iste, quae nulla dolorum, molestias, neque adipisci commodi similique atque provident minima beatae debitis cum doloremque. Natus, aliquam!</p>
+            <h1 id="men">Men's Fashion</h1>
+            <img src="./images/men-fashion.jpg" width="200" height="300">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat totam exercitationem dolorem iste, quae nulla dolorum, molestias, neque adipisci commodi similique atque provident minima beatae debitis cum doloremque. Natus, aliquam!</p>
+            <h1 id="women">Women's Fashion</h1>
+            <img src="./images/women-fashion.jpg" width="200" height="300">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat totam exercitationem dolorem iste, quae nulla dolorum, molestias, neque adipisci commodi similique atque provident minima beatae debitis cum doloremque. Natus, aliquam!</p>
+            <h1 id="kid">Kid's Fashion</h1>
+            <img src="./images/kids-fashion.jpg" width="200" height="300">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat totam exercitationem dolorem iste, quae nulla dolorum, molestias, neque adipisci commodi similique atque provident minima beatae debitis cum doloremque. Natus, aliquam!</p>
+           
+        </main>
+    </section>
+</body>
+</html>
+
+FAQ: How to highlight any link target if you can't scroll to the specified location?
+Ans:  By using CSS "target" class.
+
+Syntax:
+    container {
+        // effects before target
+    }
+    container:target {
+        // effects on target
+    }
+
+    - Make sure that container is defined with "Id"    
+    - <a> href is referring to ID.
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .card {
+            width: 200px;
+            padding: 20px;
+            margin: 20px;
+            border:1px solid black;
+            box-shadow: 2px 2px 2px gray;
+        }
+        main {
+            display: flex;
+        }
+        nav {
+            text-align: center;
+            padding: 50px;
+            font-size: 25px;
+            font-family: Arial;
+        }
+        a {
+            text-decoration: none;
+        }
+        nav span {
+            margin-right: 30px;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .card:target {
+            background-color: black;
+            color:white;
+            width: 200px;
+            height: 200px;
+            border-radius: 200px;
+            text-align: center;
+            font-size: 25px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <span><a href="#html">HTML</a></span>
+        <span><a href="#css">CSS</a></span>
+        <span><a href="#js">JavaScript</a></span>
+    </nav>
+    <main>
+        <div class="card" id="html">
+            <h2>HTML</h2>
+            <p>It is a markup language</p>
+        </div>
+        <div class="card" id="css">
+            <h2>CSS</h2>
+            <p>It defines styles.</p>
+        </div>
+        <div class="card" id="js">
+            <h2>JavaScript</h2>
+            <p>It manipulates DOM.</p>
+        </div>
+    </main>
+</body>
+</html>
+
+Inter Document Links:
+- It defines a hyperlink that redirects the user to any
+
+        a) file
+        b) url
+        c) application
+
+Link to File:
+- You can link to any file : html, doc, xls, pdf, txt, jpg etc.
+- But every file can't open in browser.
+- Browser can open only the files that have supported plugin's in browser.
+- If plugin is not installed in browser, then file will download.
+
+Syntax:    
+    <a href="./docs/file.pdf"> PDF </a>
+    <a href="./images/pic.jpg"> Image </a>
+    <a href="./docs/word.docx"> Word Document </a>
+
+FAQ: How to configure a link to file that always downloads the target file?
+Ans:  HTML 5 provides "download" attribute for <a> element, which downloads the file always.
+
+Syntax:
+    <a href="./docs/file.pdf"   download="newname">  Download File </a>
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ol>
+        <li><a href="./amazon-cards.html">Amazon Cards - Template Design</a></li>
+        <li><a href="./images/women-fashion.jpg">Women Fashion Image</a></li>
+        <li><a href="./docs/kerala.pdf" download="kerala-tourism">Kerala Tourism - PDF</a></li>
+        <li><a href="./docs/ArrayProblems.docx">Arrays in Programming - Word Doc</a></li>
+    </ol>
+</body>
+</html>
+
+Link to URL:
+- You can define a valid remote URL for navigation.
+- Make sure that the URL is defined with protocol and domain.
+
+            www.amazon.in        // not good
+            https://www.amazon.in    // good
+
+Syntax:
+    <a href="https://www.amazon.in"&gt; Amazon </a>
+
+
+Link to Application:
+- Anchor element support some applications, which you can invoke in browser.
+- It includes  email application, skype, phone application etc.
+
+        tel            : phone app
+        mailto        : email app
+        skype        : skype app
+
+Syntax:
+    <a href="emai@gmail.om"> Email </a>
+    <a href="tel:phonenumber"> Phone </a>
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <address>
+        Mail : <a href="hr@nareshit.in">hr@nareshit.com</a>
+        <br>
+        Call : <a href="tel:+919876543210"> +91-9876543210 </a>
+        <br>
+        Skype : <a href="skype:nareshit@outlook.com"> NareshIT HR Team </a>
+        <br>
+        whatsup : <a href="https://web.whatsapp.com/+919876543210"&gt; +91-9876543210 </a>
+    </address>
+</body>
+</html>

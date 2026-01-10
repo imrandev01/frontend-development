@@ -1,0 +1,263 @@
+Occurrence & Behavioural Classes:
+
+    ::first-letter
+    ::first-line
+    ::before
+    ::after
+    ::selection
+    ::placeholder
+
+- They define certain functionality with a set of rules.
+- The classes "before & after" require a content to display.
+
+Syntax:
+    li::after {
+       content: " > ";
+    }
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    p::first-letter {
+       font-size: 30px;
+       font-family: Arial;
+       float: left;
+    }
+    p::first-line {
+      color:blue;
+    }
+    p::selection {
+       background-color: yellow;
+    }
+    input::placeholder {
+        font-size: 14px;
+        color:red;
+        background-color: yellow;
+    }
+    ul {
+      list-style: none;
+      display: flex;
+    }
+    li::after {
+      content: " > ";
+    }
+    li:last-child::after {
+      content: "";
+    }
+  </style>
+</head>
+<body>
+  <ul>
+    <li>Home</li>
+    <li>Electronics</li>
+    <li>Televisions</li>
+    <li>Samsung</li>
+    <li>OLED</li>
+    <li>65"</li>
+  </ul>
+  <input type="text" placeholder="Name in Block Letters">
+   <p>
+    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus corporis molestiae debitis? Voluptatibus consequuntur nam vero aperiam et error, molestiae quibusdam deserunt dolore doloribus nemo, quo pariatur cum commodi officia.
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi nemo vero quam magni mollitia repellat sequi est repellendus eligendi asperiores nisi, eius atque voluptates impedit ratione ad ea culpa animi.
+   </p>
+</body>
+</html>
+
+Root Selector:
+- It refers to root element in a shadow-DOM.
+- You can access the shadow-dom elements and configure styles.
+- It requires additional methods using JavaScript.
+
+Syntax:
+      :root
+      {
+      }
+
+Universal Selector:
+- It refers to all elements in page at any level of hierarchy.
+
+Syntax:
+    * {
+        font-family: Arial;
+        color:red;
+     }
+
+Language Selector:
+- It configures styles based on the content language type.
+- It is an globalization attribute.
+
+Syntax:
+    :lang[region]
+    {
+    }
+
+Summary:
+- CSS Integration
+- CSS Selectors
+- CSS Rules
+
+                         CSS Inheritance
+- Inheritance is a mechanism where the parent styles are auto implemented for child elements. However all parent features are not inherited.
+- Developer can control the inheritance of any style by using following values
+
+    a) inherit        : It inherits the parent style
+    b) initial        : It removes the inherited style.
+    c) unset        : It removes the default style.
+
+Syntax:
+    child {            child {
+      all : inherit;            color:inherit;
+    }                    font:initial;
+                    }
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+      .container {
+         border:4px double red;
+         padding: 20px;
+         color:red;
+      }
+      h2 {
+        border:inherit;
+        padding: inherit;
+        color:initial;
+        font-weight:unset;
+      }
+  </style>
+</head>
+<body>
+   <div class="container">
+        Container Text
+        <h2>Title</h2>
+   </div>
+</body>
+</html>
+                             CSS Units
+
+- Units are used to configure the dimensions and position of element.
+- Units are categorized into 2 types
+   
+        a) Absolute Units
+        b) Relative Units
+
+- Absolute units have a fixed value they are not controlled dynamically by adjacent or parent elements.
+
+        in
+        cm
+        mm
+        q
+        pc
+        pt
+        px
+
+- Relative units are not defined with a fixed value it changes according to the parent.
+       
+        em            element size            ]  good for
+        rem            root element size        ]   font size
+        vh            view port height
+        vw            view port width
+        %            % of parent
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+      .container {
+         border: 2px double red;
+         padding: 20px;
+         color:red;
+         font-size: 30px;
+      }
+      p {
+        font-size: 0.5em;
+      }
+      body {
+        font-size: 24px;
+      }
+  </style>
+</head>
+<body>
+   Body Text
+   <div class="container">
+        Container Text
+        <p>Para Text</p>
+   </div>
+</body>
+</html>
+
+                            CSS Colors
+- Color Name
+- Shade Name
+- Hexadecimal
+- rgb()
+- rgba()
+- hsl()
+- hsla()
+- linear-gradient()    ]  can apply only with background image
+- radial-gradient()    ]
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+   
+      body {
+         height: 100vh;
+         background-image: linear-gradient(to top right, red 30%, yellow, green);
+      }
+  </style>
+</head>
+<body>
+   Body Text
+   <div class="container">
+        Container Text
+        <p>Para Text</p>
+   </div>
+</body>
+</html>
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+   
+      body {
+         height: 100vh;
+         background-image: radial-gradient(red 30%, yellow, green, blue);
+      }
+  </style>
+</head>
+<body>
+   Body Text
+   <div class="container">
+        Container Text
+        <p>Para Text</p>
+   </div>
+</body>
+</html>
+
+
+                              CSS Box Model

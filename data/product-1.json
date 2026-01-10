@@ -1,0 +1,23 @@
+[
+  {
+    "title": "Apple iPhone 15 (Black, 128 GB)",
+    "price": 79900,
+    "rating": { "rating": 4.6, "Ratings": 39755, "reviews": 2187 },
+    "offers": [ "...", "...", "..." ],
+    "image": "../public/images/iphone-black.png"
+  },
+    {
+    "title": "Apple iPhone 15 (green, 128 GB)",
+    "price": 79900,
+    "rating": { "rating": 4.6, "Ratings": 39755, "reviews": 2187 },
+    "offers": [ "...", "...", "..." ],
+    "image": "../public/images/iphone-green.png"
+  },
+   {
+    "title": "Apple iPhone 15 (Pink, 128 GB)",
+    "price": 79900,
+    "rating": { "rating": 4.6, "Ratings": 39755, "reviews": 2187 },
+    "offers": [ "...", "...", "..." ],
+    "image": "../public/images/iphone-pink.png"
+  }
+]

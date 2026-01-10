@@ -1,0 +1,209 @@
+- Object Data Type
+- JSON - JavaScript Object Notation
+
+Note:
+- You can store data offline in a JSON file. So That you can access from any page.
+- JSON file must have the extension ".json"
+- To access data from JSON file you need "Ajax Requests".
+
+                                    JavaScript Ajax
+
+- Ajax is Asynchronous JavaScript And XML.
+- Asynchronous allows to handle a task without blocking other tasks in process.
+- Ajax enables "Partial Postback". It can post specific portion of page without submitting entire page.
+- Ajax allows to add new content into page without reloading the complete page.
+- JavaScript is used as browser language to hand Async Requests.
+- XML is used as medium to transport data in async request.
+- In a browser the Ajax calls are managed by "XMLHttpRequest" object.
+
+
+Step-1: Create a new XMLHttpRequest Object
+
+        var http = new XMLHttpRequest();
+
+Step-2: Confiqure the request by using "open()" method
+        http.open("requestMethod","url",async:boolean)
+
+        requestMethod   =>> GET, POST, PUT, PATCH, DELETE
+        Ascync          =>> It is default false.
+
+Step-3: send the request for processing
+
+       http.send()
+
+send-4: You have to check the readyState "onreadystatechange" function.
+
+        http.onreadystatechange = function() {
+            if(http.readyState==4)
+            {
+        }
+    }
+
+            readyState==1       => Initial
+            readyState==2       => Success
+            readyState==3       => Complete
+            readyState==4       => Response Ready
+
+Step-5: Collect the Response Details using http object
+
+        http.responseText
+        http.responseXML
+
+
+Ex:
+1. Create a new folder "data"
+2. Add a new file " help.txt" with some content inside 
+3. Add HTML page
+    ajax-demo.html
+
+
+Ex--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        function bodyload(){
+            var now = new Date();
+            console.log(`Page Loaded on ${now.toLocaleTimeString()}`);
+        }
+
+        function LoadClick(){
+            var now = new Date();
+            console.log(`Load Button Clicked on : ${now.toLocaleTimeString()}`);
+
+            var http = new XMLHttpRequest();
+            http.open("GET", "../data/help.txt", true);
+            http.send();
+
+            http.onreadystatechange = function(){
+                if(this.readyState == 4){
+                    document.getElementById("container").innerText = this.responseText;
+                }
+            }
+        }
+    </script>
+</head>
+
+<body onload="bodyload()">
+    <p id="lblLoadTime"></p>
+    <button onclick="LoadClick()">Load Help</button>
+    <br><br>
+    <pre id="container"></pre>    
+</body>
+</html>
+
+
+Note: You have to convert text into JSON by using "JSON.parse()"
+
+Ex
+-   data/product.json
+
+{
+        "title": "Apple iPhone 15 (Black, 128 GB)",
+        "price": 79900,
+        "rating": {"rating":4.6, "Ratings":39755, "reviews":2187},
+        "offers":[
+        "Special PriceGet extra  ₹3000 off (price inclusive of cashback/coupon)T&C",
+        "No Cost EMI on Bajaj Finserv EMI Card on cart value above ₹3000T&C",
+        "Bank Offer5% Unlimited Cashback on Flipkart Axis Bank Credit CardT&C",
+        "Partner OfferSign up for Flipkart Pay Later and get Flipkart Gift Card worth ₹1000*Know More"
+        ],
+        "image": "../public/images/iphon15black.png"
+}
+
+
+
+EX html ---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX Product Demo</title>
+
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+
+    <script>
+        function bodyload() {
+
+            // Step-1: Create XMLHttpRequest object
+            var http = new XMLHttpRequest();
+
+            // Step-2: Configure request
+            http.open("GET", "../data/product.json", true);
+
+            // Step-3: Send request
+            http.send();
+
+            // Step-4: Check readyState
+            http.onreadystatechange = function () {
+
+                if (http.readyState === 4 && http.status === 200) {
+
+                    // Step-5: Convert JSON text to Object
+                    var product = JSON.parse(http.responseText);
+
+                    // Data Binding
+                    document.getElementById("imgProduct").src = product.image;
+                    document.getElementById("lblTitle").innerText = product.title;
+                    document.getElementById("lblRating").innerText = product.rating.rating;
+
+                    document.getElementById("lblReviews").innerText =
+                        product.rating.Ratings.toLocaleString() +
+                        " Ratings " +
+                        product.rating.reviews.toLocaleString() +
+                        " Reviews";
+
+                    // ₹ symbol using HTML entity
+                    document.getElementById("lblPrice").innerHTML =
+                        "&#8377; " + product.price.toLocaleString();
+
+                    // Using map() to render offers
+                    var offersHTML = product.offers.map(function (offer) {
+                        return `
+                            <li class="my-2">
+                                <span class="bi bi-tag-fill text-success me-2"></span>
+                                <span class="text-secondary">${offer}</span>
+                            </li>
+                        `;
+                    });
+
+                    document.getElementById("lsOffers").innerHTML =
+                        offersHTML.join("");
+                }
+            };
+        }
+    </script>
+</head>
+
+<body class="container-fluid" onload="bodyload()">
+
+    <div class="row mt-4">
+        <div class="col-3">
+            <img id="imgProduct" class="img-fluid">
+        </div>
+
+        <div class="col-9">
+            <h4 id="lblTitle"></h4>
+
+            <div class="my-2">
+                <span class="badge bg-success p-2">
+                    <span id="lblRating"></span>
+                    <span class="bi bi-star-fill"></span>
+                </span>
+                <span class="fw-bold text-secondary ms-2" id="lblReviews"></span>
+            </div>
+
+            <h3 class="my-3" id="lblPrice"></h3>
+
+            <ul class="list-unstyled" id="lsOffers"></ul>
+        </div>
+    </div>
+
+</body>
+</html>

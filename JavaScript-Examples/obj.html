@@ -1,0 +1,18 @@
+<script>
+    var product ={
+        name: "",
+        price: 0,
+        Qty:0,
+        Total : function(){
+            return this.Qty * this.price;
+        },
+        print: function(){
+            document.write(`Name: ${this.name} <br> Price: ${this.price} <br> Qty: ${this.Qty} <br> Total: ${this.Total()} <br>`);
+    
+        }
+    }
+    product.name = "Samsung TV";
+    product.price = parseInt(prompt("Enter Price: "));
+    product.Qty = parseInt(prompt("Enter Qty: "));
+    product.print();
+</script>

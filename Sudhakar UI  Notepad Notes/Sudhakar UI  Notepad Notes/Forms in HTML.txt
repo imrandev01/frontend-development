@@ -1,0 +1,112 @@
+Forms in HTML
+- Form provides an UI from where user can interact with the data.
+- Form interaction include CRUD operations.
+
+        C    Create
+        R    Read
+        U    Update
+        D     Delete
+
+The <form> element:
+- It is a generic container.
+- It is a collection of elements.
+        window.document.forms[].elements[]  => DOM hierarchy
+
+- It is a generic container.
+- It have the ability to submit or reset the form data.
+- The form elements allow to manipulate the data. [CRUD]
+
+FAQ: What are generic elements in HTML?
+Ans : Generic elements have pre-defined functionality. However you can customize the      
+     functionality.
+
+FAQ: Can we define multiple forms in a page?
+Ans:  Yes.
+
+FAQ: Can we define a form within another form?
+Ans: No.
+            <form>                    => invalid
+               … some content...
+                <form>
+                </form>
+            </form>
+
+Form Attributes:
+1. id                It is a unique identification for form in page.
+                [used in CSS & JavaScript]
+
+2. name            It is a reference name for form, name can common for multiple
+                forms so that user can choose any one to submit.
+
+3. class            It is a reference for configuring styles and functions for form.
+
+
+4. method        It defines the actions performed by form.
+                Form methods are:
+                    a) GET
+                    b) POST
+
+                <form  method="get | post">
+
+GET Method:
+- It is the default method of "form".
+- It is used to fetch data from server. [fetch = accessing]
+
+POST Method
+- It is an explicit method to configure.
+- It submits the data to server in order to save on server.
+
+FAQ: Can we submit & save data on GET request?
+Ans: Yes. Not recommended every time.
+
+FAQ: Why it is not recommended to save data on GET request?
+Ans:  When you submit data on GET
+    - It is appended into URL as "Query String".
+    - Everyone can view your data.
+    - It is not safe.
+    - It is easy to hack your data.
+    - It is stored in browser logs.
+    - It can be bookmarked.
+    - You can't submit complex data i.e binary type data.
+    - There is limit for data, which is max 2048 chars.
+
+FAQ: Why submitting on GET is enabled for form?
+Ans:  Submitting data on GET will save "Round-Trips".
+     
+FAQ: What is round trip?
+Ans:  Round trip is a technique followed by server side technologies, where the request
+      is processed on server every time.
+
+FAQ: How to save round-trip?
+Ans:  By caching the data.
+
+FAQ: What is caching?
+Ans: It is a technique used in web applications to save frequently used data in buffer.
+    Buffer is temporary memory allocated for browser.
+
+
+FAQ: What are the features of submitting data on POST?
+Ans:
+    - Data is submitted as "Form Body".
+    - It is not visible to general users.
+    - It is safer when compared to GET.
+    - It is not stored in browser logs.
+    - It can't be bookmarked.
+    - There is no limit for data.
+    - You can submit any complex data.
+    - It is hard to hack data.
+
+FAQ: What is issue with submitting on POST?
+Ans : It can't be cached.
+
+
+5. action            It defines where to submit the data, which refers to a target page.
+                Typically it is always a dynamic page server side.
+
+Syntax:
+    <form method="get"  action="shopper.html">
+
+6. novalidate        It disables the default HTML validations.
+
+Syntax:
+    <form method="post"  novalidate>

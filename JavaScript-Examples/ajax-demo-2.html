@@ -1,0 +1,73 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function bodyload(){
+            console.log(`Page Loaded on ${new.toLocaleTimeString()}`);
+        }
+        function LoadClick(){
+            var now = new Date();
+            console.log(`Load Button Clicked on : ${now.toLocaleTimeString()}`);
+            var http = new XMLHttpRequest();
+            http.open("get", "../data/help.txt", true);
+            http.send();
+
+            http.onreadystatechange = function(){
+                if(this.readyState == 4){
+                    document.getElementById("container").innerText = http.responseText;
+                }
+            }
+        }
+    </script>
+</head>
+<body onload=bodyload()>
+    <p id="lblLoadTime"></p>
+    <button onclick="LoadClick()">Load Help</button>
+    <br>
+    <br>
+    <pre id="container"></pre>    
+</body>
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        function bodyload(){
+            var now = new Date();
+            console.log(`Page Loaded on ${now.toLocaleTimeString()}`);
+        }
+
+        function LoadClick(){
+            var now = new Date();
+            console.log(`Load Button Clicked on : ${now.toLocaleTimeString()}`);
+
+            var http = new XMLHttpRequest();
+            http.open("GET", "../data/help.txt", true);
+            http.send();
+
+            http.onreadystatechange = function(){
+                if(this.readyState == 4){
+                    document.getElementById("container").innerText = this.responseText;
+                }
+            }
+        }
+    </script>
+</head>
+
+<body onload="bodyload()">
+    <p id="lblLoadTime"></p>
+    <button onclick="LoadClick()">Load Help</button>
+    <br><br>
+    <pre id="container"></pre>    
+</body>
+</html>

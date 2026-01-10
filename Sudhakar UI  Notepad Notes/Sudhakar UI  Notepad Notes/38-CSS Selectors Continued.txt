@@ -1,0 +1,260 @@
+CSS Selectors
+Primary Selectors
+    1. Type Selector
+    2. ID Selector
+    3. Class Selector
+
+Note: You can group selectors by using "," delimiter.
+
+      h2, .text-style {
+        color:red;
+       }
+
+      <h2> Welcome </h2>
+      <p class="text-style"> HTML </p>
+
+      p, div, dd {
+        color:red;
+      }
+
+Rational Selectors:
+
+        child selector                parent  child { }         any child, any hierarchy
+        direct child selector            parent > child {  }        only direct child
+        adjacent siblings            element1+element2 { }    first occurrence element
+        general siblings             element1~element2 { }    all occurrences with in
+                                                    scope
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        nav>div {
+           color:red;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+       <div>Home</div>
+       <div>About</div>
+       <a><div>Contact</div></a>
+       <div>Shop</div>
+    </nav>
+</body>
+</html>
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h2~div {
+           color:red;
+        }
+    </style>
+</head>
+<body>
+    <main>
+      <h2>HTML</h2>
+      <div>Normal Elements</div>
+      <div>Void Elements</div>
+      <div>RC Data</div>
+    </main>
+      <div>Raw Text</div>
+</body>
+</html>
+
+Attribute Selectors:
+- You can select element based on the attribute and configure styles dynamically.
+- HTML uses same element with various attributes to present different type of content, hence you need an attribute selector.
+
+Syntax:    
+    element [attribute] {  }            select elements that have attribute
+    element [attribute=value] {  }        select element whose attribute value matches
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       input[type="button"] {
+         background-color: yellow;
+       }
+    </style>
+</head>
+<body>
+    <dl>
+        <dt>Name</dt>
+        <dd><input type="text"></dd>
+        <dt>Age</dt>
+        <dd><input type="number"></dd>
+    </dl>
+    <input type="button" value="Register">
+    <input type="button" value="Cancel">
+</body>
+</html>
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       p[id] {
+         color:red;
+       }
+    </style>
+</head>
+<body>
+    <p>Para-1</p>
+    <p id="p2">Para-2</p>
+    <p>Para-3</p>
+    <p id="p4">Para-4</p>
+</body>
+</html>
+
+- Attribute selectors can use various operators
+
+       
+            [attribute=value]            exact match
+            [attribute^=value]            starts with
+            [attribute$=value]            ends with
+            [attribute|=value]            starts with and separated with "-"
+            [attribute~=value]            any individual occurrence
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       p[class~="Effects"] {
+         color:red;
+       }
+    </style>
+</head>
+<body>
+    <p class="Effects">Para-1</p>
+    <p class="Text Effects">Para-2</p>
+    <p class="Effects Text">Para-3</p>
+    <p class="Text Effects Para">Para-4</p>
+    <p class="Text-Effects">Para-5</p>
+    <p class="Effects-Text">Para-6</p>
+    <p class="Text Para Effects">Para-7</p>
+    <p class="EffectsText">Para-8</p>
+</body>
+</html>
+
+Dynamic Pseudo Classes:
+- Dynamic changes the behaviour of element according to state and situation.
+- Pseudo refers to a false appearance for element.
+- Class is a program template with sample data and logic, which you can implement and customize according to requirements.
+
+Element State Classes
+   
+        :focus
+        :disabled
+        :read-only
+        :checked
+        :hover    [mouse over]
+        :active    [mouse down]
+        :target
+
+Validation State Classes
+
+        :required
+        :optional
+        :valid
+        :invalid
+        :in-range
+        :out-of-range
+
+Structural Pseudo Classes
+
+        :first-child
+        :last-child
+        :nth-child()            specific number or 'even & odd' occurrences
+        :nth-of-type()            every nth occurrence from top & starting with specific
+        :nth-last-of-type()        every nth occurrence from bottom & start with specific
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       thead tr {
+          background-color: black;
+          color:white;
+       }
+       tbody tr:nth-last-of-type(3n+1) {
+          background-color: lightgreen;
+       }
+    </style>
+   
+</head>
+<body>
+   <table border="1" width="100%">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+      </tbody>
+   </table>
+</body>
+</html>

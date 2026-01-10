@@ -1,0 +1,218 @@
+Pagination
+Classes:
+    .pagination
+    .page-item
+    .page-link
+    .page-item-text
+
+Syntax:
+    <ul class="pagination">
+        <li class="page-item"> <a class="page-link"> </a> </li>
+    </ul>
+
+    .pagination-sm
+    .pagination-lg
+    .active            ] defines for page-link
+    .disabled            ]
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+</head>
+<body class="container-fluid">
+    <h2>Pagination</h2>
+    <ul class="pagination pagination-lg">
+        <li class="page-item"><a class="page-link">&laquo;</a></li>
+        <li class="page-item"><a class="page-link">1</a></li>
+        <li class="page-item"><a class="page-link active">2</a></li>
+        <li class="page-item"><a class="page-link">3</a></li>
+        <li class="page-item"><a class="page-link disabled">4</a></li>
+        <li class="page-item"><a class="page-link">&raquo;</a></li>
+    </ul>
+</body>
+</html>
+
+                             Progress Bar
+Classes:
+    .progress
+    .progress-bar
+    .progress-bar-striped
+    .progress-bar-animated
+    .bg-{contextual} for colors
+
+Note: Value for every progress bar is defined with "style" width set in %.
+
+Syntax:
+    <div class="progress">
+         <div class="progress-bar" style="width:20%"> </div>
+          … you can have multiple progress bar …
+    </div>
+ 
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+</head>
+<body class="container-fluid">
+    <h2>Progress Bar</h2>
+    <div class="progress">
+        <div class="progress-bar progress-bar-striped bg-success" style="width:30%"> 30% completed </div>
+        <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" style="width: 40%;"> 40% processing </div>
+        <div class="progress-bar progress-bar-striped bg-danger" style="width: 30%;"> 30% pending </div>
+       
+    </div>
+</body>
+</html>
+
+                              Spinners
+Classes:
+    .spinner-border
+    .spinner-border-sm
+    .spinner-grow
+    .spinner-grow-sm
+    .text-{contextual}     for spinner color
+
+Syntax:
+    <div class="spinner-border spinner-border-sm"> </div>
+    <span class="spinner grow text-danger"> </span>
+
+                            Containers
+- You can fit the content according to device.
+
+    .container        default class
+    .container-sm        small screen devices [mobiles]
+    .container-md        devices like tab
+    .container-lg        device like pc
+    .container-xl        device like laptop
+    .container-xxl        laptop wide screen
+    .container-fluid    responsive
+
+- Every container have default margin and width.
+
+                          Breadcrumb
+- It is used to display the steps to accomplish specified task and also the status of current position.
+
+Classes:
+    .breadcrumb
+    .breadcrumb-item
+
+Variable:
+    --bs-breadcrumb-divider: ' > '
+
+Syntax:
+    <ul  class="breadcrumb"  style="--bs-breadcrumb-divider:' > ' ">
+       
+        <li class="breadcrumb-item"> </li>
+
+    </ul>
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+</head>
+<body class="container-fluid">
+    <h2>Amazon</h2>
+    <ul class="breadcrumb" style="--bs-breadcrumb-divider:' --> '">
+        <li class="breadcrumb-item">Home</li>
+        <li class="breadcrumb-item">Electronics</li>
+        <li class="breadcrumb-item">Mobiles</li>
+        <li class="breadcrumb-item">iPhone</li>
+        <li class="breadcrumb-item">15 Pro</li>
+    </ul>
+</body>
+</html>
+
+                        Multimedia in HTML
+
+- Multimedia is about audio, video and animations.
+- HTML elements for multi media are
+
+        <marquee>
+        <video>
+        <audio>
+        <embed>
+
+Marquee:
+- It is used to display scrolling and sliding content in page.
+
+Syntax:
+    <marquee>
+        … your content …
+    </marquee>
+
+Attributes:
+    scrollamount            It sets marquee scrolling speed from 1 to 100
+    direction                left, right, up & down.
+    behavior                It sets "alternate" from scrolling to sliding
+    loop                    It specifies number of times to display
+    width / height            dimensions for marquee area
+    bgcolor                background color
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <marquee scrollamount="20" direction="left">
+            <img src="../public/images/a1.jpg" width="100" height="100">
+            <img src="../public/images/a2.jpg" width="100" height="100">
+            <img src="../public/images/a3.jpg" width="100" height="100">
+            <img src="../public/images/a4.jpg" width="100" height="100">
+            <img src="../public/images/a5.jpg" width="100" height="100">
+        </marquee>
+        <marquee scrollamount="20" direction="right">
+            <img src="../public/images/a1.jpg" width="100" height="100">
+            <img src="../public/images/a2.jpg" width="100" height="100">
+            <img src="../public/images/a3.jpg" width="100" height="100">
+            <img src="../public/images/a4.jpg" width="100" height="100">
+            <img src="../public/images/a5.jpg" width="100" height="100">
+        </marquee>
+    </div>
+</body>
+</html>
+
+Video & Audio
+- You can embed video and audio files into web page.
+- Video files supported for web
+    .mp4, .mkv, .mov, .avi, .ogg
+- Audio files
+    .mp3, .midi, .wav
+
+Syntax:
+    <video  src="path"  controls  poster="thumb-nail.jpg"> </video>
+    <audio  src="path" controls  poster="" > </audio>
+
+Ex:
+<video src="../public/videos/js-function.mp4" poster="../public/images/java.jpg" controls width="400" height="300"></video>
+
+                               CSS

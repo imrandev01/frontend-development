@@ -1,0 +1,16 @@
+<script>
+    var product = {
+        id: 1,
+        title: "Sumsung TV",
+        price: 45000.44,
+        stock: true
+    }
+    delete product.price;
+    
+    for (var key in product) {
+        document.write(`${key}: ${product[key]}<br>`);
+    }
+    Object.keys(product).map(function(key){
+        document.write(`<li>${key}: ${product[key]}</li>`);
+    })
+</script>

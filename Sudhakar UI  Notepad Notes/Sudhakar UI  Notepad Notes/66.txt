@@ -1,0 +1,170 @@
+Array with Spread Operator:
+-You can use "..." which is a spread Operator to copy the elements of an Array into another.
+-It allows to sepead the values of a collection into individual references.
+
+Syntex:
+        var one =["A","B"];
+        var two =[one];             //two have 1 element 
+        var two =[one ,"C" ,"D"]    //two have 2 Elements
+        var two =[...one ,"C" ,"D"] //two have 4 elements 
+
+Syntex
+        var one =["A" ,"B"];
+        var two =["C","D"];
+        var three =[...one , two];      //3 elements
+        var three =[...one, ...two];    //4 elements
+        var three =[one, two];          //2 elements
+
+
+- Array function for finding elements
+
+    ondexOf()
+    lastIndexOf()
+    find()
+    filter()
+
+                            Object Type.
+-Object is used to keep all related data and logic together.
+-"Alan Kay" introduced the concept of object into computer programming in early 1960's.
+-Technically object is a key-value pair.
+-key is always string type and value can be any type.
+
+Syntax:
+        var obj ={
+            "key":value,
+            "key":value
+        }
+
+-Value can be 
+        a) primitive
+        b) non-primitive
+        c) function
+Syntex
+    var obj = {
+        "key":number,
+        "key":string,
+        "key":new Array,
+        "key":{object},
+        "key":function(){}
+                }
+
+- If object comprises of only data without any action (function) defined, then it is referred as "JSON". 
+- JSON is JavaScript Object Notation, It is a format for data. (data is maintained in a format colled JSON).
+        *JSON is light weight 
+        *JSON is faster in transporting and rendering
+        *JSON doesn't require COM to Marshal [Converting object to binary & vice versa]
+        *JSON can flow through firewalls.
+        *JSON is not infected by VIRUS.
+
+Syntex:
+    {
+        "Name":"TV",
+        "Price":34000.44,
+        "Stock":true,
+        "ShippedTo":["Delhi","Hyd"],
+        "Rating",{"Rate":4.6, "Count":4500}
+    }
+
+-Object values are accessed with reference of "Key".
+
+Syntex:
+    var product = {"Name":"TV", "Price":56000};
+
+    product.Name;           //return TV
+    product.Price;          //return 56000
+
+-You can assign new values if declared with "var or let".
+
+    product.Name =newname;
+    product.Price = newprice;
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Details</title>
+
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+
+    <script>
+        var mobile = {
+            title: "Apple iPhone 15 (Black, 128 GB)",
+            price: 79900,
+            rating: {
+                rating: 4.6,
+                ratings: 39755,
+                reviews: 2187
+            },
+            offers: [
+                "Special Price: Get extra ₹3000 off",
+                "No Cost EMI on Bajaj Finserv EMI Card",
+                "5% Cashback on Flipkart Axis Bank Credit Card",
+                "Flipkart Pay Later – Gift Card worth ₹1000"
+            ],
+            image: "../public/images/iphon15black.png"
+        };
+
+        function bodyload() {
+            document.getElementById("imgProduct").src = mobile.image;
+            document.getElementById("lblTitle").innerText = mobile.title;
+            document.getElementById("lblRating").innerText = mobile.rating.rating;
+
+            document.getElementById("lblReviews").innerHTML =
+                `<b>${mobile.rating.ratings} ratings & ${mobile.rating.reviews} reviews</b>`;
+
+            document.getElementById("lblPrice").innerText =
+                mobile.price.toLocaleString("en-IN", {
+                    style: "currency",
+                    currency: "INR"
+                });
+
+            var offerList = document.getElementById("offerList");
+            offerList.innerHTML = "";
+
+            mobile.offers.forEach(function (offer) {
+                var li = document.createElement("li");
+                li.className = "mb-2";
+                li.innerHTML = `<span class="text-success fw-bold">✔</span> ${offer}`;
+                offerList.appendChild(li);
+            });
+        }
+    </script>
+</head>
+
+<body class="container-fluid" onload="bodyload()">
+
+    <div class="row mt-4">
+        <div class="col-3">
+            <img id="imgProduct" class="img-fluid">
+        </div>
+
+        <div class="col-9">
+            <h3 id="lblTitle"></h3>
+
+            <div class="my-2">
+                <span class="bg-success text-white p-1 rounded">
+                    <span id="lblRating"></span>
+                    <span class="bi bi-star-fill"></span>
+                </span>
+                <span id="lblReviews" class="text-secondary ms-3"></span>
+            </div>
+
+            <h3 class="my-3" id="lblPrice"></h3>
+
+            <ul id="offerList" class="list-unstyled"></ul>
+        </div>
+    </div>
+
+</body>
+</html>
+
+
+
+
+
+
+

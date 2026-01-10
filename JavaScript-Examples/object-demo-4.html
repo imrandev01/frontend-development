@@ -1,0 +1,90 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script> 
+        var menu = [
+            {Category: "Electronics", product: ["TV","Mobile","Watch"]},
+            {Category: "Fashion", product: ["kids","Man","woman"]}
+        ];
+        function bodyload() {
+            menu.map(function(item){
+                var ol_list = document.createElement("li");
+                ol_li.innerHTML = item.Category;
+                item.product.map(function(product){
+                    var ul = document.createElement("ul");
+                    var ul_li = document.createElement("li");
+                    ul_li.innerHTML = product;
+                    ul.appendChild(ul_li);
+                    document.querySelector("ol").appendChild(ol_li);
+            }) 
+        })
+}
+</script>
+</head>
+<body onload="bodyload()">
+    <ol>
+
+    </ol>
+</body>
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu using map()</title>
+
+    <script>
+        var menu = [
+            { Category: "Electronics", product: ["TV", "Mobile", "Watch"] },
+            { Category: "Fashion", product: ["Kids", "Men", "Women"] }
+        ];
+
+        function bodyload() {
+
+            var ol = document.querySelector("ol");
+
+            // map() returns category <li> elements
+            var categoryLis = menu.map(function (item) {
+
+                var categoryLi = document.createElement("li");
+                categoryLi.innerText = item.Category;
+
+                // map() returns product <li> elements
+                var productLis = item.product.map(function (prod) {
+                    var li = document.createElement("li");
+                    li.innerText = prod;
+                    return li;   // IMPORTANT: return
+                });
+
+                var ul = document.createElement("ul");
+
+                // append returned product lis
+                productLis.map(function (li) {
+                    ul.appendChild(li);
+                    return null; // map requires return, value ignored
+                });
+
+                categoryLi.appendChild(ul);
+                return categoryLi; // IMPORTANT: return
+            });
+
+            // append returned category lis
+            categoryLis.map(function (li) {
+                ol.appendChild(li);
+                return null;
+            });
+        }
+    </script>
+</head>
+
+<body onload="bodyload()">
+    <ol></ol>
+</body>
+</html>

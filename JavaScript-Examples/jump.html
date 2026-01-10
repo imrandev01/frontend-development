@@ -1,0 +1,36 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Document</title> 
+    <script> 
+        function VerifyUser(){ 
+            var username = document.getElementById("txtUser").value; 
+            var lblMsg = document.getElementById("lblMsg"); 
+ 
+            fetch("../data/users.json") 
+            .then(function(response){ 
+                return response.json(); 
+            }) 
+            .then(function(users){ 
+                 for(var user of users){ 
+                     if(user.UserId===username){ 
+                        lblMsg.innerHTML = "User Id Taken - Try another".fontcolor('red'); 
+                        break; 
+                     } else { 
+                        lblMsg.innerHTML = "User Id Available".fontcolor('green'); 
+                     } 
+                 } 
+            }) 
+        } 
+    </script> 
+</head> 
+<body> 
+    <dl> 
+        <dt>User Name</dt> 
+        <dd><input type="text" onkeyup="VerifyUser()" id="txtUser"></dd> 
+        <dd id="lblMsg"></dd> 
+    </dl> 
+</body> 
+</html> 

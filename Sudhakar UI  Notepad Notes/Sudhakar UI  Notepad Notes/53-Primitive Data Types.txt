@@ -1,0 +1,195 @@
+Primitive Types
+- Primitive types are immutable types.
+- They have a fixed data structure, which can't change dynamically.
+- They also have a fixed range for values.
+- They are stored in memory stack.
+- Stack uses LIFO [Last-in First-out].
+- JavaScript primitive types are
+
+    1. number
+    2. string
+    3. boolean
+    4. null
+    5. undefined
+    6. symbol
+    7. bigint
+
+
+                                Number
+- Number in JavaScript represents a numeric value, which can be any one of the following.
+
+        Signed Integer        -30
+        Unsigned Integer        30
+        Floating Point            30.45
+        Double                     240.45
+        Decimal                    35000.44  [29 places]
+        Exponent                    2e3 [2000]   2 x 10^3    
+        Hexadecimal                 0x7682
+        Binary                0b1010 [10]
+        Octa                    0o745
+        Bigint                 98388118484n
+
+- JavaScript allows numeric strings in various calculations.
+- But a numeric string must be converted into number by using the methods
+
+        a) parseInt()
+        b) parseFloat()
+
+- A numeric string must start with number and enclosed in quotes.
+- It can have number with chars, but it reads only up to the numeric occurrence in a string.
+
+        var  x = "10AB";
+        var  y  = 20;
+       
+        parseInt(x) + y  => 30
+
+        var x = "10AB20";
+        var y = 30;
+        parseInt(x) + y => 40
+
+        var x = "20";
+        var y = 20;
+        x + y;            = 2020
+        parseInt(x) + y        = 40
+
+EX:
+<script>
+     var age = parseInt(prompt("Enter Age"));
+     document.write("You will be " + (age+1) + " next year");
+</script>
+
+- You have to use "parseFloat()" for values like double, decimal and float.
+
+Ex:
+<script>
+     var rate = parseFloat(prompt("Enter Interest Rate"));
+     document.write("Next year interest rate " + (rate+1) + " increased by 1");
+</script>
+
+- JavaScript provides methods to convert a number into string.
+       
+        a) toString()            : It converts into a numeric string.
+        b) toLocaleString()        : It converts into a local string, which can use the
+                              regional formats. [Globalization, Localization]
+
+Syntax:
+    var price = 45000;
+
+    price.toLocaleString();                45,000;
+   
+    price.toLocaleString('en-us');
+
+    price.toLocaleString('en-in', {style:"currency", currency:"INR"});
+
+Ex:
+<script>
+     var price = 545000.55;
+     document.write("Price=" + price.toLocaleString('en-in', {style:"currency", currency:"INR"}));
+</script>
+
+- You can check number input using "isNaN()" method.  It returns true if input value is not a number.
+
+Syntax:
+    var age = "A";
+
+    if(isNaN(age))                    => it returns Boolean true
+    {
+      alert("Age must be number");
+    }
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Document</title>
+     <script>
+          function SubmitClick(){
+               var age = document.getElementById("txtAge").value;
+               if(isNaN(age))
+               {
+                    alert("Age must be a number");
+               } else {
+                    document.write("Your Age : " + age);
+               }
+          }
+     </script>
+</head>
+<body>
+     Your Age : <input type="text" id="txtAge"> <button onclick="SubmitClick()">Submit</button>
+</body>
+</html>
+
+- JavaScript supports various manipulations on numeric values with operators and built-in functions.
+- JavaScript operators to handle numeric values
+
+        +        Addition
+        -        Subtraction
+        *        Multiplication
+        /         Division
+        %        Modulus
+        **        Exponent [Power]     2**3 = 8
+        ++        Increment          x++;        x = x + 1
+        --        Decrement          x--;            x = x - 1
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Document</title>
+     <script>
+          function SubmitClick(){
+              var n = parseInt(document.getElementById("txtNumber").value);
+              if(n % 2 == 0)
+              {
+                  document.write("Verified..");
+              }
+              else {
+                  alert("Not an even number");
+              }
+          }
+     </script>
+</head>
+<body>
+     Enter an Even number : <input type="text" id="txtNumber"> <button onclick="SubmitClick()">Submit</button>
+</body>
+</html>
+
+- Increment : It increases the current value by one and assigns to the current reference.
+
+    a) Post Increment        : It will assign then later increments.
+
+        var x = 10;
+        var y = x++;        x=11, y=10
+
+    b) Pre Increment        : It will increment and later assign
+
+        var x = 10;
+        var y = ++x;        x = 11, y=11
+
+- Decrement : It decrease the current value by one and assigns to the current reference
+
+    a) Post Decrement
+       
+        var x = 10;
+        var y = x--;            x=9, y=10
+
+    b) Pre Decrement
+
+        var x = 10;
+        var y = --x;            x=9, y=9
+
+- JavaScript provides a "Math" library to handle various math operations.
+
+        Math.pow()
+        Math.sqrt()
+        Math.PI
+        Math.random()
+        Math.round()
+        Math.sin()
+        Math.cos()
+        Math.tan()
+        Math.floor() etc...

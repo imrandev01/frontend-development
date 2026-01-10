@@ -1,0 +1,501 @@
+Ordered List
+Un Ordered List
+
+
+                            Data List
+
+- It is a collection of terms & definitions.
+- List is defined with "<dl>"
+- Terms are defined with <dt>
+- Definitions are defined with <dd>
+
+Syntax:
+    <dl>
+       <dt> Term </dt>
+       <dd> Definition </dd>
+    </dl>
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        dt {
+            background-color: black;
+            color:white;
+            font-weight: bold;
+            padding: 5px;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <dl>
+        <dt>HTML</dt>
+        <dd>It is a markup language.</dd>
+        <dd>It is used for presentation.</dd>
+        <dt>CSS</dt>
+        <dt>Styles</dt>
+        <dd>It defines styles.</dd>
+        <dt>JavaScript</dt>
+        <dd>It manipulates DOM.</dd>
+    </dl>
+   
+</body>
+</html>
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        dt {
+            background-color: black;
+            color:white;
+            font-weight: bold;
+            padding: 5px;
+            margin-bottom: 5px;
+        }
+        dl {
+            display: grid;
+            grid-template-columns: 2fr 10fr;
+        }
+        dd {
+            background-color: gray;
+            color: white;
+            padding: 5px;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+   <h2>Your Profile</h2>
+   <dl>
+      <dt>First Name</dt>
+      <dd>some name</dd>
+      <dt>Last Name</dt>
+      <dd>some name</dd>
+      <dt>Age</dt>
+      <dd>some number</dd>
+      <dt>City</dt>
+      <dd>some city</dd>
+   </dl>
+</body>
+</html>
+
+Ex: Sticky
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        dt {
+            background-color: black;
+            color:white;
+            font-weight: bold;
+            padding: 5px;
+            margin-bottom: 5px;
+            position: sticky;
+            top: 0px;
+        }
+        nav {
+            width: 200px;
+        }
+        dd {
+            background-color: gray;
+            color:white;
+            padding: 5px;
+            margin-bottom: 5px;
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+   <h1>Shopping.</h1>
+   <nav>
+     <dl>
+        <dt>Electronics</dt>
+        <dd>Televisions</dd>
+        <dd>Mobiles</dd>
+        <dd>Watches</dd>
+        <dd>Televisions</dd>
+        <dd>Mobiles</dd>
+        <dd>Watches</dd>
+        <dd>Televisions</dd>
+        <dd>Mobiles</dd>
+        <dd>Watches</dd>
+        <dd>Televisions</dd>
+        <dd>Mobiles</dd>
+        <dd>Watches</dd>
+        <dd>Televisions</dd>
+        <dd>Mobiles</dd>
+        <dd>Watches</dd>
+        <dd>Televisions</dd>
+        <dd>Mobiles</dd>
+        <dd>Watches</dd>
+        <dd>Televisions</dd>
+        <dd>Mobiles</dd>
+        <dd>Watches</dd>
+        <dd>Televisions</dd>
+        <dd>Mobiles</dd>
+        <dd>Watches</dd>
+        <dd>Televisions</dd>
+        <dd>Mobiles</dd>
+        <dd>Watches</dd>
+        <dd>Televisions</dd>
+        <dd>Mobiles</dd>
+        <dd>Watches</dd>
+        <dt>Footwear</dt>
+        <dd>Boots</dd>
+        <dd>Casuals</dd>
+        <dd>Sneakers</dd>
+        <dd>Boots</dd>
+        <dd>Casuals</dd>
+        <dd>Sneakers</dd>
+        <dd>Boots</dd>
+        <dd>Casuals</dd>
+        <dd>Sneakers</dd>
+        <dd>Boots</dd>
+        <dd>Casuals</dd>
+        <dd>Sneakers</dd>
+        <dd>Boots</dd>
+        <dd>Casuals</dd>
+        <dd>Sneakers</dd>
+        <dd>Boots</dd>
+        <dd>Casuals</dd>
+        <dd>Sneakers</dd>
+        <dd>Boots</dd>
+        <dd>Casuals</dd>
+        <dd>Sneakers</dd>
+        <dd>Boots</dd>
+        <dd>Casuals</dd>
+        <dd>Sneakers</dd>
+        <dd>Boots</dd>
+        <dd>Casuals</dd>
+        <dd>Sneakers</dd>
+     </dl>
+   </nav>
+</body>
+</html>
+
+                        Details & Summary
+- Details is a container that can show or hide any content dynamically.
+- Summary is a caption for details.
+
+Syntax:
+    <details>
+        <summary> Title </summary>
+
+        …. your content ….
+
+    </details>
+
+- Details is by default hidden in state. You can open details on page load by using the attribute "open".
+
+Syntax:
+    <details open>
+    </details>
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        summary {
+            background-color: black;
+            color:white;
+            padding: 5px;
+        }
+        details div {
+            background-color: black;
+            color:white;
+            padding: 20px;
+            margin-top: 10px;
+        }
+        details {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1 align="center">Frequently Asked Questions</h1>
+    <details open>
+        <summary>What is Netflix?</summary>
+        <div>
+            <p>Netflix is a streaming service that offers a wide variety of award-winning TV shows, movies, anime, documentaries and more – on thousands of internet-connected devices.</p>
+            <p>You can watch as much as you want, whenever you want, without a single ad – all for one low monthly price. There's always something new to discover, and new TV shows and movies are added every week!</p>
+        </div>
+    </details>
+    <details>
+        <summary>How much does Netflix cost?</summary>
+        <div>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident tenetur numquam ipsam eius minus, reprehenderit nulla, facere repudiandae possimus exercitationem quasi, molestiae esse modi quod quisquam accusamus. Illo, eveniet dolor?</p>
+        </div>
+    </details>
+</body>
+</html>
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        details {
+            font-family: Arial;
+            color:blue;
+            font-size: 15px;
+        }
+        details div {
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <details>
+        <summary>Need Help?</summary>
+        <div> Forgot Password </div>
+        <div> Other issues with Signin </div>
+    </details>  
+</body>
+</html>
+
+                        Fieldset & Legend
+
+- Fieldset is a container with frame.
+- Legend is a caption for container.
+- It is used to keep all relative content together.
+
+Syntax:
+    <fieldset>
+        <legend> Title </legend>
+       
+        …. your content ….
+
+    </fieldset>
+
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        dl {
+            display: grid;
+            grid-template-columns: 2fr 10fr;
+        }
+        dt {
+            background-color: black;
+            padding: 5px;
+            margin-bottom: 5px;
+            color:white;
+        }
+        dd {
+            background-color: gray;
+            padding: 5px;
+            margin-bottom: 5px;
+            color:white;
+            width: 200px;
+        }
+        fieldset {
+            margin-bottom: 40px;
+            box-shadow: 4px 4px 2px black;
+            border-radius: 5px;
+            width: 600px;
+        }
+        legend {
+            width: 150px;
+            padding: 5px;
+            background-color: black;
+            color:white;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 4px 3px 2px gray;
+        }
+    </style>
+</head>
+<body>
+    <fieldset>
+        <legend>Personal Information</legend>
+        <dl>
+            <dt>First Name</dt>
+            <dd>some name</dd>
+            <dt>Last Name</dt>
+            <dd>some name</dd>
+            <dt>Age</dt>
+            <dd>some number</dd>
+        </dl>
+    </fieldset>
+    <fieldset>
+        <legend>Address</legend>
+        <dl>
+            <dt>City</dt>
+            <dd>some city</dd>
+            <dt>State</dt>
+            <dd>some state</dd>
+            <dt>Postal Code</dt>
+            <dd>some code</dd>
+        </dl>
+    </fieldset>
+</body>
+</html>
+
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        legend {
+            text-align: center;
+            padding-right: 10px;
+            padding-left: 10px;
+        }
+        fieldset {
+            width: 300px;
+            border-left: none;
+            border-right: none;
+            border-bottom: none;
+            text-align: center;
+        }
+        div {
+            margin-top: 20px;
+            border:1px solid gray;
+            padding: 5px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <fieldset>
+        <legend> New to Amazon? </legend>
+        <div>Create new Account</div>
+    </fieldset>
+</body>
+</html>
+
+                        Figure & Caption
+
+- Figure is a container used to encapsulate any graphic with caption.
+- It keeps the content SEO friendly.
+- Caption can be used as keyword for searching a picture.
+
+Syntax:
+    <figure>
+       
+        … your image …
+
+        <figcaption> keyword </figcaption>
+
+    </figure>
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .women-fashion {
+            background-image: url("./images/women-fashion.jpg");
+            background-size: cover;
+            width: 200px;
+            height: 300px;
+        }
+        .men-fashion {
+            background-image: url("./images/men-fashion.jpg");
+            background-size: cover;
+            width: 200px;
+            height: 300px;
+        }
+        figure {
+            border:1px solid black;
+            padding: 10px;
+            width: 200px;
+        }
+        figcaption {
+            background-color: maroon;
+            color:white;
+            padding: 5px;
+            text-align: center;
+            margin-top: 10px;
+        }
+        body {
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+    <figure>
+        <div class="women-fashion">
+
+        </div>
+        <figcaption>Women Fashion</figcaption>
+    </figure>
+    <figure>
+        <div class="men-fashion">
+
+        </div>
+        <figcaption>Men Fashion</figcaption>
+    </figure>
+</body>
+</html>
+
+                        Images in HTML
+
+- Images are of various types in computing system.
+- Web will not support all types of images.
+- The most recommended image types for web are:
+
+Image                                MIME Type                Extension
+--------------------------------------------------------------------------------------------------------------------
+APNG
+[Animated Portable Network Graphics]        image/apng                .apng
+
+PNG
+[Portable Network Graphics]                image/png                .png
+
+JPEG
+[Joint Photographic Expert Group]            image/jpeg                .jpg, .jpeg, .jfif
+
+GIF
+[Graphic Interchange Format]            image/gif                    .gif
+
+TIFF
+[Tagged Image File Format]                image/tiff                    .tiff
+
+Bitmap                                image/bmp                .bmp
+
+Microsoft Icon                            image/icon                .ico
+
+SVG                                    image/svg-xml                .svg
+[Scalar Vector Graphics]                application/xml
+
+Web Picture                            image/webp                .webp
+
+FAQ: What is MIME type?
+Ans:  MIME is Multi purpose Internet Mail Extension
+         A MIME type refers to the file type that comprises of various extensions for
+     different situations. Browser can understand the file only by MIME type.

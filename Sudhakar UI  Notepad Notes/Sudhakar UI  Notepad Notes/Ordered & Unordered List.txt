@@ -1,0 +1,364 @@
+Text Formatting
+- Font
+    face, size, color
+- Font Styles
+    bold, italic
+- Font Effects
+    underline, superscript, subscript, strikeout
+
+                        Ordered List
+
+- It is used to configure auto numbering for a list of items.
+- Numbering updates automatically when you add or delete items.
+- List is defined with <ol>
+- List Item is defined with <li>
+
+Syntax:
+    <ol>
+       <li> Item-1 </li>
+       <li> Item-2 </li>
+    </ol>
+
+Attributes:
+1. type        : It defines numbering type as "1, a, A, I, i"
+
+              <ol type="A">
+
+2. start        : It specifies the initial value to start with. It refers to level number.
+
+                <ol type="A"  start="5">
+                <ol type="1"   start="5">
+
+3. reversed    :  It is used to reverse the numbering style in descending order.
+   
+                 <ol type="1"  reversed>
+
+- You can configure nested list.
+- A child list must be with in "<li>" element.
+
+FAQ's:
+1. How many levels of nested numbering can be defined?
+A. There is no specified limit. You have 5 numbering types, which you have to repeat if there are more levels.
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ol type="1">
+        <li>
+            HTML
+            <ol type="a">
+                <li>Normal Elements
+                    <ol type="i">
+                        <li>Bold</li>
+                        <li>Italics</li>
+                    </ol>
+                </li>
+                <li>Void Elements</li>
+            </ol>
+        </li>
+       
+        <li>CSS</li>
+    </ol>
+</body>
+</html>
+
+2. How to display list items side by side?
+A. By using "display:flex" for ordered list.
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .option-list {
+            display: flex;
+            margin-top: 10px;
+        }
+        .option-list li {
+            margin-right: 40px;
+        }
+    </style>
+</head>
+<body>
+    <ol type="1">
+        <li>__________ elements will not have end token.
+            <ol type="a" class="option-list">
+                <li>Normal Elements</li>
+                <li>Void Elements</li>
+                <li>RC Data Elements</li>
+                <li>Raw Text Elements</li>
+            </ol>
+        </li>
+    </ol>
+</body>
+</html>
+
+3. How to display list in multiple columns?
+A. By using  "display:grid"  or  "columns" in CSS
+
+Syntax:
+    ol {                                        ol {
+         display:grid;                    (or)            columns: 2
+         grid-template-columns: 6fr 6fr;                }
+     }
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .option-list {
+            columns: 2;
+            margin-top: 10px;
+        }
+        .option-list li {
+            margin-right: 40px;
+        }
+    </style>
+</head>
+<body>
+    <ol type="1">
+        <li>__________ elements will not have end token.
+            <ol type="a" class="option-list">
+                <li>Normal Elements</li>
+                <li>Void Elements</li>
+                <li>RC Data Elements</li>
+                <li>Raw Text Elements</li>
+            </ol>
+        </li>
+    </ol>
+</body>
+</html>
+
+4. How to create a scrollable list?
+A. By using CSS overflow attribute
+
+Syntax:
+    ol {
+        height: 50px;
+        border:1px solid gray;
+        overflow:auto;
+    }
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       ol {
+          height: 50px;
+          border:1px solid gray;
+          width: 100px;
+          overflow: auto;
+       }
+    </style>
+</head>
+<body>
+    <ol>
+        <li>Delhi</li>
+        <li>Hyd</li>
+        <li>Chennai</li>
+        <li>Bangalore</li>
+        <li>Mumbai</li>
+    </ol>
+</body>
+</html>
+
+       
+5. How to remove numbering for list?
+A. By using the attribute "list-style" set to "none"
+
+Syntax:
+    ol {
+        list-style: none;
+    }
+
+  Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       ol {
+        list-style: none;
+       }
+       li {
+         background-color: black;
+         color:white;
+         padding: 10px;
+         width: 100px;
+         margin-bottom: 20px;
+         border-radius: 20px;
+         text-align: center;
+       }
+    </style>
+</head>
+<body>
+    <nav>
+        <ol>
+            <li>Home</li>
+            <li>About</li>
+            <li>Shop</li>
+            <li>Pages</li>
+            <li>Blog</li>
+        </ol>
+    </nav>
+</body>
+</html>
+       
+                        Unordered List
+- It configures a bulleted list.
+- Bulleted list contains a symbol instead of number.
+- List is defined with <ul>
+- Items are defined with <li>
+
+Syntax:
+    <ul>
+     <li> Item-1 </li>
+     <li> Item-2 </li>
+    </ul>
+
+- <ul> type can be  "disc, circle or square"
+
+    <ul type="circle">
+    <ul type="square">
+
+FAQ:
+1. How to define a custom symbol?
+A. By using CSS attribute  "list-style-image"
+    By using 3rd party icons classes.
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul {
+            list-style: none;
+            list-style-image: url("./icons/start.gif");
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JavaScript</li>
+    </ul>
+</body>
+</html>
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <style>
+        ul {
+            list-style: none;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li class="bi bi-house-door"> Home</li>
+        <li class="bi bi-cart4"> Cart</li>
+        <li class="bi bi-heart"> Wish List</li>
+    </ul>
+    <ul>
+        <li class="bi bi-tag-fill"> HDFC Bank Offer 20% </li>
+        <li class="bi bi-tag-fill"> ICICI Bank Offer 5% on EMI </li>
+    </ul>
+</body>
+</html>
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flipkart Product</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <style>
+        .product {
+            display: grid;
+            grid-template-columns: 3fr 9fr;
+        }
+        .rating {
+            background-color: green;
+            padding: 5px;
+            color:white;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        ul {
+            list-style: none;
+            margin-left: -40px;
+            font-size: 16px;
+            font-family: Arial;
+            color:green;
+        }
+        li span {
+            color:black;
+        }
+        li {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="product">
+        <div>
+
+        </div>
+        <div>
+            <div>
+                <font face="Arial" size="5" color="blue">realme P1 Pro 5G (Phoenix Red, 128 GB)  (8 GB RAM)</font>
+            </div>
+            <br>
+            <div>
+                <span class="rating"> 4.6 <span class="bi bi-star-fill"></span> </span>
+                 <span> <b><font color="gray" size="4" face="Arial">1,450 ratings & 52 reviews</font></b> </span>
+            </div>
+            <br>
+            <div>
+                <font size="6" face="Arial"><b> &#8377; 21,999 </b></font>
+            </div>
+            <div>
+                <h3><font face="Arial">Available Offers</font></h3>
+                <ul>
+                    <li class="bi bi-tag-fill"> <span><b>Bank Offer5%</b> Cashback on Flipkart Axis Bank CardT&C</span> </li>
+                    <li class="bi bi-tag-fill"> <span><b>Bank Offer10%</b> instant discount on SBI Credit Card Transactions, up to ₹1,000 on orders of ₹5,000 and aboveT&C</span> </li>
+                    <li class="bi bi-tag-fill"> <span> <b>Bank Offer10%</b> instant discount on SBI Credit Card EMI Transactions, up to ₹1,250 on orders of ₹5,000 and aboveT&C</span> </li>
+                    <li class="bi bi-tag-fill"> <span>Special PriceGet extra ₹3000 off (price inclusive of cashback/coupon)T&C</span> </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,366 @@
+Object Manipulations:
+
+1- How to access all keys from object?
+A. 
+    a) for...in
+    b) Object.keys()
+
+Syntex:
+    for (var key in object)
+    {
+
+    }
+
+    Object.keys(ObjectName).map()
+
+
+<script>
+    var product = {
+        id: 1,
+        title: "Sumsung TV",
+        price: 45000.44,
+        stock: true
+    }
+    for (var key in product) {
+        document.write(key + "<br>");
+    }
+    Object.keys(product).map(function(key){
+        document.write(`<li>${key}</li>`);
+    })
+</script>
+
+<script>
+    var product = {
+        id: 1,
+        title: "Sumsung TV",
+        price: 45000.44,
+        stock: true
+    }
+    for (var key in product) {
+        document.write(key + "<br>");
+    }
+    Object.keys(product).map(function(key){
+        document.write(`<li>${key}: ${product[key]}</li>`);
+    })
+</script>
+
+</script>
+
+2- How to get the count of keys in object ?
+A   
+    Object.keys(prduct).length
+
+Ex:
+    document.write(`Total Count of keys : ${Object.keys(product).length}`);
+
+3- How to delete a key?
+A 
+    By using JS "delete" operator
+
+Syntex
+        delete object.key;
+        delete object.price;
+
+
+<script>
+    var product = {
+        id: 1,
+        title: "Sumsung TV",
+        price: 45000.44,
+        stock: true
+    }
+    delete product.price;
+    
+    for (var key in product) {
+        document.write(`${key}: ${product[key]}<br>`);
+    }
+    Object.keys(product).map(function(key){
+        document.write(`<li>${key}: ${product[key]}</li>`);
+    })
+</script>
+
+4- How to find a key?
+
+A   By using "in" operator
+
+Syntex: 
+        "key" in objectName;            //true if object have the given key
+
+EX- 
+    <script>
+    var product = {
+        id: 1,
+        title: "Sumsung TV",
+        price: 45000.44,
+        stock: true,
+        rating: 4.5
+       }
+    if ("rating" in product){
+        document.write(`"Rating" :${product.rating}`);
+    } else {
+        document.write(`Rating" property does not exist in product object.`);
+    }
+</script>
+
+5- How to hide a key in iteration?
+A   By using JS "Symbol" data type.
+
+Syntex
+    var id = Symbol();
+
+    var product = {
+        [id]: 1,
+        title: "TV"
+    }
+
+    document.write(prduct[id]);
+
+    object.keys(product).map();                 //id is ignored
+
+Note- In HTML form you can handle hidden fields by using input type " hidden"
+
+Syntex <input type="hidden" name="UserId" value="john_nit">
+
+<script>
+    var id= Symbol();
+
+    var product = {
+        [id]: 1,
+        title: "Sumsung TV",
+        price: 45000.44,
+        stock: true,
+        rating: 4.5
+       }
+    Object.keys(product).map(function(key){
+        document.write(`<li>${key}</li>`);
+    })
+</script>
+
+<script>
+    var id= Symbol();
+
+    var product = {
+        [id]: 1,
+        title: "Sumsung TV",
+        price: 45000.44,
+        stock: true,
+        rating: 4.5
+       }
+    Object.keys(product).map(function(key){
+        document.write(`<li>${key}</li>`);
+    })
+    document.write(`Product ID :${product[id]}`);
+</script>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        <dl>
+            <dd><input type="hidden" name="UserId" value="john_nit"></dd>
+            <dt>User Name</dt>
+            <dd><input type="text" name="username" value="john"></dd>
+            <dt>Age</dt>
+            <dd><input type="number" value="22"></dd>
+        </dl>
+        <button>Save</button>
+    </form>
+</body>
+</html>
+
+
+6- How to know the data type of a value stored in key ?
+a   By using "typeof" operator
+
+Syntax
+        typeof object.key                   //returns data type
+        typeof object[key]
+        typeof product[price]
+
+<script>
+    var product = {
+        id: 1,
+        title:"TV",
+        stock: true,
+        rating:{rate:4.5, count:2}
+    }
+    Object.keys(product).map(function(key){
+        document.write(`${key} [${typeof product[key]}] <br>`);
+    });
+
+</script>
+
+                                    How to display list item
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu using map()</title>
+
+    <script>
+        var menu = [
+            { Category: "Electronics", product: ["TV", "Mobile", "Watch"] },
+            { Category: "Fashion", product: ["Kids", "Men", "Women"] }
+        ];
+
+        function bodyload() {
+
+            var ol = document.querySelector("ol");
+
+            // map() returns category <li> elements
+            var categoryLis = menu.map(function (item) {
+
+                var categoryLi = document.createElement("li");
+                categoryLi.innerText = item.Category;
+
+                // map() returns product <li> elements
+                var productLis = item.product.map(function (prod) {
+                    var li = document.createElement("li");
+                    li.innerText = prod;
+                    return li;   // IMPORTANT: return
+                });
+
+                var ul = document.createElement("ul");
+
+                // append returned product lis
+                productLis.map(function (li) {
+                    ul.appendChild(li);
+                    return null; // map requires return, value ignored
+                });
+
+                categoryLi.appendChild(ul);
+                return categoryLi; // IMPORTANT: return
+            });
+
+            // append returned category lis
+            categoryLis.map(function (li) {
+                ol.appendChild(li);
+                return null;
+            });
+        }
+    </script>
+</head>
+
+<body onload="bodyload()">
+    <ol></ol>
+</body>
+</html>
+
+
+dropdown with optgroup 
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dropdown with optgroup</title>
+
+    <script>
+        var menu = [
+            { Category: "Electronics", product: ["TV", "Mobile", "Watch"] },
+            { Category: "Fashion", product: ["Kids", "Men", "Women"] }
+        ];
+
+        function bodyload() {
+            manu.map(function(item){
+                var optgroup = document.createElement("optgroup");
+                optgroup.label = item.Category;
+                item.product.map(function(product){
+                    var option = document.createElement("option");
+                    option.text = product;
+                    option.value = product;
+                    optgroup.appendChild(option);
+                    document.querySelector("select").appendChild(optgroup);
+                })
+            })
+           
+        }
+    </script>
+</head>
+
+<body onload="bodyload()">
+    <select>
+
+    </select>
+</body>
+</html>
+
+Ex--  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var topic = [
+            {title:"HTML", discription:"HTML is HyperText Markup Language"},
+            {title:"CSS", discription:"CSS is Cascading Style Sheet"}
+        
+        ]
+        function bodyload(){
+            topic.map(function(topic){
+                var dt = document.createElement("dt");
+                dt.innerText = topic.title;
+
+                var dd = document.createElement("dd");
+                dd.innerText = topic.discription;
+                
+                document.querySelector("dl").appendChild(dt);
+                document.querySelector("dl").appendChild(dd);
+            })
+        }
+    </script>
+</head>
+<body onload="bodyload()">
+    <dl>
+
+    </dl>
+</body>
+</html>
+
+
+
+<script>
+    var products = [
+        {Name: "Nike Causals", category: "Footwear"},
+        {Name: "Samsung TV", category: "Electronics"},
+        {Name: "Woodland Boots", category: "Footwear"},
+        {Name: "Jeans", category: "Mans Fashion"},  
+    ]
+    products.filter(function(product){
+        return product.category === "Footwear"  || product.category === "Mans Fashion";
+    }).map(function(product){
+        document.write(product.Name + "<br>");
+    })
+    
+</script>
+
+
+
+<script>
+    var products = [
+        {Name: "Nike Causals", category: "Footwear", price: 12000},
+        {Name: "Samsung TV", category: "Electronics", price: 50000},
+        {Name: "Woodland Boots", category: "Footwear", price: 8000},
+        {Name: "Jeans", category: "Mans Fashion", price: 3000},  
+    ]
+    var total = 0;
+    products.filter(function(product){
+        return product.category === "Footwear";
+    }).map(function(product){
+        total= total + product.price;
+        document.write(`${product.Name} - ${product.price} <br>`);
+    })
+    document.write("Total Amount:" + total); 
+</script>
+
+

@@ -1,0 +1,212 @@
+Switch Selector
+FAQ's:
+
+5. How to define one set of statements for multiple cases?
+A. By defining the cases line-by-line
+
+        case 1:
+        case 2:
+        case 3:
+            statements;
+            break;
+
+Ex:
+<script>
+   function f1(){
+      var product = prompt("Enter Product Name");
+      switch(product)
+      {
+          case "TV":
+          case "Mobile":
+          case "Watch":
+             document.write(`${product} belongs to Electronics category`);
+             break;
+          case "Casuals":
+          case "Boots":
+            document.write(`${product} belongs to Footwear category`);
+            break;
+          default:
+            document.write(`Avail Products : TV, Mobile, Watch, Casuals, Boots only..`);
+            break;
+      }
+   }
+   f1();
+</script>
+
+Ex:
+<script>
+   function f1(){
+        var choice = prompt("Enter Choice Y or N");
+        switch(choice)
+        {
+            case "y":
+            case "Y":
+             document.write("You selected yes to continue");
+             break;
+            case "n":
+            case "N":
+             document.write("You selected No to stop");
+             break;
+            default:
+             document.write("Please enter your choice Y or N");
+             break;
+        }
+   }
+   f1();
+</script>
+
+
+Ex:
+<script>
+   function f1(){
+        var choice = prompt("Enter Choice Yes or No");
+        switch(choice.toLowerCase())
+        {
+            case "yes":
+             document.write("You selected yes to continue");
+             break;
+            case "no":
+             document.write("You selected No to stop");
+             break;
+            default:
+             document.write("Please enter your choice Y or N");
+             break;
+        }
+   }
+   f1();
+</script>
+
+6. How you write case for range of values?
+A. By using Boolean expression that verifies the range of values.
+    IF case is using a Boolean expression then the switch must always use true as value.
+
+Syntax:
+        switch(true)
+        {
+          case booleanExpression:
+            statements;
+          break;
+        }
+Ex:
+<script>
+   function f1(){
+        var n = parseInt(prompt("Enter Number"));
+        switch(true)
+        {
+            case (n>=1 && n<=10):
+             document.write(`Your number ${n} is between 1 to 10`);
+             break;
+            case (n>=11 && n<=20):
+             document.write(`Your number ${n} is between 11 to 20`);
+             break;
+            default:
+             document.write("Pleae enter a number between 1 to 20 only");
+             break;
+        }
+   }
+   f1();
+</script>
+
+7. Can we define case without jump statement?
+A. Yes. Switch will continue to execute next case until break occurs.
+     If there is no break in next level cases then it executes up to end, which include the
+     default.
+
+Ex:
+<script>
+   function f1(){
+        var n = parseInt(prompt("Enter Number"));
+        switch(n)
+        {
+             
+            case 1:
+              document.write("You will get one<br>");
+              break;
+            case 2:
+              document.write("You selected Two third one is free<br>");
+            case 3:
+              document.write("Collect your three<br>");
+              break;
+            default:
+             document.write("Pleae enter a number between 1 to 3 only");
+             break;
+        }
+   }
+   f1();
+</script>
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+   <script>
+       var regExp = / /;
+       var tip = "";
+
+       function SetValidation(pattern, tooltip, image){
+          regExp = pattern;
+          tip = tooltip;
+          document.getElementById("imgFlag").src = image;
+          document.getElementById("txtMobile").placeholder = tip;
+       }
+
+       function CountryChange()
+       {
+           var countryName = document.getElementById("lstCountries").value;
+         
+           switch(countryName)
+           {
+               case "India":
+                 SetValidation(/\+91\d{10}/, "+91 and 10 digits", "../public/images/india.png");
+                 break;
+               case "US":
+                 SetValidation(/\+\(1\)\(\d{3}\)\s\d{4}-\d{4}/, "+(1)(000) 0000-0000", "../public/images/us.png");
+                 break;
+               case "UK":
+                  SetValidation(/\+\(44\)\(\d{3}\)\s\d{4} \d{4}/, "+(44)(000) 0000 0000", "../public/images/uk.png");
+                  break;
+               default:
+               SetValidation(/ /, "Please  select country", "");
+               break;
+           }
+
+       }
+
+       function VerifyClick(){
+           var mobile = document.getElementById("txtMobile").value;
+           var lblError = document.getElementById("lblError");
+
+           if(mobile.match(regExp))
+           {
+               document.write(`<h2>Your Mobile ${mobile} Verified Successfully..</h2>`)
+           } else {
+               lblError.innerHTML = `Invalid Mobile : ${tip}`;
+           }
+       }
+   </script>
+</head>
+<body class="container-fluid">
+    <h1>Verify Your Mobile</h1>
+    <dl class="w-25">
+       <dt>Select Your Country</dt>
+       <dd class="input-group">
+         <select class="form-select" id="lstCountries" onchange="CountryChange()">
+            <option>Choose Country</option>
+            <option>India</option>
+            <option>US</option>
+            <option>UK</option>
+         </select>
+         <img class="input-group-text" id="imgFlag" width="50">
+       </dd>
+       <dt>Mobile Number</dt>
+       <dd><input type="text" class="form-control" id="txtMobile"></dd>
+       <dd id="lblError" class="text-danger"></dd>
+       <button onclick="VerifyClick()" class="btn btn-primary w-100 mt-3">Verify</button>
+    </dl>
+   
+</body>
+</html>

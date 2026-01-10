@@ -1,0 +1,142 @@
+Form Element & Attributes
+- id, name, class, method, action, novalidate
+- form methods : GET , POST
+- on GET => Query String
+- on POST => Form Body
+
+
+                            TextBox
+
+- HTML provides <input> element to input any type of value.
+- The attribute "type" is used define data type that user can input from element.
+- TextBox refers to "string" type.
+- String is literal with group of chars, which include alphabet, number, symbol & special characters.
+- String encloses chars in
+    a) double quote    " "
+    b) single quote    '  '
+    c) backtick        `  `
+
+Syntax:
+    <input type="text">        It is used for string input.
+
+Attributes:
+1. id                It is unique reference ID
+2. name            It is a reference name
+3. class             It refers to CSS class name.
+
+Note: Form can't submit value of any element if it is not defined with "name".
+
+4. value            It defines the default value to display in textbox.
+
+5. readonly         It will not allow to change the value in textbox.
+                But it allows to submit the value.
+
+6. disabled        It will not allow to change and submit value.
+
+Syntax:
+    <input type="text"  value="john"  name="UserName"  readonly>
+    <input type="text"  value="22" name="Age" disabled>
+    <input value="23" type="text" name="Age">
+
+7. size            It sets width for textbox, the default is 20.
+
+8. minlength        It validates the minimum number of chars in textbox.
+
+9. maxlength         It restricts the maximum number of chars in textbox.
+
+Syntax:
+    <input type="text" name="OTP" minlength="4" maxlength="4">
+    <input type="text" name="UserName" minlength="4" maxlength="15">
+
+10. placeholder    It sets watermark text for textbox. It is used as hint/tip for element
+                value.
+
+Syntax:
+    <input type="text"  name="UserName"  placeholder="Name in Block Letters">
+
+11. required        It is a validation to define mandatory fields.
+                It will not allow to submit empty.
+
+Syntax:
+    <input type="text" name="OTP" required>
+
+12. autofocus        It sets focus to element automatically on page load.
+
+Syntax:
+    <input type="text" name="OTP" autofocus  required>
+
+13. list            It defines a form datalist to display for textbox.
+                Form datalist is defined by using the elements
+                <datalist>
+                <option>
+                A datalist is used as autocomplete text.
+
+Syntax:
+    <input type="text"  name="search"  list="terms">
+    <datalist id="terms">
+       <option> Item-1 </option>
+       <option> Item-2 </option>
+    </datalist>
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        <div align="center">
+            <h1>Google</h1>
+            <input type="text" name="search-string" size="40" list="terms">
+            <datalist id="terms">
+                <option>JavaScript Tutorial</option>
+                <option>HTML Examples</option>
+                <option>CSS Projects</option>
+                <option>JavaScript Projects</option>
+                <option>HTML Projects</option>
+            </datalist>
+            <p>
+                <button>Search</button>
+            </p>
+        </div>
+       
+    </form>
+</body>
+</html>
+
+14. pattern            : It is used to verify the format of input value.
+                      Format is tested by using a "Regular Expression".
+                      Pattern uses Regular Expression.
+                      Regular Expression is built by using
+                         a) Meta Characters
+                        b) Quantifiers
+
+Meta Character                Description
+-----------------------------------------------------------------------------------------------------------
+?                    zero or one occurrence of a character.
+       
+                    pattern="colou?r"        => color, colour
+
+*                    zero or more occurrences of a character
+
+                    pattern="colou*r"        =>  color, colour, colouur, colouuur
+
++                    one or more occurrences of a character
+
+                    pattern="colou+r"        => colour, colouur, colouuur
+
+. (dot)                Any single character. [A-Z, a-z, 0-9, !@#$%^*]
+
+
+                    pattern=".o."        => cow, toy, 2o2, @o3, @o$ ..
+                    pattern=".at"         => cat, bat, 1at, @at
+
+\                    It is an escape sequence character.
+                    It transform an normal character into meta character & vice
+                    versa.
+
+                    pattern="gmail.com"    => gmail2com, gmail.com, gmail@com
+                    pattern="gmail\.com"    => gmail.com

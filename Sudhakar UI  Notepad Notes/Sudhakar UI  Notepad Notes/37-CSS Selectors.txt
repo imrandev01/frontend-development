@@ -1,0 +1,183 @@
+Summary
+- Inline
+- Embedded
+- External Files [Style Sheet]
+
+                            Minification
+- It is a coding technique where the size of CSS file can be reduced by removing line breaks, optional code block, additional blank spaces, short references etc.
+- Minified files are used for production and un-minified  files are used in development.
+
+Ex:
+1. Copy the actual CSS code
+2. Visit the website
+
+    https://www.toptal.com/developers/cssminifier
+
+3. Paste the actual code
+4. Click "Minify" button
+5. Copy the minified code
+6. Go to your project styles folder and add a new file
+            ticket.min.css
+7. Paste the minified code and link the minified file to page.
+
+                             CDN
+- It refers to Content Delivery Network.
+- Projects maintain a repository server [sandbox] where the css files are kept and access directly from server.
+- You can use the styles across projects.
+
+Ex:
+<head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"&gt;
+</head>
+
+                             Bundling
+- Bundling is a technique use for configuring a web application, so that you can map the resources without linking to page.
+- Bundling also reduces the number of requests to page.
+- You can access multiple files with one request.
+- The popular bundling tools are
+    a) Webpack
+    b) Parcel
+    c) Vite etc..
+
+FAQ's:
+1. If styles for element are defined using all 3 techniques then which set of effect will apply?
+A. If different styles are defined then all will apply.
+    If same styles are defined then it uses priority.
+        1st    Inline
+        2nd    Embedded
+        3rd    External File
+    Priority can change according to placement order of embedded and external.
+
+2. If styles are defined embedded in <head> & <body> then which set will apply?
+A. Body set will apply.
+
+3. If styles are defined in body & outside HTML scope then which set will apply?
+A. Outside HTML will apply.
+
+
+                          Selectors in Style Object
+- Object is a key and value collection.
+- It keeps all related data and logic together.
+- Style object is applied to HTML element using selectors.
+
+Syntax:
+        selector
+        {
+          color:red;
+          text-align:center;
+        }
+
+- CSS provides various types of selectors to select HTML elements.
+- We can categorize them into following groups
+
+            1. Primary Selectors
+            2. Rational Selectors
+            3. Attribute Selectors
+            4. Dynamic Pseudo classes
+            5. Structural Pseudo classes
+            6. Element state pseudo classes
+            7. Validation state pseudo classes
+            8. Universal selector
+            9. Language selector
+            10. Root selector etc...
+
+Primary Selectors
+1. Type Selector
+2. Id Selector
+3. Class Selector
+
+Type Selector:
+- It refers to element token name.
+    h1, p, div, span, table, td, dt, etc..
+- Type selector are good to apply at every occurrence of element in page.
+- You can't skip at any specific occurrence.
+
+Syntax:
+    h1 {
+      color:red;
+    }
+
+ID Selector:
+- Every element can have a reference "Id" [Identification]
+- CSS can access the ID using "#" reference and can define effects.
+- You can apply style to specific element.
+- HTML element can't have multiple "Id" references.
+- Hence you can't apply multiple categories of styles to one element using ID selectors.
+
+Syntax:
+    #text-style
+    {
+      color:red;
+    }
+
+    <div id="text-style">
+    <h1 id="text-style">
+
+Class Selector:
+- It is defined by using "." and reference name.
+- It is accessed and applied to element using "class" attribute.
+- You can apply multiple classes to one element.
+
+Syntax:
+    .text-style {  }
+    .bg-style { }
+
+    <div  class="text-style bg-style">
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .text-style {
+           color:red;
+           text-align: center;
+        }
+        .border-style {
+           border: 2px solid red;
+        }
+        .bg-style {
+          background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="text-style border-style bg-style">Web Technologies</h1>
+</body>
+</html>
+
+FAQ: If styles are applied to element using id, type & class then which set will apply?
+Ans:  According to priority if same attributes are used.
+        1st         Id
+        2nd        Class
+        3rd         Type
+      It can apply all if different attributes are used.
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1 {
+          color:red;
+          border:1px solid red;
+        }
+        #text-style {
+          color:green;
+        }
+        .effect {
+           color:blue;
+           padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1  class="effect" id="text-style">Web Technologies</h1>
+</body>
+</html>

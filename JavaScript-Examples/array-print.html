@@ -1,0 +1,197 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var categories = ["All", "Electronocs", "Fashion"];
+        function bodyload(){
+            for  (var i=0; i<categories.length; i++)
+        {
+            var li = document.createElement("li");
+            li.innerHTML = categories[i];
+            document.querySelector("ol").appendChild(li);
+        }
+        }
+    </script>
+</head>
+<body onload="bodyload()">
+    <ol>
+
+    </ol>
+</body>
+</html> -->
+
+
+<!-- <script>
+    var values = [[10,20,30],[40,50,60]];
+
+    for(var i=0; i<values.length; i++){
+        for(var j=0; j<values[i].length; j++)
+    {
+        document.write(values[i][j] + "&nbsp;&nbsp;&nbsp;&nbsp;");
+    }
+    document.write("<br><br>");
+    }
+</script> -->
+
+
+<!-- <script>
+    var n = parseInt(prompt("Enter Number"));
+    for( var i=1; i<=n; i++)
+    {
+        for(var j=1; j<=i; j++)
+        {
+            document.write("* &nbsp;&nbsp;&nbsp; ");
+        }
+        document.write("<br>");
+    }
+</script> -->
+
+
+<!-- 
+// reverse
+
+<script>
+    var n = parseInt(prompt("Enter Number"));
+    for (var i=n; i>=1; i--)
+    {
+        for (var j=1; j<=i; j++){
+            document.write("* &nbsp;&nbsp;&nbsp; ");
+        }
+        document.write("<br>");
+    }
+</script> -->
+
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var data  = [
+        {category:"Electronic", product:["Televisons", "Mobiles", "Mobiles", "Watches"]},
+        {category:"Footwear", product:["Casuals", "Sneakers", "Boots"]}        
+        ];
+        function bodyload(){
+            data.map(function(item){
+                var ol_li = document.createElement("li");
+                ol_li.innerHTML = item.category;
+                item.product.map(function(product){
+                    var ul = document.createElement("ul");
+                    var ul_li = document.createElement("li");
+                    ul_li.innerHTML = product;
+                    ul.appendChild(ul_li);
+                    ol_li.appendChild(ul);
+                    document.querySelector("ol").appendChild(ol_li);
+                })
+            })
+        }
+    </script>
+</head>
+<body onload="bodyload()">
+    <ol>
+
+    </ol>
+</body>
+</html>
+
+ -->
+
+
+<!-- 
+
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var data  = [
+        {category:"Electronic", product:["Televisons", "Mobiles", "Mobiles", "Watches"]},
+        {category:"Footwear", product:["Casuals", "Sneakers", "Boots"]}        
+        ];
+        function bodyload(){
+            for (var i=0; i<data.length; i++)
+            {
+                var ol_li = document.createElement("li");
+                ol_li.innerHTML = data[i].category;
+                for(var i=0; j<data[i].product.length; j++)
+                {
+                    var ul = document.createElement("ul");
+                    var ul_li = document.createElement("li");
+                    ul_li.innerHTML = data[i].product[j];
+                    ul.appendChild(ul_li);
+                    ol_li.appendChild(ul);
+                    document.querySelector("ol").appendChild(ol_li);
+                }
+            }
+            // data.map(function(item){
+            //     var ol_li = document.createElement("li");
+            //     ol_li.innerHTML = item.category;
+            //     item.product.map(function(product){
+            //         var ul = document.createElement("ul");
+            //         var ul_li = document.createElement("li");
+            //         ul_li.innerHTML = product;
+            //         ul.appendChild(ul_li);
+            //         ol_li.appendChild(ul);
+            //         document.querySelector("ol").appendChild(ol_li);
+            //     })
+            // })
+        }
+    </script>
+</head>
+<body onload="bodyload()">
+    <ol>
+
+    </ol>
+</body>
+</html>
+
+ -->
+
+
+
+
+
+<!-- 
+ <script>
+    var n = parseInt(prompt("Enter Number"));
+    function Factorial(n)
+    {
+        if (n>=1)
+        {
+            return 1;
+        }else {
+            return n * Factorial(n-1);
+        }
+    }
+ </script> -->
+
+
+
+<!-- 
+ <script>
+    var n = parseInt(prompt("Enter Number"));
+    var fact = 1;
+    for (var i=1; i<=n; i++)
+        {
+            fact*=i;
+        }
+        document.write(`Factorial of ${n} is ${fact}`);
+ </script> -->
+
+
+
+ <script>
+    var i = 11;
+    do {
+        document.write(i+ "<br>");
+        i++;
+    } while (i<=10);
+ </script>

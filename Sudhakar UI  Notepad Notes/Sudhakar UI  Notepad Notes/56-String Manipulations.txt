@@ -1,0 +1,233 @@
+String Type
+- Single Quote
+- Double Quote
+- Backtick
+- Data Binding Expression  ${ }
+- Escape Character
+- String Formatting functions
+
+                         String Manipulation
+
+1. length        : It is a property that returns the total count of chars in a string.
+
+Syntax:
+    var msg = "Welcome";
+    msg.length;                // 7
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function SubmitClick(){
+             var userName = document.getElementById("UserName").value;
+             var userError = document.getElementById("UserError");
+             if(userName.length==0)
+             {
+                userError.innerHTML = "User Name Required".fontcolor('red');
+             }
+             else {
+                 if(userName.length<4)
+                 {
+                    userError.innerHTML = "Name too short - Min 4 chars".fontcolor('goldenrod');
+                 } else {
+                    document.write("Registered..");
+                 }
+             }
+        }
+        function VerifyChars(){
+            var message = document.getElementById("Message").value;
+            var length = message.length;
+            var maxLength = 100;
+            document.getElementById("MsgStatus").innerHTML = `${maxLength-length} Chars Left`;
+        }
+    </script>
+</head>
+<body>
+    <dl>
+        <dt>User Name</dt>
+        <dd><input type="text" id="UserName"></dd>
+        <dd id="UserError"></dd>
+        <dt>Your Message</dt>
+        <dd>
+            <textarea id="Message" rows="4" onkeyup="VerifyChars()" cols="40" maxlength="100"></textarea>
+        </dd>
+        <dd id="MsgStatus"></dd>
+    </dl>
+    <button onclick="SubmitClick()">Submit</button>
+</body>
+</html>
+
+2. charAt()        : It returns the character at specified index.
+
+Syntax:
+    var msg = "Welcome";
+    msg.charAt(1);            // e
+    msg.charAt(0);            // W
+
+3. charCodeAt()    : It returns the ASCII code of character at specified index.
+
+Syntax:
+    var name = "Ajay";
+    name.charCodeAt(0);        // 65
+
+    Chars Code
+    A=65, Z=90
+    a=97, z=122
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function SubmitClick(){
+            var opt = document.getElementById("OTP").value;
+            var error = document.getElementById("Error");
+            if(opt.charAt(0)=="6") {
+                document.write("Verified Successfully..");
+            } else {
+                error.innerHTML = "Invalid OTP".fontcolor('red');
+            }
+        }
+        function VerifyName(){
+            var username = document.getElementById("UserName").value;
+            var nameError = document.getElementById("nameError");
+            if(username.charCodeAt(0)>=65 && username.charCodeAt(0)<=90)
+            {
+                nameError.innerHTML = "";
+            } else {
+                nameError.innerHTML = "Name must start with uppercase letter".fontcolor('red');
+            }
+        }
+    </script>
+</head>
+<body>
+    <dl>
+        <dt>Name</dt>
+        <dd><input type="text" placeholder="Name must start with Uppercase letter" onblur="VerifyName()" id="UserName"></dd>
+        <dd id="nameError"></dd>
+        <dt>OTP</dt>
+        <dd><input type="text" id="OTP"></dd>
+        <dd id="Error"></dd>
+    </dl>
+    <button onclick="SubmitClick()">Submit</button>
+</body>
+</html>
+
+4. startsWith()        : It returns true if the string starts with specified char(s)
+
+5. endsWith()        : It returns true if the string ends with specified char(s)
+
+Syntax:
+ var msg = "Welcome";
+ msg.startsWith("W");        // true
+ msg.endsWith("w");        // false
+ msg.endsWith("me");        // true
+ msg.endsWith("e");        // true
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <script>
+        function VerifyCard(){
+            var card = document.getElementById("Card").value;
+            var pic = document.querySelector("img");
+            if(card.startsWith("44")){
+                pic.src = "../public/images/visa.jpg";
+            } else {
+                pic.src = "../public/images/master.jpg";
+            }
+        }
+        function VerifySkype(){
+            var skype = document.getElementById("Skype").value;
+            var skypeError= document.getElementById("skypeError");
+            if(skype.endsWith("outlook.com")) {
+                skypeError.innerHTML = "Your account verified".fontcolor('green');
+            } else {
+                skypeError.innerHTML = "Invalid Skype ID".fontcolor('red');
+            }
+        }
+    </script>
+</head>
+<body class="container-fluid">
+    <div class="mt-4 w-25">
+        <dl>
+            <dt>Your Card Number</dt>
+            <dd class="input-group">
+                <input type="text" onblur="VerifyCard()" maxlength="16" id="Card" class="form-control"><img class="input-group-text" width="80">
+            </dd>
+            <dt>Your Skype Id</dt>
+            <dd>
+                <input type="text" onblur="VerifySkype()" id="Skype" class="form-control">
+            </dd>
+            <dd id="skypeError"></dd>
+        </dl>
+    </div>
+</body>
+</html>
+
+6. indexOf()        : It returns the index number of specified character in a string.
+                  It verifies the first occurrence of char in a string.
+                  It returns -1 if character not found.
+
+7. lastIndexOf()    : It returns the last occurrence index number of char in a string.
+
+Syntax:
+   var  msg = "Welcome";
+   msg.indexOf("e");            // 1
+   msg.lastIndexOf("e");        // 6
+   msg.indexOf("a");            // -1
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function VerifyEmail(){
+            var email  = document.getElementById("Email").value;
+            var EmailError = document.getElementById("EmailError");
+
+            if(email.indexOf("@")<3)
+            {
+                EmailError.innerHTML = "Invalid Email Please include @ min after 2 chars".fontcolor('red');
+            } else {
+                EmailError.innerHTML = "Email Verfified".fontcolor('green');
+            }
+        }
+    </script>
+</head>
+<body>
+    <dl>
+        <dt>Your email</dt>
+        <dd>
+            <input type="text" onblur="VerifyEmail()" id="Email">
+        </dd>
+        <dd id="EmailError"></dd>
+    </dl>
+</body>
+</html>
+
+8. slice()        : It returns the chars between specified index. [uni-directional]
+
+9. substr()    : It returns the specified number of chars from given index.
+
+10. substring()    : It returns the chars between specified index bi-directional.
+
+Syntax:
+    slice(startIndex, endIndex)            // endIndex must be greater than start
+    substr(startIndex, numberOfChars)
+    substring(startIndex, endIndex)        // endIndex can be any direction

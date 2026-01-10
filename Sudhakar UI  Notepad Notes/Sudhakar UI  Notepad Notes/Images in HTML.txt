@@ -1,0 +1,333 @@
+Image Types
+APNG
+PNG
+JPEG
+GIF
+TIFF
+Bitmap
+Icon
+SVG
+Webp
+
+1. PNG & APNG
+- High Definition
+- More Pixel Depth
+- Good Quality
+- Uses more memory
+- Loads slow
+- It is good for downloads.
+
+2. JPEG
+- High Definition
+- Less Pixel Depth compared to PNG
+- Good Quality
+- Compressed Format
+- Less memory.
+- Loads Fast
+- Good for on screen presentation.
+
+3. GIF
+- Less Pixel Depth than JPG
+- Only 256 colors
+- Not HD
+- Poor Image Quality
+- Memory same as JPG
+- Load Fast
+- Can be animated
+- Good for icons, logos, bullets, lines, patterns etc.
+
+4. TIFF
+- Sliced image format
+- It is used for scanned documents.
+- HD
+- Need More memory than PNG
+- More Pixel than PNG
+
+5. ICON
+- Microsoft Icons
+- Used for Favicon [.ico]
+- Max "32 x 32" recommended
+
+
+6. SVG
+- It is not pixel based.
+- It is vector based.
+- Need more memory
+- High Quality
+- HD
+- High Resolution at various zoom levels.
+- It is XML format image. [Extensible Markup Language]
+- Mostly used for Icons and Architectural diagrams.
+
+7. Bitmap
+- Image in binary format.
+- It is not much recommend in modern web.
+- It is good to store in database.
+- It is good in COM marshal.
+  [Common Object Model]
+  Binary to Object => Object to Binary
+- Need more memory
+- Loads slow
+
+
+8. Webp
+- Web Picture
+- It a picture embedded into Webpage.
+- You can't extract or save image individually.
+
+
+                        Image Element
+
+- HTML <img> element is used to embed image into page.
+
+Attributes:
+1. src        : It defines the image path and name.
+
+2. alt        : It defines the alternative text to display when image fails to load.
+
+3. title        : It defines text to display when mouse is over.
+
+4. width        : It sets width for image.
+
+5. height        : It sets height for image.
+
+6. border        : It sets border with specified pixels.
+
+7. align        : It aligns left or right with text wrapping.
+
+8. vspace        : Vertical padding space
+
+9. hspace    : Horizontal padding space
+
+Syntax:
+ <img src="./images/fashion.jpg"  width="200" height="300" border="3" align="left" alt="Women Fashion"  title="Offer Ends Today"  hspace="20" vspace="30">
+
+FAQ: What is fluid Image? How to define a fluid image?
+Ans:  Fluid image can adjust according to the parent window or container.
+     You can define fluid images with size in "%" instead of pixels.
+
+Syntax:
+    <img src="./images/pic.jpg"  width="50%"  height="30%">
+
+Ex: Landkit-Template
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landkit</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <style>
+        header {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+            font-family: Arial;
+            font-size: 18px;
+        }
+        .brand-title {
+            font-weight: bold;
+            font-size: 22px;
+            color:blue;
+        }
+        nav span {
+            margin-right: 40px;
+        }
+        .btn-buy {
+            background-color: blue;
+            color:white;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .landkit-title {
+            width: 50%;
+            padding-left: 100px;
+            padding-top: 100px;
+        }
+        .title {
+            font-family: Arial;
+            font-size: 50px;
+            color:blue;
+        }
+        .subtitle {
+            font-family: Arial;
+            font-size: 25px;
+        }
+        .text {
+            font-size: 16px;
+            font-family: Arial;
+            width: 400px;
+            line-height: 30px;
+            color: gray;
+        }
+        .btn-pages, .btn-doc {
+            width: 120px;
+            padding: 10px;
+            text-align: center;
+            border:1px solid gray;
+            margin-top: 20px;
+            display: inline-block;
+            border-radius: 3px;
+            font-size: 15px;
+            font-family: Arial;
+        }
+        .btn-pages {
+            background-color: blue;
+            color:white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div>
+            <span class="brand-title">Landkit.</span>
+        </div>
+        <div>
+            <nav>
+                <span>Landings</span>
+                <span>Pages</span>
+                <span>Account</span>
+                <span>Documentation</span>
+            </nav>
+        </div>
+        <div>
+            <span class="btn-buy">Buy now</span>
+        </div>
+    </header>
+    <section>
+        <main>
+            <img src="./images/landkit-banner.jpg" width="50%" align="right">
+            <div class="landkit-title">
+                <div class="title">Welcome to Landkit.</div>
+                <div class="subtitle">Develop anything.</div>
+                <p class="text">Build a beautiful, modern website with flexible Bootstrap components built from scratch.</p>
+                <span class="btn-pages"> View Pages <span class="bi bi-arrow-right"></span> </span>
+                <span class="btn-doc">Documents</span>
+            </div>
+        </main>
+    </section>
+</body>
+</html>
+
+Ex: Cards
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <style>
+        .card {
+            width: 250px;
+            border:1px solid gray;
+            border-radius: 5px;
+            margin: 20px;
+        }
+        .card-img {
+            width: 100%;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+        .card-body {
+            padding: 10px;
+            height: 200px;
+        }
+        .card-title {
+            font-size: 20px;    
+            font-family: Arial;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .rating {
+            margin-top: 10px;
+            color:goldenrod;
+            margin-bottom: 10px;
+        }
+        .card-footer {
+            font-size: 18px;
+            font-family: Arial;
+            text-align: center;
+            display: flex;
+        }
+        .card-footer {
+            border-top: 1px solid black;
+        }
+        .btn-enroll {
+            background-color:blue;
+            padding: 20px;
+            width: 50%;
+            color:white;
+        }
+        .btn-share {
+            padding: 20px;
+            width: 50%;
+        }
+        body {
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="card-header">
+            <img src="./images/cloud.jpg" class="card-img">
+        </div>
+        <div class="card-body">
+            <div class="card-title">Multi Cloud</div>
+            <div class="rating">
+                <span class="bi bi-star-fill"></span>
+                <span class="bi bi-star-fill"></span>
+                <span class="bi bi-star-fill"></span>
+                <span class="bi bi-star-fill"></span>
+                <span class="bi bi-star-half"></span>
+            </div>
+            <div>
+                <span class="bi bi-clock"></span> <span>Start Date: 6 May 2024</span>
+                <br>
+                <br>
+                <span class="bi bi-person"></span> <span>By Mr. Santosh</span>
+                <br>
+                <br>
+                <span class="bi bi-clock-fill"></span> <span>Duration 5months</span>
+            </div>
+        </div>
+        <div class="card-footer">
+            <div class="btn-enroll">Enroll</div>
+            <div class="btn-share"> <span class="bi bi-share"></span> Share </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <img src="./images/java.jpg" class="card-img">
+        </div>
+        <div class="card-body">
+            <div class="card-title">Java</div>
+            <div class="rating">
+                <span class="bi bi-star-fill"></span>
+                <span class="bi bi-star-fill"></span>
+                <span class="bi bi-star-fill"></span>
+                <span class="bi bi-star-fill"></span>
+                <span class="bi bi-star-half"></span>
+            </div>
+            <div>
+                <span class="bi bi-clock"></span> <span>Start Date: 6 May 2024</span>
+                <br>
+                <br>
+                <span class="bi bi-person"></span> <span>By Mr. Santosh</span>
+                <br>
+                <br>
+                <span class="bi bi-clock-fill"></span> <span>Duration 5months</span>
+            </div>
+        </div>
+        <div class="card-footer">
+            <div class="btn-enroll">Enroll</div>
+            <div class="btn-share"> <span class="bi bi-share"></span> Share </div>
+        </div>
+    </div>
+</body>
+</html>

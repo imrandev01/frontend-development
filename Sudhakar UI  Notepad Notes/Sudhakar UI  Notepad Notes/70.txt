@@ -1,0 +1,156 @@
+                                fakestore API
+                            [https://fakestoreapi.com]
+
+Routes:-
+Method                  Path                            Description
+---------------------------------------------------------------------------------------------------------
+GET                 /products                      It returs all proucts [{},{}]
+GET                 /products/1                    It returns specific id product { }
+GET                 /product/category/je           It returns products of specific category [{ }, { }]
+GET                 /product/categories            It returns all categories [" "]
+
+fakestoreapi.com
+
+Ex-  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FakeStore App</title>
+
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+
+    <script>
+        var cartItems = [];
+
+        function LoadCategories() {
+            fetch("https://fakestoreapi.com/products/categories")
+                .then(res => res.json())
+                .then(categories => {
+                    var select = document.getElementById("lstCategories");
+                    select.innerHTML = `<option value="all">All</option>`;
+                    categories.map(cat => {
+                        var opt = document.createElement("option");
+                        opt.text = cat.toUpperCase();
+                        opt.value = cat;
+                        select.appendChild(opt);
+                    });
+                });
+        }
+
+        function LoadProducts(url) {
+            document.querySelector("main").innerHTML = "";
+            fetch(url)
+                .then(res => res.json())
+                .then(products => {
+                    products.map(product => {
+                        var div = document.createElement("div");
+                        div.className = "card m-2 p-2";
+                        div.style.width = "200px";
+                        div.innerHTML = `
+                            <img src="${product.image}" class="card-img-top" height="120">
+                            <div class="card-header" style="height:130px">${product.title}</div>
+                            <div class="card-body">
+                                <dl>
+                                    <dt>Price</dt>
+                                    <dd>₹ ${product.price}</dd>
+                                    <dt>Rating</dt>
+                                    <dd>
+                                        <span class="badge bg-success p-1 rounded">
+                                            ${product.rating.rate}
+                                            <span class="bi bi-star-fill"></span>
+                                        </span>
+                                        ${product.rating.count} ratings
+                                    </dd>
+                                </dl>
+                            </div>
+                            <div class="card-footer">
+                                <button onclick="AddClick(${product.id})"
+                                    class="btn btn-warning w-100 bi bi-cart4">
+                                    Add to Cart
+                                </button>
+                            </div>
+                        `;
+                        document.querySelector("main").appendChild(div);
+                    });
+                });
+        }
+
+        function CategoryChanged() {
+            var category = document.getElementById("lstCategories").value;
+            if (category === "all") {
+                LoadProducts("https://fakestoreapi.com/products");
+            } else {
+                LoadProducts(`https://fakestoreapi.com/products/category/${category}`);
+            }
+        }
+
+        function AddClick(id) {
+            fetch(`https://fakestoreapi.com/products/${id}`)
+                .then(res => res.json())
+                .then(product => {
+                    cartItems.push(product);
+                    alert(product.title + " added to cart");
+                    GetCartCount();
+                });
+        }
+
+        function GetCartCount() {
+            document.getElementById("lblCount").innerText = cartItems.length;
+        }
+
+        function LoadCart() {
+            var tbody = document.querySelector("tbody");
+            tbody.innerHTML = "";
+            cartItems.map(item => {
+                var tr = document.createElement("tr");
+                tr.innerHTML = `
+                    <td>${item.title}</td>
+                    <td><img src="${item.image}" width="50"></td>
+                    <td>₹ ${item.price}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function bodyload() {
+            LoadCategories();
+            LoadProducts("https://fakestoreapi.com/products");
+            GetCartCount();
+        }
+    </script>
+</head>
+
+<body class="container-fluid" onload="bodyload()">
+
+<header class="d-flex justify-content-between p-2 bg-light">
+    <select id="lstCategories" onchange="CategoryChanged()" class="form-select w-25"></select>
+
+    <button onclick="LoadCart()" class="btn btn-warning bi bi-cart4"
+        data-bs-toggle="offcanvas" data-bs-target="#cart">
+        <span id="lblCount" class="badge bg-danger"></span>
+    </button>
+</header>
+
+<main class="d-flex flex-wrap mt-3" style="height:500px; overflow:auto;"></main>
+
+<div class="offcanvas offcanvas-end" id="cart">
+    <div class="offcanvas-header">
+        <h4>Your Cart</h4>
+        <button class="btn-close" data-bs-dismiss="offcanvas"></button>
+    </div>
+    <div class="offcanvas-body">
+        <table class="table">
+            <thead>
+                <tr><th>Title</th><th>Photo</th><th>Price</th></tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>
+

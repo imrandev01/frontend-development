@@ -1,0 +1,166 @@
+Issues with JavaScript:
+- JavaScript is not strongly typed.
+- No restriction for type of data to store in a reference.
+        x = 10;        x is number
+        x = "A";        x changes to string
+        x = true;        x changes to Boolean
+- You need lot of validations to restrict a value type.
+- JavaScript is not implicitly strictly typed.
+- It allows to write without following the rules of programming.
+- It leads to lot of code inconsistency.
+- It is not an OOP language.
+- It is not easy to extend.
+- It is not good in code level security.
+
+Solution:
+- TypeScript
+- It is just an alternative for JavaScript and not replacement.
+- Browser can understand only JavaScript and not TypeScript.
+
+                       
+Various Integration Techniques:
+1. Inline
+2. Embedded
+3. External File
+
+Inline Script:
+- In this technique JavaScript functions are configured directly in the element.
+- It is faster.
+- It is not good for reusing the functions across elements.
+
+Syntax:
+    <button onclick="window.print()"> Print </button>
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Ticket</h2>
+    <button onclick="window.print()">Print</button>
+</body>
+</html>
+
+Embedded Script:
+- In this technique the JavaScript functions are configured in a <script> container.
+- You can embed script in head or body.
+- Configure a function in script container
+   
+        function Name()
+        {
+        }
+
+- Access the function from any element and reuse across multiple requests.
+
+        <button onclick="Name()">  </button>
+
+- JavaScript MIME type is "text/javascript" for interpreter.
+- JavaScript MIME can be "text/babel" for external compiler like "babel".
+- JavaScript MIME can be "text/module" when it is using a module system.
+
+Syntax:
+       <script type="text/javascript">            // new
+       <script language="javascript">            // old
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+        function PrintPage(){
+            window.print();
+        }
+    </script>
+</head>
+<body>
+    <h2>Ticket</h2>
+    <button onclick="PrintPage()">Print</button>
+</body>
+</html>
+
+3. JavaScript in External File
+- You can write JavaScript functions in external script file.
+- Script file have extension ".js"
+- You can link the script file to HTML page by using <script> container.
+- You can reuse the functions across pages.
+- Using an external file will increase the number of requests for page and also the page load time.
+
+Ex:
+1. Go to "src/scripts" folder
+2. Add a new file "ticket.js"
+
+     function PrintPage()
+     {
+        window.print();
+     }
+
+3. Link to HTML page
+
+    <script src="../src/scripts/ticket.js" type="text/javascript"> </script>
+
+    <button onclick="PrintPage()"> Print </button>
+
+- The production files are created by using "Minification".
+
+    <script src="../src/scripts/ticket.min.js" type="text/javascript"> </script>
+
+    https://www.toptal.com/developers/javascript-minifier
+
+- You can turn on Strict mode for developers by using the statement
+        "use strict";
+
+Syntax:
+    <script>
+         x = 10;                        // valid
+         document.write("x=" + x );
+    </script>
+
+    <script>
+        "use strict";                    
+         x = 10;                        // invalid - x is not defined
+         document.write("x=" + x);
+    </script>
+
+- To add rules for programming in JavaScript you can setup "ESLint" in project.
+- It is language analysis tool, used to find and fix problems of JavaScript.
+- It is also used to configure JavaScript for a project.
+- Configure ESLint for project
+
+    > npm init @eslint/config@latest
+
+- JavaScript functions are not suitable for legacy browsers, if written using new syntax. Hence we can target JavaScript for legacy browsers by enclose JavaScript functions in HTML comments.
+
+Syntax:
+     <script>
+        <!--
+             // functions
+        -->
+    </script>
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+        <!--
+           function PrintPage(){
+              window.print();
+           }    
+        -->
+    </script>
+</head>
+<body>
+    <h1>Ticket</h1>
+    <button onclick="PrintPage()">Print</button>
+</body>
+</html>

@@ -1,0 +1,226 @@
+Header Designs
+Semantics for Layout Design
+<header>
+<nav>
+<article>
+
+Bootstrap Icons with CDN:
+1. visit  "icons.getbootstrap.com"
+
+2. Copy "CDN" <link> element
+
+3. Paste in your page <head> section
+
+4. You can use icons, but every time need to connect with server.
+
+    <span class="bi bi-house"> </span>
+
+CSS Flex Display:
+
+    {
+     display: flex;                It can arrange content into rows and columns flexible.
+     flex-direction:row/column;    row=side by side, column=with line break
+     justify-content:            It can be with space between, around, evenly, center.
+    }
+
+
+CSS Border Radius:
+
+    {
+     border-radius: curved corners all directions
+    }
+
+    border-top-left-radius
+    border-top-right-radius
+    border-bottom-left-radius
+    border-bottom-right-radius
+
+Ex: Landkit Template
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landkit</title>
+    <style>
+        header {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+            font-family: Arial;
+            font-size: 18px;
+        }
+        .brand-title {
+            font-weight: bold;
+            font-size: 22px;
+            color:blue;
+        }
+        nav span {
+            margin-right: 40px;
+        }
+        .btn-buy {
+            background-color: blue;
+            color:white;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div>
+            <span class="brand-title">Landkit.</span>
+        </div>
+        <div>
+            <nav>
+                <span>Landings</span>
+                <span>Pages</span>
+                <span>Account</span>
+                <span>Documentation</span>
+            </nav>
+        </div>
+        <div>
+            <span class="btn-buy">Buy now</span>
+        </div>
+    </header>
+</body>
+</html>
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        header {
+            height: 100px;
+            background-color: black;
+            border-top-left-radius: 100px;
+            border-bottom-right-radius: 100px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+
+    </header>
+</body>
+</html>
+
+Note: To get a circle shape you have to define width , height and border-radius with same pixels.
+
+Syntax:
+    <style>
+        div {
+              width:100px;
+              height:100px;
+              border-radius:100px;
+              border:1px solid black;
+          }
+    </style>
+
+    You can't set width & height for <span>.
+    You can change the span style as "display:inline-block" and set width & height.
+
+FAQ: Why we can set size for div and not for span?
+Ans:  Div is default in "block" style.
+     Span is not default block style.
+     You can set size only for elements that are in block style.
+
+Syntax:
+    {
+      display:block | inline-block;
+    }
+
+FAQ: What is difference between block and inline-block?
+Ans:  Block style will not allow content beside.
+      Inline Block style will allow content beside.
+
+
+Ex: Bootstrap Header
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <style>
+        header {
+            background-color: #4c0bce;
+            color:white;
+            padding: 10px;
+            font-family: Arial;
+            font-size: 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 5px;
+        }
+        .bi-bootstrap-fill {
+            font-size: 30px;
+        }
+        nav span {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+        .search-box {
+            border:1px solid #6f42c1;
+            padding: 10px;
+            width: 250px;
+            background-color: #712cf9;
+            display: flex;
+            justify-content: space-between;
+        }
+        .btn-ctrl {
+            background-color: #000044;
+            padding: 2px;
+            border-radius: 5px;
+        }
+        .right-panel span {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div>
+           
+            <nav>
+                <span class="bi bi-bootstrap-fill"></span>
+                <span>Docs</span>
+                <span>Examples</span>
+                <span>Icons</span>
+                <span>Themes</span>
+                <span>Blog</span>
+            </nav>
+        </div>
+        <div>
+            <div class="search-box">
+                <span class="bi bi-search"> Search </span>
+                <span class="btn-ctrl">Ctrl+K</span>
+            </div>
+        </div>
+        <div class="right-panel">
+            <span class="bi bi-github"></span>
+            <span class="bi bi-twitter"></span>
+            <span class="bi bi-alexa"></span>
+            <span> | </span>
+            <span> v5.3 <span class="bi bi-chevron-down"></span> </span>
+            <span> | </span>
+            <span class="bi bi-sun-fill"></span>
+            <span class="bi bi-chevron-down"></span>
+        </div>
+    </header>
+</body>
+</html>

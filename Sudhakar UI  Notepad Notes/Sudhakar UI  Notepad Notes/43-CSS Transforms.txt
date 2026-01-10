@@ -1,0 +1,328 @@
+CSS Text & Font Styles
+
+font-size
+font-style
+font-weight
+font-variant : [uppercase | lowercase]
+font-family
+color
+text-align
+text-transform: [upper, lower, capitalize]
+text-decoration : [style, size, color] => underline, overline, line through...
+text-indent
+text-overflow
+line-height
+letter-spacing
+word-spacing
+word-wrap
+white-space
+overflow
+word-break
+
+                        CSS List Style
+list-style-type
+list-style-image
+list-style [short hand]
+list-style-position [inside, outside]
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+     ol {
+        list-style-image: url("../public/icons/start.gif");
+        list-style-position: inside;
+     }
+     li {
+       font-size: 30px;
+       border:1px solid black;
+       width: 300px;
+     }
+  </style>
+</head>
+<body>
+   <ol>
+     <li>HTML</li>
+     <li>CSS</li>
+     <li>Bootstrap</li>
+   </ol>
+</body>
+</html>
+
+                            CSS Transforms
+- Transform allows to change the position, size and orientation of element.
+- Transform provides
+    a) 2D [2 Dimensional] methods
+    b) 3D [3 Dimensional] methods
+
+Transform 2D:
+- It controls element along X & Y axis.
+
+        a) translate()
+        b) scale()
+        c) rotate()
+        d) skew()
+        e) matrix()
+
+Translate:
+- It moves the element along X and Y axis.
+
+    a) translate()
+    b) translateX()
+    c) translateY()
+
+Syntax:
+      {
+        transform: translate(200px, 100px);
+      }
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+     img {
+       transform: translate(0px, 0px);
+       transition: 4s;
+     }
+     img:hover {
+        transform: translate(200px, 100px);
+        transition: 2s;
+     }
+  </style>
+</head>
+<body>
+     <img src="../public/images/women-fashion.jpg" width="200" height="200">
+</body>
+</html>
+
+2. Scale()
+- It changes the size of element.
+- You can scale along X and Y axis.
+
+    a) scale()
+    b) scaleX()
+    c) scaleY()
+
+Syntax:
+    {
+      transform:scale(2, 3);        1=100%
+    }
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+     body {
+      height: 100vh;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+     }
+     img {
+       transform: scale(1,1);
+       transition: 3s;
+     }
+     img:hover {
+        transform: scale(2,2);
+        transition: 2s;
+     }
+  </style>
+</head>
+<body>
+     <img src="../public/images/women-fashion.jpg" width="200" height="200">
+</body>
+</html>
+
+3. Skew()
+- It can tilt image by specified angle.
+
+    a) skew()
+    b) skewX()
+    c) skewY()
+
+Syntax:
+    {
+     transform: skewX(20deg);
+    }
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+     body {
+      height: 100vh;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+     }
+     .pic-1 {
+       transform: skewY(-30deg);
+     }
+     .pic-2 {
+       transform: skewY(30deg);
+     }
+  </style>
+</head>
+<body>
+     <div>
+      <div>
+        <img class="pic-1" src="../public/images/women-fashion.jpg" width="200" height="200">
+        <img class="pic-2" src="../public/images/women-fashion.jpg" width="200" height="200">
+       </div>
+       <div>
+        <img class="pic-3" src="../public/images/women-fashion.jpg" width="200" height="200">
+        <img class="pic-4" src="../public/images/women-fashion.jpg" width="200" height="200">
+       </div>
+     </div>
+</body>
+</html>
+
+4. Roate()
+- It rotates elements by specified angle.
+
+    a) rotate()
+    b) rotateX()
+    c) rotateY()
+
+Syntax:
+    {
+      transform: rotateX(120deg);
+    }
+
+Note: You can apply multiple transforms in short hand style. But not as a stack.
+      Stack always follows LIFO.
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+     body {
+      height: 100vh;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+     }
+     .pic-1 {
+      transform: skewY(0deg);
+     }
+     .pic-1:hover {
+       transform: skewY(-30deg);
+     }
+     .pic-2 {
+       transform: skewY(30deg);
+     }
+     .pic-3 {
+       transform: rotateX(180deg) skewY(30deg);
+     
+     }
+     .pic-4 {
+       transform: rotateX(180deg) skewY(-30deg);
+     }
+  </style>
+</head>
+<body>
+     <div>
+      <div>
+        <img class="pic-1" src="../public/images/women-fashion.jpg" width="200" height="200">
+        <img class="pic-2" src="../public/images/women-fashion.jpg" width="200" height="200">
+       </div>
+       <div>
+        <img class="pic-3" src="../public/images/women-fashion.jpg" width="200" height="200">
+        <img class="pic-4" src="../public/images/women-fashion.jpg" width="200" height="200">
+       </div>
+     </div>
+</body>
+</html>
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+     body {
+      height: 100vh;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+     }
+     img {
+        transform: rotate(0deg) scale(1);
+        transition: 2s;
+     }
+     img:hover{
+        transform: rotate(360deg) scale(2);
+        transition: 2s;
+     }
+  </style>
+</head>
+<body>
+     <div>
+        <img class="pic-4" src="../public/images/women-fashion.jpg" width="200" height="200">
+     </div>
+</body>
+</html>
+
+5. matrix()
+- It provides options for handling multiple transforms.
+
+Syntax:
+    {
+     transform: matrix(scaleX(), skewX(), skewY(), scaleY(), translateX(), translateY());
+    }
+
+    scale()    => 1 = 100%
+    skew()    => 1 = 10deg
+    translate() => 100 = 100px
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+     body {
+      height: 100vh;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+     }
+     img {
+        transform: matrix(1,0,0,1,0,0);
+        transition: 2s;
+     }
+     img:hover{
+        transform: matrix(1.5,0.2,0.3,1,100,100);
+        transition: 2s;
+     }
+  </style>
+</head>
+<body>
+     <div>
+        <img class="pic-4" src="../public/images/women-fashion.jpg" width="200" height="200">
+     </div>
+</body>
+</html>

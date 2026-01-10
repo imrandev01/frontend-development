@@ -1,0 +1,152 @@
+Boolean Type
+- Boolean is used in decision making.
+- Boolean can handle the keywords "true & false".
+- JavaScript Boolean values can use "1 & 0 " to compare.
+
+        true = 1
+        false = 0
+
+Syntax:
+    var stock = true;
+
+    if(stock==1)        // valid - but bad code
+    {    
+    }
+
+    if(stock==true)        // good code
+    {
+    }
+
+- HTML attributes provides Boolean value directly to reference, hence conversion is not required.
+- HTML Boolean attributes are:
+       
+        readonly
+        disabled
+        checked
+        selected
+        autofocus
+        required
+        novalidate
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function StockChange(){
+            var optStock = document.getElementById("optStock");
+            var lblStock = document.getElementById("lblStock");
+            if(optStock.checked)
+            {
+                lblStock.innerHTML = "Available";
+            }
+            else
+            {
+                lblStock.innerHTML = "Out of Stock";
+            }
+        }
+    </script>
+</head>
+<body>
+    <dl>
+        <dt>Stock</dt>
+        <dd>
+            <input type="checkbox" onchange="StockChange()" id="optStock"> <label id="lblStock"> Out of Stock </label>
+        </dd>
+    </dl>
+</body>
+</html>
+
+FAQ: How to convert a string Boolean word into Boolean native?
+Ans : Explicitly by using various decision making statements and operators
+
+Syntax: Ternary Operator
+
+        (condition) ? true : false
+
+        (ref=="true") ? true : false
+
+Ex:
+<script>
+      var choice = (prompt("Enter true or false")=="true"?true:false);
+      if(choice==true)
+      {
+          document.write("You selected true");
+      }
+      else {
+          document.write("You selected false");
+      }
+</script>
+
+- Boolean type depends on  comparison and logical operators, which are used to build Boolean expression.
+
+- The comparison operators
+
+        >        greater than
+        >=        greater than or equal
+        <        less than
+        <=        less than or equal
+        ==        equal
+        ===        identical equal
+        !=        not-equal
+        !==        not-identical
+       
+FAQ: What is difference between "==" & "===" ?
+Ans:   "==" can compare values of different types.
+      "===" can compare values only of same data type.
+
+Syntax:
+        "10" == 10        => true
+        "10" === 10        => false
+        "10" === "10"        => true
+         10 === 10        => true
+
+- The Logical operators
+
+        &&            AND
+        ||            OR
+        !            NOT
+ 
+- Logical "&&" combines multiple expressions and returns true if all evaluates to true.
+
+        (10==10)  &&  (10==20)            =>  false
+        (10 > 5)     &&  (10 > 8)            =>  true
+
+- Logical "||"  combines multiple expressions and returns true if any one expression evaluates to true.
+
+        (10 > 5)  ||   (10 < 5)            =>  true
+
+        (10<5)    ||  (10 < 8)            => false
+
+- Logical "!" NOT can transform or switch from true to false & vice versa.
+
+        !true            => false
+        !disabled        => disabled = false
+        !readonly        => readonly= false
+
+- Boolean requires selection statements to handle decision making.
+- Selection statements are configure using
+       
+    "if, else, switch, case, default"
+
+The  "IF" selector:
+- It is a decision making statement used to execute a block of statements based on the given Boolean expression.
+- It have various forms
+
+        a) Forward Jump
+        b) Simple Decision
+        c) Multiple Decisions
+        d) Multi Level Decisions
+
+Forward Jump:
+- It is a programming approach where there is no alternative provided.
+- It flows to next only when the given condition evaluates to true.
+
+Syntax:
+        if (condition)
+        {
+           statements on true;
+        }

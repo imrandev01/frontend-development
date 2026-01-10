@@ -1,0 +1,66 @@
+JavaScript
+
+- JavaScript is light weight interpreted and JIT compiled programming language.
+- Light weight allows to run on device or in environment with less memory.
+- Interpreted allows line by line translation.
+- Compiled allows translation of all lines simultaneously at the same time.
+- There are 2 types of compiling techniques
+    a) JIT
+    b) AOT
+- JIT is "Just-in-Time", which compiles the code only when it is requested.
+- AOT is "Ahead-of-Time", which compiles the code at application level before it is requested.
+- JavaScript is a language that supports various programming techniques and approaches like
+    a) Structural Programming
+    b) Imperative Programming
+    c) Functional Programming
+    d) Object Oriented Programming etc..
+
+Note: JavaScript is not an OOP language. It supports only few features of OOP.
+
+- JavaScript have various application areas, it is used
+
+    a) Client Side                HTML
+    b) Server Side                Node JS
+    c) Database                MongoDB
+    d) Animation Tools            CAD, Flash 2D, 3D etc..
+
+FAQ: What is the purpose of JavaScript client side?
+Ans : A client side script is used to reduce burden on server.
+     It saves round trips.
+
+FAQ: What are the activities managed by JavaScript client side?
+Ans:
+    1. Browser Interactions [BOM]
+        - window
+        - location
+        - navigator
+        - history
+        - document
+    2. DOM Manipulations
+        - Adding elements
+        - Removing elements
+        - Databinding
+        - Style Binding
+        - Class Binding
+        - Event Binding
+    3. Client side Validations
+        - Verifying user input
+        - Restricting contradictory values
+        - Authorizing values etc..
+
+Evolution of JavaScript:
+- CERN labs introduced ECMA Script, which is known as the base for all scripts in the world.
+- Internet started with a browser called Mosaic, which uses ECMA script & HTML.
+- Netscape communications started a browser called Netscape Communicator in 1995.
+- Netscape appointed "Brendan Eich" to develop a script for their browser.
+- He designed a script by name "Moca", later renamed as "Live Script".
+- Netscape given the responsibility of Live Script to Sun Micro Systems. [Java]
+- Sun Micro Systems and Netscape together name the script as "JavaScript".
+- In 2000 Netscape stopped its services and given the responsibility of JavaScript to ECMA.
+- Latest version of JavaScript is ESNext [Alpha], the stable and standard versions used in companies
+        ECMA 2015        ES5
+        ECMA 2016        ES6
+        …
+        ECMA 2022
+
+Issues with JavaScript:

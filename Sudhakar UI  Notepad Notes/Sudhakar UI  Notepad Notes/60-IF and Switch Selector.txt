@@ -1,0 +1,250 @@
+- Forward Jump
+- Simple Decision
+- Multi Level Decisions
+
+                         Multiple Choices
+- You can configure different logics for one action.
+- Program can choose any one according to the state and situation.
+- It is just providing multiple alternatives for one action.
+- Alternative condition is defined using else if
+
+Syntax
+    if (condition-1 )
+    {
+      statements on condition-1 true;
+    }
+    else if (condition-2)
+    {
+      statements on condition-2 true;
+    }
+    else
+    {
+      statements on all conditions false;
+    }
+
+Ex Amazon-Login
+
+!DOCTYPE html
+html lang=en
+head
+    meta charset=UTF-8
+    meta name=viewport content=width=device-width, initial-scale=1.0
+    titleAmazontitle
+    link rel=stylesheet href=..node_modulesbootstrapdistcssbootstrap.css
+    script
+        var flag = ;
+
+        function ContinueClick()
+        {
+             var UserId = document.getElementById(txtUserId).value;        
+             
+             function ToggleContainers(){
+                document.getElementById(Id_Container).style.display = none;
+                document.getElementById(Pwd_Container).style.display = block;
+             }
+
+             if(UserId===david123@outlook.com)
+             {
+                flag = `Your email verified successfully - Activation link sent to ${UserId}`;
+                ToggleContainers();
+             }
+             else if(UserId===+919876543211)
+             {
+                flag = `Your mobile verified successfully - OTP sent to your ${UserId}`;
+                ToggleContainers();
+             }
+             else {
+                document.getElementById(UserId_Error).innerHTML = `${UserId} doesn't exist`;
+             }
+        }
+        function LoginClick(){
+            var Password = document.getElementById(txtPassword).value;
+            if(Password===david@123)
+            {
+                document.write(`h2${flag}h2`);
+            } else {
+                document.getElementById(Password_Error).innerHTML = Invalid Password;
+            }
+        }
+    script
+head
+body class=d-flex justify-content-center align-items-center style=height 100vh;
+    div
+        div class=h2Sign Indiv
+         div id=Id_Container
+           
+            label class=form-label fw-boldEmail or mobile phone numberlabel
+            div
+                input type=text id=txtUserId class=form-control
+                div id=UserId_Error class=text-dangerdiv
+            div
+            div class=my-2
+                button class=btn btn-warning w-100 onclick=ContinueClick()Continuebutton
+            div
+         div
+         div id=Pwd_Container style=display none;
+            label class=form-label fw-boldPasswordlabel
+            div
+                input type=password id=txtPassword class=form-control
+                div id=Password_Errordiv
+            div
+            div class=my-2
+                button onclick=LoginClick() class=btn btn-warning w-100Loginbutton
+            div
+         div
+    div
+body
+html
+
+                            Switch Selector
+- Switch is used to interrupt the flow of electrons in a circuit.
+- There are various types of switches
+    a) Push Button Switch
+    b) Toggle Switch
+    c) Selector Switch
+    d) Joy Stick Switch
+    etc..
+- Switch selector is a decision making approach used in programming, which selects exactly the required set of statements.
+- It saves the compile time.
+
+Syntax
+    switch(value  expression)
+    {
+   
+       case  valueexpression
+          statements;
+          jump;
+       default
+          statements;
+          jump;
+    }
+
+Ex
+script
+    var n = parseInt(prompt(Enter Number));
+    switch(n)
+    {
+         case 1
+         document.write(One);
+         break;
+         case 2
+         document.write(Two);
+         break;
+         case 3
+         document.write(Three);
+         break;
+         case 4
+         document.write(Four);
+         break;
+         default
+         document.write(Please enter value from 1 to 4 only);
+         break;
+    }
+script
+
+Ex
+!DOCTYPE html
+html lang=en
+head
+    meta charset=UTF-8
+    meta name=viewport content=width=device-width, initial-scale=1.0
+    titleAmazontitle
+    link rel=stylesheet href=..node_modulesbootstrapdistcssbootstrap.css
+    script
+        var flag = ;
+
+        function ContinueClick()
+        {
+             var UserId = document.getElementById(txtUserId).value;        
+             
+             function ToggleContainers(){
+                document.getElementById(Id_Container).style.display = none;
+                document.getElementById(Pwd_Container).style.display = block;
+             }
+
+             switch(UserId)
+             {
+                 case david123@outlook.com
+                 flag = `Your email verified successfully - Activation link sent to ${UserId}`;
+                 ToggleContainers();
+                 break;
+                 case +919876543211
+                 flag = `Your mobile verified successfully - OTP sent to your ${UserId}`;
+                 ToggleContainers();
+                 break;
+                 default
+                 document.getElementById(UserId_Error).innerHTML = `${UserId} doesn't exist`;
+                 break;
+             }
+
+
+             
+             if(UserId===david123@outlook.com)
+             {
+                flag = `Your email verified successfully - Activation link sent to ${UserId}`;
+                ToggleContainers();
+             }
+             else if(UserId===+919876543211)
+             {
+                flag = `Your mobile verified successfully - OTP sent to your ${UserId}`;
+                ToggleContainers();
+             }
+             else {
+                document.getElementById(UserId_Error).innerHTML = `${UserId} doesn't exist`;
+             }
+                
+        }
+        function LoginClick(){
+            var Password = document.getElementById(txtPassword).value;
+            if(Password===david@123)
+            {
+                document.write(`h2${flag}h2`);
+            } else {
+                document.getElementById(Password_Error).innerHTML = Invalid Password;
+            }
+        }
+    script
+head
+body class=d-flex justify-content-center align-items-center style=height 100vh;
+    div
+        div class=h2Sign Indiv
+         div id=Id_Container
+           
+            label class=form-label fw-boldEmail or mobile phone numberlabel
+            div
+                input type=text id=txtUserId class=form-control
+                div id=UserId_Error class=text-dangerdiv
+            div
+            div class=my-2
+                button class=btn btn-warning w-100 onclick=ContinueClick()Continuebutton
+            div
+         div
+         div id=Pwd_Container style=display none;
+            label class=form-label fw-boldPasswordlabel
+            div
+                input type=password id=txtPassword class=form-control
+                div id=Password_Errordiv
+            div
+            div class=my-2
+                button onclick=LoginClick() class=btn btn-warning w-100Loginbutton
+            div
+         div
+    div
+body
+html
+
+FAQ's
+1. Can we define a switch without default block
+A. Yes
+
+2. Can we define default block before or between cases
+A. Yes
+
+3. Can we use return as jump for case or default
+A. Yes.
+
+4. What is difference between  break & return
+A. break terminates the block but keeps the compiler alive.
+    return terminates the block and compiling process.
+
+Note Any code defined after return is not reachable to compiler.

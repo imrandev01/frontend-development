@@ -1,0 +1,452 @@
+Display Classes :
+
+        .d-none
+        .d-inline
+        .d-block
+        .d-flex
+        .d-inline-block
+        .d-inline-flex
+        .flex-wrap
+        .flex-row
+        .flex-column
+        .justify-content-between
+        .justify-content-center
+        .justify-content-end
+        .justify-content-start
+        .align-items-center
+        .align-items-start
+        .align-items-end
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+</head>
+<body>
+    <div class="m-4 p-4 d-flex flex-row w-50 justify-content-between">
+        <button>A</button>
+        <button>B</button>
+        <button class="d-inline">C</button>
+        <button>D</button>
+        <button>E</button>
+    </div>
+</body>
+</html>
+
+Grid Classes:
+   
+        .row                
+        .col            responsive and fits according to parent.
+        .col-{size}    size is in fractions 1 to 12
+
+Ex: EMI Calculator
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <style>
+        .form-range {
+            width: 95%;
+        }
+    </style>
+</head>
+<body  class="bg-secondary p-4 m-4">
+   
+        <div class="bg-light p-3 m-3">
+            <div class="h3 text-center">Personal Loan EMI Calculator</div>
+            <div class="row my-2 py-2">
+                <div class="col">
+                    Amount you need &#8377; <input type="text" size="12">
+                </div>
+                <div class="col">
+                    for <input type="text" size="2"> years
+                </div>
+                <div class="col">
+                    Interest rate <input type="text" size="2"> %
+                </div>
+            </div>
+
+            <div class="row mt-2 pt-2">
+                <div class="col">
+                    <input type="range" class="form-range" min="10000" max="1000000" value="200000">
+                </div>
+                <div class="col">
+                    <input type="range" class="form-range" min="1" max="5" value="2">
+                </div>
+                <div class="col">
+                    <input type="range" class="form-range" min="10.45" max="18.45" value="12.45">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col d-flex justify-content-between">
+                    <span> &#8377;10,000</span>
+                    <span> &#8377;10,00,000</span>
+                </div>
+                <div class="col d-flex justify-content-between">
+                    <span>1</span>
+                    <span>5</span>
+                </div>
+                <div class="col d-flex justify-content-between">
+                    <span>10.45%</span>
+                    <span>18.45%</span>
+                </div>
+            </div>
+            <div class="row my-4 py-4">
+                <div class="col text-end">
+                    <button class="btn btn-primary">Calculate</button>
+                </div>
+            </div>
+        </div>
+   
+</body>
+</html>
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+</head>
+<body>
+    <div class="m-4 p-4">
+        <dl class="row w-25 bg-dark text-white">
+            <dt class="col-2 my-4">Name</dt>
+            <dd class="col-10 my-4"><input type="text" class="form-control"></dd>
+            <dt class="col-2 my-4">Age</dt>
+            <dd class="col-10 my-4"><input type="number" class="form-control"></dd>
+            <dt class="col-2 my-4">City</dt>
+            <dd class="col-10 my-4">
+                <select class="form-select">
+                    <option>Select City</option>
+                    <option>Delhi</option>
+                </select>
+            </dd>
+            <dd class="col">
+                <button class="btn btn-light w-100">Submit</button>
+            </dd>
+        </dl>
+       
+    </div>
+</body>
+</html>
+
+List Classes:
+
+    .list-unstyled            : remove numbering or bullets
+   
+Table Classes:
+
+    .table
+    .table-hover
+    .table-responsive      : It is defined for container which have table.
+    .table-bordered
+    .table-borderless
+    .table-striped
+    .table-{contextual}
+    .caption-top
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <style>
+        .player-img {
+            width: 20%;
+        }
+    </style>
+</head>
+<body class="w-100">
+    <h1>Table</h1>
+    <div class="table-responsive">
+        <table class="table table-hover table-striped caption-top">
+            <caption>IPL 2024 Players Stats</caption>
+            <colgroup span="1"></colgroup>
+            <thead>
+                <tr class="table-dark">
+                    <th>POS</th>
+                    <th  width="250">PLAYER</th>
+                    <th>MAT</th>
+                    <th>INNS</th>
+                    <th>NO</th>
+                    <th>RUNS</th>
+                    <th>HS</th>
+                    <th>AVG</th>
+                    <th>BF</th>
+                    <th>SR</th>
+                    <th>100</th>
+                    <th>50</th>
+                    <th>4S</th>
+                    <th>6S</th>
+   
+   
+                    <th>HS</th>
+                    <th>AVG</th>
+                    <th>BF</th>
+                    <th>SR</th>
+                    <th>100</th>
+                    <th>50</th>
+                    <th>4S</th>
+                    <th>6S</th>
+                    <th>HS</th>
+                    <th>AVG</th>
+                    <th>BF</th>
+                    <th>SR</th>
+                    <th>100</th>
+                    <th>50</th>
+                    <th>4S</th>
+                    <th>6S</th>
+                    <th>HS</th>
+                    <th>AVG</th>
+                    <th>BF</th>
+                    <th>SR</th>
+                    <th>100</th>
+                    <th>50</th>
+                    <th>4S</th>
+                    <th>6S</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr valign="center">
+                    <td align="center">1</td>
+                    <td>
+                        <div class="row">
+                            <div>
+                                <img src="./images/Virat Kohli.png" class="player-img">
+                            </div>
+                            <div class="col">
+                                <div>
+                                    <span class="player-name">Virat Kohli</span>
+                                    <br>
+                                    <span>RCB</span>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>3</td>
+                    <td>634</td>
+                    <td>113*</td>
+                    <td>70.44</td>
+                    <td>413</td>
+                    <td>153.51</td>
+                    <td>1</td>
+                    <td>5</td>
+                    <td>55</td>
+                    <td>30</td>
+                </tr>
+   
+                <tr>
+                    <td align="center">2</td>
+                    <td>
+                        <div class="row">
+                            <div>
+                                <img src="./images/Ruturaj Gaikwad.png" class="player-img">
+                            </div>
+                            <div class="col">
+                                <div>
+                                    <span class="player-name">Ruturaj Gaikwad</span>
+                                <br>
+                                <span>CSK</span>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>11</td>
+                    <td>11</td>
+                    <td>2</td>
+                    <td>541</td>
+                    <td>108*</td>
+                    <td>60.11</td>
+                    <td>413</td>
+                    <td>153.51</td>
+                    <td>1</td>
+                    <td>5</td>
+                    <td>55</td>
+                    <td>30</td>
+                </tr>
+               
+                <tr>
+                    <td align="center">3</td>
+                    <td>
+                        <div class="row">
+                            <div>
+                                <img src="./images/Travis Head.png" class="player-img">
+                            </div>
+                            <div class="col">
+                              <div>
+                                <span class="player-name">Travis Head</span>
+                                <br>
+                                <span>SRH</span>
+                              </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>11</td>
+                    <td>11</td>
+                    <td>1</td>
+                    <td>541</td>
+                    <td>108*</td>
+                    <td>60.11</td>
+                    <td>413</td>
+                    <td>153.51</td>
+                    <td>1</td>
+                    <td>5</td>
+                    <td>55</td>
+                    <td>30</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="14" align="center"> <div class="btn btn-primary"> View All </div> </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</body>
+</html>
+
+Card Classes:
+   
+    .card
+    .card-header
+    .card-body
+    .card-footer
+    .card-title
+    .card-subtitle
+    .card-img-top
+    .card-img-bottom
+    .card-img-overlay
+    .bg-{contextual}
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <style>
+     
+    </style>
+</head>
+<body>
+    <main class="m-4 p-4 d-flex">
+        <div class="card w-25 p-2 m-2">
+            <img src="./images/java.jpg" class="card-img-top">
+            <div class="card-header">
+                <h2 class="card-title">Java Full Stack</h2>
+                <p class="card-subtitle">Online Course</p>
+            </div>
+            <div class="card-body">
+                <ul>
+                    <li>Core Java</li>
+                    <li>Spring</li>
+                    <li>JSP</li>
+                </ul>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-warning w-100">Join</button>
+            </div>
+        </div>
+
+
+        <div class="card w-25 p-2 m-2">
+            <img src="./images/cloud.jpg" class="card-img-top">
+            <div class="card-header">
+                <h2 class="card-title">Multi Cloud</h2>
+                <p class="card-subtitle">Starts 25 May</p>
+            </div>
+            <div class="card-body">
+                <ul>
+                    <li>Core Java</li>
+                    <li>Spring</li>
+                    <li>JSP</li>
+                </ul>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-info w-100">Join</button>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
+
+Badge Class
+   
+    .badge
+
+Position Classes
+   
+    .position-absolute
+    .position-fixed
+    .position-static
+    .position-relative [for parent element]
+    .position-sticky
+    .top-{ }        
+    .bottom-{ }    0,50,100
+    .start-{ }
+    .end-{ }
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+</head>
+<body>
+    <div class="m-4">
+        <button class="btn btn-dark"> <span class="badge bg-danger rounded rounded-circle"><span class="bi bi-bell"></span></span> <span>Subscribe</span> </button>
+        <button class="btn btn-warning position-relative"> <span class="bi bi-cart4">Your Cart</span> <span class="badge bg-danger rounded rounded-circle position-absolute">2</span> </button>
+    </div>
+</body>
+</html>
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <style>
+        .women-fashion {
+            height: 300px;
+            width:200px;
+            background-image: url("./images/women-fashion.jpg");
+            background-size: 100% 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="m-4">
+        <div class="women-fashion position-relative p-4">
+            <span class="badge bg-danger rounded rounded-circle position-absolute end-0 me-3 text-center">Save<br>50%</span>
+        </div>
+    </div>
+</body>
+</html>

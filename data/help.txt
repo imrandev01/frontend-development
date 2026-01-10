@@ -1,0 +1,4 @@
+Ajax Help
+- Asynchronous JavaScript And XML
+- Partial Postback
+- XMLHttpRequest Object

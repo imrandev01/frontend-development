@@ -1,0 +1,142 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <script>
+        var mobile = {
+            "title": "Apple iPhone 15 (Black, 128 GB)",
+            "price": 79900,
+            "rating": {"rating":4.6, "Ratings":39755, "reviews":2187},
+            "offers":[
+                "Special PriceGet extra  ₹3000 off (price inclusive of cashback/coupon)T&C",
+                "No Cost EMI on Bajaj Finserv EMI Card on cart value above ₹3000T&C",
+                "Bank Offer5% Unlimited Cashback on Flipkart Axis Bank Credit CardT&C",
+                "Partner OfferSign up for Flipkart Pay Later and get Flipkart Gift Card worth ₹1000*Know More"
+            ],
+            "image": "../public/images/iphon15black.png"
+        }
+        function bodyload() {
+            document.getElementById("imgProduct").src = mobile.image;
+            document.getElementById("lblTitle").innerText = mobile.title;
+            document.getElementById("lblRating").innerText = mobile.rating.rating;
+            document.getElementById("lblReviews").innerText = `<b>${mobile.rating.ratings} ratings ${mobile.rating.reviews} reviews</b>`;
+            document.getElementById("lblPrice").innerText = mobile.price.toLocaleString("en-IN", {style:"currency", currency:"INR"}); 
+
+            mobile.offers.map(function(offer){
+                var li = document.createElement("li");
+                li.className = document.createElement("li");
+                li.innerHTML = `<span class="text-secondary"> ${offer}</span>`;
+                document.querySelector("ul").appendChild(li);
+
+            })
+        }
+    </script>
+</head>
+<body class="container-fluid" onload="bodyload()">
+    <div class="mt-4 row">
+        <div class="col-3">
+            <img id="imgProduct" width="100%">
+        </div>
+        <div class="col-9">
+            <div class="h3" id="lblTitle"></div>
+            <div class="my-2">
+                <span class="bg-success p-1 text-white"><span id="lblRating" ></span><span class="bi bi-star-fill"></span></span> <span id="lblReviews" class="text-secondary ms-3"></span>
+            </div>
+            <div class="my-4">
+                <div class="h3 " id="lblPrice"></div>
+            </div>
+            <div class="list-unstyled">
+
+            </div>
+        </div>
+
+    </div>
+</body>
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Details</title>
+
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+
+    <script>
+        var mobile = {
+            title: "Apple iPhone 15 (Black, 128 GB)",
+            price: 79900,
+            rating: {
+                rating: 4.6,
+                ratings: 39755,
+                reviews: 2187
+            },
+            offers: [
+                "Special Price: Get extra ₹3000 off",
+                "No Cost EMI on Bajaj Finserv EMI Card",
+                "5% Cashback on Flipkart Axis Bank Credit Card",
+                "Flipkart Pay Later – Gift Card worth ₹1000"
+            ],
+            image: "../public/images/iphon15black.png"
+        };
+
+        function bodyload() {
+            document.getElementById("imgProduct").src = mobile.image;
+            document.getElementById("lblTitle").innerText = mobile.title;
+            document.getElementById("lblRating").innerText = mobile.rating.rating;
+
+            document.getElementById("lblReviews").innerHTML =
+                `<b>${mobile.rating.ratings} ratings & ${mobile.rating.reviews} reviews</b>`;
+
+            document.getElementById("lblPrice").innerText =
+                mobile.price.toLocaleString("en-IN", {
+                    style: "currency",
+                    currency: "INR"
+                });
+
+            var offerList = document.getElementById("offerList");
+            offerList.innerHTML = "";
+
+            mobile.offers.forEach(function (offer) {
+                var li = document.createElement("li");
+                li.className = "mb-2";
+                li.innerHTML = `<span class="text-success fw-bold">✔</span> ${offer}`;
+                offerList.appendChild(li);
+            });
+        }
+    </script>
+</head>
+
+<body class="container-fluid" onload="bodyload()">
+
+    <div class="row mt-4">
+        <div class="col-3">
+            <img id="imgProduct" class="img-fluid">
+        </div>
+
+        <div class="col-9">
+            <h3 id="lblTitle"></h3>
+
+            <div class="my-2">
+                <span class="bg-success text-white p-1 rounded">
+                    <span id="lblRating"></span>
+                    <span class="bi bi-star-fill"></span>
+                </span>
+                <span id="lblReviews" class="text-secondary ms-3"></span>
+            </div>
+
+            <h3 class="my-3" id="lblPrice"></h3>
+
+            <ul id="offerList" class="list-unstyled"></ul>
+        </div>
+    </div>
+
+</body>
+</html>

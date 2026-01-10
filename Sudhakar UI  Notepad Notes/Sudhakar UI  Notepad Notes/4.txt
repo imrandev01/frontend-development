@@ -1,0 +1,88 @@
+FAQ: What is a Web Page?
+Ans:
+- It is a Hyper Text Document.
+- It provides an UI [User Interface] from where user can interact with the resources of web application.
+- Hyper means "Beyond".
+- Hyper Text is the text that provides information to user beyond what user can view on screen.
+- The web pages are classified into 2 types
+    a) Static Page
+    b) Dynamic Page
+- Static page have same content to display across multiple requests.
+    [.html, .htm]
+- Dynamic page can change the content response according to the request. It customizes the response for every client request.
+    [.jsp, .php, .asp, .aspx ..]
+- HTML is a language used to design both static and dynamic pages.
+- Dynamic Pages have composition with back-end business logic.
+- Static Pages have composition with fron-end client logic.
+- Both are designed by using "HTML".
+
+
+                                  HTML
+- Hyper Text Markup Language.
+- Hyper means beyond.
+- The term Markup refers to presentation.
+- HTML is a presentation language.
+- It presents content on "Browser". [Chrome, Edge, Safari, FireFox]
+
+Evolution
+- Web started in early 1990's.
+- Tim Berners Lee introduced Web.
+- The first browser is "Mosaic".
+- CERN developed a language called GML [Generic Markup Language] for browser.
+- New features added to GML and improved it as "SGML" [Standard Generic Markup Language].
+- Tim Berners Lee introduced HTML.
+- HTML is super set to GML and SGML.
+- IETF [Internet Engineering Task Force] developed HTML upto version 3.1
+- WHATWG [Web Hyper Text Application Technology Work Group] took the responsibility of HTML in 2004 and released the version 4.0.
+- WHATWG released HTML 5 in 2014, which is the current active & latest version of HTML.
+       
+    https://whatwg.org/
+
+Summary:
+  GML => SGML => HTML => Tim Berners Lee => IETF => WHATWG => 4.0 => 5.0
+
+
+                        Browser Architecture
+- Browser is a software tool used by clients to access and view the web pages.
+        Chrome
+        FireFox
+        Safari
+        Edge
+        etc..
+- Browser Architecture
+
+1. User Interface
+ - The presentation of browser
+ - It includes title bar, status bar, shortcut button, workspace etc.
+
+2. UI Backend
+- It is the logic for UI elements.
+- UI elements can be controlled by using the backend logic.
+
+3. Browser Engine
+- It translates HTML & CSS
+- Every browser have its individual engine
+    FireFox        - Spider Monkey, Gecko
+    Safari        - Webkit
+    Chrome        - V8
+    Edge        - Chakra, Chromium
+
+4. Rendering Engine
+- It is responsible for rendering output.
+- The final presentation is done by rendering engine.
+
+5. JavaScript Interpreter
+- It is Javascript translator in browser.
+- Interpreter translates line-by-line of program.
+
+6. Network
+- It is responsible for handling the request and response for various resources in website.
+
+7. Data Presistance
+- Every browser have a memory to store the data
+    - Local Storage
+    - Session Storage
+    - Cookies
+    etc..
+
+Designing a Page using HTML

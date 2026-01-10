@@ -1,0 +1,91 @@
+Opelrators
+- Arithematic
+- Comparison
+- Logical
+- Assignment
+- Bitwise operators
+
+
+                                Special Operators
+sack to tat)
+
+1. Ternary Operator ?:
+2. new operator             : Dynamic memory allocation operator.
+3. typeof                   : It returns the data type of value stored in a reference.
+4. in operator              : It can search for a key in object and return Boolean true/false.
+                                
+                                "Price" in product; // true - false
+
+5- delete                   : It can remove a key from object-
+                                delete product.Price;
+6. of operator              : It can read value of a property in an iterator.
+                                for(var item of collection)
+                                {
+
+                                }
+7. instanceof               : It returns true if object is instance of specified class.
+
+8. void                     : It discards the return of a function.
+                            <a href="javascript:void()"> Text </a> 
+
+7. yield                    : It yields the result of an iterator. 
+
+                                JavaScript Statements
+-A statement is used to control the execution flow in a program.
+-JavaScript statements are classified into
+                1. Selection Statements
+                    if, else, switch, case, default
+                2. Looping Statements
+                    for, while, do while
+                3. Iteration Statements
+                    for..in, for..
+                4. jump Statements
+                    break, continue, return
+                5.Exception Handling Statements
+                    try, catch, throw, finally
+
+Looping Control Statements:
+-Looping is the process of executing a set of statements repeatedly until the given condition is satisfied.
+
+- You can create loops with
+        a) for 
+        b) while
+        c) do while
+
+The "for" loop:
+- It is a looping control statement used by developer when it is sure about number of iterations and iteration counter will not change dynamically.
+
+- It requires an initialization, condition and counter.
+
+Syntax:
+
+    for(initialization; condition; counter)
+    {
+
+    }
+
+    initialization          : It specifies the starting point
+    condition               : It decides the ending
+    counter                 : It defines how to proceed. [increment, decrement or step]
+
+Ex- 
+    for(var i=1)
+
+
+
+
+Tasks:-
+1.  Write a program to count the occurrence of a string in message 
+2.  Write a program to find the word is palindrome or not.
+3.  Write a program to print all values greater then 4000 from an array of numbers.
+
+                        [2000, 57000, 53100, 43000]
+4.  Write a program to print array element in ordered list 
+
+                        ["All", "Electronic", "Fashion"]
+
+                        1. All
+                        2. Electronic
+                        3. Fashion
+                        
+

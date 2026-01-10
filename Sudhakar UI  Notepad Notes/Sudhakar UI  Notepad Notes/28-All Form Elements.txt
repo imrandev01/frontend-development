@@ -1,0 +1,313 @@
+Dropdown List
+- It allows to select any one option from a group of choices.
+- List is defined by using
+    select
+- List contains collection of items defined using
+    option
+- Options can be grouped by using
+    optgroup
+
+Syntax
+    select
+       optgroup label=title
+        option Item-1 option
+        option Item-2 option
+      optgroup
+    select
+
+- Every option have 3 attributes
+
+    a) value             It defines the value to submit
+    b) selected         It keeps the option selected on load
+    c) disabled         It will not allow to select the option.
+
+    option value=  selecteddisabled
+
+- Every option is RC data type, It will not allow icons & images as value or text.
+    [only alphabet, number & special chars allowed]
+
+Ex
+!DOCTYPE html
+html lang=en
+head
+    meta charset=UTF-8
+    meta name=viewport content=width=device-width, initial-scale=1.0
+    titleDocumenttitle
+    link rel=stylesheet href=..node_modulesbootstrap-iconsfontbootstrap-icons.css
+    style
+     
+    style
+head
+body
+    form
+        dl
+            dtSelect Productdt
+            dd
+                select name=product
+                    optionChoose Productoption
+                    optgroup label=Electronics
+                        optionTelevisionsoption
+                        option value=PRELEMOB1102 selectedMobilesoption
+                        optionWatchesoption
+                    optgroup
+                    optgroup label=Footwear
+                        option disabledCasualsoption
+                        optionSneakersoption
+                    optgroup
+                select
+            dd
+            dtLanguagedt
+            dd
+                select name=language
+                    optionYour Languageoption
+                    optionEnglishoption
+                    optionहिंदीoption
+                select
+            dd
+        dl
+        buttonSubmitbutton
+    form
+body
+html
+
+                            ListBox
+- Dropdown transforms into list box with attributes
+    a) multiple
+    b) size
+
+Syntax
+    select            = dropdown
+    select size=2    = listbox
+   
+- List box allows to select multiple options.
+
+Syntax
+    select size=2 multiple
+
+Ex
+!DOCTYPE html
+html lang=en
+head
+    meta charset=UTF-8
+    meta name=viewport content=width=device-width, initial-scale=1.0
+    titleDocumenttitle
+    link rel=stylesheet href=..node_modulesbootstrap-iconsfontbootstrap-icons.css
+    style
+     
+    style
+head
+body
+    form
+        dl
+            dtSelect Productdt
+            dd
+                select name=product
+                    optionChoose Productoption
+                    optgroup label=Electronics
+                        optionTelevisionsoption
+                        option value=PRELEMOB1102 selectedMobilesoption
+                        optionWatchesoption
+                    optgroup
+                    optgroup label=Footwear
+                        option disabledCasualsoption
+                        optionSneakersoption
+                    optgroup
+                select
+            dd
+            dtLanguagedt
+            dd
+                select name=language
+                    optionYour Languageoption
+                    optionEnglishoption
+                    optionहिंदीoption
+                select
+            dd
+            dtSelect Citydt
+            dd
+                select name=City size=2 multiple
+                    optionDelhioption
+                    optionHydoption
+                    optionChennaioption
+                select
+            dd
+        dl
+        buttonSubmitbutton
+    form
+body
+html
+
+
+                            Textarea
+- It is used for multiline text.
+- Texbox allows only single line text.
+- It is RC data type and allows only plain text content.
+
+Syntax
+    textarea  your text  optional textarea
+
+Attributes
+    a) rows
+    b) cols
+    c) readonly
+    d) disabled
+
+Ex
+!DOCTYPE html
+html lang=en
+head
+    meta charset=UTF-8
+    meta name=viewport content=width=device-width, initial-scale=1.0
+    titleDocumenttitle
+head
+body
+    form
+        fieldset
+            legendYour Commentslegend
+            dl
+                ddtextarea rows=4 cols=40textareadd
+                dtTerms of Servicedt
+                dd
+                    textarea rows=4 disabled cols=40 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Expedita quibusdam vero neque debitis laboriosam fuga. Cumque odit neque iure magnam, velit dolorum, at nulla dolor repudiandae dolorem omnis molestiae sapiente Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis et, facere nulla eveniet consectetur, enim ratione recusandae natus commodi quibusdam, totam quam Ratione facere sunt dolores delectus praesentium perferendis commodi. textarea
+                dd
+            dl
+            buttonPost Commentbutton
+        fieldset
+    form
+body
+html
+
+                                Meter
+- It is used to show grade meter.
+- It is controlled with attributes
+    a) min
+    b) max
+    c) value
+    d) low
+    e) high
+
+Syntax
+    meter min= max= value= low= high= meter
+
+- Colors for meter
+
+        low, high     are set to zero             green
+        more gap between low-high         gold
+        less gap between low-hight         red
+
+Ex
+!DOCTYPE html
+html lang=en
+head
+    meta charset=UTF-8
+    meta name=viewport content=width=device-width, initial-scale=1.0
+    titleDocumenttitle
+    link rel=stylesheet href=..node_modulesbootstrap-iconsfontbootstrap-icons.css
+    style
+        meter {
+            width 200px;  
+            height 20px;
+        }
+    style
+head
+body
+    form
+        dl
+            dd span5span span class=bi bi-star-fillspan meter min=1 max=5 value=5meter span 23,450span dd
+            dd span4span span class=bi bi-star-fillspan meter min=1 max=5 value=3meter span 5,450span dd
+            dd span3span span class=bi bi-star-fillspan meter low=20 high=80 min=1 max=100 value=100meter span 23,450span dd
+            dd span1span span class=bi bi-star-fillspan meter min=1 max=100 value=100 low=60 high=80meter span 23,450span dd
+        dl
+    form
+body
+html
+
+                            Progress
+- It is used to show the status of any task performed by page.
+- It includes time elapsed and time remaining.
+
+Syntax
+    progress progress
+
+Attributes
+    a) min
+    b) max
+    c) value
+
+- It is controlled dynamically by using JavaScript.
+
+Syntax
+    progress min=1 max=100 value=40 progress
+
+
+                            Buttons
+- Buttons are used to confirm user actions.
+- Buttons are 2 types
+    a) Generic Buttons
+    b) Non Generic Buttons
+
+- Generic Buttons
+    a) submit         It can submit form data.
+    b) reset         It will reset form data to default.
+
+    HTML 4
+        input type=submit  value= 
+        input type=reset  value= 
+
+    HTML 5
+        button type=submit Text  Images  Icons button
+        button type=reset Text  Image  Icon button
+
+- Non Generic button
+
+     HTML 4
+        input type=button  value= 
+   
+
+    HTML 5
+        button type=button Text  image  icons button
+
+Note If button type is not defined then the default type is submit for HTML 5 buttons.
+
+Ex
+!DOCTYPE html
+html lang=en
+head
+    meta charset=UTF-8
+    meta name=viewport content=width=device-width, initial-scale=1.0
+    titleDocumenttitle
+    link rel=stylesheet href=..node_modulesbootstrap-iconsfontbootstrap-icons.css
+    style
+       dd {
+        margin-top 20px;
+       }
+    style
+head
+body
+    form
+        dl
+            dtUser Namedt
+            ddinput type=text name=UserNamedd
+            dtCitydt
+            dd
+                select name=City
+                    optionChoose Cityoption
+                    optionDelhioption
+                    optionHydoption
+                select
+            dd
+            dd
+                input type=submit value=Register
+                input type=reset value=Cancel
+            dd
+            dd
+                button type=submit span class=bi bi-person-fillspan Register button
+                button type=reset  img src=.imagesa1.jpg width=20 height=20 Cancel button
+                button type=button class=bi bi-printer-fill Print button
+            dd
+        dl
+       
+    form
+body
+html
+
+                        Form CSS Classes

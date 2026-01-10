@@ -1,0 +1,248 @@
+CSS Positions
+Static
+Absolute
+Relative
+Sticky
+Fixed
+
+                              CSS Z-Index
+
+- It controls the placement of overlapping contents in page.
+- You can send backward or back.
+- You can bring forward or front.
+- It uses index number starting with "0" bottom of all elements in a stack.
+
+Syntax:
+    {
+     z-index:0;
+    }
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <style>
+      div {
+         width: 500px;
+         height: 300px;
+         border-radius: 20px;
+         position: absolute;
+      }
+      .women-fashion {
+         background-image: url("../public/images/women-fashion.jpg");
+         background-size: 100%;
+         z-index: 1;
+      }
+      .men-fashion {
+         background-image: url("../public/images/men-fashion.jpg");
+         background-size: 100%;
+         margin-left: 600px;
+         margin-top: 200px;
+         z-index: 2;
+      }
+      .kids-fashion {
+         background-image: url("../public/images/kids-fashion.jpg");
+         background-size: 100%;
+         margin-left: 300px;
+         margin-top: 100px;
+         z-index: 0;
+      }
+   </style>
+</head>
+<body>
+   <div class="women-fashion"></div>
+   <div class="kids-fashion"></div>
+   <div class="men-fashion"></div>
+</body>
+</html>
+
+                           CSS Backgrounds
+background-color            : color
+background-image            : url()
+background-size            : contain, cover, [width, height]
+background-position        : top, center, bottom, left, right [x, y]
+background-repeat            : no-repeat, repeat, repeat-x, repeat-y
+background-attachment         : fixed, scroll
+background-clip            : content-box, padding-box
+
+https://colorlib.com/wp/template/academia/
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+   <style>
+      body {
+         background-image: url("../public/images/girl-books.jpg");
+         background-size: cover;
+         background-attachment: fixed;
+      }
+      header {
+         padding: 30px;
+         display: flex;
+         justify-content: space-between;
+         color:white;
+         font-size: 20px;
+         font-family: Arial;
+      }
+      header span {
+         padding-right: 20px;
+      }
+      .sub-title {
+         font-size: 13px;
+      }
+      .title {
+         font-size: 35px;
+         font-weight: bold;
+      }
+      nav {
+         padding: 20px;
+         display: flex;
+         justify-content: space-around;
+         background-color: rgba(227, 193, 193, 0.254);
+         color:white;
+         font-size: 20px;
+         font-family: Arial;
+      }
+      main {
+         color:white;
+         font-family: Arial;
+         width: 600px;
+         padding-left: 100px;
+         padding-top: 100px;
+      }
+      .main-title {
+         font-size: 40px;
+         font-weight: bold;
+         padding-bottom: 20px;
+      }
+      .main-subtitle {
+         font-size: 20px;
+         padding-bottom: 10px;
+      }
+      .main-text {
+         font-size: 16px;
+         width: 500px;
+         padding-top: 20px;
+      }
+      .main-buttons {
+         margin-top: 30px;
+       
+      }
+      main button {
+         padding: 20px;
+         font-size: 16px;
+         border:none;
+      }
+      section {
+         display: grid;
+         grid-template-columns: 6fr 6fr;
+         background-color: white;
+         height: 700px;
+         margin: -8px;
+      }
+   </style>
+</head>
+<body>
+   <header>
+      <div>
+         <div class="title">ACADEMIA</div>
+         <div class="sub-title">ONLINE EDUCATION & LEARNING</div>
+      </div>
+      <div>
+         Monday-Friday
+      </div>
+      <div>
+         <aside>
+            <span class="bi bi-facebook"></span>
+            <span class="bi bi-twitter"></span>
+            <span class="bi bi-instagram"></span>
+         </aside>
+      </div>
+   </header>
+   <nav>
+      <span>Home</span>
+      <span>All Courses</span>
+      <span>About</span>
+      <span>Team</span>
+      <span>Pricing</span>
+      <span>Journal</span>
+   </nav>
+   <main>
+      <div class="main-subtitle">WELCOME TO ACADEMIA</div>
+      <div class="main-title">Best Online Education Expertise</div>
+      <div class="main-text">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</div>
+      <div class="main-buttons">
+         <button style="background-color: white;"> <span>Get Started Now</span> <span class="bi bi-arrow-right"></span> </button>
+         <button style="background-color: rgba(223, 110, 110, 0.651); color:white;"> <span>View All Courses</span> <span class="bi bi-arrow-right"></span> </button>
+      </div>
+   </main>
+   <section>
+      <div>
+         <img src="../public/images/girl-laptop.jpg" width="120%" height="700px">
+      </div>
+      <div>
+
+      </div>
+   </section>
+</body>
+</html>
+
+- You can set multiple background images.
+
+Syntax:
+    {
+      background-image: url(" "), url(" "), … ;
+      background-size:  first-size, second-size;
+      background-repeat: first-repeat, second-repeat;
+    }
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            height: 100vh;
+            background-image: url("../public/images/a1.jpg"), url("../public/images/a12.jpg");
+            background-repeat: no-repeat, repeat;
+            background-position: center center;
+            background-size: 300px 200px, 200px 200px;
+        }
+    </style>
+</head>
+<body>
+   
+</body>
+</html>
+
+                          CSS Display
+- Display can control various display styles for element in page.
+
+    display:none            : It hides the element in page and removes the allocated
+                          space on page.
+
+FAQ: What is difference between display:none & visibitily:hidden ?
+Ans:  display:none removes the allocated space after hiding.
+     visibility:hidden keeps the allocated space.
+
+    display:block            : It will not allow to warp any content beside.
+    display:inline            : It allows to wrap the content beside.
+
+Note: Block allows to modify the size and position of element. It will not allow content
+      beside.
+
+    display:inline-block        : It allows to modify size and keep inline.
+
+
+     display:flex

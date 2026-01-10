@@ -1,0 +1,208 @@
+FAQ: How to open linked document in a new Tab?
+Ans:  By using the "target" attribute set to "_blank".
+
+Syntax:
+    <a href="./images/fashion.jpg" target="_blank"> Fashion </a>
+
+FAQ: How to open linked document in new window?
+Ans:  By using JavaScript "window.open()" method.
+   
+        window.open("path", "title", "features")
+
+Syntax:
+ <a href="javascript:window.open('./images/pic.jpg', 'Title', 'width=100 height=200')">
+        Text  |  Image
+ </a>
+
+FAQ: How to open linked document in same tab along with existing content?
+Ans: You can embed any external file into same page by using <iframe> element.
+     Iframe is an HTML 5 element, which is used to embed any external content into the webpage.
+
+Syntax:
+    <iframe name="demo"> </iframe>
+
+    <a href="file_path"  target="demo">  Text </a>
+
+    You can directly embed any content into iframe by using "src" attribute.
+
+    <iframe src="path"> </iframe>
+
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: grid;
+            grid-template-columns: 2fr 10fr;
+        }
+        main iframe {
+            width: 100%;
+            height: 100vh;
+            border:none;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div><a href="./images/women-fashion.jpg" target="_blank"> <img src="./images/women-fashion.jpg" width="100" height="100"> </a></div>
+        <div><a href="javascript:window.open('./images/kids-fashion.jpg','Kids','width=300 height=400')"> <img src="./images/kids-fashion.jpg" width="100" height="100"> </a></div>
+        <div><a href="./images/men-fashion-crop.jpg" target="frameBody"> <img src="./images/men-fashion.jpg" width="100" height="100"> </a> </div>
+        <div>
+            <a href="./shopper-template.html" target="frameBody">Shopper</a>
+        </div>
+        <div>
+            <a href="https://www.youtube.com/embed/ZAo42MCnHRo&quot; target="frameBody"> HTML Video </a>
+        </div>
+    </nav>
+    <main>
+        <iframe name="frameBody"></iframe>
+    </main>
+   
+   
+</body>
+</html>
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       
+    </style>
+</head>
+<body>
+    <a target="framebody" href="https://www.youtube.com/embed/ZAo42MCnHRo">HTML Video</a> |
+    <a target="framebody" href="https://www.youtube.com/embed/dfEw2qC3aFk">Java</a&gt;
+    <br><br>
+    <iframe name="framebody" width="500" height="300"></iframe>
+</body>
+</html>
+
+                          Frames in HTML 4
+- Frame splits the window into horizontal and vertical panes.
+- Every pane can display a document or any complex content embedded.
+- HTML 4 frames are configured using
+
+        <frameset>
+        <frame>
+
+- HTML page can't have <body> section while using frames.
+
+Syntax:
+ <!DOCTYPE html>
+ <html>
+   <head> <title> Home </title> </head>
+   <frameset rows|cols="20% 80%">
+    <frame name="" src=""> </frame>
+    <frame name="" src=""> </frame>
+  </frameset>
+</html>
+
+- You can't keep any content directly in frame.
+- You have to design in a HTML page and link to frame.
+
+Syntax:
+    <a href="path" target="frameName"> Text </a>
+
+    <frame name="frameName">  </frame>
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Home</title>
+    </head>
+   
+        <frameset rows="20%, 60%, 20%">
+            <frame src="./navbar.html"></frame>
+            <frame name="framebody" src="./shopper-template.html"></frame>
+            <frame src="./flipkart-footer.html"></frame>
+        </frameset>
+   
+</html>
+
+Ex: Portfolio
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <style>
+        header {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            font-family: Arial;
+            font-size: 20px;
+            background-color: black;
+            color:white;
+        }
+        .title {
+            font-size: 25px;
+            font-weight: bold;
+        }
+        section {
+            display:  grid;
+            grid-template-columns: 2fr 10fr;
+        }
+        iframe {
+            width: 100%;
+            height: 100vh;
+            border:none;
+        }
+        ul {
+            list-style: none;
+            margin-left: -40px;
+        }
+        li {
+            background-color: black;
+            color:white;
+            padding: 5px;
+            margin-bottom: 20px;
+            width: 100px;
+        }
+        a{
+            color:white;
+            font-size: 16px;
+            font-family: Arial;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="title">John</div>
+        <div>I am UI & UX Designer</div>
+        <div>
+            <span><a href="john@gmail.com">john@gmail.com</a></span>
+            <span><a href="tel:9876543210">+919876543212</a></span>
+        </div>
+    </header>
+    <section>
+        <nav>
+            <h3>My Projects</h3>
+            <ul>
+                <li><a href="./shopper-template.html" target="frameMain">Shopper</a></li>
+                <li><a href="./landkit.html" target="frameMain">Landkit</a></li>
+                <li><a href="./amazon-cards.html" target="frameMain">Amazon</a></li>
+                <li><a href="./docs/kerala.pdf" target="frameMain">My Resume</a></li>
+            </ul>
+        </nav>
+        <main>
+            <iframe name="frameMain"></iframe>
+        </main>
+    </section>
+</body>
+</html>
+
+Table & Forms

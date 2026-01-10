@@ -1,0 +1,9 @@
+                                           Jump Statements
+
+a) break
+b) return
+c) continue
+
+- break     : It terminates the block but continue the compiling process.
+- return    : It terminates the compiling. any thing after return is not reachable to compiler.
+- continue   : It skips the counter and continue to next.

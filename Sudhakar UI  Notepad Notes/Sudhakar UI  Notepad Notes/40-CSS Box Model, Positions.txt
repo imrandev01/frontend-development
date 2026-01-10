@@ -1,0 +1,224 @@
+Summary
+CSS Integration
+CSS Selectors
+CSS Rules
+CSS Inheritance
+CSS Colors
+
+                             CSS Box Model
+
+1. Margin
+2. Padding
+3. Border
+4. Width
+5. Height
+
+Margin Attributes:
+
+    margin        :  short hand for all directions.
+                   [top, right, bottom, left]
+
+                   {
+                    margin: 0px 0px 0px 0px;        4 directions individual
+                   }
+
+                   {
+                   margin: 0px;                    all directions same value
+                   }
+
+    margin-left
+    margin-right
+    margin-top
+    margin-bottom
+
+Padding Attributes:
+
+        padding            : all directions : top, right, bottom, left
+        padding-left
+        padding-right
+        padding-top
+        padding-bottom
+
+Border Attributes:
+       
+        border            : It defines short hand for style, size and color
+        border-width        : size
+        border-color        : color
+        border-style        : solid, dotted, double, dashed, groove
+       
+        border-left        : left short hand with style, width, color
+        border-left-style
+        border-left-color
+        border-left-width
+   
+        … similar for all directions …
+
+Border Radius Attributes:
+
+        border-radius                : short hand for all directions
+        border-top-right-radius
+        border-top-left-radius
+        border-bottom-right-radius
+        border-bottom-left-radius
+
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+     p {
+       border:1px solid black;
+       margin: 50px;
+       padding: 20px 5px 20px 10px;
+       border-left: 14px solid red;
+       border-top: 14px solid red;
+       border-right: 14px double blue;
+       border-bottom: 14px double blue;
+       border-top-right-radius: 40px;
+       border-bottom-left-radius: 40px;
+     }
+     .btn-reg {
+       border-top-right-radius: 40px;
+       border-bottom-left-radius: 40px;
+       padding: 5px;
+       width: 100px;
+     }
+     .btn-login {
+       border-top-left-radius: 40px;
+       border-bottom-right-radius: 40px;
+       padding: 5px;
+       width: 100px;
+     }
+  </style>
+</head>
+<body>
+   <button class="btn-reg">Register</button>
+   <button class="btn-login">Login</button>
+   <p>
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Architecto sit vero at consequatur excepturi voluptate odio rerum ex ullam ut amet, eius aut dicta? Eos, est. Rem et aliquid repellendus.
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. At nulla aperiam possimus! Neque laborum sequi modi suscipit dicta? Reprehenderit enim voluptate eius, laudantium ea inventore accusamus possimus rem quam labore?
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. At nulla aperiam possimus! Neque laborum sequi modi suscipit dicta? Reprehenderit enim voluptate eius, laudantium ea inventore accusamus possimus rem quam labore?
+   </p>
+</body>
+</html>
+
+Border Image Attribute:
+
+        border-image                : It sets image as border with size, offset, style
+
+Syntax:
+    {
+      border : 10px solid transparent;
+      border-image: url("path")  stretch|space  1-100;         1-100 is offset
+    }
+
+Note: You can't set border-image without the border attribute.
+
+Ex:
+   p {
+       border:24px solid transparent;
+       border-image: url("../public/images/border.jpg") space 70;
+       margin: 50px;
+       padding: 20px 5px 20px 10px;
+     }
+
+Width & Height
+
+        width        : size of element along X axis
+        height        : size of element along Y axis
+
+
+                          CSS Positions
+- The CSS "position" attribute provides following values
+   
+    a) Static
+    b) Absolute
+    c) Fixed
+    d) Relative
+    e) Sticky
+
+Static
+- It keeps element according to the normal flow in document.
+- It will not allow the element to change its position using top, left, right and bottom values.
+- It is the default position for element.
+
+Absolute:
+- It removes element from the normal flow in document.
+- It allows to keep at specified position using top, right, left and bottom.
+- It keeps the element with regard to the content in page.
+- It moves the element along with content.
+
+Fixed:
+- It removes element from the normal flow in document.
+- It allows to change position.
+- It keeps the element width regard to browser window and not to content in page.
+- It will not move along with the content.
+
+Relative:
+- It defined for parent element to keep all child elements relative to parent.
+
+Sticky:
+- It keeps element according to the normal flow in document.
+- It can scroll along with content in page.
+- However it can stick to browser at specified position.
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+  <style>
+     #badge {
+        position: absolute;
+        top: -10px;
+        right: -10px;
+     }
+     button {
+        position: relative;
+     }
+     .women-fashion {
+        width: 300px;
+        height: 400px;
+        background-image: url("../public/images/women-fashion.jpg");
+        background-size: cover;
+        position: relative;
+     }
+     .offer {
+      width: 50px;
+      height: 50px;
+      background-color: red;
+      border-radius: 50px;
+      font-size: 14px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      color:white;
+      position: absolute;
+      right: 10px;
+      top: 20px;
+     }
+  </style>
+</head>
+<body class="container-fluid">
+   <h2>Position</h2>
+   <button class="btn btn-warning">
+       <span class="bi bi-cart4">Your Cart</span>
+       <span id="badge" class="badge bg-danger rounded rounded-circle">2</span>
+   </button>
+   <div class="women-fashion">
+      <div class="offer">
+         <div>Save</div>
+         <div>50%</div>
+      </div>
+   </div>
+</body>
+</html>

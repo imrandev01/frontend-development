@@ -1,0 +1,174 @@
+- Number in JavaScript provides methods for precision and fixed values.
+
+        a) toPrecision()    : It sets the length for number.
+        b) toFixed()        : It sets the fractions limit.
+
+Syntax:
+    var x  = 300;
+    x.toFixed(2);            // 300.00
+
+    var x = 300.4478;
+    x.toFixed(2);            // 300.45
+
+    var x = 300.4478;    
+    x.toPrecision(6);        // 300.447
+
+
+                                String Type
+- String is a literal with group of characters enclosed with in
+    a) Double Quotes
+    b) Single Quotes
+    b) Backticks
+- String chars include  alphabet, number and special chars.
+- Double and Single quotes are used for defining outer and inner string.
+
+Syntax:
+       var link =  "<a href=' home.html '> Home </a>";
+
+       var link =  '<a  href=" home.html "> Home </a> ';
+
+- Single and double quote requires lot of concatenation with dynamic data in string.
+
+Syntax:
+        "string"  + refName + "string"  + (expression) + "string."
+
+- JavaScript ES5+ version provides backtick for string, which allows embedded data binding expression.
+
+- JavaScript data binding expression is defined using "${ }", which is allowed only with in backtick string representation.
+
+Syntax:
+        ` string ${refName} string ${expression} string `;
+
+Ex:
+<script>
+    var uname = prompt("Enter Name");
+    var age = parseInt(prompt("Enter Age"));
+
+    var msg1 = "Hello !&nbsp;" + uname + "&nbsp;your age is&nbsp;" + age +  "&nbsp;and you will be&nbsp;" + (age+1) + "&nbsp;next year.<br>";
+
+    var msg2 = `Hello ! ${uname} your are is ${age} and you will be ${age+1} next year.`;
+
+
+    document.write(msg1);
+    document.write(msg2);
+</script>
+
+EX:
+<script>
+    var label_title = prompt("Enter Label");
+    var input_type = prompt("Enter Input Type");
+    var button_text = prompt("Enter Button Text");
+
+    var component = `
+       <label>${label_title}</label>
+       <div>
+          <input type=${input_type}>
+          <button>${button_text}</button>
+       </div>
+    `;
+    document.write(component);
+</script>
+
+- Several chars in a string representation can't print.
+- Translator ignores few chars in a string representation as they are internally used by the translation system.
+- You have to explicitly print the non-printable chars by using "\".
+
+Syntax:
+    var path = "D:\Images";            => D:Images
+
+    var path = "D:\\Images";            => D:\Images
+
+Ex:
+<script>
+    var path = "\"D:\\project\\images\\poster.jpg\"";
+    document.write(path);
+</script>
+
+- JavaScript provides various functions to format and to manipulate a string.
+
+String Formatting:
+- It is the process of applying formats to string dynamically.
+- The formats include text styles, font styles, font effects etc.
+
+        bold()
+        italics()
+        sup()
+        sub()
+        fontsize()
+        fontcolor()
+        strike()
+        toUpperCase()
+        toLowerCase()    
+        etc..
+
+Ex:
+<script>
+    var msg = "Welcome to JavaScript";
+    document.write(msg.bold().italics().fontcolor('green').toUpperCase());
+</script>
+
+    onblur            : defines action when element lost focus.
+    onkeyup            : defines action when user key-in and release a char.
+
+EX:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function ChangeCase(){
+            var username = document.getElementById("txtName").value;
+            document.getElementById("txtName").value = username.toUpperCase();
+        }
+    </script>
+</head>
+<body>
+    <fieldset>
+        <legend>Your Name</legend>
+        <input type="text" onblur="ChangeCase()" id="txtName" placeholder="Name in Block Letters">
+    </fieldset>
+</body>
+</html>
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        dt {
+            font-weight: bold;
+        }
+        dd {
+            margin-bottom: 10px;
+        }
+    </style>
+    <script>
+       function ApplyClick(){
+           var size = document.getElementById("fontSize").value;
+           var color = document.getElementById("fontColor").value;
+
+           document.getElementById("msg").innerHTML = "Sample Text".fontsize(size).fontcolor(color);
+       }
+    </script>
+</head>
+<body>
+    <fieldset>
+        <legend>Format Text</legend>
+        <dl>
+            <dt>Font Size</dt>
+            <dd><input type="range" onchange="ApplyClick()" id="fontSize" min="1" max="7" value="1"></dd>
+            <dt>Font Color</dt>
+            <dd><input type="color" id="fontColor"></dd>
+            <dd>
+                <button onclick="ApplyClick()">Apply</button>
+            </dd>
+        </dl>
+        <p id="msg" align="center"></p>
+    </fieldset>
+</body>
+</html>

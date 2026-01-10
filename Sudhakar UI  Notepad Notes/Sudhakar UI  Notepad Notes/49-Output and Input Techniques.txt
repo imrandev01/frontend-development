@@ -1,0 +1,202 @@
+Output
+- alert()
+- confirm()
+
+3. document.write()        
+- It prints output on a new screen of same page.
+- It supports complex string formats & markup.
+
+Syntax:
+    document.write("value / expression / markup");
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+        function DeleteClick(){
+           result = confirm("Delete Record\nAre you sure?");
+           if(result==true)
+           {
+              document.write("<h2><font color='red'>Record Deleted Successfully..</font></h2><a href='output.html'>Back</a>");
+           }
+           else
+           {
+             alert("You canceled..");
+           }
+        }
+    </script>
+</head>
+<body>
+    <button onclick="DeleteClick()">Delete</button>
+</body>
+</html>
+
+4. innerText        
+- It can display output in any HTML container.
+- You can use a semantic or non-semantic container that support text display.
+- You can't display complex formats for text.
+- It can display plain text content [alpha numeric and special chars].
+
+Syntax:
+    <div id="msg"> </div>
+
+    document.getElementById("msg").innerText = "msg";
+
+5. innerHTML
+- It is similar to innerText but supports complex text formats using markup.
+
+Syntax:
+    document.getElementById("msg").innerHTML = "<b> Msg </b>";
+
+- It can add new elements into the specified parent container.
+
+6. outerHTML
+- It can replace the parent container with new elements.
+
+Syntax:
+
+    document.querySelector("p").outerHTML = "<h2> Msg </h2>";
+
+
+7. console methods [contextual]
+    log()
+    error()
+    info()
+    debug()
+    warn()
+  - Developer use console as command line terminal for testing functions and tracking performance of actions.
+  - Developer can log various results into console by using contextual methods.
+  - It is recommended only for design and testing, not for production.
+  - All console methods are RC type.
+
+Syntax:
+    console.log("string | expression");
+    console.warn()
+    console.error()
+
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+        function DeleteClick(){
+           console.warn("Delete button clicked");
+           result = confirm("Delete Record\nAre you sure?");
+           if(result==true)
+           {
+              document.querySelector(".msg").outerHTML = "<h3>Deleted..</h3>";
+              console.error("OK clicked");
+           }
+           else
+           {
+             alert("You canceled..");
+             console.log("Cancel Clicked");
+           }
+        }
+    </script>
+</head>
+<body>
+    <button onclick="DeleteClick()">Delete</button>
+    <p class="msg"></p>
+</body>
+</html>
+
+                    JavaScript Input Techniques
+1. QueryString
+- User can input from address bar of browser.
+- The values from address bar are allowed as Query String.
+- Query String comprises of Key and value.
+- Query String is appended to page in address bar using "?"
+
+Syntax:
+    http://server.com/page.html?key=value
+
+- You can access query string using "location.search", which is browser object property.
+
+    location.search;        => ?key=value
+
+- You need various string handling methods to extract only value from query string.
+
+    indexOf()            It returns the index number of character in a string.
+    slice()            It extracts the chars between specified index.
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function bodyload(){
+             querystring = location.search;
+             equalPosition = querystring.indexOf("=");
+             val = querystring.slice(equalPosition+1);
+             document.querySelector("p").innerHTML = "Searching For :" + val;
+        }
+    </script>
+</head>
+<body onload="bodyload()">
+    <p></p>
+</body>
+</html>
+
+Input from URL:
+
+http://127.0.0.1:5500/JavaScript-Examples/input.html?search=Televisions
+
+
+Syntax:
+document.querySelector("p").innerHTML = "Searching For :" + location.search.slice(location.search.indexOf("=")+1);
+
+2. prompt()
+- It is an input box provided by browser window object.
+- It allows user to input a value dynamically.
+
+Syntax:
+    prompt("Message", "Default_Value_optional");
+
+- Prompt returns values results
+
+    null        : on cancel click
+    " "        : on ok without value
+    "value"    : on ok with value
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <script>
+       function SearchClick(){
+          result = prompt("Enter Search String");
+          if(result=="")
+          {
+             alert("Search string can't be empty");
+          }
+          else if(result==null)
+          {
+             alert("Search Canceled");
+          }
+          else {
+            document.querySelector("p").innerHTML = "Searching For: " + result;
+          }
+       }
+    </script>
+</head>
+<body>
+    <button class="bi bi-search" onclick="SearchClick()"></button>
+    <p></p>
+</body>
+</html>

@@ -1,0 +1,83 @@
+Softwares:
+1. Node JS
+2. Visual Studio Code
+    - Live Server
+    - VSCode Icons
+    - IntelliSense
+
+
+Create a new Web Application:
+- Web Comprises various types of content
+    Website
+    Web Application
+    Blog
+    Micro Blog
+    Wiki [Hawain Word - Quick]
+    Podcasting
+- Website is a virtual directory on web server. It provides access to the resources of server.
+- Website comprises of 2 paths
+    a) Physical Path
+    b) Virtual Path
+- Website comprises only static resources.
+- Web Application comprises of both Static and Dynamic resources
+
+
+Ex:
+1. Open any location on your PC and create a new folder for your project
+
+        d:\travel-app
+
+2. Open Visual Studio Code
+
+3. File Menu => Open Folder => D:\Travel-App
+
+4. Go to "Terminal Menu => Select  New Terminal"     [Ctrl + ` ]  
+
+5. Generate package.json by using the following command in terminal
+
+        > npm   init  -y
+
+     package.json comprises of project meta data.
+
+6. Add a new file into project by name
+
+        "README.md"
+
+7. Add following folders into project
+
+        a) public
+        b) src
+
+    public : It is used for static resources like  html pages, images, text documents,
+         pdf document, audio & video clips etc.
+
+    src    : It is used for dynamic resources like  css, scss, less, js, ts, jsx, tsx etc..
+
+
+        public
+            > images
+            > icons
+            > videos
+            > docs
+        src
+            > styles
+            > scripts
+            > scss
+
+        https://www.freepik.com/
+
+8. Add few resources like images and pdf documents into project physical path.
+
+9. Click on "Go Live" in the status bar of Visual Studio Code.
+
+10. Open any browser
+        - Chrome
+        - Edge
+        - FireFox
+        - Safari etc.
+
+    http://127.0.0.1:5500
+            (or)
+    http://localhost:5500
+
+11. Add "index.html" into your project, which is the startup page.

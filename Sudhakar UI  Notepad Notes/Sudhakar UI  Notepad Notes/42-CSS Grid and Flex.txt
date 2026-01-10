@@ -1,0 +1,281 @@
+Display Flex
+
+- It is used for container that comprises of elements.
+- Elements in container can be displayed in 2 orientations
+    a) Row
+    b) Column
+- Flexible row contains elements with alignment that is responsive with regard to screen and parent.
+
+Syntax:
+    {
+     display:flex;
+     flex-direction : row | column;
+    }
+
+- Flex wrap will control the wrapping of elements.
+
+Syntax:
+    {
+      flex-wrap: warp | no-wrap;
+    }
+
+- Alignment can be defined using
+
+    a) justify-content
+    b) align-items
+
+Syntax:
+    {
+      justify-content: space-between | space-around | space-evenly | center;
+      align-items: start | end | center | baseline
+    }
+
+- align-items row-wise orientation keeps content  top, center or bottom.
+- align-items column orientation keeps left, center, right.
+
+            top, left        : baseline
+            center        : center
+            right, bottom    : end
+
+Ex:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       body {
+          display: flex;
+          height: 100vh;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+       }
+    </style>
+</head>
+<body>
+   
+      <h1>Amazon</h1>
+      <button>Signup</button>
+ 
+</body>
+</html>
+
+Summary
+ display:flex
+ flex-direction
+ flex-wrap
+ justify-content
+ align-items
+       
+                           Display Grid
+
+- It is used to create responsive layout.
+- You can change the placement of any content using grid-row or grid-column.
+- Grid allows dynamic placements using media queries.
+- You can change the complete page layout according to the device.
+
+Attributes:
+    display
+    grid-template-columns
+    grid-row
+    grid-column
+    grid-gap
+
+- Media Queries are required to change the layout dynamically.
+
+    @media   type  and  (attributes)
+    {
+
+    }
+
+    type            => screen, print, speech
+    attributes        => orientation, width, min-width, max-width
+    orientation    => landscape, portrait
+
+Syntax:
+    @media  screen and (orientation:landscape)
+    {
+    }
+
+
+    width        : exactly specified units
+    min-width        : starting from specified units up to end
+    max-width    : from starting up to specified units.
+
+Ex:
+Layout.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        header, nav, main, aside, footer {
+            border:1px solid black;
+            padding: 10px;
+            margin: 5px;
+            font-size: 20px;
+        }
+        main {
+            height: 300px;
+        }
+       @media screen and (orientation:landscape)
+       {
+            body {
+                display: grid;
+                grid-template-columns: 2fr 8fr 2fr;
+            }
+            header {
+                grid-row: 1;
+                grid-column: 1/4;
+            }
+            nav {
+                grid-row: 2;
+                grid-column: 1;
+            }
+            main {
+                grid-row: 2;
+                grid-column: 2;
+            }
+            aside {
+                grid-row: 2;
+                grid-column: 3;
+            }
+            footer {
+                grid-row: 3;
+                grid-column: 1/4;
+            }
+       }
+
+       @media screen and (orientation:portrait) {
+           body {
+            display: grid;
+            grid-template-columns: 12fr;
+           }
+           header {
+            grid-row: 1;
+           }
+           nav {
+            grid-row: 2;
+           }
+           main {
+            grid-row: 3;
+           }
+           aside {
+            grid-row: 4;
+           }
+           footer {
+            grid-row: 5;
+           }
+       }
+
+    </style>
+</head>
+<body>
+    <header>
+        Header
+    </header>
+    <nav>Nav</nav>
+    <main>Main</main>
+    <aside>Aside</aside>
+    <footer>
+        Footer
+    </footer>
+</body>
+</html>
+
+Ex:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @media screen and (max-width:599px), (orientation:portrait)
+        {
+            body {
+                background-color: yellow;
+            }
+        }
+        @media screen and (min-width:600px)
+        {
+            body {
+                background-color: greenyellow;
+            }
+        }
+    </style>
+</head>
+<body>
+   
+</body>
+</html>
+
+Ex:  Grid Layout - Responsive
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <style>
+       nav {
+         background-color: black;
+         color:white;
+         padding: 10px;
+         font-size: 20px;
+         font-family: Arial;
+       }
+       button {
+         background-color: white;
+         color:black;
+         font-size: 25px;
+       }
+       @media screen and (orientation:landscape)
+       {
+          nav {
+             display: flex;
+             justify-content: space-between;
+          }
+          .menu span {
+            margin-right: 50px;
+          }
+          button {
+            visibility: hidden;
+          }
+       }
+       @media screen and (orientation:portrait)
+       {
+            nav {
+             display: flex;
+             justify-content: space-between;
+           }
+           .menu {
+              visibility: hidden;
+           }
+           button {
+             visibility: visible;
+           }
+       }
+    </style>
+</head>
+<body>
+    <nav>
+        <div>Amazon</div>
+        <div class="menu">
+            <span>Home</span>
+            <span>Shop</span>
+            <span>Pages</span>
+            <span>Blog</span>
+        </div>
+        <button class="bi bi-justify"></button>
+    </nav>
+</body>
+</html>
